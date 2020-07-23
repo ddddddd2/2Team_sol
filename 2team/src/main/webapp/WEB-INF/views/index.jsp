@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-소라 아오이 test1
+기덕이 화이팅
 </body>
 </html>
