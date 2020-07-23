@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-킴기덕
+
+
 </body>
 </html>
