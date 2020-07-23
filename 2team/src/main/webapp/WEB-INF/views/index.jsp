@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-태웅이형은 EDD
-유열이는 202
+소라 아오이 test1
 </body>
 </html>
