@@ -13,8 +13,6 @@ public class TestController {
 	
 	@RequestMapping("/")
 	public String testCon() {
-		int ln = testService.getParam();
-		System.out.println(ln);
-		return "list";
+		return "sub";
 	}
 }
