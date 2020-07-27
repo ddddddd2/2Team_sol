@@ -15,6 +15,6 @@ public class TestController {
 	public String testCon() {
 		int ln = testService.getParam();
 		System.out.println(ln);
-		return "index";
+		return "list";
 	}
 }
