@@ -1,14 +1,10 @@
 	$(function(){
 
-		// 회원가입 id 중복 확인 
-		$('#id').keyup(function(){
-			var id = $("#id").val();
-			if(id.length >= 2)
-		    $.ajax({													 
+		// 회원가입 id 중복 확인 												 
 		    															// 기본적인 형태의 정보를 보내는 방법 													 // 서버에 데이터를 전송하고, 서버에서는 받은 데이터를 처리하고 검색을 하거나 해서 다시 클라이언트에게 보냄
 		$('#mem_id').keyup(function(){
 			var id = $(this).val();
-			if(id.length >= 4)
+			if(id.length >= 3)
 		    $.ajax({													 // 기본적인 형태의 정보를 보내는 방법 
 			   															 // 서버에 데이터를 전송하고, 서버에서는 받은 데이터를 처리하고 검색을 하거나 해서 다시 클라이언트에게 보냄
 		        async:true,												 // 동기 비동기 형식으로 어떻게 보낼지 

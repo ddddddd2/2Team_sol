@@ -43,7 +43,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/custom/memSignUp")
-	public String signUp(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public String memSignUp(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		return "custom/memSignUp";
+	}
+	
+	@RequestMapping(value="/custom/memSignUpProc")
+	public String memSignUpProc(HttpServletRequest request, Model model, HttpServletResponse response,
+			MemberDTO mdto) {
+		
 		
 		return "custom/memSignUp";
 	}
