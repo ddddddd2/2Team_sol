@@ -15,4 +15,9 @@ public class TestController {
 	public String testCon() {
 		return "sub";
 	}
+	
+	@RequestMapping("/1")
+	public String testcon2() {
+		return "list";
+	}
 }

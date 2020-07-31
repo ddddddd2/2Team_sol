@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sol.admin.AdminDAO">
+
+<select id="getMember" resultType="mdto">
+select mem_no, grade_name, mem_id, mem_passwd, mem_name, mem_email, mem_phone,mem_gender, mem_role from member
+</select>
+
+</mapper>
