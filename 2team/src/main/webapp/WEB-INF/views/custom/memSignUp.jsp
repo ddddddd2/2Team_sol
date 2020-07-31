@@ -105,7 +105,7 @@
 		<div class="container-id">
 			<div class="text-id"> 아이디 </div>
 			<div class="box-id">
-				<input type="text" title="아이디" name="id" id="id" placeholder="아이디를 입력하시오." >
+				<input type="text" title="아이디" name="mem_id" id="id" placeholder="아이디를 입력하시오." >
 			</div>
 
 			<label id="id-error" class="error" for="id"></label>     
@@ -117,7 +117,7 @@
 		<div class="container-pw">
 			<div class="text-pw"> 비밀번호 </div>
 			<div class="box-pw">
-				<input type="password" title="비밀번호" name="pw" id="pw" placeholder="비밀번호를 입력하시오." >
+				<input type="password" title="비밀번호" name="mem_passwd" id="pw" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>
 		
@@ -126,7 +126,7 @@
 		<div class="container-pwcheck">
 			<div class="text-pwcheck"> 비밀번호 확인 </div>
 			<div class="box-pwcheck">
-				<input type="password" title="비밀번호확인" name="pwcheck" id="pwcheck" placeholder="비밀번호를 입력하시오." >
+				<input type="password" title="비밀번호확인" name="mem_passwd" id="pwcheck" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>
 		
@@ -135,7 +135,7 @@
 		<div class="container-name">			
 			<div class="text-name"> 이름 </div>
 			<div class="box-name">
-				<input type="text" title="이름" name="name" id="name">
+				<input type="text" title="이름" name="mem_name" id="name">
 			</div>
 		</div>			
 		
@@ -153,14 +153,14 @@
 		<div class="container-email">
 			<div class="text-email">이메일</div>
 			<div class="box-email">
-				<input type="text" title="이메일" name="email" id="email" placeholder="abc @ gmail.com" >
+				<input type="text" title="이메일" name="mem_email" id="email" placeholder="abc @ gmail.com" >
 			</div>
 		</div>
 		
 		<div class="container-phone">
 			<div class="text-phone"> 휴대전화번호 </div>
 			<div class="box-phone">
-				<input type="text" title="휴대전화번호" name="phone" id="phone" placeholder="010-1234-1234" >
+				<input type="text" title="휴대전화번호" name="mem_phone" id="phone" placeholder="010-1234-1234" >
 			</div>
 			<label id="phone-error" class="error" for="phone"></label>
 		</div>
