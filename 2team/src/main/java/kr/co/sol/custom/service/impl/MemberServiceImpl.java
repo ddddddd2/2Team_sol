@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import kr.co.sol.custom.dao.MemberDAO;
 import kr.co.sol.custom.service.MemberService;
 
-@Service
+@Service("MemberService")
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
