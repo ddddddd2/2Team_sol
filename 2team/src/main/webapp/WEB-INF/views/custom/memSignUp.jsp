@@ -98,9 +98,9 @@
 </style>
 </head>
 <body>
-	<form class="container" name="form" title="회원가입" method="post" action="<%=request.getContextPath()%>/register">
+	<form class="container" name="form" title="회원가입" method="post" action="">
 		<div class="logo">
-			<a href=""> <img src="../resources/image/logo.gif" alt="" /> </a>
+			<a href="/"> <img src="../resources/image/logo.gif" alt="" /> </a>
 		</div>
 		<div class="container-id">
 			<div class="text-id"> 아이디 </div>
@@ -110,7 +110,7 @@
 
 			<label id="id-error" class="error" for="id"></label>     
 			       
-			<div class="dup-fail-msg display-none"> 이미 사용중이거나 탈퇴한 아이디입니다. </div>
+			<div class="dup-fail-msg display-none"> 이미 사용중인 아이디 입니다.</div>
 			<div class="dup-suc-msg display-none"> 사용 가능한 아이디 입니다.</div>
 		</div>
 				

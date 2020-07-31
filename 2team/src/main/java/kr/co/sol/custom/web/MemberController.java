@@ -31,7 +31,7 @@ public class MemberController {
 	@RequestMapping(value="/custom/login")
 	public String login(HttpServletRequest request, Model model, HttpServletResponse response) {
 
-		return "login";
+		return "/custom/login";
 	}
 	
 	@RequestMapping(value="/custom/loginProc")
