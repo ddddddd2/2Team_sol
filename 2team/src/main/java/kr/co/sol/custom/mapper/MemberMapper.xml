@@ -4,4 +4,6 @@
     <select id="idCheck" parameterType="string"  resultType="int">
     	select count(mem_id) cnt from member where mem_id = #{mem_id}
   	</select>
+  	
+  	
 </mapper>
