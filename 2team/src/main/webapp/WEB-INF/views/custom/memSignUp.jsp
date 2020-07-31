@@ -105,19 +105,19 @@
 		<div class="container-id">
 			<div class="text-id"> 아이디 </div>
 			<div class="box-id">
-				<input type="text" title="아이디" name="mem_id" id="id" placeholder="아이디를 입력하시오." >
+				<input type="text" title="아이디" name="mem_id" id="mem_id" placeholder="아이디를 입력하시오." >
 			</div>
 
 			<label id="id-error" class="error" for="id"></label>     
 			       
-			<div class="dup-fail-msg display-none"> 이미 사용중이거나 탈퇴한 아이디입니다. </div>
+			<div class="dup-fail-msg display-none"> 이미 사용중인 아이디 입니다. </div>
 			<div class="dup-suc-msg display-none"> 사용 가능한 아이디 입니다.</div>
 		</div>
 				
 		<div class="container-pw">
 			<div class="text-pw"> 비밀번호 </div>
 			<div class="box-pw">
-				<input type="password" title="비밀번호" name="mem_passwd" id="pw" placeholder="비밀번호를 입력하시오." >
+				<input type="password" title="비밀번호" name="mem_passwd" id="mem_passwd" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>
 		
@@ -126,7 +126,7 @@
 		<div class="container-pwcheck">
 			<div class="text-pwcheck"> 비밀번호 확인 </div>
 			<div class="box-pwcheck">
-				<input type="password" title="비밀번호확인" name="mem_passwd" id="pwcheck" placeholder="비밀번호를 입력하시오." >
+				<input type="password" title="비밀번호확인" name="mem_passwdchk" id="mem_passwdchk" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>
 		
