@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
+<link rel="stylesheet" type="text/css" href="../resource/css/adminMain.css" />
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="../resources/js/adminIndex.js"></script>
+<script type="text/javascript" src="../resource/js/adminIndex.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -17,8 +17,6 @@
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
-			당신의 열정페이, 월급으로 치환된다. 
-		
 		</div>
 	</div>
 	
