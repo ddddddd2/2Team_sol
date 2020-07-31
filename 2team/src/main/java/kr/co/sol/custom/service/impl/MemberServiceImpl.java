@@ -12,5 +12,10 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDAO memberDao;
 	
+	@Override
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.idCheck(id);
+	}
 	
 }

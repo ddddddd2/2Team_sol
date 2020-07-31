@@ -11,7 +11,7 @@ public class TestController {
 	@Autowired
 	TestService testService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/test")
 	public String testCon() {
 		return "sub";
 	}
