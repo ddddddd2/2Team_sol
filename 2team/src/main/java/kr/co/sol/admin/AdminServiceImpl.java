@@ -16,5 +16,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberDTO> getMember() {
 		return adminDao.getMember();
 	}
-
+	@Override
+	public List<MemberDTO> getMemberList(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return adminDao.getMemberList(searchOption, keyword);
+	}
 }

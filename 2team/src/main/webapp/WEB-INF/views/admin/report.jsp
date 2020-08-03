@@ -6,10 +6,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resource/css/adminMain.css" />
+<link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="../resource/js/adminIndex.js"></script>
+<script type="text/javascript" src="../resources/js/adminIndex.js"></script>
+<style type="text/css">
+.slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; }
+.slide_box { width: 100%; margin: auto; overflow-x: hidden; }
+.slide_content { display: table; float: left; width: 300px; height: 400px; }
+.slide_list div p {background-color: red;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+});
+}
+</script>
 </head>
 <body>
 	<div id="header">

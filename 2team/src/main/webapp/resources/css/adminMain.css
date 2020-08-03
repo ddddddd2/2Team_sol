@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-div {
-	text-align: center;
-}
+/* div { */
+/* 	text-align: center; */
+/* } */
 #header{
 	width:100%;
 	height:auto;
@@ -19,7 +19,22 @@ div {
 	width:24%;
 	text-align: center;
 }
-
+#main-wrapper {
+	clear:both;
+}
+#search {
+	float:left;
+	text-align: center;
+}
+#search > form{
+	float:left;
+}
 #content-wrap{
 	clear:both;
+}
+table {
+	margin:0 auto;
+}
+#addStore {
+	float:left;
 }
