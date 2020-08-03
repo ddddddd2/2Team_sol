@@ -5,5 +5,12 @@
     	select count(mem_id) cnt from member where mem_id = #{mem_id}
   	</select>
   	
+  	<select id="loginProc" parameterType="mdto" resultType="mdto">
+  		SELECT MEM_ID, MEM_NAME, MEM_ROLE, MEM_PASSWD 
+      	FROM MEMBER 
+      	WHERE mem_id = #{mem_id} 
+      	and mem_passwd = #{mem_passwd}
+  	</select>
+  	
   	
 </mapper>

@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,15 +41,31 @@
 				<div id="space" title="그냥 공백 처리용 /내용 없음"></div>
 				
 				<ul class="lnb">
-					<li class="select_list">
-						<a href="/custom/login" class="selected">로그인</a>
-						<ul class="select_sub">
-							<li><a href="#">뭐나옴??</a></li>
-							<li><a href="#">뭐나옴??</a></li>
-						</ul>	
-					</li>
-					<li><a href="/custom/memSignUp">회원가입</a></li>
-				</ul>
+				<c:choose>
+					<c:when test="${idKey == null}">
+						<li class="select_list"><a href="/custom/login" class="selected">로그인</a>
+							<ul class="select_sub">
+								<li><a href="#">뭐나옴??</a></li>
+								<li><a href="#">뭐나옴??</a></li>
+							</ul>
+						</li>
+
+						<li><a href="/custom/memSignUp">회원가입</a></li>
+					</c:when>
+					
+					<c:when test="${idKey != null and fn:length(idKey) > 0 }">
+						<li class="select_list">
+							<a href="/custom/logout" class="selected">로그아웃</a>
+							<ul class="select_sub">
+								<li><a href="#">뭐나옴??</a></li>
+								<li><a href="#">뭐나옴??</a></li>
+							</ul>
+						</li>
+
+						<li><a href="/custom/myPage2">마이페이지</a></li>
+					</c:when>
+				</c:choose>
+			</ul>
 
 		</header><!-- //header -->
 

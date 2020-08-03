@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.sol.custom.dao.MemberDAO;
+import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.service.MemberService;
 
 @Service
@@ -16,6 +17,12 @@ public class MemberServiceImpl implements MemberService {
 	public int idCheck(String id) {
 		// TODO Auto-generated method stub
 		return memberDao.idCheck(id);
+	}
+
+	@Override
+	public MemberDTO loginProc(MemberDTO mdto) {
+		// TODO Auto-generated method stub
+		return memberDao.loginProc(mdto);
 	}
 	
 }
