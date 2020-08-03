@@ -8,4 +8,5 @@ import kr.co.sol.custom.dto.MemberDTO;
 public interface MemberDAO {
 	int idCheck(String id);
 	MemberDTO loginProc(MemberDTO mdto);
+	int signUpProc(MemberDTO mdto);
 }

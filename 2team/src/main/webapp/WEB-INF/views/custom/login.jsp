@@ -73,7 +73,7 @@
 	
 	<form class="container" title="로그인 폼" method="post" action="/custom/loginProc">
 		<div class="logo">
-			<a href=""> <img src="../resources/image/logo.gif" alt="" /> </a>
+			<a href="/"> <img src="../resources/image/logo.gif" alt="" /> </a>
 		</div>
 				<div class="container-id">
 			<div class="text-id"> 아이디 </div>

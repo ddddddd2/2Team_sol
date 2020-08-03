@@ -100,7 +100,7 @@
 </style>
 </head>
 <body>
-	<form class="container" name="signUpForm" title="회원가입" method="post" action="/custom/memSignUpProc">
+	<form class="container" name="signUpForm" title="회원가입" method="post" action="/custom/signUpProc">
 		<div class="logo">
 			<a href="/"> <img src="../resources/image/logo.gif" alt="" /> </a>
 		</div>

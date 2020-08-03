@@ -75,7 +75,7 @@ public class MemberController {
 		
 		model.addAttribute("url",url);
 			
-		return "custom/msgPage";
+		return "/custom/msgPage";
 	}
 	
 	// logout process
@@ -89,19 +89,29 @@ public class MemberController {
 	}
 	
 	// signUp page(회원가입 page)
-	@RequestMapping(value="/custom/memSignUp")
+	@RequestMapping(value="/custom/signUp")
 	public String memSignUp(HttpServletRequest request, Model model, HttpServletResponse response) {
 		
-		return "custom/memSignUp";
+		return "/custom/signUp";
 	}
 	
 	// signUp process 
-	@RequestMapping(value="/custom/memSignUpProc")
+	@RequestMapping(value="/custom/signUpProc")
 	public String memSignUpProc(HttpServletRequest request, Model model, HttpServletResponse response,
 			MemberDTO mdto) {
 		
+		int r = memberService.signUpProc(mdto);
+		String url = "/";
+		if(r > 0 )
+			model.addAttribute("msg","회원가입에 성공하셧습니다.");
+		else {
+			model.addAttribute("msg","회원가입에 실패하셧습니다.");
+			url = "/custom/signUp";
+		}
 		
-		return "custom/memSignUp";
+		model.addAttribute("url", url);
+		
+		return "/custom/msgPage";
 	}
 	
 	// idcheck ajax process 

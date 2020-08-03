@@ -24,5 +24,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.loginProc(mdto);
 	}
+
+	@Override
+	public int signUpProc(MemberDTO mdto) {
+		// TODO Auto-generated method stub
+		return memberDao.signUpProc(mdto);
+	}
 	
 }

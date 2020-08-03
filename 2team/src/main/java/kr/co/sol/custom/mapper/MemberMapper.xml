@@ -12,5 +12,19 @@
       	and mem_passwd = #{mem_passwd}
   	</select>
   	
+  	<insert id="signUpProc" parameterType="mdto">
+  		<selectKey keyProperty="mem_no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(mem_no),0)+1 mem_no FROM member
+      	</selectKey>
+  		
+  		insert into member(mem_no,mem_id,mem_passwd,mem_name,mem_email,mem_phone,mem_gender)
+  		values( #{mem_no},
+  				#{mem_id},
+  				#{mem_passwd},
+  				#{mem_name},
+  				#{mem_email},
+  				#{mem_phone},
+  				#{mem_gender})
+  	</insert>
   	
 </mapper>

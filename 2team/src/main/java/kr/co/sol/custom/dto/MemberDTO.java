@@ -15,5 +15,6 @@ public class MemberDTO {
 	private String mem_name; // 회원 이름
 	private String mem_email; // 회원 이메일
 	private String mem_phone; // 회원 핸드폰 번호
+	private String mem_gender; //회원 성별 
 	private String mem_role; // 회원 역활 (관리자)
 }

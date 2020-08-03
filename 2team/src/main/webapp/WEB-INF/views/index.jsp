@@ -50,7 +50,7 @@
 							</ul>
 						</li>
 
-						<li><a href="/custom/memSignUp">회원가입</a></li>
+						<li><a href="/custom/signUp">회원가입</a></li>
 					</c:when>
 					
 					<c:when test="${idKey != null and fn:length(idKey) > 0 }">
