@@ -3,6 +3,8 @@ package kr.co.sol.custom.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,8 @@ import kr.co.sol.custom.service.MemberService;
 
 @Controller
 public class MemberController {
-
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
 	@Autowired
 	MemberService memberService;
 	
@@ -31,7 +34,7 @@ public class MemberController {
 	@RequestMapping(value="/custom/login")
 	public String login(HttpServletRequest request, Model model, HttpServletResponse response) {
 
-		return "login";
+		return "/custom/login";
 	}
 	
 	@RequestMapping(value="/custom/loginProc")
@@ -43,7 +46,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/custom/memSignUp")
-	public String signUp(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public String memSignUp(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		return "custom/memSignUp";
+	}
+	
+	@RequestMapping(value="/custom/memSignUpProc")
+	public String memSignUpProc(HttpServletRequest request, Model model, HttpServletResponse response,
+			MemberDTO mdto) {
+		
 		
 		return "custom/memSignUp";
 	}

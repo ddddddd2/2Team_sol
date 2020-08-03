@@ -21,7 +21,7 @@
 				<a href="#container">본문 바로가기</a>
 			</li>
 		</ul>
-	</div>
+	</div>  
 	
 	
 	<div id="wrap">
@@ -39,7 +39,7 @@
 				
 				<ul class="lnb">
 					<li class="select_list">
-						<a href="#" class="selected">로그인</a>
+						<a href="/custom/login" class="selected">로그인</a>
 						<ul class="select_sub">
 							<li><a href="#">뭐나옴??</a></li>
 							<li><a href="#">뭐나옴??</a></li>
