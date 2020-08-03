@@ -29,7 +29,7 @@
 	
 	<div id="wrap">
 		<header id="header">
-   			 <a href="#" > <div id="logo"> <img src="./resources/image/logo.gif" alt="toplogo"> </div> </a>
+   			 <a href="/" > <div id="logo"> <img src="./resources/image/logo.gif" alt="toplogo"> </div> </a>
 				<!--
 					<ul id="gnb">
 						<li><a href="#">상단메뉴1</a></li>
