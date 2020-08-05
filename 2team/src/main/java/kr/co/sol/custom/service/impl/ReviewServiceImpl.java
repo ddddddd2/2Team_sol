@@ -1,0 +1,44 @@
+package kr.co.sol.custom.service.impl;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import kr.co.sol.custom.dao.ReviewDAO;
+import kr.co.sol.custom.dto.ReviewDTO;
+import kr.co.sol.custom.service.ReviewService;
+
+@Service
+public class ReviewServiceImpl implements ReviewService {
+
+    @Autowired
+    ReviewDAO reviewDao;
+	
+	@Override
+	public int reviewInsert(ReviewDTO rdto, MultipartFile file) {
+		// TODO Auto-generated method stub
+		
+		String sourceFileName = file.getOriginalFilename();
+		File destinationFile; 
+		if (sourceFileName == null || sourceFileName.length()==0) { 
+		    rdto.setRev_file("ready.gif");
+		}else {
+			rdto.setRev_file(sourceFileName);
+			destinationFile = new File(rdto.getPath()+ sourceFileName); 
+	        destinationFile.getParentFile().mkdirs(); 
+		    try {
+				file.transferTo(destinationFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				 e.printStackTrace();
+			}
+		}
+		
+		return reviewDao.reviewInsert(rdto);
+	}
+	
+}

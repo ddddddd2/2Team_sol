@@ -9,4 +9,5 @@ public interface MemberDAO {
 	int idCheck(String id);
 	MemberDTO loginProc(MemberDTO mdto);
 	int signUpProc(MemberDTO mdto);
+	int getMemberNo(String idKey);
 }

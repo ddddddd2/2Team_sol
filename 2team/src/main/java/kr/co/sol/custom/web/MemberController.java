@@ -137,4 +137,7 @@ public class MemberController {
 		
 		return "/custom/myPage2";
 	}
+	
+	
+	
 }

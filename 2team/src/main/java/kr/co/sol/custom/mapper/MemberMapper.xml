@@ -27,4 +27,8 @@
   				#{mem_gender})
   	</insert>
   	
+  	<select id="getMemberNo" parameterType="string" resultType="int">
+  		select mem_no from member where mem_id = #{idKey}
+  	</select>
+  	
 </mapper>
