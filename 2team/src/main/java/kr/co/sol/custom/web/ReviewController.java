@@ -36,6 +36,8 @@ public class ReviewController {
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
 			MemberDTO mdto) {
 		
+		
+		
 		return "/custom/sub2";
 	}
 	
