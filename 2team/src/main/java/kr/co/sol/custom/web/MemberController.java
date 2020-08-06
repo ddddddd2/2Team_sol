@@ -46,7 +46,7 @@ public class MemberController {
 	public String loginProc(HttpServletRequest request, Model model, HttpServletResponse response,
 			MemberDTO mdto) {
 		
-		mdto = memberService.loginProc(mdto);
+		mdto = memberService.loginProc(mdto); 
 	    HttpSession session = request.getSession();
 		String mem_id= null;
 		String url="/";

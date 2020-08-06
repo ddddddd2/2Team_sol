@@ -16,4 +16,26 @@
       			#{rev_file},
       			#{rev_content})
 	</insert>
+	
+	
+	<resultMap type="map" id="resultMap">
+		<id column="count" property="count"/>
+		<id column="avg"   property="avg"/>
+	</resultMap>
+	<select id="reviewCountAndAvg" parameterType="int" resultMap="resultMap">
+		select count(res_no) count, trunc(avg(rev_rating),1) avg 
+		from review
+		group by res_no 
+		having res_no = #{res_no}
+	</select>
+	
+	<select id="getReviews" parameterType="int" resultType="rdto">
+		select rev_no,res_no,mem_no,mem_id,rev_date,rev_rating,rev_file,rev_content 
+		from review 
+		<choose>
+			<when test="res_no !=null">
+				where res_no = #{res_no}
+			</when>
+		</choose>
+	</select>
 </mapper>

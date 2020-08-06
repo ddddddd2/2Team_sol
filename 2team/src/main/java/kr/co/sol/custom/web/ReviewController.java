@@ -31,16 +31,6 @@ public class ReviewController {
     @Value("${resources.location}")
     String resourcesLocation;
 	
-	// selected restaurant page
-	@RequestMapping(value="/custom/sub2")
-	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			MemberDTO mdto) {
-		
-		
-		
-		return "/custom/sub2";
-	}
-	
 	// review insert
 	@RequestMapping(value="/custom/reviewInsert")
 	public String reviewInsert(HttpServletRequest request,
