@@ -8,5 +8,7 @@ import kr.co.sol.store.dto.StoreDTO;
 
 @Mapper
 public interface StoreDAO {
-	List<StoreDTO> getStore();
+	List<StoreDTO> getStoreList();
+
+	List<StoreDTO> getStore(String searchOption, String keyword);
 }

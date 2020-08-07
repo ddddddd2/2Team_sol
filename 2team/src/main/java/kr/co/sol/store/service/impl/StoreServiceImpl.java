@@ -15,8 +15,13 @@ public class StoreServiceImpl implements StoreService {
 	StoreDAO storeDao;
 	
 	@Override
-	public List<StoreDTO> getStore() {
-		return storeDao.getStore();
+	public List<StoreDTO> getStoreList() {
+		return storeDao.getStoreList();
+	}
+
+	@Override
+	public List<StoreDTO> getStore(String searchOption, String keyword) {
+		return storeDao.getStore(searchOption, keyword);
 	}
 
 }

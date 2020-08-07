@@ -1,8 +1,9 @@
 package kr.co.sol.admin;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.store.dto.StoreDTO;
@@ -66,8 +68,13 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(Model model, StoreDTO sdto) {
-		List<StoreDTO> sdto2 = storeService.getStore();
+	public String sm(String searchOption, String keyword, Model model, StoreDTO sdto) {
+		List<StoreDTO> sdto2;
+		if(searchOption==null && keyword==null) {
+			sdto2 = storeService.getStoreList();
+		} else {
+			sdto2 = storeService.getStore(searchOption, keyword);
+		}
 		model.addAttribute("sdto",sdto2);
 		return "/admin/store_manage";
 	}
@@ -100,6 +107,17 @@ public class AdminController {
 	@GetMapping("admin/reg_store")
 	public String reg_store() {
 		return "admin/reg_store";
+	}
+	
+	@RequestMapping("admin/reg_storePro")
+	public String reg_storePro(@RequestParam("fileName") MultipartFile fileName, Model model) {
+			try {
+				fileName.transferTo(new File("${path}/"+fileName.getOriginalFilename()));
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		return "redirect:admin/store_manage";
 	}
 	@GetMapping("sub")
 	public String sub() {
