@@ -6,7 +6,7 @@
 	       SELECT NVL(MAX(no),0)+1 no FROM review
       	</selectKey>
       	insert into 
-      	review(no,res_no,mem_no,mem_id,date,rating,file,content)
+      	review(no,res_no,mem_no,mem_id,date1,rating,file1,content)
       	values( #{no},
       			#{res_no},
       			#{mem_no},
@@ -22,19 +22,19 @@
 		<id column="count" property="count"/>
 		<id column="avg"   property="avg"/>
 	</resultMap>
-	<select id="reviewCountAndAvg" parameterType="int" resultMap="resultMap">
-		select count(res_no) count, trunc(avg(rating),1) avg 
+	<select id="reviewCountAndAvg" parameterType="tdto" resultMap="resultMap">
+		select count(res_no) count, trunc(avg(rating),1)  
 		from review
 		group by res_no 
-		having res_no = #{res_no}
+		having res_no = #{no}
 	</select>
 	
-	<select id="getReviews" parameterType="int" resultType="rdto">
-		select no,res_no,mem_no,mem_id,date,rating,file,content 
+	<select id="getReviews" parameterType="tdto" resultType="rdto">
+		select no,res_no,mem_no,mem_id,date1,rating,file1,content 
 		from review 
 		<choose>
-			<when test="res_no != 0">
-				where res_no = #{res_no}
+			<when test="no != 0">
+				where res_no = #{no}
 			</when>
 		</choose>
 	</select>

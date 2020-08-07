@@ -33,7 +33,7 @@ public class RestaurantController {
 			RestaurantDTO tdto,Model model
 			/*@RequestParam("no") int res_no*/) {
 		
-		int res_no = 1; // 임시 
+		int res_no = 1; // 임시 음식점 번호
 		
 		tdto.setNo(res_no);
 		
@@ -42,16 +42,16 @@ public class RestaurantController {
 		model.addAttribute("tdto", tlist.get(0));
 		 
 		// review count & avg(rating) -> reviewService.reviewCountAndAvg
-		Map<String,Object> rmap = reviewService.reviewCountAndAvg(res_no);
+		Map<String,Object> rmap = reviewService.reviewCountAndAvg(tdto);
 		model.addAttribute("count",rmap.get("count"));
 		model.addAttribute("avg",rmap.get("avg"));
 	
 		// menu info -> restaurantService.getMenus
-		List<MenuDTO> mlist = restaurantService.getMenus(res_no);
+		List<MenuDTO> mlist = restaurantService.getMenus(tdto);
 		model.addAttribute("mlist",mlist);
 		
 		// reviews info
-		List<ReviewDTO> rlist = reviewService.getReviews(res_no);
+		List<ReviewDTO> rlist = reviewService.getReviews(tdto);
 		model.addAttribute("rlist",rlist);
 		
 		return "/custom/sub2";

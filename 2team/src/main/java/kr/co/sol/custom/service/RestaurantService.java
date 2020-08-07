@@ -7,5 +7,5 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 
 public interface RestaurantService {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO tdto);
-	List<MenuDTO> getMenus(int res_no);
+	List<MenuDTO> getMenus(RestaurantDTO tdto);
 }

@@ -10,5 +10,5 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 @Mapper
 public interface RestaurantDAO {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO tdto);
-	List<MenuDTO> getMenus(int res_no);
+	List<MenuDTO> getMenus(RestaurantDTO tdto);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dao.ReviewDAO;
+import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
 import kr.co.sol.custom.service.ReviewService;
 
@@ -44,15 +45,15 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map<String, Object> reviewCountAndAvg(int res_no) {
+	public Map<String, Object> reviewCountAndAvg(RestaurantDTO tdto) {
 		// TODO Auto-generated method stub
-		return reviewDao.reviewCountAndAvg(res_no);
+		return reviewDao.reviewCountAndAvg(tdto);
 	}
 
 	@Override
-	public List<ReviewDTO> getReviews(int res_no) {
+	public List<ReviewDTO> getReviews(RestaurantDTO tdto) {
 		// TODO Auto-generated method stub
-		return reviewDao.getReviews(res_no);
+		return reviewDao.getReviews(tdto);
 	}
 	
 }

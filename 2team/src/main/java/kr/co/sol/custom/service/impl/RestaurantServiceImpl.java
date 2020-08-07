@@ -23,9 +23,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<MenuDTO> getMenus(int res_no) {
+	public List<MenuDTO> getMenus(RestaurantDTO tdto) {
 		// TODO Auto-generated method stub
-		return restaurantDao.getMenus(res_no);
+		return restaurantDao.getMenus(tdto);
 	}
 	
 	
