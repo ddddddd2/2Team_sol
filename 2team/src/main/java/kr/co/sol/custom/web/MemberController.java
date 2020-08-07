@@ -54,8 +54,8 @@ public class MemberController {
 		// 일치하는 아이디와 비밀번호가 있는경우 
 		if(mdto != null)
 		{
-			mem_id = mdto.getMem_id(); // member의 id가져오고 
-			if(mdto.getMem_role().equals("admin")) // 역활이 admin 이라면 
+			mem_id = mdto.getId(); // member의 id가져오고 
+			if(mdto.getRole().equals("admin")) // 역활이 admin 이라면 
 			{
 				session.setAttribute("adminDTO", mdto); // admin 세션을 추가
 			}else {
@@ -120,8 +120,8 @@ public class MemberController {
 	public int idCheck(MemberDTO mdto) {
 		 
 		int cnt = 0;
-		String id = mdto.getMem_id();
-		if(mdto.getMem_id() != null)
+		String id = mdto.getId();
+		if(mdto.getId() != null)
 		{
 			cnt = memberService.idCheck(id);
 		}

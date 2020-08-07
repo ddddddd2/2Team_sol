@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sol.custom.dao.ReviewDAO">
 	<insert id="reviewInsert" parameterType="rdto">
-		<selectKey keyProperty="rev_no" resultType="int" order="BEFORE">
-	       SELECT NVL(MAX(rev_no),0)+1 rev_no FROM review
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM review
       	</selectKey>
       	insert into 
-      	review(rev_no,res_no,mem_no,mem_id,rev_date,rev_rating,rev_file,rev_content)
-      	values( #{rev_no},
+      	review(no,res_no,mem_no,mem_id,date,rating,file,content)
+      	values( #{no},
       			#{res_no},
       			#{mem_no},
       			#{mem_id},
       			sysdate,
-      			#{rev_rating},
-      			#{rev_file},
-      			#{rev_content})
+      			#{rating},
+      			#{file},
+      			#{content})
 	</insert>
 	
 	
@@ -23,17 +23,17 @@
 		<id column="avg"   property="avg"/>
 	</resultMap>
 	<select id="reviewCountAndAvg" parameterType="int" resultMap="resultMap">
-		select count(res_no) count, trunc(avg(rev_rating),1) avg 
+		select count(res_no) count, trunc(avg(rating),1) avg 
 		from review
 		group by res_no 
 		having res_no = #{res_no}
 	</select>
 	
 	<select id="getReviews" parameterType="int" resultType="rdto">
-		select rev_no,res_no,mem_no,mem_id,rev_date,rev_rating,rev_file,rev_content 
+		select no,res_no,mem_no,mem_id,date,rating,file,content 
 		from review 
 		<choose>
-			<when test="res_no !=null">
+			<when test="res_no != 0">
 				where res_no = #{res_no}
 			</when>
 		</choose>

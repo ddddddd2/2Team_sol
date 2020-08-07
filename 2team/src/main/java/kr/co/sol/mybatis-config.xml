@@ -19,6 +19,7 @@
          <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
          <typeAlias alias="rdto"    type="kr.co.sol.custom.dto.ReviewDTO" />
          <typeAlias alias="tdto"    type="kr.co.sol.custom.dto.RestaurantDTO" />
+         <typeAlias alias="ndto"    type="kr.co.sol.custom.dto.MenuDTO" />
          
     </typeAliases>	
     

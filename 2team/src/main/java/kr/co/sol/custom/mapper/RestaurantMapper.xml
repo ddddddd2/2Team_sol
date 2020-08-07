@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sol.custom.dao.RestaurantDAO">
+    
     <select id="getRestaurants" parameterType="tdto" resultType="tdto">
     	select no,c_no,name,address,phone,time 
     	from restaurant
     	
     	<choose>
-    		<when test="res_no!=null">
-    			where no = #{res_no}
+    		<when test="no != null">
+    			where no = #{no}
     		</when>
     	</choose>
     </select>
   	
-  	<select id="getMenus" parameterType="int" resultType="mdto">
-  		
+  	<select id="getMenus" parameterType="int" resultType="ndto">
+  		select m.food_no , c_no, food_name, price 
+  		from food f join r_menu m 
+  		on f.food_no = m.food_no 
+  		where res_no = #{res_no}
   	</select>
   	
 </mapper>

@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MenuDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
 import kr.co.sol.custom.service.RestaurantService;
@@ -30,15 +30,16 @@ public class RestaurantController {
 	// selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			MemberDTO mdto,RestaurantDTO tdto,ReviewDTO rdto, Model model
+			RestaurantDTO tdto,Model model
 			/*@RequestParam("no") int res_no*/) {
-		int res_no = 1;
 		
-		tdto.setRes_no(res_no);
+		int res_no = 1; // 임시 
+		
+		tdto.setNo(res_no);
 		
 		// restaurant info
-		List<RestaurantDTO> tList = restaurantService.getRestaurants(tdto); 
-		model.addAttribute("tdto", tList.get(0));
+		List<RestaurantDTO> tlist = restaurantService.getRestaurants(tdto); 
+		model.addAttribute("tdto", tlist.get(0));
 		 
 		// review count & avg(rating) -> reviewService.reviewCountAndAvg
 		Map<String,Object> rmap = reviewService.reviewCountAndAvg(res_no);
@@ -46,9 +47,8 @@ public class RestaurantController {
 		model.addAttribute("avg",rmap.get("avg"));
 	
 		// menu info -> restaurantService.getMenus
-		
-		
-		
+		List<MenuDTO> mlist = restaurantService.getMenus(res_no);
+		model.addAttribute("mlist",mlist);
 		
 		// reviews info
 		List<ReviewDTO> rlist = reviewService.getReviews(res_no);

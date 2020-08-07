@@ -2,33 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sol.custom.dao.MemberDAO">
     <select id="idCheck" parameterType="string"  resultType="int">
-    	select count(mem_id) cnt from member where mem_id = #{mem_id}
+    	select count(id) cnt from member where id = #{id}
   	</select>
   	
   	<select id="loginProc" parameterType="mdto" resultType="mdto">
-  		SELECT MEM_ID, MEM_NAME, MEM_ROLE, MEM_PASSWD 
+  		SELECT id, name, role, passwd 
       	FROM MEMBER 
-      	WHERE mem_id = #{mem_id} 
-      	and mem_passwd = #{mem_passwd}
+      	WHERE id = #{id} 
+      	and passwd = #{passwd}
   	</select>
   	
   	<insert id="signUpProc" parameterType="mdto">
-  		<selectKey keyProperty="mem_no" resultType="int" order="BEFORE">
-	       SELECT NVL(MAX(mem_no),0)+1 mem_no FROM member
+  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM member
       	</selectKey>
   		
-  		insert into member(mem_no,mem_id,mem_passwd,mem_name,mem_email,mem_phone,mem_gender)
-  		values( #{mem_no},
-  				#{mem_id},
-  				#{mem_passwd},
-  				#{mem_name},
-  				#{mem_email},
-  				#{mem_phone},
-  				#{mem_gender})
+  		insert into member(no,id,passwd,name,email,phone,gender)
+  		values( #{no},
+  				#{id},
+  				#{passwd},
+  				#{name},
+  				#{email},
+  				#{phone},
+  				#{gender})
   	</insert>
   	
   	<select id="getMemberNo" parameterType="string" resultType="int">
-  		select mem_no from member where mem_id = #{idKey}
+  		select no from member where id = #{idKey}
   	</select>
   	
 </mapper>

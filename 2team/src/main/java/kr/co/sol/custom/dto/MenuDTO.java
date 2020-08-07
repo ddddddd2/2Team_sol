@@ -9,6 +9,10 @@ import lombok.ToString;
 @ToString
 public class MenuDTO {
 	private int res_no; // 음식점 번호
-	private String menu_name; // 메뉴 이름
-	private int menu_price; // 메뉴 가격 
+	private int food_no;// 음식 번호
+	private String name;// 음식 이름 
+	private int price; // 메뉴 가격 
+	private int c_no; // 카테고리 번호
+	
 }
+
