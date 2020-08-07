@@ -43,15 +43,13 @@ function search(){
 				<td>결제금액</td>
 				<td>예약상태</td>
 			</tr>
-			<c:forEach var="bdto" items="${bdto}">
 			<tr>
-				<td>${bdto.B_NO}</td>
-				<td>${bdto.MEM_NAME}</td>
-				<td>${bdto.NAME}</td>
+				<td>1</td>
+				<td>기덕</td>
+				<td>기덕식당</td>
 				<td>20000</td>
-				<td>complete</td>
+				<td>완료</td>
 			</tr>
-			</c:forEach>
 		</table>
 		</div>
 	</div>

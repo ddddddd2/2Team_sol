@@ -4,26 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
 <script type="text/javascript">
-function search(){
+
+
+
+// function search(){
 	
-	var sv = document.getElementById("searchBar").value; // 검색어 가져오기
-	var op = document.getElementById("searchSelectBox");
-	var opop = op.options[op.selectedIndex].value; // 검색 옵션 가져오기
-		if(sv==""){
-			alert("입력값을 확인해주세요");
-		} else{
-			if(opop==""){
-					alert("옵션을 선택해주세요");
-			} else{
-					document.form1.submit();
-			}
-		}
-}
+// 	var sv = document.getElementById("searchBar").value; // 검색어 가져오기
+// 	var op = document.getElementById("searchSelectBox");
+// 	var opop = op.options[op.selectedIndex].value; // 검색 옵션 가져오기
+// 		if(sv==""){
+// 			alert("입력값을 확인해주세요");
+// 		} else{
+// 			if(opop==""){
+// 					alert("옵션을 선택해주세요");
+// 			} else{
+// 					document.form1.submit();
+// 			}
+// 		}
+// }
 </script>
 </head>
 <body>
@@ -41,8 +44,8 @@ function search(){
 			</select>
 			<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" >
 		</form>
-		<button id="searchBtn" onClick="search()">검색</button>
-		<div id="addStore"><button>매장 추가</button></div>
+		<input type="button" id="searchBtn" onClick="search()" value="검색">
+		<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
 		</div>
 		
 		<div id="content-wrap">
@@ -58,25 +61,25 @@ function search(){
 				<td>연락처</td>
 			</tr>
 			<c:choose>
-			<c:when test="${sdto.size()==0}">
-			<tr>
-				<td colspan="9">아무것도 없는뎁쇼?</td>
-			</tr>
-			</c:when>
-			<c:when test="${sdto.size()!=0}">
-				<c:forEach var="sdto" items="${sdto}">
-					<tr>
-					<td>${sdto.no}</td>
-					<td>${sdto.name}</td>
-					<td>한식</td>
-					<td>3</td>
-					<td>4</td>
-					<td>${sdto.address}</td>
-					<td>${sdto.time}</td>
-					<td>${sdto.phone}</td>
+				<c:when test="${sdto.size()==0}">
+				<tr>
+					<td colspan="9">아무것도 없는뎁쇼?</td>
 				</tr>
-				</c:forEach>
-			</c:when>
+				</c:when>
+				<c:when test="${sdto.size()!=0}">
+					<c:forEach var="sdto" items="${sdto}">
+						<tr>
+						<td>${sdto.no}</td>
+						<td>${sdto.name}</td>
+						<td>한식</td>
+						<td>3</td>
+						<td>4</td>
+						<td>${sdto.address}</td>
+						<td>${sdto.time}</td>
+						<td>${sdto.phone}</td>
+					</tr>
+					</c:forEach>
+				</c:when>
 			</c:choose>
 		</table>
 		</div>

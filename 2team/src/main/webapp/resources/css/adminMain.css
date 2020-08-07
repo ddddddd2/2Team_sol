@@ -4,37 +4,43 @@
 /* 	text-align: center; */
 /* } */
 #header{
-	width:100%;
-	height:auto;
+	text-align:center;
+	width:80%;
+	height:60px;
+	margin: 0 auto;
+}
+#menu {
+	height:30px;
 }
 #menu ul {
 	list-style-type: none;
 	margin:0;
 	padding:0;
+	line-height:30px;
 }
 
 #menu ul li {
 	float:left;
 	border: 0.1em solid black;
-	width:24%;
+	width:22%;
 	text-align: center;
+	margin-left:1%;
 }
-#main-wrapper {
-	clear:both;
+#main-wrapper{
+	clear:both;	
 }
-#search {
-	float:left;
-	text-align: center;
+#search{
+	text-align:center;
 }
-#search > form{
-	float:left;
+#search form{
+float:left;
+}
+#search button{
+	float:left
 }
 #content-wrap{
 	clear:both;
 }
 table {
 	margin:0 auto;
-}
-#addStore {
-	float:left;
 }

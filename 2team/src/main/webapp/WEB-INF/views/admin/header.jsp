@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<div style="height:30px">관리자 페이지</div>
 <div id="menu">
-	<div style="height:30px">관리자 페이지</div>
 	<ul>
 		<!-- 매장 등록, 수정, 리뷰관리?도 같이. -->
 		<a href="/admin/store_manage"><li data-id="store_manage" class="menu">매장 관리</li></a>

@@ -4,6 +4,7 @@
 
 <select id="getMember" resultType="mdto">
 select mem_no, grade_name, mem_id, mem_passwd, mem_name, mem_email, mem_phone,mem_gender, mem_role from member
+where rownum &lt;=2
 </select>
 <select id="getStore" resultType="sdto">
 select no, c_no, name, address, phone, time from restaurant
