@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -847,7 +849,26 @@ star-input>.input.focus{outline:1px dotted #ddd;}
             <!-- 헤더의 사진영역 -->
             <div class="header_picture" style="background: none">
                <a>
-                  <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444')"></span>
+               	  <c:choose>
+               	  	<c:when test="${tdto.c_no != null}">
+               	  		<c:when test="${tdto.c_no == 1}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=한식')"></span>
+               	  		</c:when>
+               	  		<c:when test="${tdto.c_no == 2}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=중식')"></span>
+               	  		</c:when>
+               	  		<c:when test="${tdto.c_no == 3}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=일식')"></span>
+               	  		</c:when>
+               	  		<c:when test="${tdto.c_no == 4}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=분식')"></span>
+               	  		</c:when>
+               	  	</c:when>
+               	  	<c:when test="${tdto.c_no == null}">
+               	  	    <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=카테고리없음')"></span>
+               	  	</c:when>
+
+               	  </c:choose>
                   <span class="frame_g"></span>
                </a>
             </div>
@@ -856,24 +877,24 @@ star-input>.input.focus{outline:1px dotted #ddd;}
             <div class="header_details">
             
                <div class="details_inner">
-                  <h2 class="inner_title">음식점</h2>
+                  <h2 class="inner_title">${tdto.name}</h2>
                   <!-- 헤더의 평점영역 -->
                   <div class="inner_evaluation">
-                     <span class="category_title">업종</span>
+                     <span class="category_title">${tdto.c_name}</span>
                      
                      <span class="ico_comm ico_dot"></span>
                      
                      <span class="evaluation_title">평점</span> 
-                     <span class="color_b">0.0</span>
-                     <span class="color_g">(0)</span>
+                     <span class="color_b">${avg}</span>
+                     <span class="color_g">(${count})</span>
                      
                      <span class="ico_comm ico_dot"></span>
                      
                      <span class="review_title">리뷰</span>
-                     <span class="color_b">000</span>
+                     <span class="color_b">${count}</span>
                   </div>
                   
-                  <a class="inner_bookmark" href="#none" style="color:#000; text-decoration:none">
+                  <a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none">
                      <span class="ico_comm ico_bookmark">즐겨찾기 추가</span>
                   </a>
                </div><!-- details_inner end -->
@@ -889,12 +910,12 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                   </h4>
                   <div class="location_detail">
                      <span class="txt_address">
-                        서울 종로구 종로 33 1층(우) 03159
+                     	${tdto.address1}
                      </span>
                      <span class="txt_addrnum">
                         지번 
                         <span class="bg_bar"></span>
-                        청진동 70
+                       	${tdto.address2}
                      </span>
                   </div>
                </div>
@@ -904,7 +925,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                      <span class="ico_comm ico_operation">운영시간 안내</span>
                   </h4>
                   <div class="location_detail">
-                     <span class="time_operation">10:30 ~ 22:30</span>
+                     <span class="time_operation">${tdto.hour}</span>
                   </div>
                </div>
 
@@ -913,7 +934,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                      <span class="ico_comm ico_contact">연락처</span>
                   </h4>
                   <div class="location_detail">
-                     <span class="txt_contact">010-1234-5678</span>
+                     <span class="txt_contact">${tdto.tel}</span>
                      <span class="color_g"> 대표번호</span>
                   </div>
                </div>
@@ -946,26 +967,25 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          	</div>
          	
          	<ul class="menu_list" style="list-style:none;">
-         		<li class="menu_element menu_fst">
-         			<div class="menu_info">
-         				<span class="menu_name">메뉴 1</span>
-         				<span class="menu_price">1,000</span>
-         			</div>
-         		</li>
+         		<c:when test="${mlist.size() == 0 }">
+         			<li class=" ">
+         				등록된 메뉴가 없습니다...
+         			</li>
+         		</c:when>
          		
-         		<li class="menu_element">
-         			<div class="menu_info">
-         				<span class="menu_name">메뉴 2</span>
-         				<span class="menu_price">2,000</span>
-         			</div>
-         		</li>
+         		<c:when test=${mlist.size() != 0 }>
+         			<c:forEach var="ndto" items="${mlist}">
+         			   
+         			    <li class="menu_element">
+         					<div class="menu_info">
+         						<span class="menu_name">${ndto.name}</span>
+         						<span class="menu_price">${ndto.price}</span>
+         					</div>
+         				</li>
+         				
+         			</c:forEach>
+         		</c:when>
          		
-         		<li class="menu_element menu_last">
-         			<div class="menu_info">
-         				<span class="menu_name">메뉴 3</span>
-         				<span class="menu_price">3,000</span>
-         			</div>
-         		</li>
          	</ul>
          </div><!-- article_menu end -->
          
@@ -1041,19 +1061,19 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          	<div style="position:relative; margin-top:20px;">
          		<span class="review_title">
          		전체  &nbsp;
-         			<span class="color_b">30</span>
+         			<span class="color_b">${count}</span>
          		</span>
          	</div>
          	
          	<!-- 리뷰 점수 -->
          	<div class="review_rate">
          		<span class="num_rate">
-         		2.1
+         		${avg}
          			<span class="txt_score">점</span>
          		</span>
          		
          		<span class="ico_star star_rate">
-         			<span class="ico_star inner_star" style="width: 42%"></span>	
+         			<span class="ico_star inner_star" style="width: ${avg x 20}%"></span>	
          		</span>
          	</div>
          	
@@ -1097,7 +1117,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          					</div>
          				</div>
          			</li>
-         			
+         			<!-- 임시 구분선 ============================================================================ -->
          			<li>
          				<!-- 프로필 -->
          				<a class="profile_info">
@@ -1202,6 +1222,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    <script src="../resources/js/jquery-1.10.2.min.js"></script>
    <script src="../resources/js/custom/star.js"></script>
    <script type="text/javascript">
+   
+   		$(function(){
+   			$(".menu_list li:first").addClass("menu_fst");
+   			$(".menu_list li:last").addClass("menu_last");
+   			
+   		});
+   
    		$(".btn_enroll").click(function(){
    			var star_rating = $("output>b").text();
    			alert(star_rating);

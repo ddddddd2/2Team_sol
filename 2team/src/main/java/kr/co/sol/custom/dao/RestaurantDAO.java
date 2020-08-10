@@ -11,4 +11,5 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 public interface RestaurantDAO {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO tdto);
 	List<MenuDTO> getMenus(RestaurantDTO tdto);
+	int likeRestaurant(int res_no , int mem_no);
 }

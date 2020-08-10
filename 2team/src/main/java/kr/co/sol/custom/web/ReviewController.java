@@ -41,33 +41,35 @@ public class ReviewController {
 		HttpSession session = request.getSession();
 		String idKey = (String)session.getAttribute("idKey");
 		
+		String msg ="";
+		String url="/custom/sub2";
+		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
 		if(idKey == null || idKey.equals(""))
 		{
-			String msg="로그인 부터 해주시길 바랍니다. ";
-			String url="/custom/login";
+			msg="로그인 부터 해주시길 바랍니다. ";
+			url="/custom/login";
 			
-			return "/custom/msgPage";
-		}
-		
-		// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
-		int mem_no = memberService.getMemberNo(idKey);
-		
-		rdto.setMem_no(mem_no);
-		rdto.setMem_id(idKey);
-		
-		int r = 0;
-		String msg=null;
-		String url="/custom/sub2";
-		
-		// 리뷰에서 파일업로드 경로 
-		rdto.setPath(resourcesLocation);
-		
-		r = reviewService.reviewInsert(rdto,file);
-		if(r > 0) {
-			msg = "리뷰작성 완료";
 		}else {
-			msg = "리뷰작성 실패";
+			
+			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
+			int mem_no = memberService.getMemberNo(idKey);
+			
+			rdto.setMem_no(mem_no);
+			rdto.setMem_id(idKey);
+			
+			int r = 0;
+			
+			// 리뷰에서 파일업로드 경로 
+			rdto.setPath(resourcesLocation);
+			
+			r = reviewService.reviewInsert(rdto,file);
+			if(r > 0) {
+				msg = "리뷰작성 완료";
+			}else {
+				msg = "리뷰작성 실패";
+			}
+			
 		}
 		
 		model.addAttribute("msg", msg);

@@ -3,11 +3,12 @@
 <mapper namespace="kr.co.sol.custom.dao.RestaurantDAO">
     
     <select id="getRestaurants" parameterType="tdto" resultType="tdto">
-    	select no,c_no,name,address1,tel,hour 
-    	from restaurant
+    	select no, t.c_no , c.c_name , name , address1 , address2 , tel , hour 
+    	from restaurant t join category c 
+    	on t.c_no = c.c_no 
     	
     	<choose>
-    		<when test="no != null">
+    		<when test="no != 0">
     			where no = #{no}
     		</when>
     	</choose>
@@ -20,4 +21,15 @@
   		where res_no = #{no}
   	</select>
   	
+  	
+  	<insert id="likeRestaurant" parameterType="int">
+  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM favorites
+      	</selectKey>
+      	
+      	insert into favorites(no,res_no,mem_no)
+      	values(#{no},
+      		   #{res_no},
+      		   #{mem_no})
+  	</insert>
 </mapper>

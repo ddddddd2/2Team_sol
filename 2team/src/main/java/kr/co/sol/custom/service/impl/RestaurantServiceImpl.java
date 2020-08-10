@@ -27,6 +27,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDao.getMenus(tdto);
 	}
+
+	@Override
+	public int likeRestaurant(int res_no, int mem_no) {
+		// TODO Auto-generated method stub
+		return restaurantDao.likeRestaurant(res_no , mem_no);
+	}
 	
 	
 	
