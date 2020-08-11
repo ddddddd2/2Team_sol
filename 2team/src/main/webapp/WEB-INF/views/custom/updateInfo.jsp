@@ -16,50 +16,50 @@
 <meta charset="UTF-8">
 <title>회원정보 변경 후</title>
 <script>
-verifyEmail = function() {
-	  // 이메일 검증 스크립트 작성
-	  var emailVal = $("#email").val();
+// verifyEmail = function() {
+// 	  // 이메일 검증 스크립트 작성
+// 	  var emailVal = $("#email").val();
 
-	  var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]){2,9}@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	  // 검증에 사용할 정규식 변수 regExp에 저장
+// 	  var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]){2,9}@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+// 	  // 검증에 사용할 정규식 변수 regExp에 저장
 
-	  if (emailVal.match(regExp) != null) {
-	    alert('Good!');
-	  }
-	  else {
-	    alert('Error');
-	  }
-	};
+// 	  if (emailVal.match(regExp) != null) {
+// 	    alert('Good!');
+// 	  }
+// 	  else {
+// 	    alert('Error');
+// 	  }
+// 	};
 	
-verifyPhone = function() {
-	  // 전화번호 검증 스크립트 작성
-	  var phoneVal = $("#phone").val();
-// 	  /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
-	  var regExp = /^[0-9]{4,11}$/
-	  // 검증에 사용할 정규식 변수 regExp에 저장
+// verifyPhone = function() {
+// 	  // 전화번호 검증 스크립트 작성
+// 	  var phoneVal = $("#phone").val();
+// // 	  /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
+// 	  var regExp = /^[0-9]{4,11}$/
+// 	  // 검증에 사용할 정규식 변수 regExp에 저장
 
-	  if (phoneVal.match(regExp) != null) {
-	    alert('Good!');
-	  }
-	  else {
-	    alert('Error');
-	  }
-};
+// 	  if (phoneVal.match(regExp) != null) {
+// 	    alert('Good!');
+// 	  }
+// 	  else {
+// 	    alert('Error');
+// 	  }
+// };
 
-verifyPhone = function() {
-	  // 전화번호 검증 스크립트 작성
-	  var phoneVal = $("#phone").val();
-// 	  /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
-	  var regExp = /^[가-힣A-Za-z0-9]{2,8}$/
-	  // 검증에 사용할 정규식 변수 regExp에 저장
+// verifyPhone = function() {
+// 	  // 전화번호 검증 스크립트 작성
+// 	  var phoneVal = $("#phone").val();
+// // 	  /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
+// 	  var regExp = /^[가-힣A-Za-z0-9]{2,8}$/
+// 	  // 검증에 사용할 정규식 변수 regExp에 저장
 
-	  if (phoneVal.match(regExp) != null) {
-	    alert('Good!');
-	  }
-	  else {
-	    alert('Error');
-	  }
-};
+// 	  if (phoneVal.match(regExp) != null) {
+// 	    alert('Good!');
+// 	  }
+// 	  else {
+// 	    alert('Error');
+// 	  }
+// };
 
 /* verifyName = function() {
 	  // 닉네임 검증 스크립트 작성
@@ -76,26 +76,26 @@ verifyPhone = function() {
 	  }
 }; */
 
-function isSame() {	
-	// document.폼네임.해당요소네임
-    var pw = document.updateForm.wUserPW.value;
-    var confirmPW = document.updateForm.wUserPWConfirm.value;
-    if (pw.length < 6 || pw.length > 16) {
-        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-        document.getElementById('pw').value=document.getElementById('pwCheck').value='';
-        document.getElementById('same').innerHTML='';
-    }
-    if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
-        if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
-            document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
-            document.getElementById('same').style.color='blue';
-        }
-        else {
-            document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
-            document.getElementById('same').style.color='red';
-        }
-    }
-}
+// function isSame() {	
+// 	// document.폼네임.해당요소네임
+//     var pw = document.updateForm.wUserPW.value;
+//     var confirmPW = document.updateForm.wUserPWConfirm.value;
+//     if (pw.length < 6 || pw.length > 16) {
+//         window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+//         document.getElementById('pw').value=document.getElementById('pwCheck').value='';
+//         document.getElementById('same').innerHTML='';
+//     }
+//     if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
+//         if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
+//             document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
+//             document.getElementById('same').style.color='blue';
+//         }
+//         else {
+//             document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
+//             document.getElementById('same').style.color='red';
+//         }
+//     }
+// }
 
 </script>
 </head>
@@ -160,7 +160,7 @@ function isSame() {
 			<div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
 					<p id="owenoback1">
 						<input id="nick_name" type="text" name="nick_name" size="10" value="${mdto.nick_name}">
-						<button type="button">닉네임 중복 확인</button>
+						<button type="button" class="btn">닉네임 중복 확인</button>
 					</p>
 					
 					<p id="owenoback">
@@ -175,7 +175,8 @@ function isSame() {
 			<div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
 					<p id="owenoback">
 						<input id = "email" type="text" name="email" size="10" value="${mdto.email}">
-						<button type="button" onclick="verifyEmail()" >중복 확인</button>
+<!-- 						<button type="button" onclick="verifyEmail()" >중복 확인</button> -->
+						<button type="button" class="btn">중복 확인</button>
 					</p>
 			</div>
 			<div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
@@ -185,7 +186,8 @@ function isSame() {
 					<p id="owenoback">
 					<input id = "phone" type="text" name="phoneNumber" size="20" value="${mdto.phone}">
 					<label id="phone_check"></label>
-					<button type="button" onClick="verifyPhone()">번호 중복 확인</button>
+<!-- 					<button type="button" onClick="verifyPhone()">번호 중복 확인</button> -->
+					<button type="button" class="btn">번호 중복 확인</button>
 					</p>
 			</div>
 			
