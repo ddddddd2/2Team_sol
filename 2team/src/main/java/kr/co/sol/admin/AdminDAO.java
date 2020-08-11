@@ -4,6 +4,7 @@ package kr.co.sol.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.store.dto.StoreDTO;
@@ -15,5 +16,5 @@ public interface AdminDAO {
 
 	List<StoreDTO> getStore();
 
-	List<MemberDTO> getMemberList(String searchOption, String keyword);
+	List<MemberDTO> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
 }

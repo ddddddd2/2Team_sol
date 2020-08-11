@@ -11,7 +11,7 @@ public class StoreDTO {
 	private int no;
 	private int c_no;
 	private String name;
-	private String address;
-	private String phone;
-	private String time;
+	private String address1;
+	private String tel;
+	private String hour;
 }

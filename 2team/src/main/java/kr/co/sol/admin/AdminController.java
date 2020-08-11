@@ -50,20 +50,22 @@ public class AdminController {
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
 		List<MemberDTO> mdto2;
+		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
 		if(searchOption==null && keyword==null) {
+			// 전체 리스트 불러온다.
 			mdto2 = adminService.getMember();
 		} else {
-			mdto2 = adminService.getMemberList(searchOption, keyword);
+			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
+			mdto2 = adminService.getMemberList(searchOption,keyword);
 		}
 		model.addAttribute("mdto",mdto2);
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 검색 후 옵션 유지하기 위해서.
 		map.put("searchOption", searchOption);
 		map.put("keyword",keyword);
-		model.addAttribute("map",map);
 		
-		System.out.println("SO:  "+searchOption);
-		System.out.println("KW:  "+keyword);
-		System.out.println("mdto:  "+mdto2);
+		model.addAttribute("map",map);
 		return "admin/mem_manage";
 	}
 	

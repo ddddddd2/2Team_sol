@@ -16,7 +16,6 @@
          <typeAlias alias="string"  type="java.lang.String" />
          <typeAlias alias="map"     type="java.util.Map" />
          <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
-         <typeAlias alias="bdto"    type="kr.co.sol.booking.dto.BookingDTO" />
          <typeAlias alias="sdto"    type="kr.co.sol.store.dto.StoreDTO" />
     </typeAliases>	
 </configuration>

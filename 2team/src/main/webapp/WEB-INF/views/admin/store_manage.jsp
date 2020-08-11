@@ -40,7 +40,7 @@
 				<option value="">검색 옵션</option>
 				<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
 <%-- 				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option> --%>
-				<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
+				<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
 			</select>
 			<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" >
 		</form>
@@ -74,9 +74,9 @@
 						<td>한식</td>
 						<td>3</td>
 						<td>4</td>
-						<td>${sdto.address}</td>
-						<td>${sdto.time}</td>
-						<td>${sdto.phone}</td>
+						<td>${sdto.address1}</td>
+						<td>${sdto.hour}</td>
+						<td>${sdto.tel}</td>
 					</tr>
 					</c:forEach>
 				</c:when>

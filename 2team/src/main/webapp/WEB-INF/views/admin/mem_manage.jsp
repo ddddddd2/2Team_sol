@@ -35,9 +35,9 @@ function search(){
 		<form name="form1" method="post" action="${path}/admin/mem_manage">
 			<select id="searchSelectBox" name="searchOption">
 				<option value="">검색 옵션</option>
-				<option value="mem_name" <c:out value="${map.searchOption == 'mem_name'?'selected':''}"/>>이름</option>
-				<option value="mem_email" <c:out value="${map.searchOption == 'mem_email'?'selected':''}"/>>이메일</option>
-				<option value="mem_phone" <c:out value="${map.searchOption == 'mem_phone'?'selected':''}"/>>연락처</option>
+				<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
+				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option>
+				<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
 			</select>
 			<input type="text" name="keyword" id="searchBar" placeholder="회원 검색" value="${map.keyword}" >
 		</form>
@@ -63,13 +63,13 @@ function search(){
 				<c:when test="${mdto.size()!=0}">
 					<c:forEach var="mdto" items="${mdto}">
 						<tr>
-						<td>${mdto.mem_no}</td>
+						<td>${mdto.no}</td>
 						<td>${mdto.grade_name}</td>
-						<td>${mdto.mem_id}</td>
-						<td>${mdto.mem_name}</td>
-						<td>${mdto.mem_email}</td>
-						<td>${mdto.mem_phone}</td>
-						<td>${mdto.mem_gender}</td>
+						<td>${mdto.id}</td>
+						<td>${mdto.name}</td>
+						<td>${mdto.email}</td>
+						<td>${mdto.phone}</td>
+						<td>${mdto.gender}</td>
 						<td></td>
 					</tr>
 					</c:forEach>
@@ -78,6 +78,5 @@ function search(){
 		</table>
 		</div>
 	</div>
-	
 </body>
 </html>

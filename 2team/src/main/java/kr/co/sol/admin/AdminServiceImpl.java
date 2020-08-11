@@ -2,6 +2,7 @@ package kr.co.sol.admin;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.getMember();
 	}
 	@Override
-	public List<MemberDTO> getMemberList(String searchOption, String keyword) {
+	public List<MemberDTO> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword) {
 		// TODO Auto-generated method stub
 		return adminDao.getMemberList(searchOption, keyword);
 	}
