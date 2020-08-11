@@ -21,7 +21,7 @@ import kr.co.sol.custom.service.ReviewService;
 
 @Controller
 public class RestaurantController {
-	
+
 	@Autowired
 	RestaurantService restaurantService;
 	

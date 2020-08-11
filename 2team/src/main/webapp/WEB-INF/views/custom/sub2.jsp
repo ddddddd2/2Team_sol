@@ -189,6 +189,7 @@ body, button, input, select, td, textarea, th {
    display: inline-block;
    padding-top: 3px;
    font-family: Arial, sans-serif;
+   font-size: 16px;
    line-height: 24px;
    letter-spacing: 0;
    vertical-align: top;
@@ -851,21 +852,22 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                <a>
                	  <c:choose>
                	  	<c:when test="${tdto.c_no != null}">
-               	  		<c:when test="${tdto.c_no == 1}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=한식')"></span>
-               	  		</c:when>
-               	  		<c:when test="${tdto.c_no == 2}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=중식')"></span>
-               	  		</c:when>
-               	  		<c:when test="${tdto.c_no == 3}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=일식')"></span>
-               	  		</c:when>
-               	  		<c:when test="${tdto.c_no == 4}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=분식')"></span>
-               	  		</c:when>
+               	  		<c:if test="${tdto.c_no == 1}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=korean food')"></span>
+               	  		</c:if>
+               	  		<c:if test="${tdto.c_no == 2}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=china food')"></span>
+               	  		</c:if>
+               	  		<c:if test="${tdto.c_no == 3}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=japan food')"></span>
+               	  		</c:if>
+               	  		<c:if test="${tdto.c_no == 4}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=snack food')"></span>
+               	  		</c:if>
                	  	</c:when>
+               	  	
                	  	<c:when test="${tdto.c_no == null}">
-               	  	    <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=카테고리없음')"></span>
+               	  	    <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=none')"></span>
                	  	</c:when>
 
                	  </c:choose>
@@ -913,7 +915,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                      	${tdto.address1}
                      </span>
                      <span class="txt_addrnum">
-                        지번 
+                       상세주소 
                         <span class="bg_bar"></span>
                        	${tdto.address2}
                      </span>
@@ -967,13 +969,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          	</div>
          	
          	<ul class="menu_list" style="list-style:none;">
-         		<c:when test="${mlist.size() == 0 }">
-         			<li class=" ">
+         		<c:if test="${mlist.size() == 0 }">
+         			<li class="menu_element">
          				등록된 메뉴가 없습니다...
          			</li>
-         		</c:when>
+         		</c:if>
          		
-         		<c:when test=${mlist.size() != 0 }>
+         		<c:if test="${mlist.size() != 0 }">
          			<c:forEach var="ndto" items="${mlist}">
          			   
          			    <li class="menu_element">
@@ -984,7 +986,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          				</li>
          				
          			</c:forEach>
-         		</c:when>
+         		</c:if>
          		
          	</ul>
          </div><!-- article_menu end -->
@@ -997,7 +999,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          	<div class="review_wrap">
          		<!-- 리뷰폼  -->
          		<form id="review_form" action="custom/reviewInsert" enctype="multipart/form-data">
-         			<input type="hidden" name="review_rating" value="" />
+         			<input type="hidden" name="rating" value="" />
          			
          			<!-- star area -->
          			<!--
@@ -1043,12 +1045,12 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 					
 					<!-- content area -->
          			<div class="review_content_wrap" style="position: relative;">
-         				<textarea class="review_content" name="rev_content"></textarea>
+         				<textarea class="review_content" name="content"></textarea>
          			</div>
          			
          			<!-- upload area -->
          			<div class="review_fileupload">
-         				<input type="file" name="image" />
+         				<input type="file" name="file2" />
          			</div>
          		</form>
          		
@@ -1073,127 +1075,64 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          		</span>
          		
          		<span class="ico_star star_rate">
-         			<span class="ico_star inner_star" style="width: ${avg x 20}%"></span>	
+         			<span class="ico_star inner_star" style="width:${avg * 20}%"></span>	
          		</span>
          	</div>
          	
          	<!-- 전체 리뷰 보기 -->
          	<div class="review_view">
          		<ul style="list-style:none;">
-         			<li>
-         				<!-- 프로필 -->
-         				<a class="profile_info">
-         					<!-- <img src="#" width="48" height="48" class="thumb_g"> -->
-         				</a>
-         				
-         				<!-- 별점 -->
-         				<div class="star_info">
-         					<div class="grade_star">
-         						<span class="ico_star star_rate">
-         							<span class="ico_star inner_star" style="width: 60%;"></span>
-         						</span>
-         						<span class="num_rate">
-         							3
-         						</span>
-         					</div>
-         				</div>
-         				
-         				<!-- content -->
-         				<div class="content_info">
-         					<p class="txt_content">글(리뷰) 영역 입니다.</p>
-         					<div class="item_content">
-         						<a href="#none" class="link_like">
-         							<span class="ico_comm ico_like"></span>
-         							좋아요
-         						</a>
-         						
-         						<span class="bg_bar"></span>
-         						
-         						<a class="link_user">user_id</a>
-         						
-         						<span class="bg_bar"></span>
-         						
-         						<span class="time_write">2020.07.29</span>
-         					</div>
-         				</div>
-         			</li>
-         			<!-- 임시 구분선 ============================================================================ -->
-         			<li>
-         				<!-- 프로필 -->
-         				<a class="profile_info">
-         					<!-- <img src="#" width="48" height="48" class="thumb_g"> -->
-         				</a>
-         				
-         				<!-- 별점 -->
-         				
-         				<div class="star_info">
-         					<div class="grade_star">
-         						<span class="ico_star star_rate">
-         							<span class="ico_star inner_star" style="width:60%"></span>
-         						</span>
-         						<span class="num_rate">
-         							3
-         						</span>
-         					</div>
-         				</div>
-         				
-         				<!-- content -->
-         				<div class="content_info">
-         					<p class="txt_content">글(리뷰) 영역 입니다.</p>
-         					<div class="item_content">
-         						<a href="#none" class="link_like">
-         							<span class="ico_comm ico_like"></span>
-         							좋아요
-         						</a>
-         						
-         						<span class="bg_bar"></span>
-         						
-         						<a class="link_user">user_id</a>
-         						
-         						<span class="bg_bar"></span>
-         						
-         						<span class="time_write">2020.07.29</span>
-         					</div>
-         				</div>
-         			</li>
          			
-         			<li>
-         				<!-- 프로필 -->
-         				<a class="profile_info">
-         					<!-- <img src="#" width="48" height="48" class="thumb_g"> -->
-         				</a>
+         			<c:if test="${rlist.size() == 0 }">
+         				<li class=" ">
+         					등록된 리뷰가 없습니다...
+         				</li>
+         			</c:if>
+         		
+         			<c:if test="${rlist.size() != 0 }">
+         				<c:forEach var="rdto" items="${rlist}">
+         			   
+         				<li>
+         					<!-- 프로필 -->
+         					<a class="profile_info">
+         						<!-- <img src="#" width="48" height="48" class="thumb_g"> -->
+         					</a>
          				
-         				<!-- 별점 -->
-         				<div class="star_info">
-         					<div class="grade_star">
-         						<span class="ico_star star_rate">
-         							<span class="ico_star inner_star" style="width:60%"></span>
-         						</span>
-         						<span class="num_rate">
-         							3
-         						</span>
+         					<!-- 별점 -->
+         					<div class="star_info">
+         						<div class="grade_star">
+         							<span class="ico_star star_rate">
+         								<span class="ico_star inner_star" style="width: ${rdto.rating * 20}%;"></span>
+         							</span>
+         							<span class="num_rate">
+         								${rdto.rating}
+         							</span>
+         						</div>
          					</div>
-         				</div>
          				
-         				<!-- content -->
-         				<div class="content_info">
-         					<p class="txt_content">글(리뷰) 영역 입니다.</p>
-         					<div class="item_content">
-         						<a href="#none" class="link_like">
-         							<span class="ico_comm ico_like"></span>
-         							좋아요
-         						</a>
+         					<!-- content -->
+         					<div class="content_info">
+         						<p class="txt_content">${rdto.content}</p>
+         						<div class="item_content">
+         							<a href="#none" class="link_like">
+         								<span class="ico_comm ico_like"></span>
+         								좋아요
+         							</a>
          						
-         						<span class="bg_bar"></span>
+         							<span class="bg_bar"></span>
          						
-         						<a class="link_user">user_id</a>
+         							<a class="link_user">${rdto.mem_id }</a>
          						
-         						<span class="bg_bar"></span>
+         							<span class="bg_bar"></span>
          						
-         						<span class="time_write">2020.07.29</span>
+         							<span class="time_write">${rdto.date1 }</span>
+         						</div>
          					</div>
-         				</div>
-         			</li>
+         				</li>
+         				
+         				</c:forEach>
+         			</c:if>
+         			
          		</ul>
          		
          		<div class="review_paging">
@@ -1223,12 +1162,14 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    <script src="../resources/js/custom/star.js"></script>
    <script type="text/javascript">
    
+   		// 첫번째 , 마지막 메뉴에 class 속성 추가 
    		$(function(){
    			$(".menu_list li:first").addClass("menu_fst");
    			$(".menu_list li:last").addClass("menu_last");
    			
    		});
-   
+   		
+   	    // 리뷰 작성 버튼 클릭 시 이벤트 
    		$(".btn_enroll").click(function(){
    			var star_rating = $("output>b").text();
    			alert(star_rating);

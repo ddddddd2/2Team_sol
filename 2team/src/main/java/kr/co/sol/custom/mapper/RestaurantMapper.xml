@@ -3,13 +3,13 @@
 <mapper namespace="kr.co.sol.custom.dao.RestaurantDAO">
     
     <select id="getRestaurants" parameterType="tdto" resultType="tdto">
-    	select no, t.c_no , c.c_name , name , address1 , address2 , tel , hour 
+    	select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour 
     	from restaurant t join category c 
-    	on t.c_no = c.c_no 
+    	on t.c_no = c.no 
     	
     	<choose>
     		<when test="no != 0">
-    			where no = #{no}
+    			where t.no = #{no}
     		</when>
     	</choose>
     </select>

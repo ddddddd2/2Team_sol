@@ -34,7 +34,7 @@ public class ReviewController {
 	// review insert
 	@RequestMapping(value="/custom/reviewInsert")
 	public String reviewInsert(HttpServletRequest request,
-			 @RequestParam("image") MultipartFile file,
+			 @RequestParam("file2") MultipartFile file,
 			 HttpServletResponse response,
 			 ReviewDTO rdto,MemberDTO mdto,Model model) {
 		

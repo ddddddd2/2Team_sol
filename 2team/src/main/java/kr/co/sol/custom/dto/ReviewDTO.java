@@ -13,8 +13,8 @@ public class ReviewDTO {
 	private int mem_no; // 회원 번호
 	private String mem_id; // 회원 아이디
 	private String content; // 리뷰 내용
-	private String file; // 리뷰 업로드 파일
-	private String date; // 리뷰 작성 날짜
+	private String file1; // 리뷰 업로드 파일
+	private String date1; // 리뷰 작성 날짜
 	private int rating; // 리뷰 점수
 	private String path; // 업로드 파일 경로 
 }
