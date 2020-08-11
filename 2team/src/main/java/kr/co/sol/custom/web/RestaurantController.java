@@ -31,6 +31,16 @@ public class RestaurantController {
 	@Autowired
 	MemberService memberService;
 	
+	// sub1 page 
+	@RequestMapping("/custom/sub1")
+	public String testCon(RestaurantDTO tdto, Model model) {
+		List<RestaurantDTO> tdto2 = restaurantService.getRestaurants(tdto);		
+		model.addAttribute("tdto",tdto2);
+		System.out.println(tdto2);
+		return "/custom/sub1";
+	}
+
+	
 	// selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,

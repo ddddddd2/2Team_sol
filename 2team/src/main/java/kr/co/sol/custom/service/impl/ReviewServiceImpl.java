@@ -22,7 +22,6 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public int reviewInsert(ReviewDTO rdto, MultipartFile file) {
-		// TODO Auto-generated method stub
 		
 		String sourceFileName = file.getOriginalFilename();
 		File destinationFile; 
