@@ -31,18 +31,19 @@ function search(){
 		<jsp:include page="header.jsp" /> 
 	</div>
 	<div id="main-wrapper">
-		<div id="search">
-		<form name="form1" method="post" action="${path}/admin/mem_manage">
-			<select id="searchSelectBox" name="searchOption">
-				<option value="">검색 옵션</option>
-				<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
-				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option>
-				<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
-			</select>
-			<input type="text" name="keyword" id="searchBar" placeholder="회원 검색" value="${map.keyword}" >
-		</form>
-			<button id="searchBtn" onClick="search()">검색</button></div>
 		<div id="content-wrap">
+		<div id="search">
+			<form name="form1" method="post" action="${path}/admin/mem_manage">
+				<select id="searchSelectBox" name="searchOption">
+					<option value="">검색 옵션</option>
+					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
+					<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option>
+					<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
+				</select>
+				<input type="text" name="keyword" id="searchBar" placeholder="회원 검색" value="${map.keyword}" >
+			</form>
+			<button id="searchBtn" onClick="search()">검색</button>
+		</div>
 		<table border="1">
 			<tr>
 				<td>회원번호</td>

@@ -1,14 +1,14 @@
 package kr.co.sol.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import kr.co.sol.custom.dto.MemberDTO;
-
 public interface AdminService {
-	List<MemberDTO> getMember();
+	List<HashMap<String, Object>> getMember();
 
 
-	List<MemberDTO> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
+	List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
 }

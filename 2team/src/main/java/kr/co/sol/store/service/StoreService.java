@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.sol.store.dto.StoreDTO;
 
 public interface StoreService {
+
 	List<StoreDTO> getStoreList();
 
 	List<StoreDTO> getStore(String searchOption, String keyword);

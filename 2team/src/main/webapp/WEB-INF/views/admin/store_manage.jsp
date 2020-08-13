@@ -34,21 +34,20 @@
 		<jsp:include page="header.jsp" /> 
 	</div>
 	<div id="main-wrapper">
-		<div id="search"> 
-		<form name="form1" method="get" action="${path}/admin/store_manage">
-			<select id="searchSelectBox" name="searchOption">
-				<option value="">검색 옵션</option>
-				<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
-<%-- 				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option> --%>
-				<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
-			</select>
-			<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" >
-		</form>
-		<input type="button" id="searchBtn" onClick="search()" value="검색">
-		<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
-		</div>
-		
 		<div id="content-wrap">
+		<div id="search"> 
+			<form name="form1" method="get" action="${path}/admin/store_manage">
+				<select id="searchSelectBox" name="searchOption">
+					<option value="">검색 옵션</option>
+					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
+	<%-- 				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option> --%>
+					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
+				</select>
+				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" >
+			</form>
+			<input type="button" id="searchBtn" onClick="search()" value="검색">
+			<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
+		</div>
 		<table border="1">
 			<tr>
 				<td>매장번호</td>

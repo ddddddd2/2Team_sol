@@ -3,6 +3,7 @@ package kr.co.sol.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,23 +50,26 @@ public class AdminController {
 	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
-		List<MemberDTO> mdto2;
+		List<HashMap<String, Object>> map= new ArrayList<HashMap<String, Object>>();
+		
 		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
 		if(searchOption==null && keyword==null) {
 			// 전체 리스트 불러온다.
-			mdto2 = adminService.getMember();
+			map = adminService.getMember();
+			System.out.println("map1:"+map);
 		} else {
 			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
-			mdto2 = adminService.getMemberList(searchOption,keyword);
+			map = adminService.getMemberList(searchOption,keyword);
+			System.out.println("map2:"+map);
 		}
-		model.addAttribute("mdto",mdto2);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
+		model.addAttribute("mdto",map);
+		System.out.println();
 		// 검색 후 옵션 유지하기 위해서.
-		map.put("searchOption", searchOption);
-		map.put("keyword",keyword);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("searchOption", searchOption);
+		map2.put("keyword",keyword);
 		
-		model.addAttribute("map",map);
+		model.addAttribute("map",map2);
 		return "admin/mem_manage";
 	}
 	
