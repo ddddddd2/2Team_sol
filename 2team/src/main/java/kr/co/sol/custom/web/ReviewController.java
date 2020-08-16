@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
 import kr.co.sol.custom.service.MemberService;
 import kr.co.sol.custom.service.ReviewService;
@@ -36,12 +36,12 @@ public class ReviewController {
 	public String reviewInsert(HttpServletRequest request,
 			 @RequestParam("file2") MultipartFile file,
 			 HttpServletResponse response,
-			 ReviewDTO rdto,MemberDTO mdto,Model model) {
+			 ReviewDTO rdto,Model model ,RestaurantDTO tdto ) {
 		
 		HttpSession session = request.getSession();
 		String idKey = (String)session.getAttribute("idKey");
 		
-		String msg ="";
+		String msg =""; ;
 		String url="/custom/sub2";
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
@@ -57,6 +57,8 @@ public class ReviewController {
 			
 			rdto.setMem_no(mem_no);
 			rdto.setMem_id(idKey);
+			
+			rdto.setRes_no(tdto.getNo());
 			
 			int r = 0;
 			

@@ -13,7 +13,7 @@
       			#{mem_id},
       			sysdate,
       			#{rating},
-      			#{file},
+      			#{file1},
       			#{content})
 	</insert>
 	

@@ -998,9 +998,10 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          	<!-- 리뷰작성  -->
          	<div class="review_wrap">
          		<!-- 리뷰폼  -->
-         		<form id="review_form" action="custom/reviewInsert" enctype="multipart/form-data">
+         		<form id="review_form" action="/custom/reviewInsert" enctype="multipart/form-data" method="post">
          			<input type="hidden" name="rating" value="" />
-         			
+         			<input type="hidden" name="no" value= "${tdto.no}" />
+         			         			
          			<!-- star area -->
          			<!--
          			<div class="grade_star">
@@ -1172,7 +1173,6 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    	    // 리뷰 작성 버튼 클릭 시 이벤트 
    		$(".btn_enroll").click(function(){
    			var star_rating = $("output>b").text();
-   			alert(star_rating);
    			
    			if(star_rating <= 0)
    			{
@@ -1180,9 +1180,9 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    				return false;
    			}
    			
-   			$(".review_form[name = 'review_rating']").val() = star_rating;
+   			$("#review_form [name = 'rating']").val(star_rating);	
    			
-   			$(".review_form").submit();
+   			$("#review_form").submit();
    		
    		});	
    </script>

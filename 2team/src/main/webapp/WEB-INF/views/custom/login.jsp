@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title> 로그인 화면 </title>
-<script src="./resources/js/jquery-1.10.2.min.js"></script>
+<script src="../resources/js/jquery-1.10.2.min.js"></script>
 <style type="text/css">
 
 	*{
