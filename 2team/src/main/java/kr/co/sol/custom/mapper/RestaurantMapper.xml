@@ -22,14 +22,22 @@
   	</select>
   	
   	
-  	<insert id="likeRestaurant" parameterType="int">
-  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-	       SELECT NVL(MAX(no),0)+1 no FROM favorites
-      	</selectKey>
-      	
-      	insert into favorites(no,res_no,mem_no)
-      	values(#{no},
-      		   #{res_no},
+  	<insert id="likeRestaurant" parameterType="hashMap">
+      	insert into favorites(res_no,mem_no)
+      	values(#{res_no},
       		   #{mem_no})
   	</insert>
+  	
+  	<delete id="dislikeRestaurant" parameterType="hashMap">
+  		delete from favorites 
+  		where res_no = #{res_no}
+  		and mem_no = #{mem_no}
+  	</delete>
+  	
+  	<select id="favoriteCheck" parameterType="hashMap" resultType="int">
+  		select count(mem_no) 
+  		from favorites
+  		where res_no = #{res_no}
+  		and mem_no = #{mem_no}
+  	</select>
 </mapper>

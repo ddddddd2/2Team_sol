@@ -28,13 +28,15 @@
 		where res_no = #{no}
 	</select>
 	
-	<select id="getReviews" parameterType="tdto" resultType="rdto">
-		select no,res_no,mem_no,mem_id,date1 ,rating ,content 
-		from review 
-		<choose>
-			<when test="no != 0">
-				where res_no = #{no}
-			</when>
-		</choose>
+	<select id="getReviews" parameterType="hashMap" resultType="rdto">
+		select a.* 
+		from(select rownum rr , b.*
+			from ( select * 
+				from review
+					where res_no = #{no} 
+					order by date1 desc) b ) a 
+		<if test="start != null">
+			where a.rr between #{start} and #{end}
+		</if>
 	</select>
 </mapper>

@@ -2,6 +2,7 @@ package kr.co.sol.custom.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,9 +51,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewDTO> getReviews(RestaurantDTO tdto) {
+	public List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2) {
 		// TODO Auto-generated method stub
-		return reviewDao.getReviews(tdto);
+		return reviewDao.getReviews(hmap2);
 	}
 	
 }

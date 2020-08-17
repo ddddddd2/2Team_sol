@@ -1,5 +1,6 @@
 package kr.co.sol.custom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,22 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public int likeRestaurant(int res_no, int mem_no) {
+	public int likeRestaurant(HashMap<String,Integer> hmap) {
 		// TODO Auto-generated method stub
-		return restaurantDao.likeRestaurant(res_no , mem_no);
+
+		return restaurantDao.likeRestaurant(hmap);
+	}
+
+	@Override
+	public int dislikeRestaurant(HashMap<String, Integer> hmap) {
+		// TODO Auto-generated method stub
+		return restaurantDao.dislikeRestaurant(hmap);
+	}
+
+	@Override
+	public int favoriteCheck(HashMap<String, Integer> hmap) {
+		// TODO Auto-generated method stub
+		return restaurantDao.favoriteCheck(hmap);
 	}
 	
 	

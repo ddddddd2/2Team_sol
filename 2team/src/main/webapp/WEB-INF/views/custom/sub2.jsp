@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 <html>
@@ -221,7 +222,6 @@ body, button, input, select, td, textarea, th {
     width: 14px;
     height: 19px;
     margin: 12px auto 0;
-    background-position: -100px -480px;
 }
 
 
@@ -828,6 +828,28 @@ star-input>.input.focus{outline:1px dotted #ddd;}
     vertical-align: top;
 }
 
+/* 이전 페이지 */
+
+.review_paging .btn_prev {
+    display: inline-block;
+    height: 28px;
+    margin-right: 10px;
+    font-size: 13px;
+    line-height: 27px;
+    color: #666;
+    background-position: 0 10px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.review_paging .ico_prev {
+    display: inline-block;
+    width: 7px;
+    height: 11px;
+    margin: 8px 4px 0 0;
+    background-position: -180px -50px;
+    vertical-align: top;
+}
 
 /*======================================================================================== */
 
@@ -896,9 +918,25 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                      <span class="color_b">${count}</span>
                   </div>
                   
-                  <a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none">
-                     <span class="ico_comm ico_bookmark">즐겨찾기 추가</span>
-                  </a>
+                  <c:choose>
+                  	<c:when test="${favoriteCheck != null }">
+                  		<c:if test="${fn:contains(favoriteCheck,'t')}">
+                  			<a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none;">
+                     			<span class="ico_comm ico_bookmark" style="background-position: -120px -480px;">즐겨찾기 해제</span>
+                  			</a>
+                  		</c:if>
+                  		
+                  		<c:if test="${fn:contains(favoriteCheck,'f')}">
+                  			<a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none;">
+                     			<span class="ico_comm ico_bookmark" style="background-position: -100px -480px;">즐겨찾기 추가</span>
+                  			</a>
+                  		</c:if>
+                  	</c:when>
+                  	
+                  	<c:when test="${favoriteCheck == null }">
+                  		
+                  	</c:when>
+                  </c:choose>
                </div><!-- details_inner end -->
             </div><!-- header_details end -->
 
@@ -1137,15 +1175,26 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          		</ul>
          		
          		<div class="review_paging">
-         			<em class="link_page">1</em>
-         			<a href="#none" class="link_page">2</a>
-         			<a href="#none" class="link_page">3</a>
-         			<a href="#none" class="link_page">4</a>
-         			<a href="#none" class="link_page">5</a>
-         			<a href="#none" class="btn_next">
+         		
+         		<c:if test="${pdto.startPage > pdto.pageBlock}">
+         			<a href="/custom/sub2?currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
+         				이전
+         				<span class="ico_comm ico_prev"></span>
+         			</a>
+         		</c:if>
+         			
+         		<c:forEach var = "i" begin="${pdto.startPage}" end="${pdto.endPage}">
+         			<a href="/custom/sub2?currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
+         				<c:out value="${i}"/>
+         			</a>
+         		</c:forEach>
+         			
+         		<c:if test="${pdto.endPage < pdto.allPage}">	
+         			<a href="/custom/sub2?currentPage=${pdto.endPage+1}&currPageBlock=${pdto.currPageBlock+1}" class="btn_next">
          				다음
          				<span class="ico_comm ico_next"></span>
          			</a>
+         		</c:if>
          		</div>
          	</div><!-- review_view end -->
          	
