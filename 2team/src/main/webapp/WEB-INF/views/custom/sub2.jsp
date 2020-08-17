@@ -1153,10 +1153,11 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          					<div class="content_info">
          						<p class="txt_content">${rdto.content}</p>
          						<div class="item_content">
-         							<a href="#none" class="link_like">
+         							<a href="/custom/like?rev_no=${rdto.no}" class="link_like">
          								<span class="ico_comm ico_like"></span>
          								좋아요
          							</a>
+         							<%-- <span class="link_like">${likeCount}</span> --%>
          						
          							<span class="bg_bar"></span>
          						

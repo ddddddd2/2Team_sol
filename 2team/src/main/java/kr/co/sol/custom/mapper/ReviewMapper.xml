@@ -39,4 +39,29 @@
 			where a.rr between #{start} and #{end}
 		</if>
 	</select>
+	
+	
+	<insert id="likeReview" parameterType="hashMap">
+      	insert into r_like(rev_no,mem_no)
+      	values(#{rev_no},
+      		   #{mem_no})
+  	</insert>
+  	
+  	<delete id="dislikeReview" parameterType="hashMap">
+  		delete from r_like 
+  		where rev_no = #{rev_no}
+  		and mem_no = #{mem_no}
+  	</delete>
+	
+	<select id="likeCheck" parameterType="hashMap" resultType="int">
+		select count(mem_no) 
+  		from r_like 
+  		where rev_no = #{rev_no}
+  		and mem_no = #{mem_no}
+	</select>
+	
+	<select id="likeCount">
+		
+	</select>
+	
 </mapper>

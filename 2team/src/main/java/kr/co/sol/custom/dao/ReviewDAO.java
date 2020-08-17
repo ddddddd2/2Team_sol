@@ -14,4 +14,7 @@ public interface ReviewDAO {
 	int reviewInsert(ReviewDTO rdto);
 	Map<String,Object> reviewCountAndAvg(RestaurantDTO tdto);
 	List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2);
+	int likeReview(HashMap<String,Integer> hmap);
+	int dislikeReview(HashMap<String,Integer> hmap);
+	int likeCheck(HashMap<String,Integer> hmap);
 }

@@ -13,4 +13,8 @@ public interface ReviewService {
 	int reviewInsert(ReviewDTO rdto , MultipartFile file);
 	Map<String,Object> reviewCountAndAvg(RestaurantDTO tdto);
 	List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2);
+	int likeReview(HashMap<String,Integer> hmap);
+	int dislikeReview(HashMap<String,Integer> hmap);
+	int likeCheck(HashMap<String,Integer> hmap);
+	
 }

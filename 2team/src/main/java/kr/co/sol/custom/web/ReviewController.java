@@ -1,5 +1,7 @@
 package kr.co.sol.custom.web;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -77,6 +79,66 @@ public class ReviewController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url",url);
 		
+		return "/custom/msgPage";
+	}
+	
+	// like(좋아요) process
+	@RequestMapping(value="/custom/like")
+	public String reviewLike(HttpServletRequest request, HttpServletResponse response,
+			ReviewDTO rdto,Model model ) {
+		
+		HttpSession session = request.getSession();
+		String idKey = (String)session.getAttribute("idKey");
+		
+		String msg =""; ;
+		String url="/custom/sub2";
+		
+		// 세션에 id값이 없을 때 로그인 페이지로 이동 
+		if(idKey == null || idKey.equals(""))
+		{
+			msg="로그인 부터 해주시길 바랍니다. ";
+			url="/custom/login";
+					
+		}else {
+			
+			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
+			int mem_no = memberService.getMemberNo(idKey);		
+			
+			if(request.getParameter("rev_no") != null)
+			{
+				int rev_no = Integer.parseInt(request.getParameter("rev_no"));
+				
+				HashMap<String,Integer> hmap = new HashMap<String,Integer>();
+				hmap.put("rev_no", rev_no);
+				hmap.put("mem_no",mem_no);
+				
+				int r = reviewService.likeCheck(hmap);
+				
+				if(r > 0)
+				{
+					r = reviewService.dislikeReview(hmap);
+					
+					if( r > 0)
+						msg = "like off";
+					else
+						msg = "like off error";
+				}else {
+					
+					r = reviewService.likeReview(hmap);
+					
+					if( r > 0)
+						msg = "like on";
+					else
+						msg = "like on error";
+				}
+
+			}else {
+				msg = "like process error";
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url",url);
 		return "/custom/msgPage";
 	}
 }
