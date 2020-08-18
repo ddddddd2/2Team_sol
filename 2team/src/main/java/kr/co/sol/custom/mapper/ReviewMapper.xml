@@ -29,12 +29,25 @@
 	</select>
 	
 	<select id="getReviews" parameterType="hashMap" resultType="rdto">
-		select a.* 
-		from(select rownum rr , b.*
-			from ( select * 
-				from review
-					where res_no = #{no} 
-					order by date1 desc) b ) a 
+		
+		<if test="mem_no2 == null">
+			select a.* 
+			from(select rownum rr , b.*
+				from ( select * 
+					from review
+						where res_no = #{res_no} 
+						order by date1 desc) b ) a 
+		</if>
+		<if test="mem_no2 != null">
+			select a.* 
+			from(select rownum rr , b.*
+				from ( select c.* , nvl(d.mem_no , 0) like_on 
+					from review c left outer join (select rev_no , mem_no from r_like where mem_no = #{mem_no2}) d
+					on c.no = d.rev_no	
+						where res_no = #{res_no} 
+						order by date1 desc) b ) a 
+		</if>
+
 		<if test="start != null">
 			where a.rr between #{start} and #{end}
 		</if>
@@ -60,8 +73,16 @@
   		and mem_no = #{mem_no}
 	</select>
 	
-	<select id="likeCount">
-		
-	</select>
+	<update id="likePlus" parameterType="hashMap">
+		update review
+		set like_cnt = like_cnt + 1
+		where no = #{rev_no}
+	</update>
+	
+	<update id="likeMinus" parameterType="hashMap">
+		update review
+		set like_cnt = like_cnt - 1
+		where no = #{rev_no}
+	</update>
 	
 </mapper>

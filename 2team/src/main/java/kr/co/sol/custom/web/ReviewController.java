@@ -116,18 +116,27 @@ public class ReviewController {
 				
 				if(r > 0)
 				{
-					r = reviewService.dislikeReview(hmap);
+					r = reviewService.dislikeReview(hmap); // like off 
 					
-					if( r > 0)
+					if( r > 0) {
+						
+						r = reviewService.likeMinus(hmap); // like count -- 
+						
 						msg = "like off";
+						
+					}
 					else
 						msg = "like off error";
 				}else {
 					
-					r = reviewService.likeReview(hmap);
+					r = reviewService.likeReview(hmap); // like on
 					
-					if( r > 0)
+					if( r > 0) {
+						
+						r = reviewService.likePlus(hmap); // like count ++
+						
 						msg = "like on";
+						}
 					else
 						msg = "like on error";
 				}

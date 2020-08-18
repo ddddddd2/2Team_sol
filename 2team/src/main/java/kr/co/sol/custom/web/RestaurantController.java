@@ -143,7 +143,13 @@ public class RestaurantController {
     	HashMap<String,Integer> hmap2 = new HashMap<String,Integer>();
     	hmap2.put("start", sRow);
     	hmap2.put("end", currentPage * pdto.getLinePerPage());
-    	hmap2.put("no", res_no);
+    	hmap2.put("res_no", res_no);
+    	if(idKey != null )
+    	{
+    		int mem_no = memberService.getMemberNo(idKey);
+    		hmap2.put("mem_no2",mem_no);
+    	}
+    	
     	
 		// reviews info
 		List<ReviewDTO> rlist = reviewService.getReviews(hmap2);

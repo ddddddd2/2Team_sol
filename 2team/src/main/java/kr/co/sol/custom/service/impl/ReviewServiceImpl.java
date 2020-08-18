@@ -73,6 +73,18 @@ public class ReviewServiceImpl implements ReviewService {
 		// TODO Auto-generated method stub
 		return reviewDao.likeCheck(hmap);
 	}
+
+	@Override
+	public int likePlus(HashMap<String, Integer> hmap) {
+		// TODO Auto-generated method stub
+		return reviewDao.likePlus(hmap);
+	}
+
+	@Override
+	public int likeMinus(HashMap<String, Integer> hmap) {
+		// TODO Auto-generated method stub
+		return reviewDao.likeMinus(hmap);
+	}
 	
 	
 }

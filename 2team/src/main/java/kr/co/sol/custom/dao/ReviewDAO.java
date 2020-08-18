@@ -17,4 +17,6 @@ public interface ReviewDAO {
 	int likeReview(HashMap<String,Integer> hmap);
 	int dislikeReview(HashMap<String,Integer> hmap);
 	int likeCheck(HashMap<String,Integer> hmap);
+	int likePlus(HashMap<String,Integer> hmap);
+	int likeMinus(HashMap<String,Integer> hmap);
 }

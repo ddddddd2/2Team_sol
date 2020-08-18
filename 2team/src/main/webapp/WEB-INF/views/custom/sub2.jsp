@@ -207,6 +207,24 @@ body, button, input, select, td, textarea, th {
    color: #888;
 }
 
+.details_inner .inner_booking{
+	position: relative;
+    width: 350px;
+    height: 46px;
+    padding: 23px 0 28px;
+    margin: 0 auto;
+}
+
+.inner_booking .booking_btn{
+    width: 120px;
+    height: 45px;
+    border:0 none;
+    color: #fff;
+    background: #3396ff;
+    cursor:pointer;
+    font-size: 18px;
+}
+
 /* inner bookmark */
 .header_details .inner_bookmark {
     position: absolute;
@@ -720,7 +738,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 /* 각각 리뷰에서 좋아요 , 아이디, 작성 날짜 영역  */
 .review_view .item_content{
 	overflow: hidden;
-    height: 20px;
+    height: 22px;
     padding: 6px 0 0 2px;
     font-size: 13px;
 }
@@ -739,6 +757,20 @@ star-input>.input.focus{outline:1px dotted #ddd;}
     height: 13px;
     margin: 5px 4px 0 0;
     background-position: -60px -50px;
+}
+
+.review_view .num_g{
+    font-family: Arial,sans-serif;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.review_view .like_on{
+	color: #1f8cff;
+}
+
+.review_view .like_on .ico_like{
+	background-position: -80px -50px;
 }
 
 /* 리뷰쓴 유저 id */
@@ -787,6 +819,17 @@ star-input>.input.focus{outline:1px dotted #ddd;}
     letter-spacing: 0;
     color:#000;
     cursor: pointer;
+}
+
+.review_paging .link_page em{
+	width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #3396ff;
+    color: #3396ff;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-block;
 }
 
 .review_paging .link_page:hover{
@@ -916,6 +959,10 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                      
                      <span class="review_title">리뷰</span>
                      <span class="color_b">${count}</span>
+                  </div>
+                  
+                  <div class="inner_booking">
+                  	 <button class="booking_btn" onclick="location.href='#'">예약하기</button>	  
                   </div>
                   
                   <c:choose>
@@ -1152,12 +1199,31 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          					<!-- content -->
          					<div class="content_info">
          						<p class="txt_content">${rdto.content}</p>
+         						
          						<div class="item_content">
-         							<a href="/custom/like?rev_no=${rdto.no}" class="link_like">
-         								<span class="ico_comm ico_like"></span>
-         								좋아요
+         							
+         							<c:if test="${rdto.like_on == 0 }">
+         								<a href="/custom/like?rev_no=${rdto.no}" class="link_like">
+         									<span class="ico_comm ico_like"></span>
+         									좋아요
+         								
+         									<c:if test="${rdto.like_cnt != 0}">
+         										<span class="num_g" style="display: inline-block;">${rdto.like_cnt}</span>
+         									</c:if>
+         								</a>
+         							</c:if>
+         							<c:if test="${rdto.like_on != 0}">
+         								<a href="/custom/like?rev_no=${rdto.no}" class="link_like like_on">
+         									<span class="ico_comm ico_like"></span>
+         									좋아요
+         								
+         									<c:if test="${rdto.like_cnt != 0}">
+         										<span class="num_g" style="display: inline-block;">${rdto.like_cnt}</span>
+         									</c:if> 
          							</a>
-         							<%-- <span class="link_like">${likeCount}</span> --%>
+         							</c:if>
+         							
+         						
          						
          							<span class="bg_bar"></span>
          						
@@ -1166,6 +1232,10 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          							<span class="bg_bar"></span>
          						
          							<span class="time_write">${rdto.date1 }</span>
+         							
+         							<span class="bg_bar"></span>
+         							
+         							<button style="font-size: 10px;">상세보기</button>
          						</div>
          					</div>
          				</li>
@@ -1174,8 +1244,30 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          			</c:if>
          			
          		</ul>
-         		
-         		<div class="review_paging">
+
+				<!-- Modal -->
+<!-- 				<div id="modal" class="modal modal__bg" role="dialog" aria-hidden="true">
+					<div class="modal__dialog">
+						<div class="modal__content">
+							<h1>Modal</h1>
+							<p>Church-key American Apparel trust fund, cardigan mlkshk
+								small batch Godard mustache pickled bespoke meh seitan. Wes
+								Anderson farm-to-table vegan, kitsch Carles 8-bit gastropub
+								paleo YOLO jean shorts health goth lo-fi. Normcore chambray
+								locavore Banksy, YOLO meditation master cleanse readymade
+								Bushwick.</p>
+
+							modal close button
+							<a href="" class="modal__close demo-close"> <svg class="" viewBox="0 0 24 24">
+									<path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z" />
+									<path d="M0 0h24v24h-24z" fill="none" /></svg>
+							</a>
+
+							</div>
+						</div>
+					</div> -->
+
+					<div class="review_paging">
          		
          		<c:if test="${pdto.startPage > pdto.pageBlock}">
          			<a href="/custom/sub2?currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
@@ -1185,8 +1277,14 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          		</c:if>
          			
          		<c:forEach var = "i" begin="${pdto.startPage}" end="${pdto.endPage}">
+         			
          			<a href="/custom/sub2?currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
-         				<c:out value="${i}"/>
+         				<c:if test="${pdto.currentPage == i}"> 
+         					<em><c:out value="${i}"/></em>
+         				</c:if>
+         				<c:if test="${pdto.currentPage != i}">
+         					<c:out value="${i}"/>
+         				</c:if>
          			</a>
          		</c:forEach>
          			
@@ -1234,7 +1332,8 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    			
    			$("#review_form").submit();
    		
-   		});	
+   		});
+   	    
    </script>
 </body>
 </html>

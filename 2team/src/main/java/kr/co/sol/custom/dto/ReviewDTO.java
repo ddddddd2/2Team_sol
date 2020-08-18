@@ -17,4 +17,6 @@ public class ReviewDTO {
 	private String date1; // 리뷰 작성 날짜
 	private int rating; // 리뷰 점수
 	private String path; // 업로드 파일 경로 
+	private int like_cnt; // 좋아요 개수 
+	private int like_on = 0; // 리뷰에 좋아요 했는지 안했는지 구분할라고 만든 변수 
 }
