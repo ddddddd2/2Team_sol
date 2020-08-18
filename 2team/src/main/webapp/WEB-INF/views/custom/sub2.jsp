@@ -9,6 +9,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+<!-- Add fancyBox main CSS files -->
+<link rel="stylesheet" type="text/css" href="../resources/css/custom/jquery.fancybox.css" />
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+ 
 <style type="text/css">
 
 /*===========================================초기설정=============================================== */
@@ -1230,9 +1235,12 @@ float: right;
          						</div>
          					</div>
          				
-         					<a href="#" class="link_photo">
-         						<img src="#" class="photo_img" width="78" height="78">
-         					</a>
+         					<c:if test="${rdto.file1 != null}">
+         						<a href="../upload/${rdto.file1}"  class="link_photo fancybox" data-fancy-group="gallary">
+         							<img src="../upload/${rdto.file1}" class="photo_img" width="78" height="78">
+         						</a>         					
+         					</c:if>			
+
          				
          					<!-- content -->
          					<div class="content_info">
@@ -1310,6 +1318,7 @@ float: right;
          		</div>
          	</div><!-- review_view end -->
          	
+
          </div><!-- article_review end -->
       </div><!-- article end -->
    </div><!-- sub2_wrap end -->
@@ -1322,6 +1331,7 @@ float: right;
 
    <script src="../resources/js/jquery-1.10.2.min.js"></script>
    <script src="../resources/js/custom/star.js"></script>
+   <script type="text/javascript" src="../resources/js/custom/jquery.fancybox.js"></script>
    <script type="text/javascript">
    
    		// 첫번째 , 마지막 메뉴에 class 속성 추가 
@@ -1370,6 +1380,9 @@ float: right;
    	    		alert("over 200 !!");
    	    	}
    	    });
+   	 	
+   	    // fancy box modal 창 
+   	 	$('.fancybox').fancybox();
 
    </script>
 </body>

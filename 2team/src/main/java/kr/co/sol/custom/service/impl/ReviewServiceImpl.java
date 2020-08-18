@@ -27,7 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 		String sourceFileName = file.getOriginalFilename();
 		File destinationFile; 
 		if (sourceFileName == null || sourceFileName.length()==0) { 
-		    rdto.setFile1("ready.gif");
+		    rdto.setFile1("");
 		}else {
 			rdto.setFile1(sourceFileName);
 			destinationFile = new File(rdto.getPath()+ sourceFileName); 
