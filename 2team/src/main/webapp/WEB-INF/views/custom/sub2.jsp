@@ -585,6 +585,20 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 	border-top: 1px solid #e2e2e2;
 }
 
+/* 리뷰 글자수  */
+.review_enroll .num_letter{
+float: right;
+    height: 15px;
+    padding: 13px 20px 0 0;
+    font-size: 13px;
+    font-family: Arial,sans-serif;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+.num_letter .num_total{
+	color:#888;
+}
 
 /* 리뷰 등록 버튼 */
 .review_wrap .review_enroll{
@@ -719,6 +733,22 @@ star-input>.input.focus{outline:1px dotted #ddd;}
     font-size: 15px;
     line-height: 18px;
     letter-spacing: 0;
+}
+
+/* 각각 리뷰에서 phote영역  */
+.review_view .link_photo{
+	overflow: hidden;
+    float: right;
+    position: relative;
+    width: 78px;
+    height: 78px;
+    margin-top: 13px;
+    text-indent: -9999px;
+    color: transparent;
+}
+
+.review_view .link_photo .photo_img{
+	display:block;
 }
 
 /* 각각 리뷰에서 content(리뷰 글) 영역 */
@@ -1136,11 +1166,15 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          			
          			<!-- upload area -->
          			<div class="review_fileupload">
-         				<input type="file" name="file2" />
+         				<input type="file" name="file2" accept=".png, .jpg, .jpeg" onchange="validateFileType()"/>
          			</div>
          		</form>
          		
          		<div class="review_enroll">
+         			<span class="num_letter txt_len_wrap">
+         				<span class="txt_len">0</span>
+         				<span class="num_total"> / 200</span>
+         			</span>
          			<button class="btn_enroll">등록</button>
          		</div>
          	</div>
@@ -1196,6 +1230,10 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          						</div>
          					</div>
          				
+         					<a href="#" class="link_photo">
+         						<img src="#" class="photo_img" width="78" height="78">
+         					</a>
+         				
          					<!-- content -->
          					<div class="content_info">
          						<p class="txt_content">${rdto.content}</p>
@@ -1233,9 +1271,6 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          						
          							<span class="time_write">${rdto.date1 }</span>
          							
-         							<span class="bg_bar"></span>
-         							
-         							<button style="font-size: 10px;">상세보기</button>
          						</div>
          					</div>
          				</li>
@@ -1244,28 +1279,6 @@ star-input>.input.focus{outline:1px dotted #ddd;}
          			</c:if>
          			
          		</ul>
-
-				<!-- Modal -->
-<!-- 				<div id="modal" class="modal modal__bg" role="dialog" aria-hidden="true">
-					<div class="modal__dialog">
-						<div class="modal__content">
-							<h1>Modal</h1>
-							<p>Church-key American Apparel trust fund, cardigan mlkshk
-								small batch Godard mustache pickled bespoke meh seitan. Wes
-								Anderson farm-to-table vegan, kitsch Carles 8-bit gastropub
-								paleo YOLO jean shorts health goth lo-fi. Normcore chambray
-								locavore Banksy, YOLO meditation master cleanse readymade
-								Bushwick.</p>
-
-							modal close button
-							<a href="" class="modal__close demo-close"> <svg class="" viewBox="0 0 24 24">
-									<path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z" />
-									<path d="M0 0h24v24h-24z" fill="none" /></svg>
-							</a>
-
-							</div>
-						</div>
-					</div> -->
 
 					<div class="review_paging">
          		
@@ -1334,6 +1347,30 @@ star-input>.input.focus{outline:1px dotted #ddd;}
    		
    		});
    	    
+   	    // 이미지가 아닌 file 들어올 때 걸러주기 
+	   	function validateFileType(){
+   	   	    var fileName = $("#review_form [name = 'file2']").val();
+   	   	    var idxDot = fileName.lastIndexOf(".") + 1;
+   	   	    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+   	   	    if(extFile == "jpg" || extFile == "jpeg" || extFile == "png"){
+   	   	    	
+   	   	    }else{
+   	   	    	alert("Only jpg/jpeg and png files are allowed!");
+   	   	 		$("#review_form [name = 'file2']").val("");
+   	   	    }
+   	    }
+   	    
+   	    // 글자수 check
+   	    $(".review_content").on('keyup',function(){
+   	    	var content = $(".review_content").val();
+   	    	var cnt = content.length;
+   	    	if(cnt <= 200){
+   	    		$(".txt_len").text(cnt);
+   	    	}else{
+   	    		alert("over 200 !!");
+   	    	}
+   	    });
+
    </script>
 </body>
 </html>
