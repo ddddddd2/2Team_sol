@@ -11,10 +11,10 @@
 	<meta name="format-detection" content="telephone=no"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
 	
-	<link href="./resources/css/index/base.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/index/common.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/index/index.css" rel="stylesheet" type="text/css" />
-	<script src="./resources/js/jquery-1.10.2.min.js"></script>
+	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<script src="../resources/js/jquery-1.10.2.min.js"></script>
 </head>  
 
 <body id="main">
@@ -29,7 +29,7 @@
 	
 	<div id="wrap">
 		<header id="header">
-   			 <a href="/" > <div id="logo"> <img src="./resources/image/logo.gif" alt="toplogo"> </div> </a>
+   			 <a href="/" > <div id="logo"> <img src="../resources/image/custom/logo.gif" alt="toplogo"> </div> </a>
 				<!--
 					<ul id="gnb">
 						<li><a href="#">상단메뉴1</a></li>
@@ -99,7 +99,7 @@
 
 		<footer id="footer">
 			<div class="layout">
-				<p><img src="./resources/image/logo.gif" alt="footerlogo"/></p>
+				<p><img src="../resources/image/custom/logo.gif" alt="footerlogo"/></p>
 					<strong>최고의 레스토랑을 즐기는 특별한 방법.<br>검색부터 예약까지 한번에, 덕밥.</strong>			
 					<span>
 						<strong> (주)대표이사:김기덕 </strong> 

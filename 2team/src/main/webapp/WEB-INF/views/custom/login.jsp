@@ -6,74 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title> 로그인 화면 </title>
+
+<link href="../resources/css/custom/login/login.css" rel="stylesheet" type="text/css" />
+
 <script src="../resources/js/jquery-1.10.2.min.js"></script>
-<style type="text/css">
 
-	*{
-		margin: 0;
-		padding: 0;
-	}
-		
-	body{
-		background-color: rgb(245,246,247);
-	}
-	
-	.container{
-		width: 500px;
-		margin: auto;
-	}
-
-	.logo{
-		text-align: center;
-		margin-top: 20px;
-        }
-        
-    .logo>a{
-		font-size: 35px;
-		font-weight: bold;
-        }
-        
-    .text-id, .text-pw{
-		font-weight: bold;
-	}
-
-	.box-id, .box-pw{
-	    height: 50px;
-	    margin-top: 10px;
-	    padding: 10px;
-	    margin-bottom: 10px;
-	    background-color: white;
-	    border: rgb(218,218,218) 2px solid;
-	    box-sizing: border-box;
-	}
-	
-	.box-id>input, .box-pw>input{
-		padding: 5px 5px;
-		margin: auto;
-		width: 100%;
-		border: 2px solid rgb(218,218,218);
-		box-sizing: border-box;
-        font-weight: bold;
-	}
-	
-	.box-button input{
-		text-align: center;
-		width: 100%;
-		height: 50px;
-		margin-top: 5px;
-		border: 2px solid rgb(218,218,218);
-		box-sizing: border-box;
-		font-size: 20px;
-		font-weight: bold;
-	}
-
-</style>
 </head>
 <body>
 	
 	<form class="container" title="로그인 폼" method="post" action="/custom/loginProc">
 		<div class="logo">
-			<a href="/"> <img src="../resources/image/logo.gif" alt="" /> </a>
+			<a href="/"> <img src="../resources/image/custom/logo.gif" alt="" /> </a>
 		</div>
 				<div class="container-id">
 			<div class="text-id"> 아이디 </div>

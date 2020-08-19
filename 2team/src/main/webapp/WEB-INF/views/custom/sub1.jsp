@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../resources/js/jquery-1.10.2.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../resources/css/custom/sub.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
 
 <style type="text/css">
 

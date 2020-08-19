@@ -31,8 +31,8 @@ public class MemberController {
 		 * (String)session.getAttribute("idKey"); session.setAttribute("idKey", idKey);
 		 */
 		 
-		return "index";
-	}
+		return "/custom/index";
+	} 
 	
 	// login page
 	@RequestMapping(value="/custom/login")

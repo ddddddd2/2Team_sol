@@ -43,7 +43,7 @@ public class RestaurantController {
 	}
 
 	
-	// selected restaurant page
+	// sub2 - selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
 			RestaurantDTO tdto, Model model , PageDTO pdto
@@ -216,4 +216,9 @@ public class RestaurantController {
 		
 		return "/custom/msgPage";
 	}
+	
+	
+	// booking page 
+	
+	
 }
