@@ -53,7 +53,7 @@
 						</li>
 						<li><a href="/custom/signUp">회원가입</a></li>
 					</c:when>
-					<c:when test="${idKey != null and fn:length(idKey) > 0 }">
+					<c:when test="${idKey != null}">
 						<li class="select_list">
 							<a href="/custom/logout" class="selected">로그아웃</a>
 							<ul class="select_sub">
