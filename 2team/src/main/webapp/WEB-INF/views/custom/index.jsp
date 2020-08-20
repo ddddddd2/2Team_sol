@@ -29,26 +29,19 @@
 	
 	<div id="wrap">
 		<header id="header">
-   			 <a href="/" > <div id="logo"> <img src="../resources/image/custom/logo.gif" alt="toplogo"> </div> </a>
-				<!--
-					<ul id="gnb">
-						<li><a href="#">상단메뉴1</a></li>
-						<li><a href="#">상단메뉴2</a></li>
-						<li><a href="#">상단메뉴3</a></li>
-						<li><a href="#">상단메뉴4</a></li>
-					</ul>
-				-->
-				<div id="space" title="그냥 공백 처리용 /내용 없음">
-					<div id="search">
-						<form method="post" action="">
-							<div>
-								<input type="text" name="" id="">
-								<input type="submit" value="검색">
-							</div>
-						</form>
-					</div>
+			<div id="logo">
+				<a href="/" ><img src="../resources/image/custom/logo.gif" alt="toplogo"></a>
+			</div>
+			<div id="space">
+				<div id="search">
+					<form method="post" action="">
+						<div>
+							<input type="text" name="" id="">
+							<input type="submit" value="검색">
+						</div>
+					</form>
 				</div>
-				
+			</div>
 				<ul class="lnb">
 				<c:choose>
 					<c:when test="${idKey == null}">
@@ -58,10 +51,8 @@
 								<li><a href="#">뭐나옴??</a></li>
 							</ul>
 						</li>
-
 						<li><a href="/custom/signUp">회원가입</a></li>
 					</c:when>
-					
 					<c:when test="${idKey != null and fn:length(idKey) > 0 }">
 						<li class="select_list">
 							<a href="/custom/logout" class="selected">로그아웃</a>
