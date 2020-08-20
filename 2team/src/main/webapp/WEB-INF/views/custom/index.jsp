@@ -38,7 +38,16 @@
 						<li><a href="#">상단메뉴4</a></li>
 					</ul>
 				-->
-				<div id="space" title="그냥 공백 처리용 /내용 없음"></div>
+				<div id="space" title="그냥 공백 처리용 /내용 없음">
+					<div id="search">
+						<form method="post" action="">
+							<div>
+								<input type="text" name="" id="">
+								<input type="submit" value="검색">
+							</div>
+						</form>
+					</div>
+				</div>
 				
 				<ul class="lnb">
 				<c:choose>
@@ -71,14 +80,7 @@
 
 			<div id="container">
 				<div id="visual">
-					<div id="search">
-						<form method="post" action="">
-							<div>
-								<input type="text" name="" id="">
-								<input type="submit" value="검색">
-							</div>
-						</form>
-					</div>
+					
 				</div>
 <!--		
 

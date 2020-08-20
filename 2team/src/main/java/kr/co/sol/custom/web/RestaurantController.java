@@ -33,6 +33,7 @@ public class RestaurantController {
 	@Autowired
 	MemberService memberService;
 	
+	
 	// sub1 page 
 	@RequestMapping("/custom/sub1")
 	public String testCon(RestaurantDTO tdto, Model model) {
