@@ -2,11 +2,12 @@ package kr.co.sol.admin;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.sol.custom.dto.MemberDTO;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
@@ -21,5 +22,20 @@ public class AdminServiceImpl implements AdminService {
 	public List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword) {
 		// TODO Auto-generated method stub
 		return adminDao.getMemberList(searchOption, keyword);
+	}
+	@Override
+	public MemberDTO login(String id, String passwd) {
+		// TODO Auto-generated method stub
+		return adminDao.login(id, passwd);
+	}
+	@Override
+	public String login2(MemberDTO mdto) {
+		// TODO Auto-generated method stub
+		return adminDao.login2(mdto);
+	}
+	@Override
+	public MemberDTO loginPro(MemberDTO mdto) {
+		System.out.println("impl::"+mdto);
+		return adminDao.loginPro(mdto);
 	}
 }

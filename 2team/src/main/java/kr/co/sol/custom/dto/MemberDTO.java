@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemberDTO {
-	private int no; // 회원번호
+	private Integer no; // 회원번호
 	private String grade_name; // 회원등급
 	private String id; // 회원아이디
 	private String passwd; // 회원비밀번호

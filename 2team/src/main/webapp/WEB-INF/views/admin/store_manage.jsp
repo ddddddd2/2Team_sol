@@ -8,26 +8,6 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <title>Insert title here</title>
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
-<script type="text/javascript">
-
-
-
-// function search(){
-	
-// 	var sv = document.getElementById("searchBar").value; // 검색어 가져오기
-// 	var op = document.getElementById("searchSelectBox");
-// 	var opop = op.options[op.selectedIndex].value; // 검색 옵션 가져오기
-// 		if(sv==""){
-// 			alert("입력값을 확인해주세요");
-// 		} else{
-// 			if(opop==""){
-// 					alert("옵션을 선택해주세요");
-// 			} else{
-// 					document.form1.submit();
-// 			}
-// 		}
-// }
-</script>
 </head>
 <body>
 	<div id="header">
@@ -40,12 +20,12 @@
 				<select id="searchSelectBox" name="searchOption">
 					<option value="">검색 옵션</option>
 					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
-	<%-- 				<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option> --%>
+					<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option>
 					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
 				</select>
-				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" >
-			</form>
+				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
 			<input type="button" id="searchBtn" onClick="search()" value="검색">
+			</form>
 			<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
 		</div>
 		<table border="1">

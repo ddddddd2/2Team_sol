@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="height:30px">관리자 페이지</div>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div style="height:30px"><a href="/">관리자 페이지</a>
+<c:choose>
+	<c:when test="${mdto.getRole()==null}">
+	<input type="button" value="로그인" onclick="document.location.href='/'" />
+	
+	</c:when>
+	<c:when test="${mdto.getRole()=='admin'}">
+	<input type="button" value="로그아웃" onclick="document.location.href='/logout'" />
+	</c:when>
+</c:choose>
+
+</div>
 <div id="menu">
 	<ul>
 		<!-- 매장 등록, 수정, 리뷰관리?도 같이. -->

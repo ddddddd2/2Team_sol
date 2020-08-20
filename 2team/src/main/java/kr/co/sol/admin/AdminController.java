@@ -10,14 +10,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
@@ -31,17 +34,68 @@ public class AdminController {
 	
 	@Autowired
 	StoreService storeService;
+	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
+	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
+		HttpSession session = request.getSession();
+		System.out.println("id, pw :: "+id+" "+passwd);
+		if(id!=null && passwd !=null) {
+			MemberDTO mdto2 = adminService.login(id, passwd);
+			session.setAttribute("mdto", mdto2);
+			System.out.println(mdto2);
+		} else {
+			System.out.println("널이다 ");
+			session.setAttribute("mdto",null);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", "test_id");
+			map.put("passwd", "1234");
+			System.out.println(map);
+			session.setAttribute("data", map);
+		}
+		System.out.println("login:id="+id);
+		System.out.println("login:pw="+passwd);
+//		if(role)
+		return "/admin/login";
+	}
+	@PostMapping(value="/loginPro")
+	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
+		System.out.println("0"+mdto);
+			mdto = adminService.loginPro(mdto);
+		if(mdto== null) {
+			return 0;
+		}
+		if ("user".equals(mdto.getRole())) {
+			return 1;	
+		} 
+		request.getSession();
+		session.setAttribute("mdto", mdto);
+		return 2;
+	}
 	
-	@GetMapping("admin/index")
+	@GetMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+//	@RequestMapping(value="/loginPro", method ={RequestMethod.GET,RequestMethod.POST})
+//	public String loginPro(MemberDTO mdto, Model model, HttpServletRequest request) {
+//		String role = adminService.login2(mdto);
+//		System.out.println("loginPro::role="+role);
+//		if("admin".equals(role)) {
+//			HttpSession session = request.getSession();
+//			Integer no = mdto.getNo();
+//			session.setAttribute("idKey", no);
+//		} else if(role==null) { 
+//			String msg = "올바른 아이디와 비밀번호가 맞지 않습니다";
+//			model.addAttribute("msg",msg);
+//			return "/admin/index";
+//		}
+//		
+//		return "/admin/index";
+//	}
+	
+	@RequestMapping(value="/", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
-			HttpServletResponse response
-//			,@RequestParam(value="page", required=false, defaultValue = "") String page
-			){
-		
-//		if(page.length()>0 || page!=null) {
-//			page+=".jsp";
-//			model.addAttribute("contentView", page);
-//		} 
+			HttpServletResponse response){
 		return "admin/index";
 	}
 	
@@ -50,17 +104,20 @@ public class AdminController {
 	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			
+			return "redirect:/";
+		}
 		List<HashMap<String, Object>> map= new ArrayList<HashMap<String, Object>>();
 		
 		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
 		if(searchOption==null && keyword==null) {
 			// 전체 리스트 불러온다.
 			map = adminService.getMember();
-			System.out.println("map1:"+map);
 		} else {
 			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
 			map = adminService.getMemberList(searchOption,keyword);
-			System.out.println("map2:"+map);
 		}
 		model.addAttribute("mdto",map);
 		System.out.println();
@@ -74,7 +131,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(String searchOption, String keyword, Model model, StoreDTO sdto) {
+	public String sm(HttpServletRequest request, String searchOption, String keyword, Model model, StoreDTO sdto) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			return "redirect:/";
+		} // 세션에 담긴게 없으면 로그인 화면으로
 		List<StoreDTO> sdto2;
 		if(searchOption==null && keyword==null) {
 			sdto2 = storeService.getStoreList();
@@ -107,11 +168,21 @@ public class AdminController {
 	
 	@GetMapping("admin/report")
 	public String report(Model model, HttpServletRequest request, HttpServletResponse response, StoreDTO sdto, MemberDTO mdto) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			
+			return "redirect:/";
+		}
 		return "admin/report";
 	}
 	
 	@GetMapping("admin/reg_store")
-	public String reg_store() {
+	public String reg_store(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			
+			return "redirect:/";
+		}
 		return "admin/reg_store";
 	}
 	
@@ -125,8 +196,10 @@ public class AdminController {
 			} 
 		return "redirect:admin/store_manage";
 	}
-	@GetMapping("sub")
-	public String sub() {
-		return "sub";
+	
+	@RequestMapping(value="/juso", method = {RequestMethod.GET,RequestMethod.POST})
+	
+	public String map() {
+		return "admin/juso";
 	}
 }

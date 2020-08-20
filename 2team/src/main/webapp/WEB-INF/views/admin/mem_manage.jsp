@@ -8,23 +8,6 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <title>Insert title here</title>
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
-<script type="text/javascript">
-function search(){
-	
-	var sv = document.getElementById("searchBar").value; // 검색어 가져오기
-	var op = document.getElementById("searchSelectBox"); 
-	var opop = op.options[op.selectedIndex].value; // 검색 옵션 가져오기
-		if(sv==""){
-			alert("입력값을 확인해주세요");
-		} else{
-			if(opop==""){
-					alert("옵션을 선택해주세요");
-			} else{
-					document.form1.submit();
-			}
-		}
-}
-</script>
 </head>
 <body>
 	<div id="header">
@@ -32,8 +15,10 @@ function search(){
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
+		<div id="test" style="width:30px;height:30px;background-color:gold" onclick="getLocation()"></div>
+		<div id="test2"></div>
 		<div id="search">
-			<form name="form1" method="post" action="${path}/admin/mem_manage">
+			<form name="form1" method="get" action="${path}/admin/mem_manage">
 				<select id="searchSelectBox" name="searchOption">
 					<option value="">검색 옵션</option>
 					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
@@ -41,8 +26,8 @@ function search(){
 					<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
 				</select>
 				<input type="text" name="keyword" id="searchBar" placeholder="회원 검색" value="${map.keyword}" >
+			<input type="button" id="searchBtn" onClick="search()" value="검색">
 			</form>
-			<button id="searchBtn" onClick="search()">검색</button>
 		</div>
 		<table border="1">
 			<tr>
@@ -66,6 +51,8 @@ function search(){
 						<tr>
 						<td>${mdto.no}</td>
 						<td>${mdto.grade_name}</td>
+						
+						
 						<td>${mdto.id}</td>
 						<td>${mdto.name}</td>
 						<td>${mdto.email}</td>
@@ -79,5 +66,6 @@ function search(){
 		</table>
 		</div>
 	</div>
+<script type="text/javascript" src="../resources/js/map.js"></script>
 </body>
 </html>
