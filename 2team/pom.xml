@@ -150,20 +150,20 @@
 	    -->
 	    
 	    <!-- Logback -->
-	    <dependency>
+   <!-- <dependency>
 	         <groupId>ch.qos.logback</groupId>
 	         <artifactId>logback-classic</artifactId>
 	    </dependency>
 	    <dependency>
 	         <groupId>ch.qos.logback</groupId>
 	         <artifactId>logback-core</artifactId>
-	    </dependency>
+	    </dependency> -->
 	    <!-- append -->    
-		<dependency>
+   <!-- <dependency>
 		     <groupId>org.bgee.log4jdbc-log4j2</groupId>
 		     <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 		     <version>1.16</version>
-		</dependency>
+		</dependency> -->
 	    
 	    <!-- by upload start -->
 		<dependency>
