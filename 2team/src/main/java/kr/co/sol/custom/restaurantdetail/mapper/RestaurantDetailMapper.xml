@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sol.custom.restaurantdetail.dao.RestaurantDetailDAO">
+    
+  	  	<select id="idCheck" parameterType="string"  resultType="int">
+    	select count(id) cnt from member where id = #{id}
+  	</select>
+  	
+  	<select id="loginProc" parameterType="mdto" resultType="mdto">
+  		SELECT ID, NAME, ROLE, PASSWD 
+      	FROM MEMBER 
+      	WHERE id = #{id} 
+      	and passwd = #{passwd}
+  	</select>
+  	
+  	<insert id="signUpProc" parameterType="mdto">
+  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM member
+      	</selectKey>
+  		
+  		insert into member(no,id,passwd,name,email,phone,gender)
+  		values( #{no},
+  				#{id},
+  				#{passwd},
+  				#{name},
+  				#{email},
+  				#{phone},
+  				#{gender})
+  	</insert>
+
+  	<select id="getMemberNo" parameterType="string" resultType="int">
+  		select no from member where id = #{idKey}
+  	</select>
+  	
+  	    <select id="getRestaurants" parameterType="resdto" resultType="resdto">
+    	select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour 
+    	from restaurant t join category c 
+    	on t.c_no = c.no 
+    	
+    	<choose>
+    		<when test="no != 0">
+    			where t.no = #{no}
+    		</when>
+    	</choose>
+    </select>
+  	
+  	<select id="getMenus" parameterType="revdto" resultType="menudto">
+  		select m.food_no , c_no, name, price 
+  		from food f join r_menu m 
+  		on f.no = m.food_no 
+  		where res_no = #{no}
+  	</select>
+  	
+  	
+  	<insert id="likeRestaurant" parameterType="hashMap">
+      	insert into favorites(res_no,mem_no)
+      	values(#{res_no},
+      		   #{mem_no})
+  	</insert>
+  	
+  	<delete id="dislikeRestaurant" parameterType="hashMap">
+  		delete from favorites 
+  		where res_no = #{res_no}
+  		and mem_no = #{mem_no}
+  	</delete>
+  	
+  	<select id="favoriteCheck" parameterType="hashMap" resultType="int">
+  		select count(mem_no) 
+  		from favorites
+  		where res_no = #{res_no}
+  		and mem_no = #{mem_no}
+  	</select>
+  	
+  		<insert id="reviewInsert" parameterType="revdto">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM review
+      	</selectKey>
+      	insert into 
+      	review(no,res_no,mem_no,mem_id,date1,rating,file1,content)
+      	values( #{no},
+      			#{res_no},
+      			#{mem_no},
+      			#{mem_id},
+      			sysdate,
+      			#{rating},
+      			#{file1},
+      			#{content})
+	</insert>
+	
+	
+	<resultMap type="map" id="resultMap">
+		<id column="count" property="count"/>
+		<id column="avg"   property="avg"/>
+	</resultMap>
+	<select id="reviewCountAndAvg" parameterType="resdto" resultMap="resultMap">
+		select count(*) count, nvl(trunc(avg(rating),1) , 0.0) avg 
+		from review
+		where res_no = #{no}
+	</select>
+	
+	<select id="getReviews" parameterType="hashMap" resultType="revdto">
+		
+		<if test="mem_no2 == null">
+			select a.* 
+			from(select rownum rr , b.*
+				from ( select * 
+					from review
+						where res_no = #{res_no} 
+						order by date1 desc) b ) a 
+		</if>
+		<if test="mem_no2 != null">
+			select a.* 
+			from(select rownum rr , b.*
+				from ( select c.* , nvl(d.mem_no , 0) like_on 
+					from review c left outer join (select rev_no , mem_no from r_like where mem_no = #{mem_no2}) d
+					on c.no = d.rev_no	
+						where res_no = #{res_no} 
+						order by date1 desc) b ) a 
+		</if>
+
+		<if test="start != null">
+			where a.rr between #{start} and #{end}
+		</if>
+	</select>
+	
+	
+	<insert id="likeReview" parameterType="hashMap">
+      	insert into r_like(rev_no,mem_no)
+      	values(#{rev_no},
+      		   #{mem_no})
+  	</insert>
+  	
+  	<delete id="dislikeReview" parameterType="hashMap">
+  		delete from r_like 
+  		where rev_no = #{rev_no}
+  		and mem_no = #{mem_no}
+  	</delete>
+	
+	<select id="likeCheck" parameterType="hashMap" resultType="int">
+		select count(mem_no) 
+  		from r_like 
+  		where rev_no = #{rev_no}
+  		and mem_no = #{mem_no}
+	</select>
+	
+	<update id="likePlus" parameterType="hashMap">
+		update review
+		set like_cnt = like_cnt + 1
+		where no = #{rev_no}
+	</update>
+	
+	<update id="likeMinus" parameterType="hashMap">
+		update review
+		set like_cnt = like_cnt - 1
+		where no = #{rev_no}
+	</update>
+</mapper>

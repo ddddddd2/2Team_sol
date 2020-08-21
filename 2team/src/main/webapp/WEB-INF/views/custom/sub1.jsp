@@ -100,8 +100,8 @@ window.onload = function(){
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
 <%-- 					<c:forEach var="tdto" items="${tdto}" > --%>
 						<c:forEach var="i" begin="0" end="10">
-						<div id="store${tdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="test(${tdto.get(i).no})" >${tdto.get(i).name}</a>
+						<div id="store${resdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
+						<a href="#" onClick="test(${resdto.get(i).no})" >${resdto.get(i).name}</a>
 					</div>
 					</c:forEach>
 				</div>
@@ -117,14 +117,14 @@ window.onload = function(){
 							<div style="height: 10%; text-align: center;">검색 키워드와 관련된 추천 맛집</div>
 					</div>
 				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; ">
-					<a href="http://duckbap.com/detail?res_no=${tdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a> <!-- target='_blank' 새창띄우기 -->
 				</div>
 				
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-				<p>주소 : ${tdto.get(0).address1}</p> 
-				<p>연락처 : ${tdto.get(0).tel}</p>
-				<a href="http://duckbap.com/detail?res_no=${tdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
+				<p>주소 : ${resdto.get(0).address1}</p> 
+				<p>연락처 : ${resdto.get(0).tel}</p>
+				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
 				<p> 아아</p>
 				</div> 		<!-- list2-3 끝 -->			
 
