@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sol.admin.AdminDAO">
+<resultMap type="HashMap" id="getMember">
+	<id column="no" property="no" />
+	<id column="grade_name" property="grade_name" />
+	<id column="id" property="id" />
+	<id column="passwd" property="passwd" />
+	<id column="name" property="name" />
+	<id column="email" property="email" />
+	<id column="phone" property="phone" />
+	<id column="gender" property="gender" />
+	<id column="role" property="role" />
+</resultMap>
+<select id="getMember" resultMap="getMember">
+select no, grade_name, id, passwd, name, email, phone ,gender, role from member
+<!-- where rownum &lt;=2 -->
+</select>
+<select id="login" parameterType="String" resultType="mdto">
+select id, name, role from member where id = #{id} and passwd = #{passwd}
+</select>
+<select id="login2" parameterType="mdto" resultType="String">
+select role from member where id=#{id} and passwd=#{passwd}
+</select>
+<select id="loginPro" parameterType="mdto" resultType="mdto">
+select id, name, role from member where id = #{id} and passwd = #{passwd}
+</select>
+<select id="getStore" resultType="sdto">
+select no, c_no, name, address1, tel, hour from restaurant
+</select>
+<select id="getMemberList" resultMap="getMember">
+select no, grade_name, id, passwd, name, email, phone, gender, role from member
+where ${searchOption} like '%'||#{keyword}||'%'
+</select>
+</mapper>

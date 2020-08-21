@@ -15,12 +15,10 @@
          <typeAlias alias="list"    type="java.util.List" />
          <typeAlias alias="string"  type="java.lang.String" />
          <typeAlias alias="map"     type="java.util.Map" />
-         
-         <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
          <typeAlias alias="rdto"    type="kr.co.sol.custom.dto.ReviewDTO" />
          <typeAlias alias="tdto"    type="kr.co.sol.custom.dto.RestaurantDTO" />
          <typeAlias alias="ndto"    type="kr.co.sol.custom.dto.MenuDTO" />
-         
+         <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
+         <typeAlias alias="sdto"    type="kr.co.sol.store.dto.StoreDTO" />
     </typeAliases>	
-    
 </configuration>
