@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.store.dto.StoreDTO;
+import kr.co.sol.custom.dto.StoreDTO;
 
 @Mapper
 public interface AdminDAO {

@@ -2,7 +2,7 @@ package kr.co.sol.store.service;
 
 import java.util.List;
 
-import kr.co.sol.store.dto.StoreDTO;
+import kr.co.sol.custom.dto.StoreDTO;
 
 public interface StoreService {
 

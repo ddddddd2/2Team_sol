@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.store.dto.StoreDTO;
+import kr.co.sol.custom.dto.StoreDTO;
 import kr.co.sol.store.service.StoreService;
 
 @Controller

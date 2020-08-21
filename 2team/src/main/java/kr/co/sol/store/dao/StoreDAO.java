@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import kr.co.sol.store.dto.StoreDTO;
+import kr.co.sol.custom.dto.StoreDTO;
 
 @Mapper
 public interface StoreDAO {
