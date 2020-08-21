@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +42,7 @@ $(document).ready(function(){
 			<div class="text-id"> 아이디 </div>
 			<div class="box-id">
 				<input type="text" title="아이디" name="id" id="mem_id" placeholder="아이디를 입력하시오." >
+				<input type="text" title="아이디" name="id" id="id" placeholder="아이디를 입력하시오." >
 			</div>
 		</div>
 				
@@ -50,15 +50,14 @@ $(document).ready(function(){
 			<div class="text-pw"> 비밀번호 </div>
 			<div class="box-pw">
 				<input type="password" title="비밀번호" name="passwd" id="mem_passwd" placeholder="비밀번호를 입력하시오." >
+				<input type="password" title="비밀번호" name="passwd" id="passwd" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>
-		
 		<div class="container-button">
 			<div class="box-button">			
 				<input type="submit" id="btn" title="로그인" value="로그인" >
 			</div>
 		</div>	
 	</form>
-	
 </body>
 </html>

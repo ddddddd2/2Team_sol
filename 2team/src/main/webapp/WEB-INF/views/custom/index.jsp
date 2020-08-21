@@ -62,7 +62,7 @@
 							</ul>
 						</li>
 
-						<li><a href="/custom/myPage2">마이페이지</a></li>
+						<li><a href="/myPage">마이페이지</a></li>
 					</c:when>
 				</c:choose>
 			</ul>
