@@ -240,10 +240,10 @@ public class MemberController {
 		public String updateInfo(HttpServletRequest request, HttpServletResponse response, Model model, MemberDTO mdto) {
 			
 			HttpSession session = request.getSession();
-			String id = (String) session.getAttribute("idKey");
-			System.out.println("세션 아이디"+id);
-			model.addAttribute("id", id);
-			MemberDTO mdto2 = memberService.getMemberInfo(id);
+			int no = (int) session.getAttribute("idKey");
+			System.out.println("세션 아이디"+no);
+			model.addAttribute("id", no);
+			MemberDTO mdto2 = memberService.getMemberInfo(no);
 			session.setAttribute("mdto", mdto2);
 			System.out.println(mdto2.getNick_name());
 			return "custom/updateInfo";

@@ -20,8 +20,6 @@ public interface MemberService {
 //	Member
 	List<MemberDTO> getMember();
 //	Update
-	MemberDTO getMemberInfo(String id);
-	int updateMember(String nick_name, String phone, String passwd, String id, String email);
 	int nickCheck(String nick_name);
 	int emailCheck(String email);
 	//Review
@@ -34,4 +32,6 @@ public interface MemberService {
 	List<BookingDTO> getBookingList(String id);
 //	Member
 	List<MemberDTO> getMemberList(String id);
+	MemberDTO getMemberInfo(int no);
+	int updateMember(String nick_name, String phone, String passwd, String id, String email);
 }

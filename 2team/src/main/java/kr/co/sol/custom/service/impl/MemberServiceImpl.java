@@ -54,17 +54,9 @@ public class MemberServiceImpl implements MemberService {
 //  Update
 
 	@Override
-	public MemberDTO getMemberInfo(String id) {
-		// TODO Auto-generated method stub
-		return memberDao.getMemberInfo(id);
-	}
-
-	@Override
 	public int updateMember(String nick_name, String phone, String passwd, String id, String email) {
 		System.out.println("impl에서 이름이 뭐니? "+nick_name);
 		return memberDao.updateMember(nick_name, phone, passwd, id, email);
-	
-
 	}
 
 	@Override
@@ -110,6 +102,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<MemberDTO> getMember() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberDTO getMemberInfo(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
