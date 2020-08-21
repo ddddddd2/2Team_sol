@@ -56,14 +56,20 @@ public class MemberController {
 	
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
-		mdto = memberService.loginPro(mdto);
+		mdto = memberService.loginPro(mdto); // 받아온 id와 pw가 일치하는 회원을 조회해서 mdto타입으로 return.
+		// 아이디 패스워드가 일치하지 않는 경우
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
 		}
+		
+		// 아이디, 패스워드가 일치하고 role이 어드민임. 
 		if("admin".equals(mdto.getRole())) {
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
+		
+		// 나머지는 id, pw 일치하고 role이 유저임.
 		request.getSession();
+		session.setAttribute("mdto", mdto);
 		session.setAttribute("idKey", mdto.getNo());
 		return 2;
 	}
