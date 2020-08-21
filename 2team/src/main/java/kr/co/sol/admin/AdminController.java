@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.dto.StoreDTO;
-import kr.co.sol.store.service.StoreService;
 
 @Controller
 public class AdminController {
