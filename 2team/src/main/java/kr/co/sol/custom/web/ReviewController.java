@@ -38,7 +38,7 @@ public class ReviewController {
 	public String reviewInsert(HttpServletRequest request,
 			 @RequestParam("file2") MultipartFile file,
 			 HttpServletResponse response,
-			 ReviewDTO rdto,Model model ,RestaurantDTO tdto ) {
+			 ReviewDTO rdto,Model model ,RestaurantDTO resdto ) {
 		
 		HttpSession session = request.getSession();
 		String idKey = (String)session.getAttribute("idKey");
@@ -60,7 +60,7 @@ public class ReviewController {
 			rdto.setMem_no(mem_no);
 			rdto.setMem_id(idKey);
 			
-			rdto.setRes_no(tdto.getNo());
+			rdto.setRes_no(resdto.getNo());
 			
 			int r = 0;
 			

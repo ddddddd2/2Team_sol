@@ -36,10 +36,10 @@ public class RestaurantController {
 	
 	// sub1 page 
 	@RequestMapping("/custom/sub1")
-	public String testCon(RestaurantDTO tdto, Model model) {
+	public String testCon(RestaurantDTO resdto, Model model) {
 		
-		List<RestaurantDTO> tdto2 = restaurantService.getRestaurants(tdto);		
-		model.addAttribute("tdto",tdto2);
+		List<RestaurantDTO> resdto2 = restaurantService.getRestaurants(resdto);		
+		model.addAttribute("resdto",resdto2);
 		
 		return "/custom/sub1";
 	}
@@ -48,16 +48,16 @@ public class RestaurantController {
 	// sub2 - selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			RestaurantDTO tdto, Model model , PageDTO pdto
+			RestaurantDTO resdto, Model model , PageDTO pdto
 			/*@RequestParam("no") int res_no*/) {
 		
 		int res_no = 1; // 임시 음식점 번호
 		
-		tdto.setNo(res_no);
+		resdto.setNo(res_no);
 		
 		// restaurant info
-		List<RestaurantDTO> tlist = restaurantService.getRestaurants(tdto); 
-		model.addAttribute("tdto", tlist.get(0));
+		List<RestaurantDTO> tlist = restaurantService.getRestaurants(resdto); 
+		model.addAttribute("resdto", tlist.get(0));
 		
 		// favorite check
 		char favoriteCheck = 'f';
@@ -86,12 +86,12 @@ public class RestaurantController {
 		model.addAttribute("favoriteCheck",favoriteCheck);
 		
 		// review count & avg(rating) -> reviewService.reviewCountAndAvg
-		Map<String,Object> rmap = reviewService.reviewCountAndAvg(tdto);
+		Map<String,Object> rmap = reviewService.reviewCountAndAvg(resdto);
 		model.addAttribute("count",rmap.get("count"));
 		model.addAttribute("avg",rmap.get("avg"));
 	
 		// menu info -> restaurantService.getMenus
-		List<MenuDTO> mlist = restaurantService.getMenus(tdto);
+		List<MenuDTO> mlist = restaurantService.getMenus(resdto);
 		model.addAttribute("mlist",mlist);
 		
 		// paging info

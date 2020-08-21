@@ -11,8 +11,8 @@
 $(document).ready(function(){
 	$('#btn').click(function(e){
 		e.preventDefault();
-		var id = $('#mem_id').val();
-		var passwd = $('#mem_passwd').val();
+		var id = $('#id').val();
+		var passwd = $('#passwd').val();
 		$.ajax({
 			url:"/loginPro",
 			type : "POST",
@@ -41,7 +41,6 @@ $(document).ready(function(){
 				<div class="container-id">
 			<div class="text-id"> 아이디 </div>
 			<div class="box-id">
-				<input type="text" title="아이디" name="id" id="mem_id" placeholder="아이디를 입력하시오." >
 				<input type="text" title="아이디" name="id" id="id" placeholder="아이디를 입력하시오." >
 			</div>
 		</div>
@@ -49,7 +48,6 @@ $(document).ready(function(){
 		<div class="container-pw">
 			<div class="text-pw"> 비밀번호 </div>
 			<div class="box-pw">
-				<input type="password" title="비밀번호" name="passwd" id="mem_passwd" placeholder="비밀번호를 입력하시오." >
 				<input type="password" title="비밀번호" name="passwd" id="passwd" placeholder="비밀번호를 입력하시오." >
 			</div>
 		</div>

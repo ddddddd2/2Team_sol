@@ -23,15 +23,15 @@ public interface MemberService {
 	int nickCheck(String nick_name);
 	int emailCheck(String email);
 	//Review
-	List<ReviewDTO> getReviewList(String id);
+	List<ReviewDTO> getReviewList(Integer id);
 	//Qna
-	List<QnaDTO> getQnaList(String id);
+	List<QnaDTO> getQnaList(Integer id);
 //	//Favorite
-	List<RestaurantDTO> getFavoriteList(String id);
+	List<RestaurantDTO> getFavoriteList(Integer id);
 	//Booking
-	List<BookingDTO> getBookingList(String id);
+	List<BookingDTO> getBookingList(Integer no);
 //	Member
-	List<MemberDTO> getMemberList(String id);
+	List<MemberDTO> getMemberList(Integer id);
 	MemberDTO getMemberInfo(int no);
 	int updateMember(String nick_name, String phone, String passwd, String id, String email);
 }

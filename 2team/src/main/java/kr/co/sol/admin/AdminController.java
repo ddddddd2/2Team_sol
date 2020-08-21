@@ -56,8 +56,8 @@ public class AdminController {
 //		if(role)
 		return "/admin/login";
 	}
-	@PostMapping(value="/loginPro")
-	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
+	@PostMapping(value="/adminLoginPro")
+	public @ResponseBody int adminLoginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
 		System.out.println("0"+mdto);
 			mdto = adminService.loginPro(mdto);
 		if(mdto== null) {
@@ -93,7 +93,7 @@ public class AdminController {
 //		return "/admin/index";
 //	}
 	
-	@RequestMapping(value="/", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";

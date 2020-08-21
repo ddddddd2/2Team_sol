@@ -26,16 +26,16 @@ public interface MemberDAO {
 	int nickCheck(String nick_name);
 	int emailCheck(String email);
 ////	FavoriteDAO
-	List<RestaurantDTO> getFavoriteList(String id);
+	List<RestaurantDTO> getFavoriteList(Integer id);
 //  BookingDAO
-	List<BookingDTO> getBookingList(String id);
+	List<BookingDTO> getBookingList(Integer id);
 //	QnaDAO
-	List<QnaDTO> getQnaList(String id);
+	List<QnaDTO> getQnaList(Integer id);
 //  ReviewDAO
-	List<ReviewDTO> getReviewList(String id);
+	List<ReviewDTO> getReviewList(Integer id);
 	//Restaurant
-	List<RestaurantDTO> getRestaurantList(String id);
+	List<RestaurantDTO> getRestaurantList(Integer id);
 	//Restaurant
-	List<MemberDTO> getMemberList(String id);
+	List<MemberDTO> getMemberList(Integer id);
 
 }

@@ -73,29 +73,29 @@ public class MemberServiceImpl implements MemberService {
 	
 //	Review
 	@Override
-	public List<ReviewDTO> getReviewList(String id) {
+	public List<ReviewDTO> getReviewList(Integer id) {
 		// TODO Auto-generated method stub
 		return memberDao.getReviewList(id);
 	}
 //	Restaurant
 	@Override
-	public List<QnaDTO> getQnaList(String id) {
+	public List<QnaDTO> getQnaList(Integer id) {
 		return memberDao.getQnaList(id);
 	}
 ////	Favorite	
 	@Override
-	public List<RestaurantDTO> getFavoriteList(String id) {
+	public List<RestaurantDTO> getFavoriteList(Integer id) {
 		return memberDao.getFavoriteList(id);
 	}
 //	Favorite	
 //	Booking	
 	@Override
-	public List<BookingDTO> getBookingList(String id) {
+	public List<BookingDTO> getBookingList(Integer id) {
 		return memberDao.getBookingList(id);
 	}
 
 	@Override
-	public List<MemberDTO> getMemberList(String id) {
+	public List<MemberDTO> getMemberList(Integer id) {
 		// TODO Auto-generated method stub
 		return memberDao.getMemberList(id);
 	}

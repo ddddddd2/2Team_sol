@@ -84,27 +84,27 @@
 	and id = #{id}
   	</update>
   	<!-- Booking -->
-	<select id="getBookingList" parameterType="String" resultType="bdto">
+	<select id="getBookingList" parameterType="Integer" resultType="bdto">
 		select 	
-			b.no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
+			no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
 		 from 
-		 	booking b inner join member m on b.mem_no = m.no
+		 	booking
 		 where
-		 	m.id = #{id}
+		 	mem_no = #{no}
 	</select>
 
 	<!-- Review -->
-	<select id="getReviewList" parameterType="String" resultType="rdto">
+	<select id="getReviewList" parameterType="Integer" resultType="rdto">
 		select 
 			no, res_no, mem_no, mem_id, date1, rating, content 
 		from 
 			review 
 		where
-			mem_id = #{id}
+			mem_no = #{no}
 	</select>
 	<!-- Favorite -->
 
-  	<select id="getFavoriteList" parameterType="String" resultType="resdto">
+  	<select id="getFavoriteList" parameterType="Integer" resultType="resdto">
 	  	select 
 	  		r.name 
 	  	from 
@@ -112,24 +112,24 @@
 				(select 
 					res_no 
 				from 
-					favorites f join member m on f.mem_no = m.no and m.id = #{id})
+					favorites f join member m on f.mem_no = m.no and m.no = #{no})
 	</select>
 	<!-- Qna -->
-	<select id="getQnaList" parameterType="String" resultType="qdto">
+	<select id="getQnaList" parameterType="Integer" resultType="qdto">
 		select 	
-			q.no, mem_no, subject, contents, q.createdate, qnatype
+			no, mem_no, subject, contents, createdate, qnatype
 		 from 
-		 	qna q join member m on q.mem_no = m.no
+		 	qna
 		 where
-		 	m.id = #{id}
+		 	mem_no = #{no}
 	</select>
 	<!-- Member(메뉴바 쪽에 있는 이름, 회원가입 날짜) -->
-	<select id="getMemberList" resultType="mdto">
+	<select id="getMemberList" parameterType="Integer" resultType="mdto">
 		select 
 			no, grade_name, id, passwd, name, email, phone, gender, role, info_offering, nick_name, createdate, image 
 		from
 			member
 		where
-			id = #{id}
+			no = #{no}
 	</select>
 </mapper>
