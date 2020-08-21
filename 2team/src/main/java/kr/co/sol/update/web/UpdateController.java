@@ -33,13 +33,13 @@ public class UpdateController {
 	@RequestMapping("/updateInfoPro")
 	public String updateInfoPro(HttpServletRequest request, HttpServletResponse response, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		String name = request.getParameter("mem_name");
-		String phone = request.getParameter("phoneNumber");
-		String password = request.getParameter("password");
+		String id = request.getParameter("id");
+		String nick_name= request.getParameter("nikck_name");
+		String phone = request.getParameter("phone");
+		String passwd = request.getParameter("passwd");
 		String email = request.getParameter("email");
 		int mem_no = 1;
-		int r = ms.updateMember(name, phone, password, mem_no, email);
-		
+		int r = ms.updateMember(nick_name, phone, passwd, id, email);
 		String msg=null;
 		if(r!=0) {
 			msg = "수정 완료";
