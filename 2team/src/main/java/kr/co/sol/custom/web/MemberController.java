@@ -222,10 +222,8 @@ public class MemberController {
 			List<RestaurantDTO> fdto2 = memberService.getFavoriteList(no);
 			model.addAttribute("fdto", fdto2); 
 			System.out.println(fdto2);
-//			List<MemberDTO> mdto2 = memberService.getMember(); 
-//			model.addAttribute("mdto", mdto2);
-			List<MemberDTO> mdto2 = memberService.getMemberList(no); 
-			model.addAttribute("mdto", mdto2.get(0));
+			MemberDTO mdto2 = memberService.getMemberList(no); 
+			model.addAttribute("mdto", mdto2);
 			//session.setAttribute("mdto", mdto2);
 			// 문의 조회하는 메소드
 			List<QnaDTO> qdto2 = memberService.getQnaList(no);  

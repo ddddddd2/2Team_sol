@@ -8,8 +8,14 @@ import lombok.ToString;
 @Setter
 @ToString
 public class BookingDTO {
-	private int b_no;
+	private int no;
 	private int res_no;
 	private int mem_no;
-	private String b_date;
+	private String date1;
+	private String date2;
+	private String content;
+	private String price;
+	private String status;
+	private String menu;
+	
 }

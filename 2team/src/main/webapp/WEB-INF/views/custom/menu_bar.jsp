@@ -26,7 +26,7 @@
 					</tr>
 			</table>
 			
-			<c:forEach var="mdto" items="${mdto2}"> <!-- list<mdto>  -->
+			<c:forEach var="mdto" items="${mdto}"> <!-- list<mdto>  -->
 			<table>
 					<tr>
 						<td>${mdto.name}</td>

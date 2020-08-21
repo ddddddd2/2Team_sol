@@ -36,6 +36,6 @@ public interface MemberDAO {
 	//Restaurant
 	List<RestaurantDTO> getRestaurantList(Integer id);
 	//Restaurant
-	List<MemberDTO> getMemberList(Integer id);
+	MemberDTO getMemberList(Integer id);
 
 }

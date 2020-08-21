@@ -95,7 +95,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberDTO> getMemberList(Integer id) {
+	public MemberDTO getMemberList(Integer id) {
 		// TODO Auto-generated method stub
 		return memberDao.getMemberList(id);
 	}

@@ -33,7 +33,6 @@
 			</div>
 			<div id="my2" style="float: left; width: 32%; height: 200px;">
 			<table>
-			<c:forEach var="mdto" items="${mdto}">
 				<tr>
 					<td>${mdto.name}</td>
 				</tr>
@@ -46,7 +45,6 @@
 				<tr>
 					<td><button>사진 변경</button></td>
 				</tr>
-			</c:forEach>
 			</table>
 			</div>
 			<div id="my3" style="float: left; width: 32%; height: 200px;">
@@ -123,13 +121,13 @@
 				<td>식당이름</td>
 			</tr>
 			<c:choose>
-				<c:when test="${resdto.size()==0}">
+				<c:when test="${fdto.size()==0}">
 					없음
 				</c:when>
-				<c:when test="${resdto.size()!=0}">
-					<c:forEach var="resdto" items="${resdto}">
+				<c:when test="${fdto.size()!=0}">
+					<c:forEach var="fdto" items="${fdto}">
 						<tr>
-							<td>${resdto.name}</td>
+							<td>${fdto.name}</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -167,6 +165,5 @@
 			<!-- content 영역 끝 -->
 	</div><!-- 첫 번째 큰 단락 끝 -->	<!--두 번째 큰 단락 끝 -->
 	</div><!-- 전체 div 끝 -->
-
 </body>
 </html>

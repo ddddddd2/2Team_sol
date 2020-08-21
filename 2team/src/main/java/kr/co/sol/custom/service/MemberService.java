@@ -31,7 +31,7 @@ public interface MemberService {
 	//Booking
 	List<BookingDTO> getBookingList(Integer no);
 //	Member
-	List<MemberDTO> getMemberList(Integer id);
+	MemberDTO getMemberList(Integer id);
 	MemberDTO getMemberInfo(int no);
 	int updateMember(String nick_name, String phone, String passwd, String id, String email);
 }

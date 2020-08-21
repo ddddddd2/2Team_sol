@@ -32,7 +32,7 @@
 						<li><a href="/custom/signUp">회원가입</a></li>
 					</c:when>
 					
-					<c:when test="${idKey != null and fn:length(idKey) > 0 }">
+					<c:when test="${idKey != null}">
 						<li class="select_list">
 							<a href="/custom/logout" class="selected">로그아웃</a>
 						<!-- 아직 사용하지 않는 메뉴 -->
