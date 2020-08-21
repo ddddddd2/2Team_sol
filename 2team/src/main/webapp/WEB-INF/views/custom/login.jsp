@@ -35,7 +35,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<form class="container" title="로그인 폼" method="post" action="">
+	<form class="container" title="로그인 폼" method="post">
 		<div class="logo">
 			<a href="/"> <img src="../resources/image/custom/logo.gif" alt="" /> </a>
 		</div>

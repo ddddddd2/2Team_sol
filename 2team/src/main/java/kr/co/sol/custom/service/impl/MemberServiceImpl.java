@@ -37,4 +37,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getMemberNo(idKey);
 	}
 
+	@Override
+	public MemberDTO loginPro(MemberDTO mdto) {
+		// TODO Auto-generated method stub
+		return memberDao.loginPro(mdto);
+	}
+
 }

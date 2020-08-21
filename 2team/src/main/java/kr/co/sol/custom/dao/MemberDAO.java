@@ -10,4 +10,5 @@ public interface MemberDAO {
 	MemberDTO loginProc(MemberDTO mdto);
 	int signUpProc(MemberDTO mdto);
 	int getMemberNo(String idKey);
+	MemberDTO loginPro(MemberDTO mdto);
 }
