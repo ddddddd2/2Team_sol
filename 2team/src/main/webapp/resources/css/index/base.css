@@ -24,7 +24,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 
 /* base */
-body{font-size:13px; font-family:'Nanum Gothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', "애플 SD 산돌고딕 Neo", "Apple SD Gothic Neo", "Droid Sans", Dotum, "돋움",Gulim, "굴림", Verdana, Tahoma, AppleGothic, sans-serif; color:#666; letter-spacing:0; text-align:left;}
+body{font-size:16px; font-family:'Nanum Gothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', "애플 SD 산돌고딕 Neo", "Apple SD Gothic Neo", "Droid Sans", Dotum, "돋움",Gulim, "굴림", Verdana, Tahoma, AppleGothic, sans-serif; color:#666; letter-spacing:0; text-align:left;}
 table{border-collapse:collapse;}
 input,textarea,select{font-size:13px; color:#666; border:1px solid #e5e5e5; font-family:'Nanum Gothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', "애플 SD 산돌고딕 Neo", "Apple SD Gothic Neo", "Droid Sans", Dotum, "돋움",Gulim, "굴림", Verdana, Tahoma, AppleGothic, sans-serif; box-sizing:border-box;}
 textarea{vertical-align:middle;}
@@ -164,8 +164,8 @@ a:focus { text-decoration:none; color:#000;}
 	font-weight:400;
 	src:url('font/NanumGothic-Regular.eot');
 	src:url('font/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),
-		url('font/NanumGothic-Regular.woff') format('woff'),
-		url('font/NanumGothic-Regular.ttf') format('truetype');
+/* 		url('font/NanumGothic-Regular.woff') format('woff'), */
+/* 		url('font/NanumGothic-Regular.ttf') format('truetype'); */
 }
 
 @font-face {
@@ -174,8 +174,8 @@ a:focus { text-decoration:none; color:#000;}
 	font-weight:700;
 	src:url('font/NanumGothic-Bold.eot');
 	src:url('font/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),
-		url('font/NanumGothic-Bold.woff') format('woff'),
-		url('font/NanumGothic-Bold.ttf') format('truetype');
+/* 		url('font/NanumGothic-Bold.woff') format('woff'), */
+/* 		url('font/NanumGothic-Bold.ttf') format('truetype'); */
 }
 
 @font-face {

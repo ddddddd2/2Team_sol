@@ -26,16 +26,9 @@
 			</div>
 			<div id="my2"
 				style="float: left; width: 32%; height: 200px;">
-				<br />
-				<br />
 				<p class="nickName2">김기덕</p>
-				<br />
-				<br />
 				<p class="joinDay2">가입일 2020.07.13</p>
-				<br />
-				<br />
 				<p class="joinDay2">등급 : 새싹</p>
-				<br />
 				<p class="joinDay2"><button>사진 변경</button></p>
 			</div>
 			<div id="my3"
