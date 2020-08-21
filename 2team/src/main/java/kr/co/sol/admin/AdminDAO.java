@@ -16,7 +16,9 @@ public interface AdminDAO {
 
 	List<HashMap<String, Object>> getMember();
 
-	List<StoreDTO> getStore();
+	List<StoreDTO> getStoreList();
+
+	List<StoreDTO> getStore(String searchOption, String keyword);
 
 	List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.StoreDTO;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
@@ -37,5 +38,15 @@ public class AdminServiceImpl implements AdminService {
 	public MemberDTO loginPro(MemberDTO mdto) {
 		System.out.println("impl::"+mdto);
 		return adminDao.loginPro(mdto);
+	}
+	@Override
+	public List<StoreDTO> getStore(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return adminDao.getStore(searchOption, keyword);
+	}
+	@Override
+	public List<StoreDTO> getStoreList() {
+		// TODO Auto-generated method stub
+		return adminDao.getStoreList();
 	}
 }

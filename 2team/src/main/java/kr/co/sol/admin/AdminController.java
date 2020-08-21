@@ -32,8 +32,6 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@Autowired
-	StoreService storeService;
 	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
 	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
 		HttpSession session = request.getSession();
@@ -138,9 +136,9 @@ public class AdminController {
 		} // 세션에 담긴게 없으면 로그인 화면으로
 		List<StoreDTO> sdto2;
 		if(searchOption==null && keyword==null) {
-			sdto2 = storeService.getStoreList();
+			sdto2 = adminService.getStoreList();
 		} else {
-			sdto2 = storeService.getStore(searchOption, keyword);
+			sdto2 = adminService.getStore(searchOption, keyword);
 		}
 		model.addAttribute("sdto",sdto2);
 		return "/admin/store_manage";
