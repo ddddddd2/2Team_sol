@@ -32,6 +32,8 @@
   	<select id="getMemberNo" parameterType="string" resultType="int">
   		select no from member where id = #{idKey}
   	</select>
-
+	<select id="getMemberInfo" parameterType="Integer" resultType="mdto">
+		select * from member where no = #{mem_no}
+	</select>
 
 </mapper>

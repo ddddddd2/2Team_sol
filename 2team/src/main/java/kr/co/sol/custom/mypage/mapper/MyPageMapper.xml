@@ -22,21 +22,6 @@
   			role
   		from member
   	</select>
-  	<select id="getMemberInfo" parameterType="String" resultType="mdto">
-  		select
-	  		grade_name,
-	  		id,
-	  		passwd,
-	  		nick_name,
-	  		name,
-	  		email,
-	  		phone,
-	  		gender,
-  			role
-  		from member
-  		where
-  			id = #{id}
-  	</select>
   	<select id="nickCheck" parameterType="String" resultType="Integer">
   		select count(nick_name) from member where nick_name = #{nick_name}
   	</select>
@@ -60,27 +45,27 @@
 	and id = #{id}
   	</update>
   	<!-- Booking -->
-	<select id="getBookingList" parameterType="String" resultType="bdto">
+	<select id="getMyBookingList" parameterType="Integer" resultType="bdto">
 		select 	
-			b.no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
+			no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
 		 from 
-		 	booking b inner join member m on b.mem_no = m.no
+		 	booking
 		 where
-		 	m.id = #{id}
+		 	mem_no = #{mem_no}
 	</select>
 
 	<!-- Review -->
-	<select id="getReviewList" parameterType="String" resultType="revdto">
+	<select id="getMyReviewList" parameterType="Integer" resultType="revdto">
 		select 
 			no, res_no, mem_no, mem_id, date1, rating, content 
 		from 
 			review 
 		where
-			mem_id = #{id}
+			mem_no = #{mem_no}
 	</select>
 	<!-- Favorite -->
 
-  	<select id="getFavoriteList" parameterType="String" resultType="resdto">
+  	<select id="getMyFavoriteList" parameterType="Integer" resultType="resdto">
 	  	select 
 	  		r.name 
 	  	from 
@@ -88,16 +73,16 @@
 				(select 
 					res_no 
 				from 
-					favorites f join member m on f.mem_no = m.no and m.id = #{id})
+					favorites where mem_no = #{mem_no})
 	</select>
 	<!-- Qna -->
-	<select id="getQnaList" parameterType="String" resultType="qdto">
+	<select id="getMyQnaList" parameterType="Integer" resultType="qdto">
 		select 	
-			q.no, mem_no, subject, contents, q.createdate, qnatype
+			no, mem_no, subject, contents, createdate, qnatype
 		 from 
-		 	qna q join member m on q.mem_no = m.no
+		 	qna
 		 where
-		 	m.id = #{id}
+		 	mem_no = #{mem_no}
 	</select>
 	<!-- Member(메뉴바 쪽에 있는 이름, 회원가입 날짜) -->
 	<select id="getMemberList" resultType="mdto">
