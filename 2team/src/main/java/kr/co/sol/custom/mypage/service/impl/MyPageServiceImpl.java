@@ -55,25 +55,25 @@ public class MyPageServiceImpl implements MyPageService {
 	
 //	Review
 	@Override
-	public List<ReviewDTO> getReviewList(String id) {
+	public List<ReviewDTO> getMyReviewList(Integer mem_no) {
 		// TODO Auto-generated method stub
-		return myPageDao.getReviewList(id);
+		return myPageDao.getMyReviewList(mem_no);
 	}
 //	Restaurant
 	@Override
-	public List<QnaDTO> getQnaList(String id) {
-		return myPageDao.getQnaList(id);
+	public List<QnaDTO> getMyQnaList(Integer mem_no) {
+		return myPageDao.getMyQnaList(mem_no);
 	}
 ////	Favorite	
 	@Override
-	public List<RestaurantDTO> getFavoriteList(String id) {
-		return myPageDao.getFavoriteList(id);
+	public List<RestaurantDTO> getMyFavoriteList(Integer mem_no) {
+		return myPageDao.getMyFavoriteList(mem_no);
 	}
 //	Favorite	
 //	Booking	
 	@Override
-	public List<BookingDTO> getBookingList(String id) {
-		return myPageDao.getBookingList(id);
+	public List<BookingDTO> getMyBookingList(Integer mem_no) {
+		return myPageDao.getMyBookingList(mem_no);
 	}
 
 	@Override
@@ -84,12 +84,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public List<MemberDTO> getMember() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MemberDTO getMemberInfo(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}

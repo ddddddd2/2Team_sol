@@ -37,7 +37,7 @@ public class CommonController {
 		 * (String)session.getAttribute("idKey"); session.setAttribute("idKey", idKey);
 		 */
 		 
-		return "index";
+		return "/custom/index";
 	}
 	
 	// login page

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.sol.custom.common.service.MemberService;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.dto.QnaDTO;
@@ -31,32 +32,32 @@ public class MyPageController {
 	@Autowired
 	MyPageService myPageService;
 	
+	@Autowired
+	MemberService memberService;
+	
 	// mypage
 	@RequestMapping(value = "/myPage")
 	public String myPage(Model model, HttpServletRequest request, HttpServletResponse response, MemberDTO mdto) {
+		
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("idKey");
-		if (id == null) {
+		Integer mem_no = (Integer) session.getAttribute("idKey");
+		if (mem_no == null) {
 			return "/custom/login";
 		} else {
-			mdto.setEmail("rlejrrlejr@gmail.com");
 			// 예약 내역 조회하는 메소드
-			List<BookingDTO> bdto2 = myPageService.getBookingList(id);
-			model.addAttribute("bdto", bdto2);
+			List<BookingDTO> bdto2 = myPageService.getMyBookingList(mem_no);
 			// 리뷰 조회하는 메소드
-			List<ReviewDTO> revdto2 = myPageService.getReviewList(id);
-			model.addAttribute("revdto", revdto2);
-//				// 즐겨찾기 조회하는 메소드
-			List<RestaurantDTO> fdto2 = myPageService.getFavoriteList(id);
-			model.addAttribute("fdto", fdto2);
-			System.out.println(fdto2);
-//				List<MemberDTO> mdto2 = memberService.getMember(); 
-//				model.addAttribute("mdto", mdto2);
-			List<MemberDTO> mdto2 = myPageService.getMemberList(id);
-			model.addAttribute("mdto", mdto2.get(0));
-			// session.setAttribute("mdto", mdto2);
+			List<ReviewDTO> revdto2 = myPageService.getMyReviewList(mem_no);
+			// 즐겨찾기 조회하는 메소드
+			List<RestaurantDTO> fdto2 = myPageService.getMyFavoriteList(mem_no);
 			// 문의 조회하는 메소드
-			List<QnaDTO> qdto2 = myPageService.getQnaList(id);
+			List<QnaDTO> qdto2 = myPageService.getMyQnaList(mem_no);
+			// 회원(자기) 정보 가져오는 메소드
+			MemberDTO mdto2 = memberService.getMemberInfo(mem_no);
+			model.addAttribute("bdto", bdto2);
+			model.addAttribute("revdto", revdto2);
+			model.addAttribute("mdto", mdto2);
+			model.addAttribute("fdto", fdto2);
 			model.addAttribute("qdto", qdto2);
 			return "/custom/myPage";
 		}
@@ -80,7 +81,7 @@ public class MyPageController {
 		int no = (int) session.getAttribute("idKey");
 		System.out.println("세션 아이디"+no);
 		model.addAttribute("id", no);
-		MemberDTO mdto2 = myPageService.getMemberInfo(no);
+		MemberDTO mdto2 = memberService.getMemberInfo(no);
 		session.setAttribute("mdto", mdto2);
 		System.out.println(mdto2.getNick_name());
 		return "custom/updateInfo";
@@ -119,13 +120,10 @@ public class MyPageController {
 	public String myPageReview(HttpServletRequest request, MemberDTO mdto, HttpServletResponse response, Model model,
 			ReviewDTO revdto) {
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("idKey"));
-		String id = (String) session.getAttribute("idKey");
-		System.out.println("id=" + id);
-		System.out.println("revdto=" + revdto);
-		List<ReviewDTO> revdto2 = myPageService.getReviewList(id);
+//		String id = (String) session.getAttribute("idKey");
+		Integer mem_no = (Integer) session.getAttribute("idKey");
+		List<ReviewDTO> revdto2 = myPageService.getMyReviewList(mem_no);
 		model.addAttribute("revdto", revdto2);
-		System.out.println(revdto2);
 		return "/custom/myPageReview";
 	}
 	/* ReviewController 끝 */
@@ -146,8 +144,9 @@ public class MyPageController {
 			@GetMapping("/myPageFavorite")
 			public String myPageFavorite(HttpServletRequest request, HttpServletResponse response, Model model) {
 				HttpSession session = request.getSession();
-				String id = (String)session.getAttribute("idKey");
-				List<RestaurantDTO> resdto2 = myPageService.getFavoriteList(id);
+//				String id = (String)session.getAttribute("idKey");
+				Integer mem_no = (Integer) session.getAttribute("idKey");
+				List<RestaurantDTO> resdto2 = myPageService.getMyFavoriteList(mem_no);
 				model.addAttribute("resdto", resdto2); 
 				return "/custom/myPageFavorite";
 			}
@@ -168,8 +167,9 @@ public class MyPageController {
 			@GetMapping("/myPageBooking")
 			public String myPageBooking(HttpServletRequest request, HttpServletResponse response, Model model, BookingDTO bdto) {
 				HttpSession session = request.getSession();
-				String id = (String)session.getAttribute("idKey");
-				List<BookingDTO> bdto2 = myPageService.getBookingList(id); 
+//				String id = (String)session.getAttribute("idKey");
+				Integer mem_no = (Integer) session.getAttribute("idKey");
+				List<BookingDTO> bdto2 = myPageService.getMyBookingList(mem_no); 
 				model.addAttribute("bdto", bdto2);
 				return "/custom/myPageBooking";
 			}

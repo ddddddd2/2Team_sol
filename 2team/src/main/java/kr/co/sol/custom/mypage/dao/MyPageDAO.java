@@ -15,8 +15,6 @@ public interface MyPageDAO {
 	MemberDTO loginPro(MemberDTO mdto);
 	List<MemberDTO> getMember();
 	//	Update
-	// 회원 번호로 조회한 회원 정보 가져오기.
-	MemberDTO getMemberInfo(String id); 
 	// 회원 번호로 해당 회원 정보 수정
 	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("id") String id, @Param("email") String email);
 	int nickCheck(String nick_name);
@@ -33,5 +31,9 @@ public interface MyPageDAO {
 	List<RestaurantDTO> getRestaurantList(String id);
 	//Restaurant
 	List<MemberDTO> getMemberList(String id);
+	List<ReviewDTO> getMyReviewList(Integer mem_no);
+	List<QnaDTO> getMyQnaList(Integer mem_no);
+	List<RestaurantDTO> getMyFavoriteList(Integer mem_no);
+	List<BookingDTO> getMyBookingList(Integer mem_no);
 
 }

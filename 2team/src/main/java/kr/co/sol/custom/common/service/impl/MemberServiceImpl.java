@@ -45,4 +45,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 //	Member
 
+	@Override
+	public MemberDTO getMemberInfo(Integer mem_no) {
+		// TODO Auto-generated method stub
+		return memberDao.getMemberInfo(mem_no);
+	}
+
 }

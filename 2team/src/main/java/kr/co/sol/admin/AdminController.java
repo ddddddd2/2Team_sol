@@ -78,7 +78,7 @@ public class AdminController {
 //		return "/admin/index";
 //	}
 	
-	@RequestMapping(value="/", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";
