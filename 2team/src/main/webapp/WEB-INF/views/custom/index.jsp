@@ -82,10 +82,10 @@
 -->			
 			<div id="m_contents">
 				<ul>
-					<li><a href="#"><p>에디터의 추전<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>음식 종류별<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>테마별 추천<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>호텔<br>레스토랑</b></p></a></li>
+					<li><a href="#">에디터의 추전<br><b>레스토랑</b></a></li>
+					<li><a href="#">음식 종류별<br><b>레스토랑</b></a></li>
+					<li><a href="#">테마별 추천<br><b>레스토랑</b></a></li>
+					<li><a href="#">호텔<br><b>레스토랑</b></a></li>
 				</ul>
 			</div>
 		</div><!-- //container -->
