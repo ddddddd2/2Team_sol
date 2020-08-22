@@ -3,22 +3,21 @@ package kr.co.sol.admin;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.StoreDTO;
+import kr.co.sol.custom.dto.RestaurantDTO;
 
 @Mapper
 public interface AdminDAO {
 
 	List<HashMap<String, Object>> getMember();
 
-	List<StoreDTO> getStoreList();
+	List<RestaurantDTO> getStoreList();
 
-	List<StoreDTO> getStore(String searchOption, String keyword);
+	List<RestaurantDTO> getStore(String searchOption, String keyword);
 
 	List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
 

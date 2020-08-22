@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.StoreDTO;
+import kr.co.sol.custom.dto.RestaurantDTO;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
@@ -40,12 +40,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.loginPro(mdto);
 	}
 	@Override
-	public List<StoreDTO> getStore(String searchOption, String keyword) {
+	public List<RestaurantDTO> getStore(String searchOption, String keyword) {
 		// TODO Auto-generated method stub
 		return adminDao.getStore(searchOption, keyword);
 	}
 	@Override
-	public List<StoreDTO> getStoreList() {
+	public List<RestaurantDTO> getStoreList() {
 		// TODO Auto-generated method stub
 		return adminDao.getStoreList();
 	}

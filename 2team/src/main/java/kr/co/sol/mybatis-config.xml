@@ -8,7 +8,6 @@
 		<setting name="useGeneratedKeys" value="true" />
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
-	<!-- aliaes -->
     <typeAliases>
          <typeAlias alias="hashMap" type="java.util.HashMap" />
          <typeAlias alias="htable"  type="java.util.Hashtable" />
@@ -16,10 +15,9 @@
          <typeAlias alias="string"  type="java.lang.String" />
          <typeAlias alias="map"     type="java.util.Map" />
          
-         <!-- 순환 -->
-         <typeAlias alias="revdto"    type="kr.co.sol.custom.dto.ReviewDTO" />
-         <typeAlias alias="resdto"    type="kr.co.sol.custom.dto.RestaurantDTO" />
-         <typeAlias alias="menudto"    type="kr.co.sol.custom.dto.MenuDTO" />
+         <typeAlias alias="revdto"  type="kr.co.sol.custom.dto.ReviewDTO" />
+         <typeAlias alias="resdto"  type="kr.co.sol.custom.dto.RestaurantDTO" />
+         <typeAlias alias="menudto" type="kr.co.sol.custom.dto.MenuDTO" />
          <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
          <typeAlias alias="bdto"    type="kr.co.sol.custom.dto.BookingDTO" />
          <typeAlias alias="qdto"    type="kr.co.sol.custom.dto.QnaDTO" />
