@@ -21,9 +21,6 @@
          <typeAlias alias="resdto"    type="kr.co.sol.custom.dto.RestaurantDTO" />
          <typeAlias alias="menudto"    type="kr.co.sol.custom.dto.MenuDTO" />
          <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
-         
-         <typeAlias alias="qdto"    type="kr.co.sol.qna.dto.QnaDTO" />
-         <typeAlias alias="sdto"    type="kr.co.sol.custom.dto.StoreDTO" />
          <typeAlias alias="bdto"    type="kr.co.sol.custom.dto.BookingDTO" />
          <typeAlias alias="qdto"    type="kr.co.sol.custom.dto.QnaDTO" />
          <typeAlias alias="fdto"    type="kr.co.sol.custom.dto.FavoriteDTO" />
