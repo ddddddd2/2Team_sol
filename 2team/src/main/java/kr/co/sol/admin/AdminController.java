@@ -24,16 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.StoreDTO;
-import kr.co.sol.store.service.StoreService;
+import kr.co.sol.custom.dto.RestaurantDTO;
 
 @Controller
 public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@Autowired
-	StoreService storeService;
 	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
 	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
 		HttpSession session = request.getSession();
@@ -56,20 +53,8 @@ public class AdminController {
 //		if(role)
 		return "/admin/login";
 	}
-	@PostMapping(value="/loginPro")
-	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
-		System.out.println("0"+mdto);
-			mdto = adminService.loginPro(mdto);
-		if(mdto== null) {
-			return 0;
-		}
-		if ("user".equals(mdto.getRole())) {
-			return 1;	
-		} 
-		request.getSession();
-		session.setAttribute("mdto", mdto);
-		return 2;
-	}
+	// 로그인 처리는 common에서 공통으로 처리.
+	
 	
 	@GetMapping(value="/logout")
 	public String logout(HttpSession session) {
@@ -93,7 +78,7 @@ public class AdminController {
 //		return "/admin/index";
 //	}
 	
-	@RequestMapping(value="/", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";
@@ -131,18 +116,18 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(HttpServletRequest request, String searchOption, String keyword, Model model, StoreDTO sdto) {
+	public String sm(HttpServletRequest request, String searchOption, String keyword, Model model, RestaurantDTO resdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
 			return "redirect:/";
 		} // 세션에 담긴게 없으면 로그인 화면으로
-		List<StoreDTO> sdto2;
+		List<RestaurantDTO> resdto2;
 		if(searchOption==null && keyword==null) {
-			sdto2 = storeService.getStoreList();
+			resdto2 = adminService.getStoreList();
 		} else {
-			sdto2 = storeService.getStore(searchOption, keyword);
+			resdto2 = adminService.getStore(searchOption, keyword);
 		}
-		model.addAttribute("sdto",sdto2);
+		model.addAttribute("sdto",resdto2);
 		return "/admin/store_manage";
 	}
 	
@@ -167,7 +152,7 @@ public class AdminController {
 //	}
 	
 	@GetMapping("admin/report")
-	public String report(Model model, HttpServletRequest request, HttpServletResponse response, StoreDTO sdto, MemberDTO mdto) {
+	public String report(Model model, HttpServletRequest request, HttpServletResponse response, RestaurantDTO resdto, MemberDTO mdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
 			

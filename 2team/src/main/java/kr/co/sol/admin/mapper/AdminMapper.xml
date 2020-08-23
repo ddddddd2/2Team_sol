@@ -25,11 +25,21 @@ select role from member where id=#{id} and passwd=#{passwd}
 <select id="loginPro" parameterType="mdto" resultType="mdto">
 select id, name, role from member where id = #{id} and passwd = #{passwd}
 </select>
-<select id="getStore" resultType="sdto">
-select no, c_no, name, address1, tel, hour from restaurant
-</select>
 <select id="getMemberList" resultMap="getMember">
 select no, grade_name, id, passwd, name, email, phone, gender, role from member
+where ${searchOption} like '%'||#{keyword}||'%'
+</select>
+<select id="getStoreList" resultType="resdto">
+	select
+		no, c_no, name, address1, tel, hour
+	from
+		restaurant
+</select>
+<select id="getStore" parameterType="String" resultType="resdto">
+select
+		no, c_no, name, address1, tel, hour
+	from
+		restaurant
 where ${searchOption} like '%'||#{keyword}||'%'
 </select>
 </mapper>

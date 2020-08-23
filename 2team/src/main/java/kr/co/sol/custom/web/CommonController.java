@@ -37,7 +37,7 @@ public class CommonController {
 		 * (String)session.getAttribute("idKey"); session.setAttribute("idKey", idKey);
 		 */
 		 
-		return "index";
+		return "/custom/index";
 	}
 	
 	// login page
@@ -105,6 +105,7 @@ public class CommonController {
 		HttpSession session = request.getSession();
 //		session.removeAttribute("idKey");
 		session.invalidate();//세션 취소, 또는 초기화
+		System.out.println("세션 idKey 확인 : "+session.getAttribute("idKey"));
 		return "redirect:/"; 
 	}
 			

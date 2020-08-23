@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.RestaurantDTO;
 
 public interface AdminService {
 	List<HashMap<String, Object>> getMember();
@@ -21,4 +22,10 @@ public interface AdminService {
 
 
 	MemberDTO loginPro(MemberDTO mdto);
+
+
+	List<RestaurantDTO> getStore(String searchOption, String keyword);
+
+
+	List<RestaurantDTO> getStoreList();
 }
