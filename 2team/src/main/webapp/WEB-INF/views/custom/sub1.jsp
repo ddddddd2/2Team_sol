@@ -114,7 +114,7 @@ window.onload = function(){
 		})
 			// list2-1의 자식요소들의 background-color를 모두 노랑노랑
 			$('#list2-1').children().css('background-color','yellow');
-			//클릭한 요소(위에서 파라메터인 no로 확인 가능)의 백그라운드 컬러 변경
+			//클릭한 요소(위에서 파라메터인no로 확인 가능)의 백그라운드 컬러 변경
 			document.getElementById(no).style.backgroundColor = "red";
 	}
 
@@ -147,27 +147,21 @@ window.onload = function(){
 					<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
 						 <ul id="category">
 					        <li id="BK9" data-order="0"> 
-<!-- 					            <span class="category_bg bank"></span> -->
 					            전체
 					        </li>       
 					        <li id="MT1" data-order="1"> 
-<!-- 					            <span class="category_bg mart"></span> -->
 					            한식
 					        </li>  
 					        <li id="PM9" data-order="2"> 
-<!-- 					            <span class="category_bg pharmacy"></span> -->
 					            중식
 					        </li>  
 					        <li id="OL7" data-order="3"> 
-<!-- 					            <span class="category_bg oil"></span> -->
 					            일식
 					        </li>  
 					        <li id="CE7" data-order="4"> 
-<!-- 					            <span class="category_bg cafe"></span> -->
 					            카페
 					        </li>  
 					        <li id="CS2" data-order="5"> 
-<!-- 					            <span class="category_bg store"></span> -->
 					            편의점
 					        </li>      
 					    </ul>
@@ -372,7 +366,6 @@ function displayPlaces(places) {
  // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
  var order = document.getElementById(currCategory).getAttribute('data-order');
 
- 
 
  for ( var i=0; i<places.length; i++ ) {
 
