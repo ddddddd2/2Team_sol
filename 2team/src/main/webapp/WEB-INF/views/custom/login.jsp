@@ -11,7 +11,7 @@
 $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 	// 문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
 	$('#btn').click(function(e){
-		e.preventDefault(); // submit 실행 막음(action 안ㅇ넘어가게)
+		e.preventDefault(); // submit 실행 막음(action 안어넘어가게)
 		var id = $('#id').val(); // id의 value 가져오기.
 		var passwd = $('#passwd').val(); // passwd의 value 가져오기
 		// ajax 실행

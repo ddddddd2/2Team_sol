@@ -79,29 +79,49 @@ window.onload = function(){
 }
 
 /* 음식점 리스트 버튼 이벤트*/
-function restaurant(no){
-	$('#list2-1').children().css('background-color','yellow');
-	document.getElementById(no).style.backgroundColor = "red";
-}
-
-
-$(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
-//문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-	$('#btn').chlick.function(e){
-		
-	
-	
-}
-
-	
-
-
-
-
+// function restaurant(no){
+// 	$('#list2-1').children().css('background-color','yellow');
+// 	document.getElementById(no).style.backgroundColor = "red";
+// 	alert(no);
+// }	
+$(document).ready(function(){
+	function restaurant(no){
+		console.log(no);
+	}
 })
+		
+// 	$('#btn').click(function(e){
+// 		e.preventDefault();
+// 		var no=$(no).val();
+// 	$.ajax({
+// 		url:"/rlist"
+// 		type:"POST",
+// 		data{
+// 			"no" : no
+// 		},
+// 		dataType:"JSON",
+// 		success:function(data){
+// 			switch(data){
+// 			case 0:alert("정보입력불가.");break;
+// 			}
+			
+// 		}
+		
+// 	})
+// 	})
+		
+		
+// 	}
+	
+// }
 
 
+// $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
+// //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
+// 	$('#btn').chlick.function(e){
+// }
 
+// })
 
 
 </script>
@@ -152,17 +172,15 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 					    </ul>
 					    </div>
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
-<%-- 					<c:forEach var="tdto" items="${tdto}" > --%>
 						<c:forEach var="i" begin="0" end="10">
-<<<<<<< Updated upstream
 						<div id="store${resdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="test(${resdto.get(i).no})" >${resdto.get(i).name}</a>
-=======
-						<div id="store${tdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="restaurant('store${tdto.get(i).no}')" >${tdto.get(i).name}</a>
->>>>>>> Stashed changes
+						<a href="#" onClick="restaurant('store${resdto.get(i).no}')" >${resdto.get(i).name}</a>
+						
+						
+						
+						</div>
+						</c:forEach>
 					</div>
-					</c:forEach>
 				</div>
 					
 					</div>
@@ -183,10 +201,10 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 				</div>
 				
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-				<p>주소 : ${resdto.get(0).address1}</p> 
+				<p>주소 : ${resdto.get(0).address1}</p>       <!--  주소 : ${resdto.get(0).address1}  --> 
 				<p>연락처 : ${resdto.get(0).tel}</p>
 				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
-				<p> 아아</p>
+				<p>영업시간: ${resdto.get(0).hour}</p>
 				</div> 		<!-- list2-3 끝 -->			
 
 		
