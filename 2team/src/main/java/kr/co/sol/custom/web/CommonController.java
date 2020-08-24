@@ -57,6 +57,7 @@ public class CommonController {
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
 		request.getSession();
+		session.setAttribute("mdto", mdto);
 		session.setAttribute("idKey", mdto.getNo());
 		return 2;
 	}
