@@ -106,7 +106,7 @@
 
   	<select id="getFavoriteList" parameterType="Integer" resultType="resdto">
 	  	select 
-	  		r.name 
+	  		r.name, r.no
 	  	from 
 	  		restaurant r where no IN
 				(select 

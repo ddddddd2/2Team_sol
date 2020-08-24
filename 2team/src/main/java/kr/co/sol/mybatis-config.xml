@@ -22,6 +22,5 @@
          <typeAlias alias="resdto"  type="kr.co.sol.custom.dto.RestaurantDTO" />
          <typeAlias alias="bdto"    type="kr.co.sol.custom.dto.BookingDTO" />
          <typeAlias alias="qdto"    type="kr.co.sol.custom.dto.QnaDTO" />
-<!--          <typeAlias alias="fdto"    type="kr.co.sol.custom.dto.FavoriteDTO" /> -->
     </typeAliases>	
 </configuration>

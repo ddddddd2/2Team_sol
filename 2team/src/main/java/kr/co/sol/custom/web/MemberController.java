@@ -219,7 +219,7 @@ public class MemberController {
 			// 리뷰 조회하는 메소드
 			List<ReviewDTO> rdto2 = memberService.getReviewList(no);
 			model.addAttribute("rdto",rdto2);
-//			// 즐겨찾기 조회하는 메소드
+//			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = memberService.getFavoriteList(no);
 			model.addAttribute("fdto", fdto2); 
 			System.out.println(fdto2);
