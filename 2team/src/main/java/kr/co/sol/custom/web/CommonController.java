@@ -53,12 +53,11 @@ public class CommonController {
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
 		}
+		session.setAttribute("mdto", mdto);
+		session.setAttribute("idKey", mdto.getNo());
 		if("admin".equals(mdto.getRole())) {
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
-		request.getSession();
-		session.setAttribute("mdto", mdto);
-		session.setAttribute("idKey", mdto.getNo());
 		return 2;
 	}
 	
