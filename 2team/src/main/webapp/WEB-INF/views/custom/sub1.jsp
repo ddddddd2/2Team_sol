@@ -105,16 +105,16 @@ window.onload = function(){
 			type:"POST",
 			dataType:"JSON",
 			success : function(data){
-				
+				// data는 RestaurantDTO 형태로, no로 조회한 상점의 정보가 들어가있다.
 				$('#res_name').text("업체명 : "+data.name);
 				$('#address').text("주소 : "+data.address1);
 				$('#tel').text("연락처 : "+data.tel);
 				$('#hour').text("영업시간 : "+data.hour);
-				
-				console.log(data.address1);
 			}
 		})
+			// list2-1의 자식요소들의 background-color를 모두 노랑노랑
 			$('#list2-1').children().css('background-color','yellow');
+			//클릭한 요소(위에서 파라메터인 no로 확인 가능)의 백그라운드 컬러 변경
 			document.getElementById(no).style.backgroundColor = "red";
 	}
 
