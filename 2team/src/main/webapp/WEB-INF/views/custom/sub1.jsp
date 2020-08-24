@@ -20,6 +20,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=62d3ab0d1faddf540c257e322ccce48e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript"  >
 window.onload = function(){
+
 	const slideList = document.querySelector('.slide_list'); // Slide parent dom
 	const slideContents = document.querySelectorAll('.slide_content'); // each slide dom
 	const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
@@ -76,52 +77,52 @@ window.onload = function(){
 	--curIndex;
 	});
 	
+	// forEach가 끝나고 나서 실행하기 위해 load listener 붙임.
+	document.getElementById("list2-1").addEventListener("load", first())
+	// forEach가 끝난 후, ajax로 해당 아이디 가져와서 보내줌
+	function first(){
+		var id = $('#list2-1 div:first-child').attr("id");
+		restaurant(id)
+		$('#list2-1 div:first-child').css('background-color','red');
+		
 }
+}
+</script>
 
-/* 음식점 리스트 버튼 이벤트*/
-// function restaurant(no){
-// 	$('#list2-1').children().css('background-color','yellow');
-// 	document.getElementById(no).style.backgroundColor = "red";
-// 	alert(no);
-// }	
-$(document).ready(function(){
+<script type="text/javascript">
+// $(document).ready(function(){
+	// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
+//문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
+// 	console.log($('#list2-1').children[0]);
+	/* 음식점 리스트 버튼 이벤트*/
 	function restaurant(no){
-		console.log(no);
+		var no2 = no.substring(5)
+		$.ajax({
+			url: "/rlist",
+			data:{
+				"no":no2
+			},
+			type:"POST",
+			dataType:"JSON",
+			success : function(data){
+				
+				$('#res_name').text("업체명 : "+data.name);
+				$('#address').text("주소 : "+data.address1);
+				$('#tel').text("연락처 : "+data.tel);
+				$('#hour').text("영업시간 : "+data.hour);
+				
+				console.log(data.address1);
+			}
+		})
+			$('#list2-1').children().css('background-color','yellow');
+			document.getElementById(no).style.backgroundColor = "red";
 	}
-})
-		
-// 	$('#btn').click(function(e){
-// 		e.preventDefault();
-// 		var no=$(no).val();
-// 	$.ajax({
-// 		url:"/rlist"
-// 		type:"POST",
-// 		data{
-// 			"no" : no
-// 		},
-// 		dataType:"JSON",
-// 		success:function(data){
-// 			switch(data){
-// 			case 0:alert("정보입력불가.");break;
-// 			}
-			
-// 		}
-		
-// 	})
-// 	})
-		
-		
-// 	}
-	
-// }
 
-
-// $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
-// //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-// 	$('#btn').chlick.function(e){
-// }
 
 // })
+
+
+
 
 
 </script>
@@ -173,15 +174,11 @@ $(document).ready(function(){
 					    </div>
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
 						<c:forEach var="i" begin="0" end="10">
-						<div id="store${resdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
+						<div id="store${resdto.get(i).no}" style="width: 100%; height: 20%; box-sizing: border-box;">
 						<a href="#" onClick="restaurant('store${resdto.get(i).no}')" >${resdto.get(i).name}</a>
-						
-						
-						
 						</div>
 						</c:forEach>
-					</div>
-				</div>
+						</div>
 					
 					</div>
 				</div>
@@ -201,10 +198,11 @@ $(document).ready(function(){
 				</div>
 				
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-				<p>주소 : ${resdto.get(0).address1}</p>       <!--  주소 : ${resdto.get(0).address1}  --> 
-				<p>연락처 : ${resdto.get(0).tel}</p>
+				<p id="res_name"></p>
+				<p id="address"></p> 
+				<p id="tel"></p>
 				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
-				<p>영업시간: ${resdto.get(0).hour}</p>
+				<p id="hour"></p>
 				</div> 		<!-- list2-3 끝 -->			
 
 		
@@ -483,7 +481,9 @@ function changeCategoryClass(el) {
  if (el) {
      el.className = 'on';
  } 
+
 } 
+
 </script>
 </body>
 </html>
