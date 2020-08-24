@@ -15,6 +15,17 @@
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+	$('document').ready(function(){
+		$('#searchAction').click(function(e){
+			e.preventDefault();
+			var keyword = $('#keyword').val();
+			var url = "/custom/sub1?keyword="+keyword
+					document.location.href=url;
+		})
+		
+	})
+	</script>
 </head>  
 
 <body id="main">
@@ -36,8 +47,8 @@
 				<div id="search">
 					<form method="post" action="">
 						<div>
-							<input type="text" name="" id="">
-							<input type="submit" value="검색">
+							<input type="text" id="keyword">
+							<input type="submit" id="searchAction" value="검색">
 						</div>
 					</form>
 				</div>
