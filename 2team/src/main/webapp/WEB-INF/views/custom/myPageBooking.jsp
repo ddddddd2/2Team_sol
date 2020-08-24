@@ -4,13 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<!-- 배민 폰트 -->
-<link href="style.css" rel="stylesheet" type="text/css">
-
-<meta charset="UTF-8">
 <title>마이 페이지</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="telephone=no"/>
+	<script src="./resources/js/jquery-1.10.2.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	
 </head>
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
@@ -18,7 +23,7 @@
 <jsp:include page="header_bar.jsp" />
 </div>
 <div>
-<jsp:include page="menu_bar.jsp" />
+	<jsp:include page="menu_bar.jsp" />
 </div>
 			<div id="myPro" style="width: 100%; height:1200px; clear:both;">	
 <div>

@@ -7,7 +7,7 @@
 		<div id="mymy" style="width: 50%; height: 200px;"><!-- 첫 번째 큰 단락 div 시작 -->
 			<div id="my1" style="float: left; width: 32%; height: 200px;">
 				
-				<img src="../resources/image/myPage/profile/${mdto.image}" width="100%" height="80%">
+				<img src="../resources/image/custom/businessman.png" width="100%" height="80%">
 			</div>
 			<div id="my2" style="float: left; width: 32%; height: 200px;">
 			
@@ -25,23 +25,7 @@
 						<td><button>사진 변경</button></td>
 					</tr>
 			</table>
-			
-			<c:forEach var="mdto" items="${mdto}"> <!-- list<mdto>  -->
-			<table>
-					<tr>
-						<td>${mdto.name}</td>
-					</tr>
-					<tr>
-						<td>${mdto.createdate}</td>
-					</tr>
-					<tr>
-						<td>${mdto.grade_name}</td>
-					</tr>
-					<tr>
-						<td><button>사진 변경</button></td>
-					</tr>
-			</table>
-			</c:forEach>
+
 			
 			</div>
 			<div id="my3" style="float: left; width: 32%; height: 200px;">

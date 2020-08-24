@@ -12,9 +12,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<link href="./resources/css/index/base.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/index/common.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>

@@ -25,8 +25,9 @@ public interface MemberService {
 	//Review
 	List<ReviewDTO> getReviewList(Integer id);
 	//Qna
-	List<QnaDTO> getQnaList(Integer id);
-//	//Favorite
+	List<QnaDTO> getQnaList(Integer no);
+//	List<QnaDTO> getQnaList(Integer id);
+	//Favorite
 	List<RestaurantDTO> getFavoriteList(Integer id);
 	//Booking
 	List<BookingDTO> getBookingList(Integer no);

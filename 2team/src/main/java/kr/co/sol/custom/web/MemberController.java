@@ -244,8 +244,8 @@ public class MemberController {
 			model.addAttribute("id", no);
 			MemberDTO mdto2 = memberService.getMemberInfo(no);
 			session.setAttribute("mdto", mdto2);
-			System.out.println(mdto2.getNick_name());
-			return "custom/updateInfo";
+//			System.out.println(mdto2.getNick_name());
+			return "/custom/updateInfo";
 		}
 		
 		//	update 후 값을 가져오기
@@ -282,8 +282,8 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			System.out.println(session.getAttribute("idKey"));
 			Integer no = (Integer)session.getAttribute("idKey");
-			System.out.println("id="+no);
-			System.out.println("rdto="+rdto);
+//			System.out.println("id="+no);
+//			System.out.println("rdto="+rdto);
 			List<ReviewDTO> rdto2 = memberService.getReviewList(no);
 			model.addAttribute("rdto",rdto2);
 			System.out.println(rdto2);
@@ -292,15 +292,15 @@ public class MemberController {
 		/* ReviewController 끝 */
 		/* QnaController 시작 */
 
-//		@GetMapping("/myPageQna")
-//		public String getQnaList(HttpServletRequest request, HttpServletResponse response, Model model, QnaDTO qdto) {
-//			HttpSession session = request.getSession();
-//			String id = (String)session.getAttribute("idKey");
-//			List<QnaDTO> qdto2 = memberService.getQnaList(id);  
-//			model.addAttribute("qdto", qdto2);
-//			System.out.println(qdto2);
-//			return "/custom/myPageQna";
-//		}
+		@GetMapping("/myPageQna")
+		public String getQnaList(HttpServletRequest request, HttpServletResponse response, Model model, QnaDTO qdto) {
+			HttpSession session = request.getSession();
+			Integer no = (Integer)session.getAttribute("idKey");
+			List<QnaDTO> qdto2 = memberService.getQnaList(no);  
+			model.addAttribute("qdto", qdto2);
+			System.out.println(qdto2);
+			return "/custom/myPageQna";
+		}
 		/* QnaController 끝 */
 		/* FavoriteController, restaurant 시작 */
 		

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <body id="main">
-<div id="menuBar" style="width: 100%; height: 60px;">
+<div id="menuBar" style="width: 100%; height: 150px;">
 	<div id="skipNavi">
 		<ul>
 			<li>
@@ -15,7 +15,7 @@
 	
 	<div id="wrap">
 		<header id="header" style="background-color:black;">
-   			 <a href="#" > <div id="logo"> <a href="/"> <img src="./resources/image/logo.gif" alt="toplogo"> </a> </div> </a>
+   			 <a href="#" > <div id="logo"> <a href="/"> <img src="./resources/image/custom/logo.gif" alt="toplogo"> </a> </div> </a>
 				<div id="space" title="그냥 공백 처리용 /내용 없음"></div>
 				<ul class="lnb">
 				<c:choose>

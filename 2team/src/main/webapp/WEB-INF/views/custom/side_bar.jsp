@@ -11,7 +11,7 @@
 				<div id="left" style="width:60%; height: 200px; background-color:white;">
 						<p id="leftBar" style="background-color:pink;">마이페이지</p>
 						<p id="leftContent"><a href="/myPageQna">1:1문의</a></p>
-						<p id="leftContent"><a href="/myPage">개인 정보 수정</a></p>
+						<p id="leftContent"><a href="/updateInfo">개인 정보 수정</a></p>
 				</div>		
 			</div>
 			<!-- 왼쪽 메뉴바 끝 -->
