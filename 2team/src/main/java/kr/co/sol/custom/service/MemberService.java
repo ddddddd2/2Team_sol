@@ -2,8 +2,11 @@ package kr.co.sol.custom.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MyAct;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -35,4 +38,5 @@ public interface MemberService {
 	MemberDTO getMemberList(Integer id);
 	MemberDTO getMemberInfo(int no);
 	int updateMember(String nick_name, String phone, String passwd, String id, String email);
+	void getMyAct(Integer no, Model model);
 }

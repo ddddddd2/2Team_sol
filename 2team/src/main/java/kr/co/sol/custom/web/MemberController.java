@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MyAct;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -107,16 +108,6 @@ public class MemberController {
 //		return "/custom/msgPage";
 //	}
 	
-	
-	// mypage2
-	@RequestMapping(value="/custom/myPage2")
-	public String myPage2(HttpServletRequest request, HttpServletResponse response,
-			MemberDTO mdto) {
-		
-		return "/custom/myPage2";
-	}
-	
-		
 		// logout process
 		@RequestMapping(value="/custom/logout")
 		public String logout(HttpServletRequest request) {
@@ -213,6 +204,7 @@ public class MemberController {
 				return "/custom/login";
 			} else {
 			mdto.setEmail("rlejrrlejr@gmail.com");
+			memberService.getMyAct(no, model);
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = memberService.getBookingList(no); 
 			model.addAttribute("bdto", bdto2);
@@ -287,6 +279,7 @@ public class MemberController {
 //			System.out.println("rdto="+rdto);
 			List<ReviewDTO> rdto2 = memberService.getReviewList(no);
 			model.addAttribute("rdto",rdto2);
+			memberService.setMyAct(no, model);
 			System.out.println(rdto2);
 			return "/custom/myPageReview";
 		}

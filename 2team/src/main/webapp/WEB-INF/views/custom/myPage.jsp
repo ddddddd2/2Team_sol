@@ -31,9 +31,13 @@
 </div>
 			<!-- content 영역 시작 -->
 			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
+			
+			
 			<table>
 			<tr><th>예약</th></tr>
+			<tr><td>${myAct.getFcnt()}</td></tr>
 				<tr>
+			
 					<td>예약 번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>

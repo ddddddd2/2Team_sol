@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MyAct;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -37,6 +38,7 @@ public interface MemberDAO {
 	List<RestaurantDTO> getRestaurantList(Integer id);
 	//Restaurant
 	MemberDTO getMemberList(Integer id);
+	MyAct getMyAct(Integer no);
 	
 	
 

@@ -132,4 +132,9 @@
 		where
 			no = #{no}
 	</select>
+	<select id="getMyAct" parameterType="Integer" resultType="kr.co.sol.custom.dto.MyAct">
+		select count(distinct f.res_no) fcnt, count(distinct b.no) bcnt, count(distinct r.no)  rcnt
+		from member m join favorites f on m.no = f.mem_no and m.no = #{no}
+			join review r on f.mem_no = r.mem_no join booking b on r.mem_no = b.mem_no
+	</select>
 </mapper>

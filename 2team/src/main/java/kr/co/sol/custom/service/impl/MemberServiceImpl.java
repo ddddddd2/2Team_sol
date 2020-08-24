@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.co.sol.custom.dao.MemberDAO;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MyAct;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -111,5 +113,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void getMyAct(Integer no, Model model) {
+		MyAct myAct = memberDao.getMyAct(no);
+		model.addAttribute("myAct", myAct);
+	}
+
 
 }
