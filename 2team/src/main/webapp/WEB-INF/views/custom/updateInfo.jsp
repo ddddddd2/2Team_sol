@@ -3,12 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
+<title>마이 페이지</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="telephone=no"/>
+	<script src="./resources/js/jquery-1.10.2.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <head>
-	<script>
+<script>
+$('document').ready(function(){
+	
 verifyEmail = function() {
      // 이메일 검증 스크립트 작성
      var emailVal = $("#email").val();
-
      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]){2,9}@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
      // 검증에 사용할 정규식 변수 regExp에 저장
 
@@ -16,7 +28,7 @@ verifyEmail = function() {
        alert('Good!');
      }
      else {
-       alert('Error');
+       alert('이메일 형식에 맞지 않습니다.');
      }
    };
    
@@ -26,29 +38,17 @@ verifyPhone = function() {
 //      /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
      var regExp = /^[0-9]{4,11}$/
      // 검증에 사용할 정규식 변수 regExp에 저장
-
+	alert(phoneVal)
      if (phoneVal.match(regExp) != null) {
-       alert('Good!');
+       $('#phonesame').text("검증 통과")
+       $('#phonesame').css('color','blue')
      }
      else {
-       alert('Error');
+       $('#phonesame').text= "번호 형식에 맞지 않습니다."
+       $('#phonesame').css('color','red')
      }
 };
 
-verifyPhone = function() {
-     // 전화번호 검증 스크립트 작성
-     var phoneVal = $("#phone").val();
-//      /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
-     var regExp = /^[가-힣A-Za-z0-9]{2,8}$/
-     // 검증에 사용할 정규식 변수 regExp에 저장
-
-     if (phoneVal.match(regExp) != null) {
-       alert('Good!');
-     }
-     else {
-       alert('Error');
-     }
-};
 
  verifyName = function() {
      // 닉네임 검증 스크립트 작성
@@ -65,40 +65,28 @@ verifyPhone = function() {
      }
 }; 
 
-function isSame() {   
+isSame = function() {   
    // document.폼네임.해당요소네임
     var pw = document.updateForm.wUserPW.value;
     var confirmPW = document.updateForm.wUserPWConfirm.value;
     if (pw.length < 6 || pw.length > 16) {
         window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
         document.getElementById('pw').value=document.getElementById('pwCheck').value='';
-        document.getElementById('same').innerHTML='';
+        document.getElementById('pwsame').innerHTML='';
     }
     if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
         if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
-            document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
-            document.getElementById('same').style.color='blue';
+            document.getElementById('pwsame').innerHTML='비밀번호가 일치합니다.';
+            document.getElementById('pwsame').style.color='blue';
         }
         else {
-            document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
-            document.getElementById('same').style.color='red';
+            document.getElementById('pwsame').innerHTML='비밀번호가 일치하지 않습니다.';
+            document.getElementById('pwsame').style.color='red';
         }
     }
 }
+})
 </script>
-<title>마이 페이지</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="format-detection" content="telephone=no"/>
-	<script src="./resources/js/jquery-1.10.2.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
-	
-
 </head>
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
@@ -151,7 +139,8 @@ function isSame() {
                <p id="owenoback">
                <input id = "phone" type="text" name="phoneNumber" size="20" value="${mdto.phone}">
                <label id="phone_check"></label>
-               <button type="button" onClick="verifyPhone()">번호 중복 확인</button>
+               <button type="button" onClick="verifyPhone()">중복 체크</button>
+               <span id="phonesame"></span>
                </p>
          </div>
          
@@ -170,10 +159,10 @@ function isSame() {
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
                    <td width="15%">비밀번호 확인</td>
-                   <td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;<span id="same"></span></td>
+                   <td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;
+                   <span id="pwsame"></span></td>
                </tr>
             </table>
-               
 <!--         <p>비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 <!--          <input type="password" name="pw" id="pw" size="10"> -->
 <!--          <label id="pwcheck-error" class="error" for="pw"></label> -->
@@ -189,8 +178,8 @@ function isSame() {
          </div>   
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-                  공개<input type="radio" name="radiocheck" value="open" checked>
-                  비공개<input type="radio" name="radiocheck" value="private">
+			                  공개<input type="radio" name="radiocheck" value="open" checked>
+			                  비공개<input type="radio" name="radiocheck" value="private">
                </p>
                <p>
                   <br>나의 예약 내역, 리뷰, 즐겨찾기를 상대방에게 공개 여부를 설정해 주세요.
