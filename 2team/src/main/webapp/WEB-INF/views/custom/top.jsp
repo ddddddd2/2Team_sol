@@ -11,8 +11,8 @@
 				<div id="search">
 					<form method="post" action="">
 						<div>
-							<input type="text" name="" id="">
-							<input type="submit" value="검색">
+							<input type="text" id="keyword">
+							<input type="submit" id="searchAction" value="검색">
 						</div>
 					</form>
 				</div>
