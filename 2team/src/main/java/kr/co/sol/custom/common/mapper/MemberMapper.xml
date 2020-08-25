@@ -26,7 +26,7 @@
   				#{phone},
   				#{gender})
   	</insert>
-  	<select id="loginPro" parameterType="mdto" resultType="mdto">
+  	<select id="loginPro" resultType="mdto">
   		select no, role from member where id = #{id} and passwd = #{passwd}
   	</select>
   	<select id="getMemberNo" parameterType="string" resultType="int">

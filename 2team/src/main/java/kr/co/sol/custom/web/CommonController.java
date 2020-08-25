@@ -1,10 +1,5 @@
 package kr.co.sol.custom.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.custom.common.service.MemberService;
 import kr.co.sol.custom.dto.MemberDTO;
-
+//import kr.co.sol.etc.SecurityUtil;
+import kr.co.sol.etc.SecurityUtil;
 
 // index , login&out , loginProc , signUp , signUpProc 
 @Controller
@@ -49,6 +44,10 @@ public class CommonController {
 	
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
+		SecurityUtil securityUtil = new SecurityUtil();
+		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
+		mdto.setPasswd(passwd);
+
 		mdto = memberService.loginPro(mdto);
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
@@ -98,6 +97,11 @@ public class CommonController {
 //		return "/custom/msgPage";
 //	}
 	
+	private void EncryptSHA256(String passwd) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// logout process
 	@RequestMapping(value="/custom/logout")
 	public String logout(HttpServletRequest request) {
