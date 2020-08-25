@@ -79,24 +79,17 @@ window.onload = function(){
 }
 
 /* 음식점 리스트 버튼 이벤트*/
+
 function restaurant(no){
 	$('#list2-1').children().css('background-color','yellow');
 	document.getElementById(no).style.backgroundColor = "red";
 }
 
 
+
 $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-	$('#btn').chlick.function(e){
-		
-	
-	
-}
-
-	
-
-
-
+	/* $('#btn').click.function(e){ }*/
 
 })
 
@@ -121,46 +114,52 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 			
 				<div id="list2(0)" style="width:100%; height:100%;">
 			
-			<div id="list" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					<div id="list" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					
+					<!-- 지도 wrap-->
 					<div class="map_wrap">
-					<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
-						 <ul id="category">
-					        <li id="BK9" data-order="0"> 
+						<!-- 지도 영역  -->
+						<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
+						 	<ul id="category">
+					       	 	<li id="BK9" data-order="0"> 
 <!-- 					            <span class="category_bg bank"></span> -->
-					            전체
-					        </li>       
-					        <li id="MT1" data-order="1"> 
+					            	전체
+					         	</li>       
+					         	<li id="MT1" data-order="1"> 
 <!-- 					            <span class="category_bg mart"></span> -->
-					            한식
-					        </li>  
-					        <li id="PM9" data-order="2"> 
+					            	한식
+					         	</li>  
+					         	<li id="PM9" data-order="2"> 
 <!-- 					            <span class="category_bg pharmacy"></span> -->
-					            중식
-					        </li>  
-					        <li id="OL7" data-order="3"> 
+					            	중식
+					         	</li>  
+					         	<li id="OL7" data-order="3"> 
 <!-- 					            <span class="category_bg oil"></span> -->
-					            일식
-					        </li>  
-					        <li id="CE7" data-order="4"> 
+					            	일식
+					         	</li>  
+					         	<li id="CE7" data-order="4"> 
 <!-- 					            <span class="category_bg cafe"></span> -->
-					            카페
-					        </li>  
-					        <li id="CS2" data-order="5"> 
+					            	카페
+					         	</li>  
+					         	<li id="CS2" data-order="5"> 
 <!-- 					            <span class="category_bg store"></span> -->
-					            편의점
-					        </li>      
-					    </ul>
-					    </div>
+					           	 편의점
+					         	</li>      
+					     	</ul>
+						</div>
+						
+						<!-- 지도 음식점 리스트 영역 -->
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
-<%-- 					<c:forEach var="tdto" items="${tdto}" > --%>
-						<c:forEach var="i" begin="0" end="10">
-
-						<div id="store${tdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="restaurant('store${tdto.get(i).no}')" >${tdto.get(i).name}</a>
-
-					</div>
-					</c:forEach>
-				</div>
+							
+							<c:forEach var="resdto" items="${reslist}">
+							
+							<div id="store${resdto.no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
+								<a href="#" onClick="restaurant(${resdto.no})" >${resdto.name}</a>
+							</div> 
+							
+							<input type="hidden" value="${resdto.address1}" />
+							</c:forEach>
+						</div>
 					
 					</div>
 				</div>
@@ -175,15 +174,15 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 							<div style="height: 10%; text-align: center;">검색 키워드와 관련된 추천 맛집</div>
 					</div>
 				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; ">
-					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
-					</a> <!-- target='_blank' 새창띄우기 -->
+<%-- 					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+					</a>  --%><!-- target='_blank' 새창띄우기 -->
 				</div>
-				
+				<!-- 
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
 				<p>주소 : ${resdto.get(0).address1}</p> 
-				<p>연락처 : ${resdto.get(0).tel}</p>
-				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
-				<p> 아아</p>
+				<p>연락처 : ${resdto.get(0).tel}</p> -->
+				<!-- <a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> --> <!-- ? 파라미터값 --> 
+				<p> 아아</p> 
 				</div> 		<!-- list2-3 끝 -->			
 
 		
@@ -201,7 +200,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 											<img src="../resources/image/custom/sub1/han300.jpg">
 										</div>
 									<div style="float: left; width: 100%; height: 20%"> 
-										<p>${cdto.get(0).name}</p>
+										<%-- <p>${cdto.get(0).name}</p> --%>
 									</div>
 									</div>
 					<!-- 한식 글귀(제목)-->
@@ -210,7 +209,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 							<img src="../resources/image/custom/sub1/han300.jpg">
 						</div>
 							<div style="float: left; width: 100%; height: 20%">
-								<p>${cdto.get(1).name}</p>
+								<%-- <p>${cdto.get(1).name}</p> --%>
 							
 							</div>
 						</div>
@@ -272,6 +271,58 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 
 
 <script>
+/* -- 순환 script -- */
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+ mapOption = {
+     center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+     level: 5 // 지도의 확대 레벨
+ };  
+ 
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성 
+var geocoder = new kakao.maps.services.Geocoder(); // 주소 -> 좌표 변환 객체 
+
+var points=[];	// 주소들의 좌표 배열 
+var addressList = []; // 주소 담을 배열 
+var bounds = new kakao.maps.LatLngBounds(); // 재설정할 범위 정보 객체 
+
+// 주소들을 addressList 배열 에 담아줌 
+$.each( $("#list2-1 input") , function(k,v){
+	addressList.push($(v).val()); 
+});
+
+// addressList에 들어간 주소들을 차례대로 마커 표시 해줌 
+addressList.forEach(function(address){
+	
+	geocoder.addressSearch(address, function(result, status){
+
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			var marker = new kakao.maps.Marker({
+       	 		map: map,
+        		position: coords
+			});
+			
+			marker.setMap(map);
+			
+			bounds.extend(coords);
+			//points.push(coords);
+
+    		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    		//map.setCenter(coords);
+    		
+			}
+		}); // geocoder end
+
+	}); // addressList foreach end
+
+	map.setBounds(bounds);
+/* 기존 map script */
+/*
 //마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
  contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
@@ -431,6 +482,7 @@ function addCategoryClickEvent() {
  }
 }
 
+
 //카테고리를 클릭했을 때 호출되는 함수입니다
 function onClickCategory() {
  var id = this.id,
@@ -463,6 +515,7 @@ function changeCategoryClass(el) {
      el.className = 'on';
  } 
 } 
+*/
 </script>
 </body>
 </html>
