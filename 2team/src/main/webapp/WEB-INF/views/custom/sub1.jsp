@@ -154,13 +154,10 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
 <%-- 					<c:forEach var="tdto" items="${tdto}" > --%>
 						<c:forEach var="i" begin="0" end="10">
-<<<<<<< Updated upstream
-						<div id="store${resdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="test(${resdto.get(i).no})" >${resdto.get(i).name}</a>
-=======
+
 						<div id="store${tdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
 						<a href="#" onClick="restaurant('store${tdto.get(i).no}')" >${tdto.get(i).name}</a>
->>>>>>> Stashed changes
+
 					</div>
 					</c:forEach>
 				</div>
