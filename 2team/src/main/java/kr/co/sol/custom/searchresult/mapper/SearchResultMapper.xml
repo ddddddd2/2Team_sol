@@ -14,4 +14,13 @@
     	</choose>
     </select>
   	
+  	<select id="getRestaurants2" parameterType="string" resultType="resdto">
+  		select * 
+  		from restaurant 
+  		<choose>
+  			<when test="keyword != null">
+  				where address1 like '%'||#{keyword}||'%'
+  			</when>
+  		</choose>
+  	</select>
 </mapper>
