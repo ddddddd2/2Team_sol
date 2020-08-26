@@ -45,4 +45,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 //	Member
 
+//	@Override
+//	public MemberDTO loginPro(String id, String passwd) {
+//		// TODO Auto-generated method stub
+//		return memberDao.loginPro(id, passwd);
+//	}
+
 }

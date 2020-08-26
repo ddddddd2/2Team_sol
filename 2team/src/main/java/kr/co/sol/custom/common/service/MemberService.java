@@ -11,5 +11,6 @@ public interface MemberService {
 	//리뷰에서 id로 mem_no 알아내기 위해 
 	int getMemberNo(String idKey);
 	MemberDTO loginPro(MemberDTO mdto);
+//	MemberDTO loginPro(String id, String passwd);
 	
 }
