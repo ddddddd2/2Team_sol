@@ -20,6 +20,4 @@
   		where no=#{no}
   		
   	</select>
-  	
-  	
 </mapper>

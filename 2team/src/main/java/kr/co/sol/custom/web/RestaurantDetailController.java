@@ -1,5 +1,6 @@
 package kr.co.sol.custom.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.sol.custom.common.service.MemberService;
 import kr.co.sol.custom.dto.MenuDTO;
 import kr.co.sol.custom.dto.PageDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
@@ -36,21 +38,24 @@ public class RestaurantDetailController {
 	// sub2 - selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			RestaurantDTO resdto, Model model , PageDTO pdto
+			RestaurantDTO resdto, Model model , PageDTO pdto, @RequestParam("res_no") int res_no
 			/*@RequestParam("no") int res_no*/) {
+		HttpSession session = request.getSession();
 		
-		int res_no = 1; // 임시 음식점 번호
+		// 어떤 유저가, 식당 상세 페이지에 접근한 경우, 요청 받은 식당 번호로 click table에 해당되는 식당 번호의 count를 1 증가 시킨다.
 		
+
+//		int res_no = 1; // 임시 음식점 번호
 		resdto.setNo(res_no);
-		
+		System.out.println("controller에서 세션값"+session.getAttribute("addClick"));
 		// restaurant info
 		List<RestaurantDTO> tlist = restaurantDetailService.getRestaurants(resdto); 
 		model.addAttribute("resdto", tlist.get(0));
 		
 		// favorite check
 		char favoriteCheck = 'f';
-		HttpSession session = request.getSession();
 		String idKey = (String)session.getAttribute("idKey");
+		restaurantDetailService.addClick(res_no, request);
 		
 		if(idKey == null || idKey.equals(""))
 		{
