@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.searchresult.service.SearchResultService;
 
+<<<<<<< HEAD
 @Controller 
+=======
+@Controller
+>>>>>>> refs/heads/searchmap
 public class SearchResultController {
 	
 	@Autowired
