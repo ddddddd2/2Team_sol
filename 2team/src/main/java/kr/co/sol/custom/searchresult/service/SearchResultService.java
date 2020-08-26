@@ -7,4 +7,6 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 public interface SearchResultService {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 
+	RestaurantDTO getResInfo(int no);
+
 }

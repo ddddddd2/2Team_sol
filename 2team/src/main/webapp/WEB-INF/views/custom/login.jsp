@@ -16,7 +16,6 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 	$('#btn').click(function(e){
 	var shaPw = hex_sha512($('#passwd').val()).toString();
 		e.preventDefault(); // submit 실행 막음(action 안ㅇ넘어가게)
-		
 		var data = "id=" + $('#id').val()+"&passwd="+ shaPw; // passwd의 value 가져오기
 		// ajax 실행
 		$.ajax({

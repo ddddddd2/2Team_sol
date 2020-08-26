@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.sol.custom.dto.MemberDTO;
@@ -33,4 +35,5 @@ public interface RestaurantDetailService {
 	int likeCheck(HashMap<String,Integer> hmap);
 	int likePlus(HashMap<String,Integer> hmap);
 	int likeMinus(HashMap<String,Integer> hmap);
+	void addClick(int res_no, HttpServletRequest request);
 }

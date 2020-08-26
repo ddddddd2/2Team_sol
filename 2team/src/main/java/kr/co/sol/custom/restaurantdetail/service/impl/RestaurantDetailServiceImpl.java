@@ -2,9 +2,13 @@ package kr.co.sol.custom.restaurantdetail.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,9 +88,9 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 		String sourceFileName = file.getOriginalFilename();
 		File destinationFile; 
 		if (sourceFileName == null || sourceFileName.length()==0) { 
-		    revdto.setFile1("");
+//		    revdto.setFile1("");
 		}else {
-			revdto.setFile1(sourceFileName);
+//			revdto.setFile1(sourceFileName);
 			destinationFile = new File(revdto.getPath()+ sourceFileName); 
 	        destinationFile.getParentFile().mkdirs(); 
 		    try {
@@ -141,5 +145,25 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 	public int likeMinus(HashMap<String, Integer> hmap) {
 		// TODO Auto-generated method stub
 		return restaurantDetailDao.likeMinus(hmap);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void addClick(int res_no, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		List<Integer> addClick = (List<Integer>)session.getAttribute("addClick");
+		if(addClick==null) {
+			addClick = new ArrayList<Integer>();
+			addClick.add(res_no);
+		session.setAttribute("addClick", addClick);
+		} else {
+			if(!addClick.contains(res_no)) {
+				addClick.add(res_no);
+				session.setAttribute("addClick", addClick);
+				restaurantDetailDao.updateClick(res_no);
+			}
+		}
+
 	}
 }

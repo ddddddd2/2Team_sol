@@ -19,6 +19,12 @@ public class SearchResultServiceImpl implements SearchResultService {
 	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants(resdto);
+	}
+
+	@Override
+	public RestaurantDTO getResInfo(int no) {
+		
+		return searchResultDao.getResInfo(no);
 	}	
 	
 }

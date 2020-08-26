@@ -32,4 +32,5 @@ public interface RestaurantDetailDAO {
 	int likeCheck(HashMap<String,Integer> hmap);
 	int likePlus(HashMap<String,Integer> hmap);
 	int likeMinus(HashMap<String,Integer> hmap);
+	void updateClick(int res_no);
 }
