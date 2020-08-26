@@ -26,6 +26,10 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 					case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
 					case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
 					case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
+				};
+			}
+		});
+	})
 })
 </script>
 </head>
