@@ -9,19 +9,23 @@
 }
 
 #space #search {
-	width:50%;
+	width:70%;
 	display: inline-block;
 	line-height: 50px;
+	
 }
-#select {
+
+#search .select {
 	margin:30px 15px;
 }
+
 #space #search > form > div{
 	float:left;
 	top:15px;
 	vertical-align: middle
 }
 #space #search .search {
+	display: inline-block;
 	position: relative;
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 30px;

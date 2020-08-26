@@ -1,8 +1,8 @@
 package kr.co.sol.custom.searchresult.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	@Override
-	public List<RestaurantDTO> getRestaurants2(@Param("keyword") String keyword) {
+	public List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap) {
 		// TODO Auto-generated method stub
-		return searchResultDao.getRestaurants2(keyword);
+		return searchResultDao.getRestaurants2(hmap);
 	}	
 	
 	
