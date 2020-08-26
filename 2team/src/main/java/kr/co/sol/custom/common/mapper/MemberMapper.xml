@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sol.custom.common.dao.MemberDAO">
+  	<select id="idCheck" parameterType="string"  resultType="int">
+    	select count(id) cnt from member where id = #{id}
+  	</select>
+  	
+  	<select id="loginProc" parameterType="mdto" resultType="mdto">
+  		SELECT ID, NAME, ROLE, PASSWD 
+      	FROM MEMBER 
+      	WHERE id = #{id} 
+      	and passwd = #{passwd}
+  	</select>
+  	
+  	<insert id="signUpProc" parameterType="mdto">
+  		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	       SELECT NVL(MAX(no),0)+1 no FROM member
+      	</selectKey>
+  		
+  		insert into member(no,id,passwd,name,email,phone,gender)
+  		values( #{no},
+  				#{id},
+  				#{passwd},
+  				#{name},
+  				#{email},
+  				#{phone},
+  				#{gender})
+  	</insert>
+  	<select id="loginPro" parameterType="mdto" resultType="mdto">
+  		select no,id, name, nick_name, role from member where id = #{id} and passwd = #{passwd}
+  	</select>
+  	<select id="getMemberNo" parameterType="string" resultType="int">
+  		select no from member where id = #{idKey}
+  	</select>
+	<select id="getMemberInfo" parameterType="Integer" resultType="mdto">
+		select * from member where no = #{mem_no}
+	</select>
+
+</mapper>
