@@ -106,8 +106,8 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 
 	<!-- top 영역 시작-->
 	<!-- top 영역 끝 -->
-	<input type="hidden" id="keyword" name="keyword" value="${keyword}"/>
-	<input type="hidden" id="category" name="category" value="${category}"/>
+	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
+	<input type="text" id="category1" name="category" value="${category}"/>
 	
 	<div id="content-wrapper" style="position:absolute; width: 100%; height:auto;">
 		<div id="content" >

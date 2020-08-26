@@ -30,7 +30,10 @@ public class SearchResultController {
 		hmap.put("category", category);
 		
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);		
+		
 		model.addAttribute("reslist",reslist); // 레스토랑 리스트 
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("category",category);
 		
 		return "/custom/sub1";
 	}
