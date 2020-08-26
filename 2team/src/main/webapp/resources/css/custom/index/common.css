@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "utf-8";
 
 /* main css */
@@ -185,4 +186,375 @@ label, input, select {
 	line-height: 20px;
 	font-weight: 700;
 	color: #222;
+=======
+<<<<<<< HEAD
+@charset "utf-8";
+
+/* main css */
+label, input, select {
+	vertical-align: middle;
+}
+
+/* ========== 01. layout ========== */
+#wrap {
+	width: 100%;
+	min-width: 1200px;
+	box-sizing: border-box
+}
+
+#container {
+	width: 100%;
+	position: relative;
+}
+
+.layout {
+	width: 100%;
+	margin-left: 70px;
+	box-sizing: border-box;
+}
+
+/* header */
+#header {
+	background-color: rgb(201, 27, 60);
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 200;
+	box-sizing: border-box;
+	height: 80px;
+	text-align: center;
+}
+
+#header>div {
+	display: inline-block;
+    line-height: 80px;
+    width: 25%;
+    float: left;
+    vertical-align: middle;
+}
+
+#header #space{
+	width:50%;
+}
+
+#header #logo > a{
+	float:left;
+	padding-left:70px;
+	line-height: 80px;
+}
+#header #logo > a > img {
+	vertical-align : middle;
+}
+#header .lnb {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0px;
+    width: 25%;
+    line-height: 80px;
+    float: right;
+}
+
+#header .lnb>li {
+	display: inline-block; /* vertical-align:middle; */
+	position: relative;
+}
+
+#header .lnb>li:before {
+	content: '|';
+	padding: 0 20px;
+	font-size: 15px;
+	color: #eee;
+}
+
+#header .lnb>li:first-child:before {
+	display: none;
+}
+
+#header .lnb>li>a {
+	font-size: 15px;
+	color: #fff;
+}
+
+#header .lnb>li:nth-of-type(1)>a {
+	padding-right: 20px;
+	position: relative;
+}
+
+#header .lnb>li:nth-of-type(1)>a:after {
+	content: '';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #fff;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%)
+}
+
+#header .lnb>li>ul {
+	display: none;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	width: 100px;
+	background: #fff;
+	box-sizing: border-box;
+	padding: 20px;
+	margin-left: -50px
+}
+
+#header .lnb>li>ul>li {
+	margin-top: 15px;
+}
+
+#header .lnb>li>ul>li:first-child {
+	margin: 0;
+}
+
+#header .lnb>li>ul>li>a {
+	display: inline-block;
+	font-size: 15px;
+	color: #666
+}
+
+/* footer */
+#footer {
+	width: 100%;
+	background: #f5f5f5;
+	padding: 50px 0;
+}
+
+
+#footer .layout>strong {
+	display: block;
+	font-size: 15px;
+	line-height: 24px;
+	padding: 15px 0;
+}
+
+#footer .layout>span {
+	display: block;
+	color: #999;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+#footer .layout .pipe:before {
+	content: "|";
+	margin: 0 5px;
+}
+
+/* sub */
+#s_visual {
+	background: #222;
+}
+
+#s_visual h1 {
+	font-size: 60px;
+	line-height: 300px;
+	text-align: center;
+	color: #fff;
+	padding-top: 50px;
+}
+
+#contents {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 80px 0;
+}
+
+#contents .s_title {
+	text-align: center;
+	padding-bottom: 60px;
+}
+
+#contents .s_title strong {
+	display: block;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: 700;
+	color: #222;
+=======
+@charset "utf-8";
+
+/* main css */
+label, input, select {
+	vertical-align: middle;
+}
+
+/* ========== 01. layout ========== */
+#wrap {
+	width: 100%;
+	min-width: 1200px;
+	box-sizing: border-box
+}
+
+#container {
+	width: 100%;
+	position: relative;
+}
+
+#footer {
+	width: 100%;
+}
+
+.layout {
+	width: 1200px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+/* header */
+#header {
+	background-color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 200;
+	box-sizing: border-box;
+	height: 150px;
+	text-align: center;
+}
+
+#header>div {
+	display: inline-block; /* float:left; */
+	line-height: 150px;
+	width: 30%;
+	vertical-align: middle;
+}
+#header #logo > a{
+	line-height: 50px;
+}
+#header #logo > a > img {
+	vertical-align : middle;
+}
+#header .lnb {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0;
+	margin-left: 150px
+}
+
+#header .lnb>li {
+	display: inline-block; /* vertical-align:middle; */
+	position: relative;
+}
+
+#header .lnb>li:before {
+	content: '|';
+	padding: 0 20px;
+	font-size: 15px;
+	color: #eee;
+}
+
+#header .lnb>li:first-child:before {
+	display: none;
+}
+
+#header .lnb>li>a {
+	font-size: 15px;
+	color: #fff;
+}
+
+#header .lnb>li:nth-of-type(1)>a {
+	padding-right: 20px;
+	position: relative;
+}
+
+#header .lnb>li:nth-of-type(1)>a:after {
+	content: '';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #fff;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%)
+}
+
+#header .lnb>li>ul {
+	display: none;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	width: 100px;
+	background: #fff;
+	box-sizing: border-box;
+	padding: 20px;
+	margin-left: -50px
+}
+
+#header .lnb>li>ul>li {
+	margin-top: 15px;
+}
+
+#header .lnb>li>ul>li:first-child {
+	margin: 0;
+}
+
+#header .lnb>li>ul>li>a {
+	display: inline-block;
+	font-size: 15px;
+	color: #666
+}
+
+/* footer */
+#footer {
+	background: #f5f5f5;
+	padding: 50px 0;
+}
+
+#footer .layout>strong {
+	display: block;
+	font-size: 15px;
+	line-height: 24px;
+	padding: 15px 0;
+}
+
+#footer .layout>span {
+	display: block;
+	color: #999;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+#footer .layout .pipe:before {
+	content: "|";
+	margin: 0 5px;
+}
+
+/* sub */
+#s_visual {
+	background: #222;
+}
+
+#s_visual h1 {
+	font-size: 60px;
+	line-height: 300px;
+	text-align: center;
+	color: #fff;
+	padding-top: 50px;
+}
+
+#contents {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 80px 0;
+}
+
+#contents .s_title {
+	text-align: center;
+	padding-bottom: 60px;
+}
+
+#contents .s_title strong {
+	display: block;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: 700;
+	color: #222;
+>>>>>>> refs/heads/mypage
+>>>>>>> refs/heads/newMaster
 }

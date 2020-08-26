@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package kr.co.sol.custom.restaurantdetail.dao;
 
 import java.util.HashMap;
@@ -34,3 +35,40 @@ public interface RestaurantDetailDAO {
 	int likeMinus(HashMap<String,Integer> hmap);
 	void updateClick(int res_no);
 }
+=======
+package kr.co.sol.custom.restaurantdetail.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MenuDTO;
+import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.custom.dto.ReviewDTO;
+
+@Mapper
+public interface RestaurantDetailDAO {
+	int idCheck(String id);
+	MemberDTO loginProc(MemberDTO mdto);
+	int signUpProc(MemberDTO mdto);
+	int getMemberNo(String idKey);
+	
+	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
+	List<MenuDTO> getMenus(RestaurantDTO resdto);
+	int likeRestaurant(HashMap<String,Integer> hmap);
+	int dislikeRestaurant(HashMap<String,Integer> hmap);
+	int favoriteCheck(HashMap<String,Integer> hmap);
+	
+	int reviewInsert(ReviewDTO revdto);
+	Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto);
+	List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2);
+	int likeReview(HashMap<String,Integer> hmap);
+	int dislikeReview(HashMap<String,Integer> hmap);
+	int likeCheck(HashMap<String,Integer> hmap);
+	int likePlus(HashMap<String,Integer> hmap);
+	int likeMinus(HashMap<String,Integer> hmap);
+}
+>>>>>>> refs/heads/newMaster

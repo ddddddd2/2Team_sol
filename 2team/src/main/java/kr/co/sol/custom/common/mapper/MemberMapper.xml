@@ -26,6 +26,7 @@
   				#{phone},
   				#{gender})
   	</insert>
+<<<<<<< HEAD
   	<select id="loginPro" resultType="mdto">
   		select no, role from member where id = #{id} and passwd = #{passwd}
   	</select>
@@ -33,5 +34,16 @@
   		select no from member where id = #{idKey}
   	</select>
 
+=======
+  	<select id="loginPro" parameterType="mdto" resultType="mdto">
+  		select no,id, name, nick_name, role from member where id = #{id} and passwd = #{passwd}
+  	</select>
+  	<select id="getMemberNo" parameterType="string" resultType="int">
+  		select no from member where id = #{idKey}
+  	</select>
+	<select id="getMemberInfo" parameterType="Integer" resultType="mdto">
+		select * from member where no = #{mem_no}
+	</select>
+>>>>>>> refs/heads/newMaster
 
 </mapper>

@@ -14,10 +14,13 @@
     	</choose>
     </select>
   	
+<<<<<<< HEAD
   	<select id="getResInfo" parameterType="int" resultType="resdto">
   		select name , address1 , address2 , tel , hour 
   		from restaurant
   		where no=#{no}
   		
   	</select>
+=======
+>>>>>>> refs/heads/newMaster
 </mapper>

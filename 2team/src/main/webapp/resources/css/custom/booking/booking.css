@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /* 전체 사이즈 및 공통 포지션 위치 */
 .container {background-color: rgb(245,246,247); margin: auto;}	
@@ -49,4 +50,111 @@
 .wrapper .section .right h3.bs {line-height:80px;}
 .wrapper .section .right h3.bs strong.price {float:right;padding-right:19px;color:#d61242;font-size:24px;text-align:right;}
 .wrapper .section .right .summary {padding:13px 18px;background:#fff;color:#7b7b7b;font-size:12px;line-height:22px;}
+=======
+<<<<<<< HEAD
+
+/* 전체 사이즈 및 공통 포지션 위치 */
+.container {background-color: rgb(245,246,247); margin: auto;}	
+.wrapper {position:relative; width:100%;}
+.wrapper .inner {position:relative; margin: 0 340px;}
+.wrapper .box {position:relative;margin-bottom:10px;border:1px solid #e3e3e3;background:#fff;}		
+	
+/* header 상단바 */		
+.wrapper .h2-title{width:50%; height:50px; margin:40px auto 40px auto; background: #444; border:1px solid #444; border-radius:25px; line-height: 50px; text-align: center;}	
+	
+.wrapper .section h3 {padding-left:19px;border-bottom:1px solid #e3e3e3;font-size:16px;font-weight:bold;line-height:56px;}
+.wrapper .section .left {float:left;width:445px;margin-right:10px;}		
+.wrapper .section .left h3.icon1 {padding-left:52px;background:url('../images/icon/calendar.gif') 19px 17px no-repeat;}	
+.wrapper .section .left .calendar-title {position:relative;padding:30px 0;border-top:1px solid #e3e3e3;color:#434953;font-size:24px;text-align:center;}
+.wrapper .section .left .calendar-title .prev {position:absolute;top:35px;left:19px;padding-left:14px;background:url('../images/btn/prev.png') left 2px no-repeat;font-size:12px;color:#444;}
+.wrapper .section .left .calendar-title .next {position:absolute;top:35px;right:19px;padding-right:14px;background:url('../images/btn/next.gif') right 2px no-repeat;font-size:12px;color:#444;}
+.wrapper .section .left .calendar-data {padding:13px 11px 18px 11px;}
+.wrapper .section .left .calendar-data table {width:100%;}
+.wrapper .section .left .calendar-data th {padding-bottom:25px;color:#909090;font-size:11px;text-align: center;}
+.wrapper .section .left .calendar-data td {padding:5px 0;text-align:center;}
+.wrapper .section .left .calendar-data td a {display:block;width:44px;height:44px;margin:0 auto;color:#c5c5c5;font-size:16px;line-height:42px;text-align:center;}
+.wrapper .section .left .calendar-data td a.live_red {font-weight:bold; color:#d61243;}
+.wrapper .section .left .calendar-data td a.live_blue {color:#0054FF;}
+.wrapper .section .left .calendar-data td a.on {background:#d61243;border-radius:22px;box-shadow:inset 0 0 10px rgba(0,0,0,.25);color:#fff;}
+.wrapper .section .left .calendar-data td a.end {color: #444;}
+.wrapper .section .left input[type="text"] {width:100%;height:100px;padding:0 10px;font-size:14px;line-height:36px; }		
+
+.wrapper .section .left .select-ui h3 a {z-index: 10; position: relative; display: block; width: 370px; margin: 10px 10px 10px 8px; padding: 5px 0 5px 10px; font-size: 14px; font-weight: bold; line-height: 36px; color: #686c73; text-decoration: none; background: #fff url('http://cfile7.uf.tistory.com/image/2225203756944C371A093B') no-repeat 95% 50%; border: 1px solid #c8c8c8;}
+.wrapper .section .left .select-ui h3 a.on {background: url('http://cfile27.uf.tistory.com/image/26242F3756944C39246B9D') no-repeat 95% 50%;}
+.wrapper .section .left .select-ui h3 a:hover {text-decoration:none; color:#df2428;}
+.wrapper .section .left .select-ui ul {z-index:10; display:none; position:absolute; width:380px; max-height:50px; overflow:hidden; overflow-y:scroll; left:27px; padding:7px 0 7px; border:1px solid #c8c8c8; background:#fff;}
+.wrapper .section .left .select-ui ul li {display:inline;}
+.wrapper .section .left .select-ui ul li a {display:block; padding:3px 10px 2px; color:#686c73; font-size:14px; line-height:1.37; text-decoration:none;}
+.wrapper .section .left .select-ui ul li a:hover {color:#df2428; text-decoration:none; background:#eff5ff;}
+	
+/* float right 영역 */
+.wrapper .section .right {float:left;width:445px;}
+.wrapper .section .right h3.icon2 {padding-left:52px;background:url('../images/icon/person.gif') 19px 17px no-repeat;}	
+.wrapper .section .right .person {margin:10px 20px;}
+.wrapper .section .right .person li {padding:5px 0;line-height:40px;}
+.wrapper .section .right .person li h4 {display:inline-block;width:80px;padding-left:8px;font-size:12px;line-height:38px;}
+.wrapper .section .right .person li input[type="text"] {width:244px;height:38px;padding:0 10px;border:1px solid #d6d6d6;border-radius:4px;color:#959595;font-size:14px;line-height:36px !important;vertical-align:top;}	
+.wrapper .section .right .agree-box {display:none;padding:20px 13px;border-top:1px solid #e3e3e3;color:#838383;font-size:12px;line-height:16px;}
+.wrapper .section .right .agree-box p {margin-bottom:10px;}
+.wrapper .section .right .agree-box p.note {margin-top:20px;margin-bottom:0;padding-top:20px;border-top:1px solid #e3e3e3;}
+	
+.box #agree-box {display:block; height:239px;border-top:none;overflow-y:auto;}
+
+.wrapper .section .right h3.bs {line-height:80px;}
+.wrapper .section .right h3.bs strong.price {float:right;padding-right:19px;color:#d61242;font-size:24px;text-align:right;}
+.wrapper .section .right .summary {padding:13px 18px;background:#fff;color:#7b7b7b;font-size:12px;line-height:22px;}
+=======
+
+/* 전체 사이즈 및 공통 포지션 위치 */
+.container {background-color: rgb(245,246,247); margin: auto;}	
+.wrapper {position:relative; width:100%;}
+.wrapper .inner {position:relative; margin: 0 340px;}
+.wrapper .box {position:relative;margin-bottom:10px;border:1px solid #e3e3e3;background:#fff;}		
+	
+/* header 상단바 */		
+.wrapper .h2-title{width:50%; height:50px; margin:40px auto 40px auto; background: #444; border:1px solid #444; border-radius:25px; line-height: 50px; text-align: center;}	
+	
+.wrapper .section h3 {padding-left:19px;border-bottom:1px solid #e3e3e3;font-size:16px;font-weight:bold;line-height:56px;}
+.wrapper .section .left {float:left;width:445px;margin-right:10px;}		
+.wrapper .section .left h3.icon1 {padding-left:52px;background:url('../images/icon/calendar.gif') 19px 17px no-repeat;}	
+.wrapper .section .left .calendar-title {position:relative;padding:30px 0;border-top:1px solid #e3e3e3;color:#434953;font-size:24px;text-align:center;}
+.wrapper .section .left .calendar-title .prev {position:absolute;top:35px;left:19px;padding-left:14px;background:url('../images/btn/prev.png') left 2px no-repeat;font-size:12px;color:#444;}
+.wrapper .section .left .calendar-title .next {position:absolute;top:35px;right:19px;padding-right:14px;background:url('../images/btn/next.gif') right 2px no-repeat;font-size:12px;color:#444;}
+.wrapper .section .left .calendar-data {padding:13px 11px 18px 11px;}
+.wrapper .section .left .calendar-data table {width:100%;}
+.wrapper .section .left .calendar-data th {padding-bottom:25px;color:#909090;font-size:11px;text-align: center;}
+.wrapper .section .left .calendar-data td {padding:5px 0;text-align:center;}
+.wrapper .section .left .calendar-data td a {display:block;width:44px;height:44px;margin:0 auto;color:#c5c5c5;font-size:16px;line-height:42px;text-align:center;}
+.wrapper .section .left .calendar-data td a.live_red {font-weight:bold; color:#d61243;}
+.wrapper .section .left .calendar-data td a.live_blue {color:#0054FF;}
+.wrapper .section .left .calendar-data td a.on {background:#d61243;border-radius:22px;box-shadow:inset 0 0 10px rgba(0,0,0,.25);color:#fff;}
+.wrapper .section .left .calendar-data td a.end {color: #444;}
+.wrapper .section .left input[type="text"] {width:100%;height:100px;padding:0 10px;font-size:14px;line-height:36px; }		
+
+.wrapper .section .left .select-ui h3 a {z-index: 10; position: relative; display: block; width: 370px; margin: 10px 10px 10px 8px; padding: 5px 0 5px 10px; font-size: 14px; font-weight: bold; line-height: 36px; color: #686c73; text-decoration: none; background: #fff url('http://cfile7.uf.tistory.com/image/2225203756944C371A093B') no-repeat 95% 50%; border: 1px solid #c8c8c8;}
+.wrapper .section .left .select-ui h3 a.on {background: url('http://cfile27.uf.tistory.com/image/26242F3756944C39246B9D') no-repeat 95% 50%;}
+.wrapper .section .left .select-ui h3 a:hover {text-decoration:none; color:#df2428;}
+.wrapper .section .left .select-ui ul {z-index:10; display:none; position:absolute; width:380px; max-height:50px; overflow:hidden; overflow-y:scroll; left:27px; padding:7px 0 7px; border:1px solid #c8c8c8; background:#fff;}
+.wrapper .section .left .select-ui ul li {display:inline;}
+.wrapper .section .left .select-ui ul li a {display:block; padding:3px 10px 2px; color:#686c73; font-size:14px; line-height:1.37; text-decoration:none;}
+.wrapper .section .left .select-ui ul li a:hover {color:#df2428; text-decoration:none; background:#eff5ff;}
+	
+/* float right 영역 */
+.wrapper .section .right {float:left;width:445px;}
+.wrapper .section .right h3.icon2 {padding-left:52px;background:url('../images/icon/person.gif') 19px 17px no-repeat;}	
+.wrapper .section .right .person {margin:10px 20px;}
+.wrapper .section .right .person li {padding:5px 0;line-height:40px;}
+.wrapper .section .right .person li h4 {display:inline-block;width:80px;padding-left:8px;font-size:12px;line-height:38px;}
+.wrapper .section .right .person li input[type="text"] {width:244px;height:38px;padding:0 10px;border:1px solid #d6d6d6;border-radius:4px;color:#959595;font-size:14px;line-height:36px !important;vertical-align:top;}	
+.wrapper .section .right .agree-box {display:none;padding:20px 13px;border-top:1px solid #e3e3e3;color:#838383;font-size:12px;line-height:16px;}
+.wrapper .section .right .agree-box p {margin-bottom:10px;}
+.wrapper .section .right .agree-box p.note {margin-top:20px;margin-bottom:0;padding-top:20px;border-top:1px solid #e3e3e3;}
+	
+.box #agree-box {display:block; height:239px;border-top:none;overflow-y:auto;}
+
+.wrapper .section .right h3.bs {line-height:80px;}
+.wrapper .section .right h3.bs strong.price {float:right;padding-right:19px;color:#d61242;font-size:24px;text-align:right;}
+.wrapper .section .right .summary {padding:13px 18px;background:#fff;color:#7b7b7b;font-size:12px;line-height:22px;}
+>>>>>>> refs/heads/mypage
+>>>>>>> refs/heads/newMaster
 .wrapper .section .right .summary strong {color:#444;font-size:14px;font-weight:bold;}

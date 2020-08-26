@@ -11,6 +11,7 @@
 				<div id="search">
 					<form method="post" action="">
 						<div>
+<<<<<<< HEAD
 							<select id="select">
 								<option value="구선택">구선택</option>
 								<option value="중랑구">중랑구</option>
@@ -19,6 +20,8 @@
 							</select>
 						</div>
 						<div class="search">
+=======
+>>>>>>> refs/heads/newMaster
 							<input type="text" id="keyword">
 							<input type="submit" id="searchAction" value="검색">
 						</div>

@@ -7,6 +7,7 @@
 <title> 로그인 화면 </title>
 <link href="../resources/css/custom/login/login.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/jquery-1.10.2.min.js"></script>
+<<<<<<< HEAD
 <script src="../resources/js/custom/login.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
@@ -33,6 +34,50 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 					case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
 					case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
 					case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
+=======
+<script type="text/javascript">
+<<<<<<< HEAD
+$(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
+	// 문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
+	$('#btn').click(function(e){
+		e.preventDefault(); // submit 실행 막음(action 안ㅇ넘어가게)
+		var id = $('#id').val(); // id의 value 가져오기.
+		var passwd = $('#passwd').val(); // passwd의 value 가져오기
+		// ajax 실행
+		$.ajax({
+			url:"/loginPro", // 요청할 url
+			type : "POST", // 메소드
+			data:{ // 보낼 데이터
+				"id" : id,
+				"passwd" : passwd,
+			},
+			dataType:"JSON",
+			success : function(data){ // 성공했을 경우. data는 요청한 url에서 리턴된 내용이 들어감.
+				switch(data){
+					case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
+					case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
+					case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
+=======
+$(document).ready(function(){
+	$('#btn').click(function(e){
+		e.preventDefault();
+		var id = $('#id').val();
+		var passwd = $('#passwd').val();
+		$.ajax({
+			url:"/loginPro",
+			type : "POST",
+			data:{
+				"id" : id,
+				"passwd" : passwd,
+			},
+			dataType:"JSON",
+			success : function(data){
+				switch(data){
+				case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
+				case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
+				case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
+>>>>>>> refs/heads/mypage
+>>>>>>> refs/heads/newMaster
 				}
 			}
 		})
@@ -41,7 +86,11 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 	<form class="container" title="로그인 폼" method="POST">
+=======
+	<form class="container" title="로그인 폼" method="post">
+>>>>>>> refs/heads/newMaster
 		<div class="logo">
 			<a href="/"> <img src="../resources/image/custom/logo.gif" alt="" /> </a>
 		</div>

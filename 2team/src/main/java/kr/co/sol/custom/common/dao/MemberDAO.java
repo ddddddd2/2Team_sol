@@ -13,7 +13,11 @@ public interface MemberDAO {
 	int signUpProc(MemberDTO mdto);
 	int getMemberNo(String idKey);
 	MemberDTO loginPro(MemberDTO mdto);
+<<<<<<< HEAD
 //	MemberDTO loginPro(String id, String passwd);
+=======
+	MemberDTO getMemberInfo(Integer mem_no);
+>>>>>>> refs/heads/newMaster
 
 
 }
