@@ -168,28 +168,11 @@ window.onload = function(){
 					    </div>
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
 						<c:forEach var="i" begin="0" end="10">
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-						<div id="store${tdto.get(i).no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="restaurant('store${tdto.get(i).no}')" >${tdto.get(i).name}</a>
-
-					</div>
-					</c:forEach>
-				</div>
-=======
->>>>>>> Stashed changes
 						<div id="store${resdto.get(i).no}" style="width: 100%; height: 20%; box-sizing: border-box;">
 						<a href="#" onClick="restaurant('store${resdto.get(i).no}')" >${resdto.get(i).name}</a>
 						</div>
 						</c:forEach>
 						</div>
-<<<<<<< Updated upstream
-=======
->>>>>>> refs/heads/searchmap
-					
->>>>>>> Stashed changes
 					</div>
 				</div>
 			<!-- 카드 형태로 3개만 구현하고 나머지는 슬라이드 -->
