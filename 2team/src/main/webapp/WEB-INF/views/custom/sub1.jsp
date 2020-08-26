@@ -106,7 +106,9 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 
 	<!-- top 영역 시작-->
 	<!-- top 영역 끝 -->
-
+	<input type="hidden" id="keyword" name="keyword" value="${keyword}"/>
+	<input type="hidden" id="category" name="category" value="${category}"/>
+	
 	<div id="content-wrapper" style="position:absolute; width: 100%; height:auto;">
 		<div id="content" >
 		
@@ -118,33 +120,33 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 					
 					<!-- 지도 wrap-->
 					<div class="map_wrap">
-						<!-- 지도 영역  -->
+						<!-- 지도 영역  --> 
 						<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
 						 	<ul id="category">
-					       	 	<li id="BK9" data-order="0"> 
-<!-- 					            <span class="category_bg bank"></span> -->
+					       	 	<li id="c_entire" > 
+					            <!-- <span class="category_bg bank"></span>  -->
 					            	전체
 					         	</li>       
-					         	<li id="MT1" data-order="1"> 
-<!-- 					            <span class="category_bg mart"></span> -->
+					         	<li id="c_korean" > 
+					           <!--  <span class="category_bg mart"></span>  -->
 					            	한식
 					         	</li>  
-					         	<li id="PM9" data-order="2"> 
-<!-- 					            <span class="category_bg pharmacy"></span> -->
+					         	<li id="c_chinese" > 
+					           <!--  <span class="category_bg pharmacy"></span>  -->
 					            	중식
 					         	</li>  
-					         	<li id="OL7" data-order="3"> 
-<!-- 					            <span class="category_bg oil"></span> -->
+					         	<li id="c_japanese" > 
+					           <!--  <span class="category_bg oil"></span>  -->
 					            	일식
 					         	</li>  
-					         	<li id="CE7" data-order="4"> 
-<!-- 					            <span class="category_bg cafe"></span> -->
-					            	카페
+					         	<li id="c_american" > 
+					           <!--  <span class="category_bg oil"></span>  -->
+					            	양식
 					         	</li>  
-					         	<li id="CS2" data-order="5"> 
-<!-- 					            <span class="category_bg store"></span> -->
-					           	 편의점
-					         	</li>      
+					         	<li id="c_cafe" > 
+ 					           <!--  <span class="category_bg cafe"></span>  -->
+					            	카페
+					         	</li>     
 					     	</ul>
 						</div>
 						
@@ -153,11 +155,13 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 							
 							<c:forEach var="resdto" items="${reslist}">
 							
-							<div id="store${resdto.no}" style="width: 100%; background-color: yellow; height: 20%; box-sizing: border-box;">
-								<a href="#" onClick="restaurant(${resdto.no})" >${resdto.name}</a>
+							<div id="store${resdto.no}">
+								<a id="res_name" href="#" onClick="restaurant(${resdto.no})">${resdto.name}</a>
 							</div> 
 							
-							<input type="hidden" value="${resdto.address1}" />
+							<input type="hidden" class="res_address" value="${resdto.address1}" />
+							<input type="hidden" class="res_c_no" value="${resdto.c_no}" />
+							
 							</c:forEach>
 						</div>
 					
@@ -269,58 +273,10 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	<!-- container 끝 -->
 
 
+<script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>
-/* -- 순환 script -- */
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
- mapOption = {
-     center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-     level: 5 // 지도의 확대 레벨
- };  
- 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성 
-var geocoder = new kakao.maps.services.Geocoder(); // 주소 -> 좌표 변환 객체 
-
-var points=[];	// 주소들의 좌표 배열 
-var addressList = []; // 주소 담을 배열 
-var bounds = new kakao.maps.LatLngBounds(); // 재설정할 범위 정보 객체 
-
-// 주소들을 addressList 배열 에 담아줌 
-$.each( $("#list2-1 input") , function(k,v){
-	addressList.push($(v).val()); 
-});
-
-// addressList에 들어간 주소들을 차례대로 마커 표시 해줌 
-addressList.forEach(function(address){
-	
-	geocoder.addressSearch(address, function(result, status){
-
-		// 정상적으로 검색이 완료됐으면 
-		if (status === kakao.maps.services.Status.OK) {
-
-			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			
-			// 결과값으로 받은 위치를 마커로 표시합니다
-			var marker = new kakao.maps.Marker({
-       	 		map: map,
-        		position: coords
-			});
-			
-			marker.setMap(map);
-			
-			bounds.extend(coords);
-			//points.push(coords);
-
-    		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    		//map.setCenter(coords);
-    		
-			}
-		}); // geocoder end
-
-	}); // addressList foreach end
-
-	map.setBounds(bounds);
 /* 기존 map script */
 /*
 //마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -515,6 +471,7 @@ function changeCategoryClass(el) {
      el.className = 'on';
  } 
 } 
+
 */
 </script>
 </body>
