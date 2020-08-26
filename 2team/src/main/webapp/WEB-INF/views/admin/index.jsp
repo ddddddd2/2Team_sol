@@ -90,6 +90,10 @@ function loginCk(){
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
+<<<<<<< HEAD
+		${mdto.role}
+=======
+>>>>>>> refs/heads/mypage
 <c:choose>
 	<c:when test="${mdto.role==null}">
 		<form id="loginForm" name="loginForm" method="post" action="/loginPro">

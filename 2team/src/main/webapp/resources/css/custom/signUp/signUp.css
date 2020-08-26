@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "utf-8";
 
 *{
@@ -81,4 +82,89 @@
 		line-height : 16px;
 		font-size: 12px;
 		font-weight: bold;
+=======
+@charset "utf-8";
+
+*{
+		margin: 0;
+		padding: 0;
+	}
+	
+	body{
+		background-color: rgb(245,246,247);
+	}
+	
+	.container{
+		width: 500px;
+		margin: auto;
+	}
+	
+	.logo{
+		text-align: center;
+		margin-top: 20px;
+        }
+        
+	.logo>a{
+		font-size: 35px;
+		font-weight: bold;
+        }
+	
+	.text-id, .text-pw, .text-pwcheck, .text-name, .text-gender, .text-email, .text-phone{
+		font-weight: bold;
+	}
+
+	.box-id, .box-pw, .box-pwcheck, .box-name, .box-gender, .box-email, .box-phone{
+	    height: 50px;
+	    margin-top: 10px;
+	    padding: 10px;
+	    margin-bottom: 10px;
+	    background-color: white;
+	    border: rgb(218,218,218) 2px solid;
+	    box-sizing: border-box;
+	}
+	
+	.box-id>input, .box-pw>input, .box-pwcheck>input, .box-name>input, .box-gender #mem_gender, .box-email>input, .box-phone>input {
+		padding: 5px 5px;
+		margin: auto;
+		width: 100%;
+		border: 2px solid rgb(218,218,218);
+		box-sizing: border-box;
+        font-weight: bold;
+	}
+	
+	.box-button button{
+		text-align: center;
+		width: 100%;
+		height: 50px;
+		margin-top: 5px;
+		border: 2px solid rgb(218,218,218);
+		box-sizing: border-box;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.box-id>label{
+    line-height: 28px;
+	}
+	
+	.dup-fail-msg, .dup-suc-msg{
+		color : red;
+		line-height : 16px;
+		margin-bottom : 10px;
+		font-weight: bold;
+	}
+	.dup-suc-msg{
+		color : green;
+	}
+	
+	.display-none{
+		display: none;
+	}
+	
+	label.error {
+		color: red;
+		line-height : 16px;
+		font-size: 12px;
+		font-weight: bold;
+>>>>>>> refs/heads/mypage
 	}	
