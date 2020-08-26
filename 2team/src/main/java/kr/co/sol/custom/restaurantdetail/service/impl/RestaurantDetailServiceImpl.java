@@ -150,19 +150,20 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addClick(int res_no, HttpServletRequest request) {
+
 		HttpSession session = request.getSession();
-		List<Integer> beforeAddClick = new ArrayList<Integer>();
-		if(session.getAttribute("addClick")==null) {
-			beforeAddClick.add(0);
-		session.setAttribute("addClick", beforeAddClick);
-		}
 		List<Integer> addClick = (List<Integer>)session.getAttribute("addClick");
-		if(!addClick.contains(res_no)) {
+		if(addClick==null) {
+			addClick = new ArrayList<Integer>();
 			addClick.add(res_no);
-			session.setAttribute("addClick", addClick);
-			restaurantDetailDao.updateClick(res_no);
+		session.setAttribute("addClick", addClick);
+		} else {
+			if(!addClick.contains(res_no)) {
+				addClick.add(res_no);
+				session.setAttribute("addClick", addClick);
+				restaurantDetailDao.updateClick(res_no);
+			}
 		}
-		
 
 	}
 }
