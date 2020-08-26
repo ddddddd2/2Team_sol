@@ -7,8 +7,8 @@ import kr.co.sol.custom.dto.MenuDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 
 public interface RestaurantService {
-	List<RestaurantDTO> getRestaurants(RestaurantDTO tdto);
-	List<MenuDTO> getMenus(RestaurantDTO tdto);
+	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
+	List<MenuDTO> getMenus(RestaurantDTO resdto);
 	int likeRestaurant(HashMap<String,Integer> hmap);
 	int dislikeRestaurant(HashMap<String,Integer> hmap);
 	int favoriteCheck(HashMap<String,Integer> hmap);

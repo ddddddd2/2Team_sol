@@ -872,22 +872,23 @@
             <div class="header_picture" style="background: none">
                <a>
                	  <c:choose>
-               	  	<c:when test="${tdto.c_no != null}">
-               	  		<c:if test="${tdto.c_no == 1}">
+               	  
+               	  	<c:when test="${resdto.c_no != null}">
+               	  		<c:if test="${resdto.c_no == 1}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=korean food')"></span>
                	  		</c:if>
-               	  		<c:if test="${tdto.c_no == 2}">
+               	  		<c:if test="${resdto.c_no == 2}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=china food')"></span>
                	  		</c:if>
-               	  		<c:if test="${tdto.c_no == 3}">
+               	  		<c:if test="${resdto.c_no == 3}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=japan food')"></span>
                	  		</c:if>
-               	  		<c:if test="${tdto.c_no == 4}">
+               	  		<c:if test="${resdto.c_no == 4}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=snack food')"></span>
                	  		</c:if>
                	  	</c:when>
                	  	
-               	  	<c:when test="${tdto.c_no == null}">
+               	  	<c:when test="${resdto.c_no == null}">
                	  	    <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=none')"></span>
                	  	</c:when>
 
@@ -900,10 +901,10 @@
             <div class="header_details">
             
                <div class="details_inner">
-                  <h2 class="inner_title">${tdto.name}</h2>
+                  <h2 class="inner_title">${resdto.name}</h2>
                   <!-- 헤더의 평점영역 -->
                   <div class="inner_evaluation">
-                     <span class="category_title">${tdto.c_name}</span>
+                     <span class="category_title">${resdto.c_name}</span>
                      
                      <span class="ico_comm ico_dot"></span>
                      
@@ -953,12 +954,12 @@
                   </h4>
                   <div class="location_detail">
                      <span class="txt_address">
-                     	${tdto.address1}
+                     	${resdto.address1}
                      </span>
                      <span class="txt_addrnum">
                        상세주소 
                         <span class="bg_bar"></span>
-                       	${tdto.address2}
+                       	${resdto.address2}
                      </span>
                   </div>
                </div>
@@ -968,7 +969,7 @@
                      <span class="ico_comm ico_operation">운영시간 안내</span>
                   </h4>
                   <div class="location_detail">
-                     <span class="time_operation">${tdto.hour}</span>
+                     <span class="time_operation">${resdto.hour}</span>
                   </div>
                </div>
 
@@ -977,7 +978,7 @@
                      <span class="ico_comm ico_contact">연락처</span>
                   </h4>
                   <div class="location_detail">
-                     <span class="txt_contact">${tdto.tel}</span>
+                     <span class="txt_contact">${resdto.tel}</span>
                      <span class="color_g"> 대표번호</span>
                   </div>
                </div>
@@ -1017,12 +1018,12 @@
          		</c:if>
          		
          		<c:if test="${mlist.size() != 0 }">
-         			<c:forEach var="ndto" items="${mlist}">
+         			<c:forEach var="menudto" items="${mlist}">
          			   
          			    <li class="menu_element">
          					<div class="menu_info">
-         						<span class="menu_name">${ndto.name}</span>
-         						<span class="menu_price">${ndto.price}</span>
+         						<span class="menu_name">${menudto.name}</span>
+         						<span class="menu_price">${menudto.price}</span>
          					</div>
          				</li>
          				
@@ -1041,7 +1042,7 @@
          		<!-- 리뷰폼  -->
          		<form id="review_form" action="/custom/reviewInsert" enctype="multipart/form-data" method="post">
          			<input type="hidden" name="rating" value="" />
-         			<input type="hidden" name="no" value= "${tdto.no}" />
+         			<input type="hidden" name="no" value= "${resdto.no}" />
          			         			
          			<!-- star area -->
          			<!--
@@ -1136,7 +1137,7 @@
          			</c:if>
          		
          			<c:if test="${rlist.size() != 0 }">
-         				<c:forEach var="rdto" items="${rlist}">
+         				<c:forEach var="revdto" items="${rlist}">
          			   
          				<li>
          					<!-- 프로필 -->
@@ -1148,44 +1149,44 @@
          					<div class="star_info">
          						<div class="grade_star">
          							<span class="ico_star star_rate">
-         								<span class="ico_star inner_star" style="width: ${rdto.rating * 20}%;"></span>
+         								<span class="ico_star inner_star" style="width: ${revdto.rating * 20}%;"></span>
          							</span>
          							<span class="num_rate">
-         								${rdto.rating}
+         								${revdto.rating}
          							</span>
          						</div>
          					</div>
          				
-         					<c:if test="${rdto.file1 != null}">
-         						<a href="../upload/${rdto.file1}"  class="link_photo fancybox" data-fancy-group="gallary">
-         							<img src="../upload/${rdto.file1}" class="photo_img" width="78" height="78">
+         					<c:if test="${revdto.file1 != null}">
+         						<a href="../upload/${revdto.file1}"  class="link_photo fancybox" data-fancy-group="gallary">
+         							<img src="../upload/${revdto.file1}" class="photo_img" width="78" height="78">
          						</a>         					
          					</c:if>			
 
          				
          					<!-- content -->
          					<div class="content_info">
-         						<p class="txt_content">${rdto.content}</p>
+         						<p class="txt_content">${revdto.content}</p>
          						
          						<div class="item_content">
          							
-         							<c:if test="${rdto.like_on == 0 }">
-         								<a href="/custom/like?rev_no=${rdto.no}" class="link_like">
+         							<c:if test="${revdto.like_on == 0 }">
+         								<a href="/custom/like?rev_no=${revdto.no}" class="link_like">
          									<span class="ico_comm ico_like"></span>
          									좋아요
          								
-         									<c:if test="${rdto.like_cnt != 0}">
-         										<span class="num_g" style="display: inline-block;">${rdto.like_cnt}</span>
+         									<c:if test="${revdto.like_cnt != 0}">
+         										<span class="num_g" style="display: inline-block;">${revdto.like_cnt}</span>
          									</c:if>
          								</a>
          							</c:if>
-         							<c:if test="${rdto.like_on != 0}">
-         								<a href="/custom/like?rev_no=${rdto.no}" class="link_like like_on">
+         							<c:if test="${revdto.like_on != 0}">
+         								<a href="/custom/like?rev_no=${revdto.no}" class="link_like like_on">
          									<span class="ico_comm ico_like"></span>
          									좋아요
          								
-         									<c:if test="${rdto.like_cnt != 0}">
-         										<span class="num_g" style="display: inline-block;">${rdto.like_cnt}</span>
+         									<c:if test="${revdto.like_cnt != 0}">
+         										<span class="num_g" style="display: inline-block;">${revdto.like_cnt}</span>
          									</c:if> 
          							</a>
          							</c:if>
@@ -1194,11 +1195,11 @@
          						
          							<span class="bg_bar"></span>
          						
-         							<a class="link_user">${rdto.mem_id }</a>
+         							<a class="link_user">${revdto.mem_id }</a>
          						
          							<span class="bg_bar"></span>
          						
-         							<span class="time_write">${rdto.date1 }</span>
+         							<span class="time_write">${revdto.date1 }</span>
          							
          						</div>
          					</div>

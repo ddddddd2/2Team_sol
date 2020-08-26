@@ -95,22 +95,22 @@
 					<td>별점</td>
 				</tr>
 				<c:choose>
-					<c:when test="${rdto.size()==0}">
+					<c:when test="${revdto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${rdto.size()}</td>
+							<td>${revdto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${rdto.size()!=0}">
-							<td colspan="6" style="text-align:right">총 리뷰 수${rdto.size()}</td>
- 						<c:forEach var="rdto" items="${rdto}">
+					<c:when test="${revdto.size()!=0}">
+							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>
+ 						<c:forEach var="revdto" items="${revdto}">
  							<tr> 
- 								<td>${rdto.no}</td>
- 								<td>${rdto.res_no}</td>
-						  		<td>${rdto.mem_no}</td>
-						  		<td>${rdto.mem_id}</td>
-						  		<td>${rdto.date1}</td>
-  								<td>${rdto.rating}</td>
+ 								<td>${revdto.no}</td>
+ 								<td>${revdto.res_no}</td>
+						  		<td>${revdto.mem_no}</td>
+						  		<td>${revdto.mem_id}</td>
+						  		<td>${revdto.date1}</td>
+  								<td>${revdto.rating}</td>
  							</tr>
  						</c:forEach>
  					</c:when>
@@ -237,22 +237,22 @@
 					<td>별점</td>
 				</tr>
 				<c:choose>
-					<c:when test="${rdto.size()==0}">
+					<c:when test="${revdto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${rdto.size()}</td>
+							<td>${revdto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${rdto.size()!=0}">
-							<td colspan="6" style="text-align:right">총 리뷰 수${rdto.size()}</td>
- 						<c:forEach var="rdto" items="${rdto}">
+					<c:when test="${revdto.size()!=0}">
+							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>
+ 						<c:forEach var="revdto" items="${revdto}">
  							<tr> 
- 								<td>${rdto.no}</td>
- 								<td>${rdto.res_no}</td>
-						  		<td>${rdto.mem_no}</td>
-						  		<td>${rdto.mem_id}</td>
-						  		<td>${rdto.date1}</td>
-  								<td>${rdto.rating}</td>
+ 								<td>${revdto.no}</td>
+ 								<td>${revdto.res_no}</td>
+						  		<td>${revdto.mem_no}</td>
+						  		<td>${revdto.mem_id}</td>
+						  		<td>${revdto.date1}</td>
+  								<td>${revdto.rating}</td>
  							</tr>
  						</c:forEach>
  					</c:when>

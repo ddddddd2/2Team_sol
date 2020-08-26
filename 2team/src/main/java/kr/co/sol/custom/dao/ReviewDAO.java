@@ -11,8 +11,8 @@ import kr.co.sol.custom.dto.ReviewDTO;
 
 @Mapper
 public interface ReviewDAO {
-	int reviewInsert(ReviewDTO rdto);
-	Map<String,Object> reviewCountAndAvg(RestaurantDTO tdto);
+	int reviewInsert(ReviewDTO revdto);
+	Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto);
 	List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2);
 	int likeReview(HashMap<String,Integer> hmap);
 	int dislikeReview(HashMap<String,Integer> hmap);

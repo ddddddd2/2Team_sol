@@ -10,8 +10,8 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
 
 public interface ReviewService {
-	int reviewInsert(ReviewDTO rdto , MultipartFile file);
-	Map<String,Object> reviewCountAndAvg(RestaurantDTO tdto);
+	int reviewInsert(ReviewDTO revdto , MultipartFile file);
+	Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto);
 	List<ReviewDTO> getReviews(HashMap<String,Integer> hmap2);
 	int likeReview(HashMap<String,Integer> hmap);
 	int dislikeReview(HashMap<String,Integer> hmap);

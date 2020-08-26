@@ -94,7 +94,7 @@
 	</select>
 
 	<!-- Review -->
-	<select id="getReviewList" parameterType="Integer" resultType="rdto">
+	<select id="getReviewList" parameterType="Integer" resultType="revdto">
 		select 
 			no, res_no, mem_no, mem_id, date1, rating, content 
 		from 

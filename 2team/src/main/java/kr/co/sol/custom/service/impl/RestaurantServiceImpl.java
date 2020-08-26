@@ -18,15 +18,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 	RestaurantDAO restaurantDao;
 	
 	@Override
-	public List<RestaurantDTO> getRestaurants(RestaurantDTO tdto) {
+	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
-		return restaurantDao.getRestaurants(tdto);
+		return restaurantDao.getRestaurants(resdto);
 	}
 
 	@Override
-	public List<MenuDTO> getMenus(RestaurantDTO tdto) {
+	public List<MenuDTO> getMenus(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
-		return restaurantDao.getMenus(tdto);
+		return restaurantDao.getMenus(resdto);
 	}
 
 	@Override

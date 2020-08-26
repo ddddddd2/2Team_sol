@@ -22,7 +22,6 @@
   			role
   		from member
   	</select>
-<<<<<<< HEAD
   	<select id="getMemberInfo" parameterType="String" resultType="mdto">
   		select
 	  		grade_name,
@@ -38,28 +37,6 @@
   		where
   			id = #{id}
   	</select>
-  	<select id="nickCheck" parameterType="String" resultType="Integer">
-  		select count(nick_name) from member where nick_name = #{nick_name}
-  	</select>
-  	
-  	<select id="emailCheck" parameterType="String" resultType="Integer">
-  		select count(email) from member where email = #{email}
-  	</select>
-  	
-  	<update id="updateMember">
-	update member set
-			nick_name = #{nick_name},
-  			phone = #{phone},
-  			passwd = #{passwd},
-  			email = #{email}
-	where not exists
-		(select nick_name, phone, passwd, email
-		from
-			(select nick_name, phone, email
-			from member where id != #{id})
-			where nick_name = #{nick_name} or phone = #{phone} or email =#{email})
-	and id = #{id}
-  	</update>
   	<!-- Booking -->
 	<select id="getBookingList" parameterType="String" resultType="bdto">
 		select 	
@@ -99,7 +76,7 @@
 		 	qna q join member m on q.mem_no = m.no
 		 where
 		 	m.id = #{id}
-=======
+	</select>
   	<select id="nickCheck" parameterType="String" resultType="Integer">
   		select count(nick_name) from member where nick_name = #{nick_name}
   	</select>
@@ -161,7 +138,6 @@
 		 	qna
 		 where
 		 	mem_no = #{mem_no}
->>>>>>> refs/heads/newMaster
 	</select>
 	<!-- Member(메뉴바 쪽에 있는 이름, 회원가입 날짜) -->
 	<select id="getMemberList" resultType="mdto">

@@ -1,7 +1,5 @@
 package kr.co.sol.custom.service.impl;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,32 +20,35 @@ public class ReviewServiceImpl implements ReviewService {
     ReviewDAO reviewDao;
 	
 	@Override
-	public int reviewInsert(ReviewDTO rdto, MultipartFile file) {
+	public int reviewInsert(ReviewDTO revdto, MultipartFile file) {
+//		
+//		String sourceFileName = file.getOriginalFilename();
+//		File destinationFile; 
+//		if (sourceFileName == null || sourceFileName.length()==0) { 
+//		    revdto.setFile1("");
+//		}else {
+//			rdto.setFile1(sourceFileName);
+//			destinationFile = new File(revdto.getPath()+ sourceFileName); 
+//	        destinationFile.getParentFile().mkdirs(); 
+//		    try {
+//				file.transferTo(destinationFile);
+//			} catch (IllegalStateException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				 e.printStackTrace();
+//			}
+//		}
+//	
 		
-		String sourceFileName = file.getOriginalFilename();
-		File destinationFile; 
-		if (sourceFileName == null || sourceFileName.length()==0) { 
-		    rdto.setFile1("");
-		}else {
-			rdto.setFile1(sourceFileName);
-			destinationFile = new File(rdto.getPath()+ sourceFileName); 
-	        destinationFile.getParentFile().mkdirs(); 
-		    try {
-				file.transferTo(destinationFile);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				 e.printStackTrace();
-			}
-		}
+		// ReviewDTO의 file1 은 byte[]로 해야함.
 		
-		return reviewDao.reviewInsert(rdto);
+		return reviewDao.reviewInsert(revdto);
 	}
 
 	@Override
-	public Map<String, Object> reviewCountAndAvg(RestaurantDTO tdto) {
+	public Map<String, Object> reviewCountAndAvg(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
-		return reviewDao.reviewCountAndAvg(tdto);
+		return reviewDao.reviewCountAndAvg(resdto);
 	}
 
 	@Override

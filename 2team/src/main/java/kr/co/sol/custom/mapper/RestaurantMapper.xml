@@ -14,7 +14,7 @@
     	</choose>
     </select>
   	
-  	<select id="getMenus" parameterType="rdto" resultType="ndto">
+  	<select id="getMenus" parameterType="revdto" resultType="menudto">
   		select m.food_no , c_no, name, price 
   		from food f join r_menu m 
   		on f.no = m.food_no 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sol.custom.dao.ReviewDAO">
-	<insert id="reviewInsert" parameterType="rdto">
+	<insert id="reviewInsert" parameterType="revdto">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 	       SELECT NVL(MAX(no),0)+1 no FROM review
       	</selectKey>
@@ -28,7 +28,7 @@
 		where res_no = #{no}
 	</select>
 	
-	<select id="getReviews" parameterType="hashMap" resultType="rdto">
+	<select id="getReviews" parameterType="hashMap" resultType="revdto">
 		
 		<if test="mem_no2 == null">
 			select a.* 

@@ -154,13 +154,10 @@
 		set like_cnt = like_cnt - 1
 		where no = #{rev_no}
 	</update>
-<<<<<<< HEAD
   	<update id="updateClick">
   		update count set
   			count = count + 1
   		where
   			res_no = #{res_no}
   	</update>
-=======
->>>>>>> refs/heads/newMaster
 </mapper>

@@ -33,14 +33,14 @@
 					
 				<p class="review">
 				<c:choose>
-					<c:when test="${rdto.size()==0}">
+					<c:when test="${revdto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${rdto.size()}</td>
+							<td>${revdto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${rdto.size()!=0}">
-						리뷰 ${rdto.size()}
+					<c:when test="${revdto.size()!=0}">
+						리뷰 ${revdto.size()}
  					</c:when>
  				</c:choose>
  				</p>
