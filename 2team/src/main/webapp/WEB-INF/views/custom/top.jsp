@@ -34,6 +34,7 @@
 					</form>
 				</div>
 			</div>
+			<div id="lab">	
 				<ul class="lnb">
 				<c:choose>
 					<c:when test="${idKey == null}">
@@ -57,6 +58,6 @@
 						<li><a href="/myPage">마이페이지</a></li>
 					</c:when>
 				</c:choose>
-			</ul>
+			</ul></div>
 
 		</header><!-- //header -->

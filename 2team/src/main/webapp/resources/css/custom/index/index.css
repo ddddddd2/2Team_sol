@@ -7,45 +7,36 @@
       50%;
    background-size: cover;
 }
-
+#space {
+	width: 60%;
+}
 #space #search {
-<<<<<<< HEAD
-   width:50%;
    display: inline-block;
    line-height: 50px;
-=======
-	width:70%;
-	display: inline-block;
-	line-height: 50px;
-	
->>>>>>> refs/heads/searchmap_sh
+   width:70%;
+   vertical-align: middle;
+   text-align: center;
 }
-<<<<<<< HEAD
-#select {
-   margin:30px 15px;
-=======
 
 #search .select {
 	margin:30px 15px;
->>>>>>> refs/heads/searchmap_sh
 }
 
 #space #search > form > div{
    float:left;
    top:15px;
-   vertical-align: middle
+   margin-left:2%;
+   vertical-align: middle;
 }
 #space #search .search {
-<<<<<<< HEAD
    position: relative;
    background: rgba(255, 255, 255, 0.2);
    border-radius: 30px;
-=======
 	display: inline-block;
 	position: relative;
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 30px;
->>>>>>> refs/heads/searchmap_sh
+	width:50%;
 }
 
 #space #search div input[type=text] {

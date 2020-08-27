@@ -40,11 +40,18 @@ label, input, select {
 	text-align: center;
 }
 
-#header>div {
-	display: inline-block; /* float:left; */
+#logo,#lab {
+	display: inline-block; 
 	line-height: 150px;
-	width: 30%;
+	width: 20%;
+	float:left;
 	vertical-align: middle;
+}
+#space {
+	display: inline-block;
+	line-height: 150px;
+	width:60%;
+	float:left;
 }
 #header #logo > a{
 	line-height: 50px;
@@ -56,7 +63,6 @@ label, input, select {
 	display: inline-block;
 	vertical-align: middle;
 	font-size: 0;
-	margin-left: 150px
 }
 
 #header .lnb>li {

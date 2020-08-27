@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.common.dto.BookingDTO;
-import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.MyActDTO;
 import kr.co.sol.common.dto.QnaDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
