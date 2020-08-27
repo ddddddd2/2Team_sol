@@ -17,53 +17,130 @@
 <head>
 <script>
 $('document').ready(function(){
-	
+
 verifyEmail = function() {
      // 이메일 검증 스크립트 작성
      var emailVal = $("#email").val();
+     var no = ${mdto.no};
      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]){2,9}@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
      // 검증에 사용할 정규식 변수 regExp에 저장
-
-     if (emailVal.match(regExp) != null) {
-       alert('Good!');
-     }
-     else {
-       alert('이메일 형식에 맞지 않습니다.');
+     if (emailVal.match(regExp) != null) { // 형식에 맞는 경우
+		 $.ajax({
+			 // 요청할 녀석들과 관련된 내용 시작 (request 부분), controller로 보내는 애들
+             type : 'post',
+             url : "emailCheck", // requestURL = controller에서 mapping == emailCheck?email=emailVal의값
+             data: { "email" : emailVal, "no" : no},// emailCheck?email=emailval의값&no=no의값
+             dataType : "json",
+             // 요청할 녀석들과 관련된 내용 끝, json Type의 data를 post방식으로 emailCheck url로 controller에 요청(request).
+             
+             // 응답 받은 내용 (response) 
+             success : function(data) {
+                if (data > 0) {
+                	 $('#emailsame').text(''); /*초기화 시켜주고 다시 시켜준다는 의미 */
+                     	$('#emailsame').css('color','red');
+                     	$('#emailsame').text('이미 존재하는 아이디 입니다.');
+                     	$("#email").focus();
+                   } else {
+                	 $('#emailsame').text(''); /*초기화 시켜주고 다시 시켜준다는 의미 */
+                	 	$('#emailsame').css('color','blue');
+                	 	$('#emailsame').text('사용가능한 아이디입니다.');
+                     	$("#email").focus();
+                   }
+             },
+             error : function(data){
+                	   $('#emailsame').text('');
+                	   $('#emailsame').css('color','red');
+                	   $('#emailsame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+             }
+    	 })
+     } else { // 형식에 맞지 않는 경우
+       $('#emailsame').text("이메일 형식에 맞지 않습니다.")
+       $('#emailsame').css('color','red')
      }
    };
    
 verifyPhone = function() {
      // 전화번호 검증 스크립트 작성
      var phoneVal = $("#phone").val();
+     var no = ${mdto.no};
 //      /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
      var regExp = /^[0-9]{4,11}$/
-     // 검증에 사용할 정규식 변수 regExp에 저장
-	alert(phoneVal)
-     if (phoneVal.match(regExp) != null) {
-       $('#phonesame').text("검증 통과")
-       $('#phonesame').css('color','blue')
-     }
-     else {
-       $('#phonesame').text= "번호 형식에 맞지 않습니다."
-       $('#phonesame').css('color','red')
-     }
-};
-
+    	// 검증에 사용할 정규식 변수 regExp에 저장
+         if (phoneVal.match(regExp) != null) { // 형식에 맞는 경우
+    		 $.ajax({
+    			 // 요청할 녀석들과 관련된 내용 시작 (request 부분), controller로 보내는 애들
+                 type : 'post',
+                 url : "phoneCheck", // requestURL = controller에서 mapping == emailCheck?email=emailVal의값
+                 data: { "phone" : phoneVal, "no" : no},
+                 dataType : "json",
+                 // 요청할 녀석들과 관련된 내용 끝, json Type의 data를 post방식으로 emailCheck url로 controller에 요청(request).
+                 
+                 // 응답 받은 내용 (response) 
+                 success : function(data) {
+                    if (data > 0) {
+                           $('#phonesame').text('');
+                           $('#phonesame').css('color','red');
+                           $('#phonesame').text('이미 존재하는 휴대번호입니다.');
+                           $("#phone").focus();
+                       } else {
+                    	   $('#phonesame').text('');
+                    	   $('#phonesame').css('color','blue');
+                    	   $('#phonesame').text('사용가능한 휴대번호입니다.');
+                           $("#phone").focus();
+                       }
+                 },
+                 error : function(data){
+                    	   $('#phonesame').text('');
+                    	   $('#phonesame').css('color','red');
+                    	   $('#phonesame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+                 }
+        	 })
+         } else { // 형식에 맞지 않는 경우
+           $('#phonesame').text("휴대번호 형식에 맞지 않습니다.")
+           $('#phonesame').css('color','red')
+         }
+       };
 
  verifyName = function() {
      // 닉네임 검증 스크립트 작성
-     var nameVal = $("#nick_name").val();
-//      /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/; 
+     var nick_nameVal = $("#nick_name").val();
+	 var no = ${mdto.no};
      var regExp = /^[가-힣A-Za-z0-9]{2,10}$/
      // 검증에 사용할 정규식 변수 regExp에 저장
-
-     if (nameVal.match(regExp) != null) {
-       alert('Good!');
-     }
-     else {
-       alert('Error');
-     }
-}; 
+         if (nick_nameVal.match(regExp) != null) { // 형식에 맞는 경우
+    		 $.ajax({
+    			 // 요청할 녀석들과 관련된 내용 시작 (request 부분), controller로 보내는 애들
+                 type : 'post',
+                 url : "nick_nameCheck", // requestURL = controller에서 mapping == emailCheck?email=emailVal의값
+                 data: { "nick_name" : nick_nameVal, "no" : no},
+                 dataType : "json",
+                 // 요청할 녀석들과 관련된 내용 끝, json Type의 data를 post방식으로 emailCheck url로 controller에 요청(request).
+                 
+                 // 응답 받은 내용 (response) 
+                 success : function(data) {
+                    if (data > 0) {
+                           $('#nick_namesame').text('');
+                           $('#nick_namesame').css('color','red');
+                           $('#nick_namesame').text('이미 존재하는 닉네임입니다.');
+                           $("#nick_name").focus();
+                       } else {
+                    	   $('#nick_namesame').text('');
+                    	   $('#nick_namesame').css('color','blue');
+                    	   $('#nick_namesame').text('사용가능한 닉네임입니다.');
+                           $("#nick_name").focus();
+                       }
+                 },
+                 error : function(data){
+                    	   $('#nick_namesame').text('');
+                    	   $('#nick_namesame').css('color','red');
+                    	   $('#nick_namesame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+                 }
+        	 })
+         } else { // 형식에 맞지 않는 경우
+           $('#nick_namesame').text("닉네임 형식에 맞지 않습니다.")
+           $('#nick_namesame').css('color','red')
+         }
+       };
 
 isSame = function() {   
    // document.폼네임.해당요소네임
@@ -120,7 +197,8 @@ isSame = function() {
                <p id="owenoback">
                   	한글 1~10자, 영문 대소문자 2~20자 
                   <br/>숫자를 사용할 수 있습니다.(혼용가능)
-                  <br/>중복되지 않은 별명으로 변경해주세요.
+                  <br/>중복되지 않은 별명으로 변경해주세요.<br/>
+                  <span id="nick_namesame"></span>
                </p>
          </div>
          <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
@@ -130,6 +208,7 @@ isSame = function() {
                <p id="owenoback">
                   <input id = "email" type="text" name="email" size="10" value="${mdto.email}">
                   <button type="button" onclick="verifyEmail()" >중복 확인</button>
+                  <span id="emailsame"></span>
                </p>
          </div>
          <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
@@ -137,8 +216,8 @@ isSame = function() {
          </div>   
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-               <input id = "phone" type="text" name="phoneNumber" size="20" value="${mdto.phone}">
-               <label id="phone_check"></label>
+               <input id = "phone" type="text" name="phone" size="20" value="${mdto.phone}">
+<!--                <label id="phone_check"></label> -->
                <button type="button" onClick="verifyPhone()">중복 체크</button>
                <span id="phonesame"></span>
                </p>

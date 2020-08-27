@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.MyAct;
+import kr.co.sol.custom.dto.MyActDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -24,7 +24,6 @@ public interface MemberService {
 	List<MemberDTO> getMember();
 //	Update
 	int nickCheck(String nick_name);
-	int emailCheck(String email);
 	//Review
 	List<ReviewDTO> getReviewList(Integer id);
 	//Qna
@@ -39,4 +38,8 @@ public interface MemberService {
 	MemberDTO getMemberInfo(int no);
 	int updateMember(String nick_name, String phone, String passwd, String id, String email);
 	void getMyAct(Integer no, Model model);
+	int emailCheck(String email, int no);
+	int nick_nameCheck(String nick_name, int no);
+//	int emailCheck(MemberDTO mdto);
+	int phoneCheck(String phone, int no);
 }

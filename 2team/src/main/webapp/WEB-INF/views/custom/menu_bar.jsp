@@ -13,63 +13,65 @@
 			
 			<table>
 					<tr>
-						<td>${mdto.name}</td>	<!-- list.get(0) => mdto 객체 하나  -->
+						<td>이 름: ${mdto.name}</td>	<!-- list.get(0) => mdto 객체 하나  -->
 					</tr>
 					<tr>
-						<td>${mdto.createdate}</td>
+						<td>가입일: ${mdto.createdate}</td>
 					</tr>
 					<tr>
-						<td>${mdto.grade_name}</td>
+						<td>회원 등급: ${mdto.grade_name}</td>
 					</tr>
 					<tr>
 						<td><button>사진 변경</button></td>
 					</tr>
 			</table>
 
-			
 			</div>
 			<div id="my3" style="float: left; width: 32%; height: 200px;">
 				<br>
 					
 				<p class="review">
-				<c:choose>
-					<c:when test="${rdto.size()==0}">
+				리뷰: ${myAct.rcnt} <!-- MyAct.rcnt (x) -->
+				
+				<%-- <c:choose>
+					<c:when test="${madto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${rdto.size()}</td>
+							<td>${madto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${rdto.size()!=0}">
-						리뷰 ${rdto.size()}
+					<c:when test="${madto.size()!=0}">
+						리뷰 ${madto.size()}
  					</c:when>
- 				</c:choose>
+ 				</c:choose> --%>
  				</p>
 				<p class="favorites">
-				<c:choose>
-					<c:when test="${fdto.size()==0}">
+				즐겨찾기: ${myAct.fcnt}
+				<%-- <c:choose>
+					<c:when test="${{madto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${fdto.size()}</td>
+							<td>${madto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${fdto.size()!=0}">
-						찜한매장 ${fdto.size()}
+					<c:when test="${madto.size()!=0}">
+						찜한매장 ${madto.size()}
  					</c:when>
- 				</c:choose>
+ 				</c:choose> --%>
 				<p class="booking">
-				<c:choose>
-					<c:when test="${bdto.size()==0}">
+				예약: ${myAct.bcnt}
+				<%-- <c:choose>
+					<c:when test="${madto.size()==0}">
 						<tr>
 							<td colspan="2">사이즈가 0일 때</td>
-							<td>${bdto.size()}</td>
+							<td>${madto.size()}</td>
 						</tr>
 					</c:when>
-					<c:when test="${bdto.size()!=0}">
-						예약횟수 ${bdto.size()}
+					<c:when test="${madto.size()!=0}">
+						예약횟수 ${madto.size()}
  					</c:when>
- 				</c:choose>
- 				</p>
-
-			</div>
-		</div><!-- -----------------첫 번째 큰 단락 div 끝 -------------------->
+ 				</c:choose> --%>
+ 			</p>
+		</div>
+	</div><!-- -----------------첫 번째 큰 단락 div 끝 -------------------->
 </div>

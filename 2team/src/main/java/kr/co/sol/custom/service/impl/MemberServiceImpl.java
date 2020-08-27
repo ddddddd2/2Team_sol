@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import kr.co.sol.custom.dao.MemberDAO;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.MyAct;
+import kr.co.sol.custom.dto.MyActDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -67,11 +67,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.nickCheck(nick_name);
 	}
 
-	@Override
-	public int emailCheck(String email) {
-		// TODO Auto-generated method stub
-		return memberDao.emailCheck(email);
-	}
+
 	
 //	Review
 	@Override
@@ -116,9 +112,31 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getMyAct(Integer no, Model model) {
-		MyAct myAct = memberDao.getMyAct(no);
+		System.out.println("no::::"+no);
+		MyActDTO myAct = memberDao.getMyAct(no);
 		model.addAttribute("myAct", myAct);
+		System.out.println("serviceImpl::"+myAct);
+	}
+	
+//	@Override
+//	public int emailCheck(MemberDTO mdto) {
+//		// TODO Auto-generated method stub
+//		return memberDao.emailCheck(mdto);
+//	}
+	
+	@Override
+	public int emailCheck(String email, int no) {
+		return memberDao.emailCheck(email, no);
 	}
 
+	@Override
+	public int nick_nameCheck(String nick_name, int no) {
+		return memberDao.nick_nameCheck(nick_name, no);
+	}
 
+	@Override
+	public int phoneCheck(String phone, int no) {
+		// TODO Auto-generated method stub
+		return memberDao.phoneCheck(phone, no);
+	}
 }

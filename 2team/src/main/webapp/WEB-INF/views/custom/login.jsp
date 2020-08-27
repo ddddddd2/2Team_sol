@@ -23,10 +23,13 @@ $(document).ready(function(){
 			dataType:"JSON",
 			success : function(data){
 				switch(data){
-				case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
-				case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
-				case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
+					case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
+					case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
+					case 2 : document.location.href="/"; break;
 				}
+			},
+			error : function(data){
+				alert("로그인 에러. 관리자 문의 요망");
 			}
 		})
 	})

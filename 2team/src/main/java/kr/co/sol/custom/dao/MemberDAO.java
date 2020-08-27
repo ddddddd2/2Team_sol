@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.MyAct;
+import kr.co.sol.custom.dto.MyActDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -25,7 +25,6 @@ public interface MemberDAO {
 	// 회원 번호로 해당 회원 정보 수정
 	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("id") String id, @Param("email") String email);
 	int nickCheck(String nick_name);
-	int emailCheck(String email);
 ////	FavoriteDAO
 	List<RestaurantDTO> getFavoriteList(Integer id);
 //  BookingDAO
@@ -38,7 +37,11 @@ public interface MemberDAO {
 	List<RestaurantDTO> getRestaurantList(Integer id);
 	//Restaurant
 	MemberDTO getMemberList(Integer id);
-	MyAct getMyAct(Integer no);
+	MyActDTO getMyAct(Integer no);
+	int emailCheck(@Param(value = "email") String email, @Param(value="no") int no);
+//	int emailCheck(MemberDTO mdto);
+	int nick_nameCheck(@Param(value = "nick_name") String nick_name, @Param(value="no") int no);
+	int phoneCheck(@Param(value = "phone") String phone, @Param(value="no") int no);
 	
 	
 

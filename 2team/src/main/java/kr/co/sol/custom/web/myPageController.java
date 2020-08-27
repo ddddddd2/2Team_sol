@@ -19,19 +19,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.MyAct;
+import kr.co.sol.custom.dto.MyActDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
 import kr.co.sol.custom.service.MemberService;
 
 @Controller
-public class MemberController {
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+public class myPageController {
+	private static final Logger logger = LoggerFactory.getLogger(myPageController.class);
 	
 	@Autowired
 	MemberService memberService;
@@ -57,7 +58,7 @@ public class MemberController {
 	
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
-		mdto = memberService.loginPro(mdto);
+		mdto = memberService.loginPro(mdto);// 로그인 페이지에서 가져온 id, pw와 일치하는 사용자가 있는지 확인.
 		System.out.println("loginPro-mdto::"+mdto);
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
@@ -174,24 +175,24 @@ public class MemberController {
 			map.put("cnt", cnt);
 			return map;
 		}
-		
-		// email check ajax process 
-		@RequestMapping(value = "/emailCheck")
-		@ResponseBody()
-		public Map<String,Object> emailCheck(@RequestBody String email, MemberDTO mdto) throws UnsupportedEncodingException {
-			int cnt = 0;
-			email = URLDecoder.decode(email);
-			email = email.substring(6);
-			System.out.println(email);
-			if(email != null)
-			{
-				cnt = memberService.emailCheck(email);
-				System.out.println("널입니다");
-			}
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("cnt", cnt);
-			return map;
-		}
+//		
+//		// email check ajax process 
+//		@RequestMapping(value = "/emailCheck")
+//		@ResponseBody()
+//		public Map<String,Object> emailCheck(@RequestBody String email, MemberDTO mdto) throws UnsupportedEncodingException {
+//			int cnt = 0;
+//			email = URLDecoder.decode(email);
+//			email = email.substring(6);
+//			System.out.println(email);
+//			if(email != null)
+//			{
+//				cnt = memberService.emailCheck(email, mdto.getNo());
+//				System.out.println("널입니다");
+//			}
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("cnt", cnt);
+//			return map;
+//		}
 		
 		
 		// mypage
@@ -205,6 +206,9 @@ public class MemberController {
 			} else {
 			mdto.setEmail("rlejrrlejr@gmail.com");
 			memberService.getMyAct(no, model);
+			//MyActDTO myActDto = memberService.getMyAct(no);
+			//model.addAttribute("myAct",myActDto);
+			
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = memberService.getBookingList(no); 
 			model.addAttribute("bdto", bdto2);
@@ -230,14 +234,18 @@ public class MemberController {
 //		수정 전 정보 가져오기
 		@RequestMapping("/updateInfo")
 		public String updateInfo(HttpServletRequest request, HttpServletResponse response, Model model, MemberDTO mdto) {
-			
 			HttpSession session = request.getSession();
-			int no = (int) session.getAttribute("idKey");
-			System.out.println("세션 아이디"+no);
+			Integer no = (Integer) session.getAttribute("idKey");
+			if(no==null) {
+				return "/custom/index";
+			} else {
 			model.addAttribute("id", no);
 			MemberDTO mdto2 = memberService.getMemberInfo(no);
 			session.setAttribute("mdto", mdto2);
-//			System.out.println(mdto2.getNick_name());
+			MemberDTO mdto3 = memberService.getMemberList(no); 
+			model.addAttribute("mdto", mdto3);
+			memberService.getMyAct(no, model);
+			} 
 			return "/custom/updateInfo";
 		}
 		
@@ -275,11 +283,14 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			System.out.println(session.getAttribute("idKey"));
 			Integer no = (Integer)session.getAttribute("idKey");
+			memberService.getMyAct(no, model);
 //			System.out.println("id="+no);
 //			System.out.println("rdto="+rdto);
 			List<ReviewDTO> rdto2 = memberService.getReviewList(no);
 			model.addAttribute("rdto",rdto2);
-			memberService.setMyAct(no, model);
+			MemberDTO mdto3 = memberService.getMemberList(no); 
+			model.addAttribute("mdto", mdto3);
+			memberService.getMyAct(no, model);
 			System.out.println(rdto2);
 			return "/custom/myPageReview";
 		}
@@ -290,6 +301,9 @@ public class MemberController {
 		public String getQnaList(HttpServletRequest request, HttpServletResponse response, Model model, QnaDTO qdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
+			MemberDTO mdto3 = memberService.getMemberList(no); 
+			model.addAttribute("mdto", mdto3);
+			memberService.getMyAct(no, model);
 			List<QnaDTO> qdto2 = memberService.getQnaList(no);  
 			model.addAttribute("qdto", qdto2);
 			System.out.println(qdto2);
@@ -302,6 +316,9 @@ public class MemberController {
 		public String myPageFavorite(HttpServletRequest request, HttpServletResponse response, Model model) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
+			MemberDTO mdto3 = memberService.getMemberList(no); /* member_bar 이름 가입일 회원가입 부분 */ 
+			model.addAttribute("mdto", mdto3);
+			memberService.getMyAct(no, model); /* member_bar 리뷰 즐겨찾기 예약 부분 */
 			List<RestaurantDTO> resdto2 = memberService.getFavoriteList(no);
 			model.addAttribute("resdto", resdto2); 
 			return "/custom/myPageFavorite";
@@ -324,10 +341,51 @@ public class MemberController {
 		public String myPageBooking(HttpServletRequest request, HttpServletResponse response, Model model, BookingDTO bdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<BookingDTO> bdto2 = memberService.getBookingList(no); 
+			List<BookingDTO> bdto2 = memberService.getBookingList(no);
+			MemberDTO mdto3 = memberService.getMemberList(no); 
+			model.addAttribute("mdto", mdto3);
+			memberService.getMyAct(no, model);
 			model.addAttribute("bdto", bdto2);
 			return "/custom/myPageBooking";
 		}
 	
-	
+//		@PostMapping("emailCheck")
+//		public @ResponseBody int emailCheck(MemberDTO mdto) {
+//			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
+//			System.out.println(mdto+"dddddddd");
+//			int r = memberService.emailCheck(mdto);
+//			// r == 0 이면 중복되는 email이 없다
+//			// r  > 0 이면 중복되는 email이 있다
+//			return r;
+//		}
+		@PostMapping("emailCheck")
+		public @ResponseBody int emailCheck(@RequestParam("email") String email, @RequestParam("no") int no) {
+			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
+			System.out.println("email:::"+email);
+			System.out.println("email2:::"+no);
+			int r = memberService.emailCheck(email, no);
+			System.out.println("rrrrrrrrrrrrrr"+r);
+			// r == 0 이면 중복되는 email이 없다
+			// r > 0 이면 중복되는 email이 있다.
+			return r;
+		}
+		@PostMapping("nick_nameCheck")
+		public @ResponseBody int nick_nameCheck(@RequestParam("nick_name") String nick_name, @RequestParam("no") int no) {
+			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
+			int r = memberService.nick_nameCheck(nick_name, no);
+			// r == 0 이면 중복되는 email이 없다
+			// r > 0 이면 중복되는 email이 있다.
+			return r;
+		}
+		@PostMapping("phoneCheck")
+		public @ResponseBody int phoneCheck(@RequestParam("phone") String phone, @RequestParam("no") int no) {
+			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
+			System.out.println("phone11"+phone);
+			System.out.println("phone22"+no);
+			int r = memberService.phoneCheck(phone, no);
+			System.out.println("phonerrrr"+r);
+			// r == 0 이면 중복되는 email이 없다
+			// r > 0 이면 중복되는 email이 있다.
+			return r;
+		}
 }

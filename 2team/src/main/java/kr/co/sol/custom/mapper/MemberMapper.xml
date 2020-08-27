@@ -61,12 +61,16 @@
   		where
   			id = #{id}
   	</select>
-  	<select id="nickCheck" parameterType="String" resultType="Integer">
-  		select count(nick_name) from member where nick_name = #{nick_name}
+  	<select id="nick_nameCheck" resultType="Integer">
+  		select count(nick_name) from member where nick_name = #{nick_name} and no != #{no}
   	</select>
   	
-  	<select id="emailCheck" parameterType="String" resultType="Integer">
-  		select count(email) from member where email = #{email}
+  	<select id="emailCheck" resultType="int">
+  		select count(email) from member where email = #{email} and no != #{no}
+  	</select>
+  	
+  	<select id="phoneCheck" resultType="int">
+  		select count(phone) from member where phone = #{phone} and no != #{no}
   	</select>
   	
   	<update id="updateMember">
@@ -118,7 +122,7 @@
 	<select id="getQnaList" parameterType="Integer" resultType="qdto">
 		select 	
 			no, mem_no, subject, contents, createdate, qnatype
-		 from 
+		 from
 		 	qna
 		 where
 		 	mem_no = #{no}
@@ -132,9 +136,9 @@
 		where
 			no = #{no}
 	</select>
-	<select id="getMyAct" parameterType="Integer" resultType="kr.co.sol.custom.dto.MyAct">
-		select count(distinct f.res_no) fcnt, count(distinct b.no) bcnt, count(distinct r.no)  rcnt
-		from member m join favorites f on m.no = f.mem_no and m.no = #{no}
-			join review r on f.mem_no = r.mem_no join booking b on r.mem_no = b.mem_no
+	<select id="getMyAct" parameterType="Integer" resultType="kr.co.sol.custom.dto.MyActDTO">
+		select count(distinct r.no) rcnt, count(distinct b.no) bcnt, count(distinct f.res_no) fcnt from member m left outer join review r on m.no = r.mem_no
+        left outer join booking b on m.no = b.mem_no left outer join favorites f on m.no = f.mem_no
+        where m.no = #{no}
 	</select>
 </mapper>

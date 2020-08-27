@@ -46,7 +46,6 @@
 					<c:forEach var="resdto" items="${resdto}">
 						<tr>
 							<td>${resdto.name}</td>
-							<td>${resdto.address1}</td>
 						</tr>
 					</c:forEach>
 				</c:when>
