@@ -167,13 +167,23 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/reg_storePro", method ={RequestMethod.GET,RequestMethod.POST})
-	public @ResponseBody String reg_storePro(RestaurantDTO rdto, @RequestParam(value="fileName", required=false) MultipartFile fileName, Model model) {
-			try {
-				fileName.transferTo(new File("${path}/"+fileName.getOriginalFilename()));
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
+	public String reg_storePro(RestaurantDTO rdto, @RequestParam(value="fileName", required=false) MultipartFile file, Model model) {
+		String sourceFileName = file.getOriginalFilename();
+		File destinationFile; 
+		if (sourceFileName == null || sourceFileName.length()==0) { 
+			return "admin/reg_store";
+		}else {
+			destinationFile = new File("res_no_"+rdto.getNo()+"jpg"); 
+	        
+			destinationFile.getParentFile().mkdirs(); 
+		    try {
+				file.transferTo(destinationFile);
+			} catch (IllegalStateException e) {
 				e.printStackTrace();
-			} 
+			} catch (IOException e) {
+				 e.printStackTrace();
+			}
+		}
 		return "redirect:admin/store_manage";
 	}
 	
