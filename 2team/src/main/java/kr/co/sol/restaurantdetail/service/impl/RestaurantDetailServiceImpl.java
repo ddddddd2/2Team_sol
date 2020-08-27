@@ -25,7 +25,6 @@ import kr.co.sol.restaurantdetail.service.RestaurantDetailService;
 public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 	@Autowired
 	RestaurantDetailDAO restaurantDetailDao;
-	
     
 	@Override
 	public int idCheck(String id) {

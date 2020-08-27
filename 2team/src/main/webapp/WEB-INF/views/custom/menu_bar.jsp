@@ -3,74 +3,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <div id="menuBar" style="width: 100%; height: 200px;">
-	<div id="myActivity" style="background-color: pink; width: 10%; height: 40px;"><a href="/myPage">나의 활동</a></div>
-		<div id="mymy" style="width: 50%; height: 200px;"><!-- 첫 번째 큰 단락 div 시작 -->
-			<div id="my1" style="float: left; width: 32%; height: 200px;">
-				
-				<img src="../resources/image/custom/businessman.png" width="100%" height="80%">
-			</div>
-			<div id="my2" style="float: left; width: 32%; height: 200px;">
+	<div id="myActivity" style="background-color: pink; width: 14%; height: 40px; margin-left:2%; float:left;"><a href="/myPage">나의 활동</a></div>
+	<div id="mymy" style="width: 80%; height: 150px; margin-left: 20%"><!-- 첫 번째 큰 단락 div 시작 -->
+			<div id="my1" style="float: left; width: 32%; height: 100%">
+				<img src="../resources/image/custom/businessman.png" height="80%" style="margin: 20px;"></div>
+			<div id="my2" style="float: left; width: 32%; height: 100%">
 			
 			<table>
 					<tr>
-						<td>이 름: ${mdto.name}</td>	<!-- list.get(0) => mdto 객체 하나  -->
+						<td style="padding-top:20px">이 름 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${mdto.name}</td>	<!-- list.get(0) => mdto 객체 하나  -->
 					</tr>
 					<tr>
-						<td>가입일: ${mdto.createdate}</td>
+						<td style="padding-top:5px">가입일  &nbsp;&nbsp;&nbsp; : ${fn:substring(mdto.createdate,0,10)}</td>
 					</tr>
 					<tr>
-						<td>회원 등급: ${mdto.grade_name}</td>
+						<td style="padding-top:5px">회원 등급 : ${mdto.grade_name}</td>
 					</tr>
 					<tr>
-						<td><button>사진 변경</button></td>
+						<td style="padding-top:20px"><button>프로필 사진 변경</button></td>
 					</tr>
 			</table>
 
 			</div>
-			<div id="my3" style="float: left; width: 32%; height: 200px;">
-				<br>
-					
-				<p class="review">
-				리뷰: ${myAct.rcnt} <!-- MyAct.rcnt (x) -->
-				
-				<%-- <c:choose>
-					<c:when test="${madto.size()==0}">
-						<tr>
-							<td colspan="2">사이즈가 0일 때</td>
-							<td>${madto.size()}</td>
-						</tr>
-					</c:when>
-					<c:when test="${madto.size()!=0}">
-						리뷰 ${madto.size()}
- 					</c:when>
- 				</c:choose> --%>
+			<div id="my3" style="float: left; width: 32%; height: 100%;">
+				<p class="review"  style="padding-top:20px">
+				리뷰: ${myAct.rcnt} 
  				</p>
-				<p class="favorites">
+				<p class="favorites" style="padding-top:5px">
 				즐겨찾기: ${myAct.fcnt}
-				<%-- <c:choose>
-					<c:when test="${{madto.size()==0}">
-						<tr>
-							<td colspan="2">사이즈가 0일 때</td>
-							<td>${madto.size()}</td>
-						</tr>
-					</c:when>
-					<c:when test="${madto.size()!=0}">
-						찜한매장 ${madto.size()}
- 					</c:when>
- 				</c:choose> --%>
-				<p class="booking">
+				<p class="booking" style="padding-top:5px">
 				예약: ${myAct.bcnt}
-				<%-- <c:choose>
-					<c:when test="${madto.size()==0}">
-						<tr>
-							<td colspan="2">사이즈가 0일 때</td>
-							<td>${madto.size()}</td>
-						</tr>
-					</c:when>
-					<c:when test="${madto.size()!=0}">
-						예약횟수 ${madto.size()}
- 					</c:when>
- 				</c:choose> --%>
  			</p>
 		</div>
 	</div><!-- -----------------첫 번째 큰 단락 div 끝 -------------------->

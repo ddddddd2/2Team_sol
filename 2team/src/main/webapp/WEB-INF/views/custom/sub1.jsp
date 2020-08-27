@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
+<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
 
 <style type="text/css">
@@ -149,6 +153,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 
 
 	<!-- top 영역 시작-->
+	<c:import url="top.jsp"/>
 	<!-- top 영역 끝 -->
 	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
 	<input type="text" id="category1" name="category" value="${category}"/>
@@ -312,7 +317,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 				<ul class="slide_pagination"></ul>
 				</div>
 				<!-- 	content 끝 -->
-
+				<c:import url="bottom.jsp"/>
 			</div>
 			<!-- // .slide_list -->
 	
