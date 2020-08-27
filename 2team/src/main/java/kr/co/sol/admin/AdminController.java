@@ -40,7 +40,7 @@ public class AdminController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
+	@RequestMapping(value="/admin/login",method= {RequestMethod.POST,RequestMethod.GET})
 	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
 		HttpSession session = request.getSession();
 		if(id!=null && passwd !=null) {

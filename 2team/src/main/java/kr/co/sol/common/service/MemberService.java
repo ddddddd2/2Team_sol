@@ -13,7 +13,7 @@ public interface MemberService {
   // 세션 처리
     Integer getIdKey(HttpServletRequest request);
   // 가입  처리
-	
+    
 	int idCheck(String id);
 	int nickCheck(String nick_name);
 	int emailCheck(String email);

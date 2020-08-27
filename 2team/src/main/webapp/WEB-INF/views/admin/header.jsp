@@ -4,7 +4,7 @@
 <div style="height:30px"><a href="/">관리자 페이지</a>
 <c:choose>
 	<c:when test="${mdto.role==null || str.trim().equals('')}">
-	<input type="button" value="로그인" onclick="document.location.href='/login'" />
+	<input type="button" value="로그인" onclick="document.location.href='/admin/login'" />
 	
 	</c:when>
 	<c:when test="${mdto.role=='admin'}">

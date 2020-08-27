@@ -58,8 +58,11 @@ public class CommonController {
 		session.setAttribute("mdto", mdto);
 		session.setAttribute("idKey", mdto.getNo());
 		if("admin".equals(mdto.getRole())) {
+			System.out.println("어드민입니다");
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
+		
+		System.out.println("유저입니다");
 		return 2;
 	}
 

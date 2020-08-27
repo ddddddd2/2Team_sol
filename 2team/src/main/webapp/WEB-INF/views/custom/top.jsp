@@ -38,23 +38,17 @@
 				<ul class="lnb">
 				<c:choose>
 					<c:when test="${idKey == null}">
-						<li class="select_list"><a href="/custom/login" class="selected">로그인</a>
-							<ul class="select_sub">
-								<li><a href="#">뭐나옴??</a></li>
-								<li><a href="#">뭐나옴??</a></li>
-							</ul>
+						<li class="select_list">
+							<a href="/custom/login" class="selected">로그인</a>
 						</li>
-						<li><a href="/custom/signUp">회원가입</a></li>
+						<li>
+							<a href="/custom/signUp">회원가입</a>
+						</li>
 					</c:when>
 					<c:when test="${idKey != null}">
 						<li class="select_list">
 							<a href="/logout" class="selected">로그아웃</a>
-							<ul class="select_sub">
-								<li><a href="#">뭐나옴??</a></li>
-								<li><a href="#">뭐나옴??</a></li>
-							</ul>
 						</li>
-
 						<li><a href="/myPage">마이페이지</a></li>
 					</c:when>
 				</c:choose>

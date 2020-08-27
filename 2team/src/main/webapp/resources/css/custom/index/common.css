@@ -30,26 +30,26 @@ label, input, select {
 /* header */
 #header {
 	background-color: black;
-	position: absolute;
+/* 	position: absolute; */
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 200;
 	box-sizing: border-box;
-	height: 150px;
+	height: 100px;
 	text-align: center;
 }
 
 #logo,#lab {
 	display: inline-block; 
-	line-height: 150px;
+	line-height: 100px;
 	width: 20%;
 	float:left;
 	vertical-align: middle;
 }
 #space {
 	display: inline-block;
-	line-height: 150px;
+	line-height: 100px;
 	width:60%;
 	float:left;
 }

@@ -12,15 +12,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
-	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
 <div>
-	<jsp:include page="header_bar.jsp" />
+	<jsp:include page="top.jsp" />
 </div>
 <div>
 	<jsp:include page="menu_bar.jsp" />

@@ -37,7 +37,6 @@
 		</ul>
 	</div>  
 	
-	
 	<div id="wrap">
 		
 			<c:import url="top.jsp"/>
