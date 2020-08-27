@@ -13,7 +13,7 @@ import kr.co.sol.common.dao.MemberDAO;
 import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.service.MemberService;
 
-@Service("kr.co.sol.custom.common.service.MemberService")
+@Service("kr.co.sol.common.service.MemberService")
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
@@ -40,6 +40,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDTO loginPro(MemberDTO mdto) {
+		
 		return memberDao.loginPro(mdto);
 	}
 

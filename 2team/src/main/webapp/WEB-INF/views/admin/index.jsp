@@ -34,9 +34,9 @@ function loginCk(e){
 			dataType:"JSON",
 			success : function(data){
 				switch(data){
-					case 0 : alert("로그인 실패. 아이디 비밀번호가 맞지 않습니다.");
-					case 1 : alert("어드민 계정 맞음ㅇㅇ"); document.getElementById("form").innerHTML("${mdto.name}님의 월급일은 4일 남았습니다.")
-					case 2 : alert("유저 아이딘데? 너 누구야");
+					case 0 : alert("로그인 실패. 아이디 비밀번호가 맞지 않습니다."); break;
+					case 1 : alert("어드민 계정 맞음ㅇㅇ"); document.getElementById("form").innerHTML("${mdto.name}님의 월급일은 4일 남았습니다."); break;
+					case 2 : alert("유저 아이딘데? 너 누구야");break;
 				}		
 			},
 			error : function(){

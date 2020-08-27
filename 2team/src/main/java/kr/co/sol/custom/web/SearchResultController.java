@@ -24,7 +24,6 @@ public class SearchResultController {
 		
 		List<RestaurantDTO> resdto2 = restaurantService.getRestaurants(resdto);		
 		model.addAttribute("resdto",resdto2);
-		System.out.println(resdto2);
 		return "/custom/sub1";
 	}
 	

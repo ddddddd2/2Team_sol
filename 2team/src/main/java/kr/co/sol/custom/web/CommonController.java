@@ -45,12 +45,10 @@ public class CommonController {
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
 		SecurityUtil securityUtil = new SecurityUtil();
-		System.out.println("로그인시비밀번호:"+mdto.getPasswd());
 		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
 		mdto.setPasswd(passwd);
-		System.out.println(passwd);
-		System.out.println("로그인시비밀번호2차암호화:"+mdto.getPasswd());
 		mdto = memberService.loginPro(mdto);
+		
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
 		}
@@ -82,7 +80,9 @@ public class CommonController {
 	@RequestMapping(value="/custom/signUpProc")
 	public String memSignUpProc(HttpServletRequest request, Model model, HttpServletResponse response,
 			MemberDTO mdto) {
-				
+		SecurityUtil securityUtil = new SecurityUtil();
+		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
+		mdto.setPasswd(passwd);		
 		int r = memberService.signUpProc(mdto);
 		String url = "/";
 		if(r > 0 )

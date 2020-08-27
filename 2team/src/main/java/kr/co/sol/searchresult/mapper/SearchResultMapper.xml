@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.sol.custom.searchresult.dao.SearchResultDAO">
+<mapper namespace="kr.co.sol.searchresult.dao.SearchResultDAO">
     
     <select id="getRestaurants" parameterType="resdto" resultType="resdto">
     	select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour 

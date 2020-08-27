@@ -44,7 +44,6 @@ public class myPageController {
 		@RequestMapping(value = "/idCheck")
 		@ResponseBody()
 		public Map<String,Object> idCheck(@RequestBody String id, MemberDTO mdto) {
-			System.out.println("아이디 체크 시작");
 			int cnt = 0;
 			if(id != null)
 			{
@@ -82,7 +81,6 @@ public class myPageController {
 //			if(email != null)
 //			{
 //				cnt = memberService.emailCheck(email, mdto.getNo());
-//				System.out.println("널입니다");
 //			}
 //			Map<String, Object> map = new HashMap<String, Object>();
 //			map.put("cnt", cnt);
@@ -99,10 +97,7 @@ public class myPageController {
 			if(no == null) {
 				return "/custom/login";
 			} else {
-			mdto.setEmail("rlejrrlejr@gmail.com");
 			mypageService.getMyAct(no, model);
-			//MyActDTO myActDto = memberService.getMyAct(no);
-			//model.addAttribute("myAct",myActDto);
 			
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
@@ -113,7 +108,6 @@ public class myPageController {
 //			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("fdto", fdto2); 
-			System.out.println(fdto2);
 			//session.setAttribute("mdto", mdto2);
 			// 문의 조회하는 메소드
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
@@ -158,10 +152,8 @@ public class myPageController {
 			String msg=null;
 			if(r!=0) {
 				msg = "수정 완료";
-				System.out.println("정보가 수정되었습니다");
 			} else if(r==0) {
 				msg = "수정 실패";
-				System.out.println("정보 수정에 실패했습니다.");
 			}
 			model.addAttribute("msg", msg);
 			return "redirect:/updateInfo";
@@ -177,7 +169,6 @@ public class myPageController {
 			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("rdto",rdto2);
 			mypageService.getMyAct(no, model);
-			System.out.println(rdto2);
 			return "/custom/myPageReview";
 		}
 		/* ReviewController 끝 */
@@ -190,7 +181,6 @@ public class myPageController {
 			mypageService.getMyAct(no, model);
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
-			System.out.println(qdto2);
 			return "/custom/myPageQna";
 		}
 		/* QnaController 끝 */
@@ -243,10 +233,7 @@ public class myPageController {
 		@PostMapping("emailCheck")
 		public @ResponseBody int emailCheck(@RequestParam("email") String email, @RequestParam("no") int no) {
 			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
-			System.out.println("email:::"+email);
-			System.out.println("email2:::"+no);
 			int r = mypageService.emailCheck(email, no);
-			System.out.println("rrrrrrrrrrrrrr"+r);
 			// r == 0 이면 중복되는 email이 없다
 			// r > 0 이면 중복되는 email이 있다.
 			return r;
@@ -262,10 +249,7 @@ public class myPageController {
 		@PostMapping("phoneCheck")
 		public @ResponseBody int phoneCheck(@RequestParam("phone") String phone, @RequestParam("no") int no) {
 			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
-			System.out.println("phone11"+phone);
-			System.out.println("phone22"+no);
 			int r = mypageService.phoneCheck(phone, no);
-			System.out.println("phonerrrr"+r);
 			// r == 0 이면 중복되는 email이 없다
 			// r > 0 이면 중복되는 email이 있다.
 			return r;

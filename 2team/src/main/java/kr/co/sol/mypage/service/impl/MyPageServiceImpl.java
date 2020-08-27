@@ -42,10 +42,8 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public void getMyAct(Integer no, Model model) {
-		System.out.println("no::::"+no);
 		MyActDTO myAct = myPageDao.getMyAct(no);
 		model.addAttribute("myAct", myAct);
-		System.out.println("serviceImpl::"+myAct);
 	}
 	
 	@Override

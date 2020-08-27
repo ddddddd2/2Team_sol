@@ -50,4 +50,9 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDao.getStoreList();
 	}
+	@Override
+	public int nameChk(String name) {
+		// TODO Auto-generated method stub
+		return adminDao.nameChk(name);
+	}
 }

@@ -17,4 +17,5 @@ public interface AdminDAO {
 	MemberDTO login(String id, String passwd);
 	String login2(MemberDTO mdto);
 	MemberDTO loginPro(MemberDTO mdto);
+	int nameChk(String name);
 }

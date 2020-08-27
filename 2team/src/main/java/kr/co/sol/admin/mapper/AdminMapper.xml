@@ -42,4 +42,7 @@
 		from
 		restaurant
 	</select>
+	<select id="nameChk" parameterType="String" resultType="int">
+	select count(name) from restaurant where name = #{name}
+	</select>
 </mapper>

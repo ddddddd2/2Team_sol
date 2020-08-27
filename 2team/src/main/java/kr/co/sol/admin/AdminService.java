@@ -22,4 +22,6 @@ public interface AdminService {
 	List<RestaurantDTO> getStore(String searchOption, String keyword);
 
 	List<RestaurantDTO> getStoreList();
+
+	int nameChk(String name);
 }

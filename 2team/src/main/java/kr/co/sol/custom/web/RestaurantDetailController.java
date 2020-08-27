@@ -49,7 +49,6 @@ public class RestaurantDetailController {
 
 //		int res_no = 1; // 임시 음식점 번호
 		resdto.setNo(res_no);
-		System.out.println("controller에서 세션값"+session.getAttribute("addClick"));
 		// restaurant info
 		List<RestaurantDTO> tlist = restaurantDetailService.getRestaurants(resdto); 
 		model.addAttribute("resdto", tlist.get(0));

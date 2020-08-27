@@ -12,6 +12,65 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=bcsnfehc0x"></script>
 <!-- <script type="text/javascript" src="../resources/js/adminIndex.js"></script> -->
 <script type="text/javascript">
+$('document').ready(function(){
+	$('#nameCheck').click(function(e){
+		e.preventDefault();
+		var name = $('#name').val();
+		$.ajax({
+			type:"POST",
+			url:"/admin/reg_storePro/nameChk",
+			data:{
+				"nameChk":name
+			},
+			dataType:"JSON",
+			success : function(data){
+				console.log(data);
+					$('#nameCheck2').text("중복확인해야함.");
+				switch(data){
+				case 0 : $('#nameCheck2').text("사용가능한 이름입니다").css("color","blue");break;
+				case 1 : $('#nameCheck2').text("사용불가능한 이름입니다").css("color","red");break;
+				}
+			},
+			error : function(data){
+				alert("에러 : "+data)
+				console.log(data);
+			}
+			
+		})
+		
+	});
+	$('#')
+	$('#btn').click(function(e){
+		e.preventDefault();
+		var name = $('#name').val();
+		var address1 = $('#address1').val();
+		var si = $('#si').val();
+		var gu = $('#gu').val();
+		var dong = $('#dong').val();
+		var tel = $('#tel').val();
+		var hour =$('#hour').val();
+	$.ajax({
+		type:"POST",
+		url:"/reg_storePro",
+		data:{
+			"name":name,
+			"address1":address1,
+			"si":si,
+			"gu":gu,
+			"dong":dong,
+			"tel":tel,
+			"hour":hour
+		},
+		dataType:"JSON",
+		success : function(msg){
+			alert(msg);
+		}
+		
+	})
+	})
+})
+
+
 function goPopup(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -60,35 +119,19 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	<div id="main-wrapper">
 		<div id="content-wrap">
 			<div>
-				<form name="form" method="post" action="/admin/reg_storePro" enctype="multipart/form-data">
+				<form name="form" method="post" action="admin/reg_storePro" enctype="multipart/form-data">
 				<table border="1">
 					<tr><th colspan="2">매장 신규 등록</th></tr>
-					<tr><td>매장명</td><td><input type="text"><button>중복체크</button></td></tr>
+					<tr><td>매장명</td><td><input type="text" id="name"><button id="nameCheck">중복체크</button><span id="nameCheck2"></span></td></tr>
 					<tr><td>주소</td><td><input type="text" readonly="readonly"><input type="button" onClick="goPopup();" value="주소 찾기"/></tr>
 					<tr><td>도로명주소 전체(포멧)</td><td><input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></td></tr>
-					<tr><td>도로명주소           </td><td><input type="text"  style="width:500px;" id="roadAddrPart1"  name="roadAddrPart1" /></td></tr>
-					<tr><td>고객입력 상세주소    </td><td><input type="text"  style="width:500px;" id="addrDetail"  name="addrDetail" /></td></tr>
 					<tr><td>참고주소             </td><td><input type="text"  style="width:500px;" id="roadAddrPart2"  name="roadAddrPart2" /></td></tr>
-					<tr><td>영문 도로명주소      </td><td><input type="text"  style="width:500px;" id="engAddr"  name="engAddr" /></td></tr>
-					<tr><td>지번                 </td><td><input type="text"  style="width:500px;" id="jibunAddr"  name="jibunAddr" /></td></tr>
-					<tr><td>우편번호             </td><td><input type="text"  style="width:500px;" id="zipNo"  name="zipNo" /></td></tr>
-					<tr><td>행정구역코드        </td><td><input type="text"  style="width:500px;" id="admCd"  name="admCd" /></td></tr>
-					<tr><td>도로명코드          </td><td><input type="text"  style="width:500px;" id="rnMgtSn"  name="rnMgtSn" /></td></tr>
-					<tr><td>건물관리번호        </td><td><input type="text"  style="width:500px;" id="bdMgtSn"  name="bdMgtSn" /></td></tr>
-					<tr><td>상세번물명        	</td><td><input type="text"  style="width:500px;" id="detBdNmList"  name="detBdNmList" /></td></tr>
-					<tr><td>건물명        		</td><td><input type="text"  style="width:500px;" id="bdNm"  name="bdNm" /></td></tr>
-					<tr><td>공동주택여부       </td><td><input type="text"  style="width:500px;" id="bdKdcd"  name="bdKdcd" /></td></tr>
 					<tr><td>시도명        		</td><td><input type="text"  style="width:500px;" id="siNm"  name="siNm" /></td></tr>
 					<tr><td>시군구명        	</td><td><input type="text"  style="width:500px;" id="sggNm"  name="sggNm" /></td></tr>
 					<tr><td>읍면동명        	</td><td><input type="text"  style="width:500px;" id="emdNm"  name="emdNm" /></td></tr>
+					<tr><td>고객입력 상세주소    </td><td><input type="text"  style="width:500px;" id="addrDetail"  name="addrDetail" /></td></tr>
 					<tr><td>법정리명        	</td><td><input type="text"  style="width:500px;" id="liNm"  name="liNm" /></td></tr>
 					<tr><td>도로명        		</td><td><input type="text"  style="width:500px;" id="rn"  name="rn" /></td></tr>
-					<tr><td>지하여부        	</td><td><input type="text"  style="width:500px;" id="udrtYn"  name="udrtYn" /></td></tr>
-					<tr><td>건물본번        	</td><td><input type="text"  style="width:500px;" id="buldMnnm"  name="buldMnnm" /></td></tr>
-					<tr><td>건물부번        	</td><td><input type="text"  style="width:500px;" id="buldSlno"  name="buldSlno" /></td></tr>
-					<tr><td>산여부        		</td><td><input type="text"  style="width:500px;" id="mtYn"  name="mtYn" /></td></tr>
-					<tr><td>지번본번(번지)     </td><td><input type="text"  style="width:500px;" id="lnbrMnnm"  name="lnbrMnnm" /></td></tr>
-					<tr><td>지번부번(호)       </td><td><input type="text"  style="width:500px;" id="lnbrSlno"  name="lnbrSlno" /></td></tr>
 					
 					<tr><td>상세주소</td><td><input type="text"></td></tr>
 					<tr><td>연락처</td><td><input type="text"></td></tr>
