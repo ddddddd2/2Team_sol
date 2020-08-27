@@ -80,35 +80,21 @@ window.onload = function(){
 
 $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-	/* $('#btn').click.function(e){ }*/
-	
-	// 문서가 처음 로딩될 때 음식점 리스트 의 첫 번째 요소가 선택됫다고 ... 
-	var first = $('#list2-1 div:first');
-	first.css("background","yellow");
-    
-	
-	/*
-	$.ajax({
-		type:"post",
-		url:"/custom/getResInfo",
-		data:{ no :  }
-		
-		
-	})
-	*/
 
-	$('#list2-1 #res_name').click(function(e){
+
+	$('#list2-1 #res_name').click(function(e){ // event 
 		e.preventDefault();
 		
         // 출력된 음식점 리스트 css 변경
         $('#list2-1 div').css("background","white");
 		
         $(this).closest("div").css("background","yellow");
+    
         
 		$.ajax({
 			type:"post",
 			url:"/custom/getResInfo",
-			data:{ no : this.dataset.no },
+			data:{ no : this.dataset.no }, // a링크의 -> data-no = ${resdto.no} 값을 넘겨줌 
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			dataType : "json",
 			success : function(resdto){
@@ -134,7 +120,9 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 		});
 		
 	});
-
+	
+	// 문서가 처음 로딩될 때 음식점 리스트 의 첫 번째 요소가 선택됫다고 ... 
+	$('#list2-1 #res_name').first().trigger("click");
 });
 
 

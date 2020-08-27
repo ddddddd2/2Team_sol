@@ -12,3 +12,4 @@ public interface SearchResultService {
 	List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap);
 	
 }
+

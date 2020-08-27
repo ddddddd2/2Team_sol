@@ -20,7 +20,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants(resdto);
-	}
+	} 
 
 	@Override
 	public List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap) {

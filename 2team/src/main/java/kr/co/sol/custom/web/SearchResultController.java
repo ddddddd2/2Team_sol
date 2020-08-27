@@ -45,8 +45,22 @@ public class SearchResultController {
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
 	public RestaurantDTO getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
 	    
+		// 1. sub1.jsp 에서 ajax -> no 파라미터 를 받아오고
+		// 2. 이 함수의 매개변수(resdto) 가 resdto.setNo(no);
+		
+		// resdto 로 음식점
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
 		resdto = reslist.get(0);
+		
+		/* 
+		  	List<RestaurantDTO> reslist = searchResultService.getRestaurants();
+		  	reslist -> RestaurantDTO 431 개가 들어감  
+		  	reslist.get(10) -> 11번째 
+		  	
+		    List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
+		  	-> 음식점 하나만 뽑아오겟다  
+		  	
+		*/
 		
 		return resdto;
 	}
