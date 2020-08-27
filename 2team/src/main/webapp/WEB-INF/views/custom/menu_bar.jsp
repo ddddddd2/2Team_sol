@@ -2,7 +2,7 @@
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<div id="menuBar" style="width: 100%; height: 200px;">
+<div id="menuBar" style="width: 100%; height: 200px; margin-top:20px">
 	<div id="myActivity" style="background-color: pink; width: 14%; height: 40px; margin-left:2%; float:left;"><a href="/myPage">나의 활동</a></div>
 	<div id="mymy" style="width: 80%; height: 150px; margin-left: 20%"><!-- 첫 번째 큰 단락 div 시작 -->
 			<div id="my1" style="float: left; width: 32%; height: 100%">
