@@ -40,14 +40,9 @@ public class RestaurantDetailController {
 	// sub2 - selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			RestaurantDTO resdto, Model model , PageDTO pdto, @RequestParam("res_no") int res_no
-			/*@RequestParam("no") int res_no*/) {
+			RestaurantDTO resdto, Model model , PageDTO pdto,
+			@RequestParam("no") int res_no) {
 		HttpSession session = request.getSession();
-		
-		// 어떤 유저가, 식당 상세 페이지에 접근한 경우, 요청 받은 식당 번호로 click table에 해당되는 식당 번호의 count를 1 증가 시킨다.
-		
-
-//		int res_no = 1; // 임시 음식점 번호
 		resdto.setNo(res_no);
 		// restaurant info
 		List<RestaurantDTO> tlist = restaurantDetailService.getRestaurants(resdto); 

@@ -1,5 +1,6 @@
 package kr.co.sol.searchresult.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	@Override
-	public RestaurantDTO getResInfo(int no) {
-		
-		return searchResultDao.getResInfo(no);
+	public List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap) {
+		// TODO Auto-generated method stub
+		return searchResultDao.getRestaurants2(hmap);
 	}	
+	
 	
 }

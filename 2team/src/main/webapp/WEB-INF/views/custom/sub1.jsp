@@ -76,49 +76,66 @@ window.onload = function(){
 	--curIndex;
 	});
 	
-	// forEach가 끝나고 나서 실행하기 위해 load listener 붙임.
-	document.getElementById("list2-1").addEventListener("load", first())
-	// forEach가 끝난 후, ajax로 해당 아이디 가져와서 보내줌
-	function first(){
-		var id = $('#list2-1 div:first-child').attr("id");
-		restaurant(id)
-		$('#list2-1 div:first-child').css('background-color','red');
-		
 }
-}
-</script>
 
-<script type="text/javascript">
-// $(document).ready(function(){
-	// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
+$(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-// 	console.log($('#list2-1').children[0]);
-	/* 음식점 리스트 버튼 이벤트*/
-	function restaurant(no){
-		var no2 = no.substring(5)
+	/* $('#btn').click.function(e){ }*/
+	
+	// 문서가 처음 로딩될 때 음식점 리스트 의 첫 번째 요소가 선택됫다고 ... 
+	var first = $('#list2-1 div:first');
+	first.css("background","yellow");
+    
+	
+	/*
+	$.ajax({
+		type:"post",
+		url:"/custom/getResInfo",
+		data:{ no :  }
+		
+		
+	})
+	*/
+
+	$('#list2-1 #res_name').click(function(e){
+		e.preventDefault();
+		
+        // 출력된 음식점 리스트 css 변경
+        $('#list2-1 div').css("background","white");
+		
+        $(this).closest("div").css("background","yellow");
+        
 		$.ajax({
-			url: "/rlist",
-			data:{
-				"no":no2
-			},
-			type:"POST",
-			dataType:"JSON",
-			success : function(data){
-				// data는 RestaurantDTO 형태로, no로 조회한 상점의 정보가 들어가있다.
-				$('#res_name').text("업체명 : "+data.name);
-				$('#address').text("주소 : "+data.address1);
-				$('#tel').text("연락처 : "+data.tel);
-				$('#hour').text("영업시간 : "+data.hour);
-			}
-		})
-			// list2-1의 자식요소들의 background-color를 모두 노랑노랑
-			$('#list2-1').children().css('background-color','yellow');
-			//클릭한 요소(위에서 파라메터인no로 확인 가능)의 백그라운드 컬러 변경
-			document.getElementById(no).style.backgroundColor = "red";
-	}
+			type:"post",
+			url:"/custom/getResInfo",
+			data:{ no : this.dataset.no },
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+			dataType : "json",
+			success : function(resdto){
+		        //Ajax 성공
+		      
+		        
+		        // sub1 의 음식점 상세정보 
+		        $('#list2-3 p#selected_name span').html(resdto.name);
+		        $('#list2-3 p#selected_address span').html(resdto.address1);
+		        $('#list2-3 p#selected_tel span').html(resdto.tel);
+		        $('#list2-3 p#selected_hour span').html(resdto.hour);
+		        
+		        var url = '/custom/sub2?no='+ resdto.no;
+		        $('#list2-3 button').on("click",function(){
+		        	document.location.href=url;
+		        });
+		        	
+		    
+		    },error : function(){
+		        //Ajax 실패시
+		        
+		    }
+		});
+		
+	});
 
-
-// })
+});
 
 
 
@@ -133,7 +150,9 @@ window.onload = function(){
 
 	<!-- top 영역 시작-->
 	<!-- top 영역 끝 -->
-
+	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
+	<input type="text" id="category1" name="category" value="${category}"/>
+	
 	<div id="content-wrapper" style="position:absolute; width: 100%; height:auto;">
 		<div id="content" >
 		
@@ -141,37 +160,55 @@ window.onload = function(){
 			
 				<div id="list2(0)" style="width:100%; height:100%;">
 			
-			<div id="list" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					<div id="list" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					
+					<!-- 지도 wrap-->
 					<div class="map_wrap">
-					<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
-						 <ul id="category">
-					        <li id="BK9" data-order="0"> 
-					            전체
-					        </li>       
-					        <li id="MT1" data-order="1"> 
-					            한식
-					        </li>  
-					        <li id="PM9" data-order="2"> 
-					            중식
-					        </li>  
-					        <li id="OL7" data-order="3"> 
-					            일식
-					        </li>  
-					        <li id="CE7" data-order="4"> 
-					            카페
-					        </li>  
-					        <li id="CS2" data-order="5"> 
-					            편의점
-					        </li>      
-					    </ul>
-					    </div>
+						<!-- 지도 영역  --> 
+						<div id="map" style="float:right; width:74.8%;height:100%;position:relative;overflow:hidden;">
+						 	<ul id="category">
+					       	 	<li id="c_entire" > 
+					            <!-- <span class="category_bg bank"></span>  -->
+					            	전체
+					         	</li>       
+					         	<li id="c_korean" > 
+					           <!--  <span class="category_bg mart"></span>  -->
+					            	한식
+					         	</li>  
+					         	<li id="c_chinese" > 
+					           <!--  <span class="category_bg pharmacy"></span>  -->
+					            	중식
+					         	</li>  
+					         	<li id="c_japanese" > 
+					           <!--  <span class="category_bg oil"></span>  -->
+					            	일식
+					         	</li>  
+					         	<li id="c_american" > 
+					           <!--  <span class="category_bg oil"></span>  -->
+					            	양식
+					         	</li>  
+					         	<li id="c_cafe" > 
+ 					           <!--  <span class="category_bg cafe"></span>  -->
+					            	카페
+					         	</li>     
+					     	</ul>
+						</div>
+						
+						<!-- 지도 음식점 리스트 영역 -->
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
-						<c:forEach var="i" begin="0" end="10">
-						<div id="store${resdto.get(i).no}" style="width: 100%; height: 20%; box-sizing: border-box;">
-						<a href="#" onClick="restaurant('store${resdto.get(i).no}')" >${resdto.get(i).name}</a>
+							
+							<c:forEach var="resdto" items="${reslist}">
+							
+							<div id="store${resdto.no}">
+								<a id="res_name" href="#" data-no="${resdto.no}">${resdto.name}</a>
+							</div> 
+							
+							<input type="hidden" class="res_address" value="${resdto.address1}" />
+							<input type="hidden" class="res_c_no" value="${resdto.c_no}" />
+							
+							</c:forEach>
 						</div>
-						</c:forEach>
-						</div>
+					
 					</div>
 				</div>
 			<!-- 카드 형태로 3개만 구현하고 나머지는 슬라이드 -->
@@ -181,26 +218,27 @@ window.onload = function(){
 				<!--  2번째 줄 새로시작 -->
 				
 			<div id ="restart"style="width: auto; height: 350px; " >
-					<div id="recom">
-							<div style="height: 10%; text-align: center;">검색 키워드와 관련된 추천 맛집</div>
-					</div>
-				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; ">
-					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
-					</a> <!-- target='_blank' 새창띄우기 -->
+				<div id="recom">
+					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
+				</div>
+				
+				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; "> 					
+					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'>
+						<img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-				<p id="res_name"></p>
-				<p id="address"></p> 
-				<p id="tel"></p>
-				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
-				<p id="hour"></p>
+					<p id="selected_name">음식점 : <span>  </span></p>
+					<p id="selected_address">주소 : <span>  </span></p>
+					<p id="selected_tel">연락처 : <span> </span></p>
+					<p id="selected_hour">운영시간 : <span> </span></p> 
+					<button>상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
 
 		
 		<!--  2번째 줄 끝 -->		
-		</div>		
-		
+		</div>	
 		
 		<!-- 3번째 줄 시작  -->				
 					<div id="content-wrap">
@@ -212,7 +250,7 @@ window.onload = function(){
 											<img src="../resources/image/custom/sub1/han300.jpg">
 										</div>
 									<div style="float: left; width: 100%; height: 20%"> 
-										<p>${cdto.get(0).name}</p>
+										<%-- <p>${cdto.get(0).name}</p> --%>
 									</div>
 									</div>
 					<!-- 한식 글귀(제목)-->
@@ -221,7 +259,7 @@ window.onload = function(){
 							<img src="../resources/image/custom/sub1/han300.jpg">
 						</div>
 							<div style="float: left; width: 100%; height: 20%">
-								<p>${cdto.get(1).name}</p>
+								<%-- <p>${cdto.get(1).name}</p> --%>
 							
 							</div>
 						</div>
@@ -281,8 +319,12 @@ window.onload = function(){
 	<!-- container 끝 -->
 
 
+<script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>
+
+/* 기존 map script */
+/*
 //마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
  contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
@@ -364,6 +406,7 @@ function displayPlaces(places) {
  // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
  var order = document.getElementById(currCategory).getAttribute('data-order');
 
+ 
 
  for ( var i=0; i<places.length; i++ ) {
 
@@ -441,6 +484,7 @@ function addCategoryClickEvent() {
  }
 }
 
+
 //카테고리를 클릭했을 때 호출되는 함수입니다
 function onClickCategory() {
  var id = this.id,
@@ -472,9 +516,9 @@ function changeCategoryClass(el) {
  if (el) {
      el.className = 'on';
  } 
-
 } 
 
+*/
 </script>
 </body>
 </html>
