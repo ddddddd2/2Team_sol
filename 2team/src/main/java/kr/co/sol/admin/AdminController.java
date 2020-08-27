@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.sol.custom.common.service.MemberService;
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.service.MemberService;
 
 @Controller
 public class AdminController {

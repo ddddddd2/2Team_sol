@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {

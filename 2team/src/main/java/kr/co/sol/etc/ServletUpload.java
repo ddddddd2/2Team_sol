@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import kr.co.sol.custom.dto.ReviewDTO;
+import kr.co.sol.common.dto.ReviewDTO;
 
 @Component("fileUtils")
 public class ServletUpload {

@@ -15,12 +15,13 @@
          <typeAlias alias="string"  type="java.lang.String" />
          <typeAlias alias="map"     type="java.util.Map" />
          
-         <typeAlias alias="revdto"  type="kr.co.sol.custom.dto.ReviewDTO" />
-         <typeAlias alias="resdto"  type="kr.co.sol.custom.dto.RestaurantDTO" />
-         <typeAlias alias="menudto" type="kr.co.sol.custom.dto.MenuDTO" />
-         <typeAlias alias="mdto"    type="kr.co.sol.custom.dto.MemberDTO" />
-         <typeAlias alias="bdto"    type="kr.co.sol.custom.dto.BookingDTO" />
-         <typeAlias alias="qdto"    type="kr.co.sol.custom.dto.QnaDTO" />
-         <typeAlias alias="fdto"    type="kr.co.sol.custom.dto.FavoritesDTO" />
+         <typeAlias alias="revdto"  type="kr.co.sol.common.dto.ReviewDTO" />
+         <typeAlias alias="resdto"  type="kr.co.sol.common.dto.RestaurantDTO" />
+         <typeAlias alias="menudto" type="kr.co.sol.common.dto.MenuDTO" />
+         <typeAlias alias="mdto"    type="kr.co.sol.common.dto.MemberDTO" />
+         <typeAlias alias="bdto"    type="kr.co.sol.common.dto.BookingDTO" />
+         <typeAlias alias="qdto"    type="kr.co.sol.common.dto.QnaDTO" />
+         <typeAlias alias="fdto"    type="kr.co.sol.common.dto.FavoritesDTO" />
+         <typeAlias alias="madto"    type="kr.co.sol.common.dto.MyActDTO" />
     </typeAliases>	
 </configuration>

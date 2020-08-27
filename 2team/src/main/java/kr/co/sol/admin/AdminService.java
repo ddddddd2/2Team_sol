@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
 
 public interface AdminService {
 	List<HashMap<String, Object>> getMember();

@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.sol.custom.common.service.MemberService;
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.MenuDTO;
-import kr.co.sol.custom.dto.PageDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
-import kr.co.sol.custom.dto.ReviewDTO;
-import kr.co.sol.custom.restaurantdetail.service.RestaurantDetailService;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.MenuDTO;
+import kr.co.sol.common.dto.PageDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.dto.ReviewDTO;
+import kr.co.sol.common.service.MemberService;
+import kr.co.sol.restaurantdetail.service.RestaurantDetailService;
 
 @Controller
 public class RestaurantDetailController {

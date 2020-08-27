@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.sol.custom.common.service.MemberService;
-import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.service.MemberService;
 //import kr.co.sol.etc.SecurityUtil;
 import kr.co.sol.etc.SecurityUtil;
 
