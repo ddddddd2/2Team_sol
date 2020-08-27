@@ -20,7 +20,7 @@
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
 <div>
-<jsp:include page="header_bar.jsp" />
+	<jsp:include page="header_bar.jsp" />
 </div>
 <div>
 	<jsp:include page="menu_bar.jsp" />
@@ -35,7 +35,7 @@
 			
 			<table>
 			<tr><th>예약</th></tr>
-			<tr><td>${myAct.getFcnt()}</td></tr>
+<%-- 			<tr><td>${myAct.getFcnt()}</td></tr> --%>
 				<tr>
 			
 					<td>예약 번호</td>
@@ -89,6 +89,7 @@
  				</c:choose>
 			</table>
 			<table>
+			<tr><th>즐겨찾기</th></tr>
 			<img src="../resources/image/custom/fish.PNG">
 			<tr>
 				<td>식당이름</td>

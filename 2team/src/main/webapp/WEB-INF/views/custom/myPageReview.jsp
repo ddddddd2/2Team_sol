@@ -34,12 +34,12 @@
 			<table border="1">
 				<tr><th>리뷰</th></tr>
 				<tr>
-					<td>리뷰 번호</td>
-					<td>식당 이름</td>
-					<td>회원번호</td>
-					<td>회원아이디</td>
-					<td>작성일</td>
-					<td>별점</td>
+					<td>리뷰 번호 </td>
+					<td>식당 이름 </td>
+					<td>회원번호 </td>
+					<td>회원아이디 </td>
+					<td>작성일 </td>
+					<td>별점 </td>
 				</tr>
 				<c:choose>
 					<c:when test="${revdto.size()==0}">

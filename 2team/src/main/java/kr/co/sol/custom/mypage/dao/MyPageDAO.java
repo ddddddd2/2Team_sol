@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.custom.dto.MyActDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
@@ -38,5 +39,8 @@ public interface MyPageDAO {
 	List<QnaDTO> getMyQnaList(Integer mem_no);
 	List<RestaurantDTO> getMyFavoriteList(Integer mem_no);
 	List<BookingDTO> getMyBookingList(Integer mem_no);
+	int emailCheck(@Param(value = "email") String email, @Param(value="no") int no);
+	int nick_nameCheck(@Param(value = "nick_name") String nick_name, @Param(value="no") int no);
+	int phoneCheck(@Param(value = "phone") String phone, @Param(value="no") int no);
 
 }
