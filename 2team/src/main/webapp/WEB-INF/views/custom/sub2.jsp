@@ -33,17 +33,20 @@
                <a>
                	  <c:choose>
                	  	<c:when test="${resdto.c_no != null}">
-               	  		<c:if test="${resdto.c_no == 1}">
+               	  		<c:if test="${resdto.c_no == 2}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=korean food')"></span>
                	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 2}">
+               	  		<c:if test="${resdto.c_no == 3}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=china food')"></span>
                	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 3}">
+               	  		<c:if test="${resdto.c_no == 4}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=western food')"></span>
+               	  		</c:if>
+               	  		<c:if test="${resdto.c_no == 5}">
                	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=japan food')"></span>
                	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 4}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=snack food')"></span>
+               	  		<c:if test="${resdto.c_no == 6}">
+               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=cafe food')"></span>
                	  		</c:if>
                	  	</c:when>
                	  	

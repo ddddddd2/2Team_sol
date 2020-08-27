@@ -36,10 +36,8 @@ public class RestaurantDetailController {
 	// sub2 - selected restaurant page
 	@RequestMapping(value="/custom/sub2")
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
-			RestaurantDTO resdto, Model model , PageDTO pdto
-			/*@RequestParam("no") int res_no*/) {
-		
-		int res_no = 1; // 임시 음식점 번호
+			RestaurantDTO resdto, Model model , PageDTO pdto,
+			@RequestParam("no") int res_no) {
 		
 		resdto.setNo(res_no);
 		

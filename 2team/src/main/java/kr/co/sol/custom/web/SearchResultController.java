@@ -2,13 +2,15 @@ package kr.co.sol.custom.web;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.searchresult.service.SearchResultService;
@@ -24,7 +26,6 @@ public class SearchResultController {
 	public String searchResult(Model model , @RequestParam("keyword") String keyword
 			,@RequestParam("category") String category) {
 
-		
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
@@ -37,5 +38,18 @@ public class SearchResultController {
 		
 		return "/custom/sub1";
 	}
+	
+	
+	// searchResult page 에서 음식점 리스트 중  음심점을 클릭시 그 음식점 정보를 리턴 하는 메소드 
+	@ResponseBody
+	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
+	public RestaurantDTO getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
+	    
+		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
+		resdto = reslist.get(0);
+		
+		return resdto;
+	}
+
 
 }

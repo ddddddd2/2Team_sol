@@ -68,8 +68,8 @@ function categoryInit(){
 	if(category_no == 0){ $('#c_entire').addClass("on"); }
 	else if(category_no == 2){ $('#c_korean').addClass("on"); }
 	else if(category_no == 3){ $('#c_chinese').addClass("on"); }
-	else if(category_no == 4){ $('#c_japanese').addClass("on"); }
-	else if(category_no == 5){ $('#c_american').addClass("on"); }
+	else if(category_no == 4){ $('#c_american').addClass("on"); }
+	else if(category_no == 5){ $('#c_japanese').addClass("on"); }
 	else if(category_no == 6){ $('#c_cafe').addClass("on"); }
 	
 }
@@ -96,8 +96,8 @@ function onClickCategory() {
     if(id == 'c_entire'){nextCategory = 0;}
     else if(id =='c_korean'){nextCategory = 2;}
     else if(id =='c_chinese'){nextCategory = 3;}
-    else if(id =='c_japanese'){nextCategory = 4;}
-    else if(id =='c_american'){nextCategory = 5;}
+    else if(id =='c_american'){nextCategory = 4;} 
+    else if(id =='c_japanese'){nextCategory = 5;} 
     else if(id =='c_cafe'){nextCategory =6;}
     
     if (className === 'on') {

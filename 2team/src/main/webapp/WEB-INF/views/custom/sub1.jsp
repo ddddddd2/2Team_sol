@@ -78,20 +78,64 @@ window.onload = function(){
 	
 }
 
-/* 음식점 리스트 버튼 이벤트*/
-
-function restaurant(no){
-	$('#list2-1').children().css('background-color','yellow');
-	document.getElementById(no).style.backgroundColor = "red";
-}
-
-
-
 $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
 	/* $('#btn').click.function(e){ }*/
+	
+	// 문서가 처음 로딩될 때 음식점 리스트 의 첫 번째 요소가 선택됫다고 ... 
+	var first = $('#list2-1 div:first');
+	first.css("background","yellow");
+    
+	
+	/*
+	$.ajax({
+		type:"post",
+		url:"/custom/getResInfo",
+		data:{ no :  }
+		
+		
+	})
+	*/
 
-})
+	$('#list2-1 #res_name').click(function(e){
+		e.preventDefault();
+		
+        // 출력된 음식점 리스트 css 변경
+        $('#list2-1 div').css("background","white");
+		
+        $(this).closest("div").css("background","yellow");
+        
+		$.ajax({
+			type:"post",
+			url:"/custom/getResInfo",
+			data:{ no : this.dataset.no },
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+			dataType : "json",
+			success : function(resdto){
+		        //Ajax 성공
+		      
+		        
+		        // sub1 의 음식점 상세정보 
+		        $('#list2-3 p#selected_name span').html(resdto.name);
+		        $('#list2-3 p#selected_address span').html(resdto.address1);
+		        $('#list2-3 p#selected_tel span').html(resdto.tel);
+		        $('#list2-3 p#selected_hour span').html(resdto.hour);
+		        
+		        var url = '/custom/sub2?no='+ resdto.no;
+		        $('#list2-3 button').on("click",function(){
+		        	document.location.href=url;
+		        });
+		        	
+		    
+		    },error : function(){
+		        //Ajax 실패시
+		        
+		    }
+		});
+		
+	});
+
+});
 
 
 
@@ -156,7 +200,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 							<c:forEach var="resdto" items="${reslist}">
 							
 							<div id="store${resdto.no}">
-								<a id="res_name" href="#" onClick="restaurant(${resdto.no})">${resdto.name}</a>
+								<a id="res_name" href="#" data-no="${resdto.no}">${resdto.name}</a>
 							</div> 
 							
 							<input type="hidden" class="res_address" value="${resdto.address1}" />
@@ -174,25 +218,27 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 				<!--  2번째 줄 새로시작 -->
 				
 			<div id ="restart"style="width: auto; height: 350px; " >
-					<div id="recom">
-							<div style="height: 10%; text-align: center;">검색 키워드와 관련된 추천 맛집</div>
-					</div>
-				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; ">
-<%-- 					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'><img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
-					</a>  --%><!-- target='_blank' 새창띄우기 -->
+				<div id="recom">
+					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
 				</div>
-				<!-- 
+				
+				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; "> 					
+					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'>
+						<img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+					</a><!-- target='_blank' 새창띄우기 -->
+				</div>
+				
 				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-				<p>주소 : ${resdto.get(0).address1}</p> 
-				<p>연락처 : ${resdto.get(0).tel}</p> -->
-				<!-- <a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> --> <!-- ? 파라미터값 --> 
-				<p> 아아</p> 
+					<p id="selected_name">음식점 : <span>  </span></p>
+					<p id="selected_address">주소 : <span>  </span></p>
+					<p id="selected_tel">연락처 : <span> </span></p>
+					<p id="selected_hour">운영시간 : <span> </span></p> 
+					<button>상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
 
 		
 		<!--  2번째 줄 끝 -->		
-		</div>		
-		
+		</div>	
 		
 		<!-- 3번째 줄 시작  -->				
 					<div id="content-wrap">
