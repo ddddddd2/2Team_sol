@@ -17,7 +17,14 @@
 <head>
 <script>
 $('document').ready(function(){
-
+	alert('${mdto.info_offering}')
+	if(${mdto.info_offering=='t'}){
+		document.getElementById("infoT").checked=true;
+	} else {
+		document.getElementById("infoF").checked=true;
+	}
+	
+	
 verifyEmail = function() {
      // 이메일 검증 스크립트 작성
      var emailVal = $("#email").val();
@@ -144,8 +151,8 @@ verifyPhone = function() {
 
 isSame = function() {   
    // document.폼네임.해당요소네임
-    var pw = document.updateForm.wUserPW.value;
-    var confirmPW = document.updateForm.wUserPWConfirm.value;
+    var pw = document.updateForm.passwd.value;
+    var confirmPW = document.updateForm.passwdConfirm.value;
     if (pw.length < 6 || pw.length > 16) {
         window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
         document.getElementById('pw').value=document.getElementById('pwCheck').value='';
@@ -233,12 +240,12 @@ isSame = function() {
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
                    <td width="15%">비밀번호</td>
-                   <td><input type="password" name="wUserPW" id="pw" onchange="isSame()" /></td>
+                   <td><input type="password" name="passwd" id="pw" onchange="isSame()" /></td>
                </tr>
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
                    <td width="15%">비밀번호 확인</td>
-                   <td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;
+                   <td><input type="password" name="passwdConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;
                    <span id="pwsame"></span></td>
                </tr>
             </table>
@@ -257,8 +264,8 @@ isSame = function() {
          </div>   
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-			                  공개<input type="radio" name="radiocheck" value="open" checked>
-			                  비공개<input type="radio" name="radiocheck" value="private">
+			                  공개<input type="radio" id="infoT" name="info_offering" value="open" checked>
+			                  비공개<input type="radio" id="infoF" name="info_offering" value="private">
                </p>
                <p>
                   <br>나의 예약 내역, 리뷰, 즐겨찾기를 상대방에게 공개 여부를 설정해 주세요.
@@ -268,6 +275,7 @@ isSame = function() {
          <br>
          <input type="submit" value="수정">
          <input type="reset" value="취소">
+         ${mdto.info_offering}
       </div>
       </form>
       </div>

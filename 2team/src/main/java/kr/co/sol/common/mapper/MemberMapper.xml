@@ -20,7 +20,7 @@
   				#{gender})
   	</insert>
   	<select id="loginPro" parameterType="mdto" resultType="mdto">
-  		select no,grade_name, id, nick_name, name, email, phone, gender, role, createdate, image from member where id = #{id} and passwd = #{passwd}
+  		select no,grade_name, id, nick_name, name, email, phone, gender, role, createdate, image, info_offering from member where id = #{id} and passwd = #{passwd}
   	</select>
   	<select id="getMemberList" resultType="mdto">
   		select
@@ -45,7 +45,8 @@
 	  		email,
 	  		phone,
 	  		gender,
-  			role
+  			role,
+  			info_offering
   		from member
   		where
   			no = #{no}

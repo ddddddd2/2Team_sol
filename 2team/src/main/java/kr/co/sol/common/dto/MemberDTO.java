@@ -18,6 +18,7 @@ public class MemberDTO {
 	private String phone; // 회원 핸드폰 번호
 	private String gender; //회원 성별 
 	private String role; // 회원 역할 (관리자)
+	private String info_offering;
 	private String createdate; // 회원 역할 (관리자)
 	private String image; // 회원 이미지 첨부
 }

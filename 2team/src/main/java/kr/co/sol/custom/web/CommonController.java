@@ -1,6 +1,7 @@
 package kr.co.sol.custom.web;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -44,9 +45,11 @@ public class CommonController {
 	
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
+		System.out.println("1차 암호화 : "+mdto.getPasswd());
 		SecurityUtil securityUtil = new SecurityUtil();
 		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
 		mdto.setPasswd(passwd);
+		System.out.println("2차 암호화 : "+passwd);
 		mdto = memberService.loginPro(mdto);
 		
 		if(mdto==null) {

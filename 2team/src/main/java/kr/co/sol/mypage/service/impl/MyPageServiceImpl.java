@@ -63,7 +63,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public int updateMember(String nick_name, String phone, String passwd, String id, String email) {
-		return myPageDao.updateMember(nick_name, phone, passwd, id, email);
+	public int updateMember(String nick_name, String phone, String passwd, Integer no, String email) {
+		return myPageDao.updateMember(nick_name, phone, passwd, no, email);
 	}
 }

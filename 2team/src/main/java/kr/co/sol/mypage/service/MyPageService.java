@@ -20,7 +20,7 @@ public interface MyPageService {
 	List<BookingDTO> getMyBookingList(Integer mem_no);
 	  // 기덕이꺼
 	void getMyAct(Integer no, Model model);
-	int updateMember(String nick_name, String phone, String passwd, String id, String email);
+	int updateMember(String nick_name, String phone, String passwd, Integer no, String email);
 	int emailCheck(String email, int no);
 	int nick_nameCheck(String nick_name, int no);
 	int phoneCheck(String phone, int no);

@@ -13,7 +13,7 @@ import kr.co.sol.common.dto.ReviewDTO;
 
 @Mapper
 public interface MyPageDAO {
-	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("id") String id, @Param("email") String email);
+	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("no") Integer no, @Param("email") String email);
 ////	FavoriteDAO
 	List<RestaurantDTO> getFavoriteList(String id);
 //  BookingDAO

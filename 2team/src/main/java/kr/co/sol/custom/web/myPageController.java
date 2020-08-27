@@ -40,53 +40,6 @@ public class myPageController {
 	@Autowired
 	MyPageService mypageService;
 		
-		// idcheck ajax process 
-		@RequestMapping(value = "/idCheck")
-		@ResponseBody()
-		public Map<String,Object> idCheck(@RequestBody String id, MemberDTO mdto) {
-			int cnt = 0;
-			if(id != null)
-			{
-				cnt = memberService.idCheck(id);
-			}
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("cnt", cnt);
-			return map;
-		}
-		
-		// nick_name check ajax process 
-		@RequestMapping(value = "/nickCheck")
-		@ResponseBody()
-		public Map<String,Object> nickCheck(@RequestBody String nick_name, MemberDTO mdto) throws UnsupportedEncodingException {
-			int cnt = 0;
-			String test = URLDecoder.decode(nick_name,"UTF-8");
-			String nick_name2 = test.substring(10);
-			if(nick_name2 != null)
-			{
-				cnt = memberService.nickCheck(nick_name2);
-			}
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("cnt", cnt);
-			return map;
-		}
-//		
-//		// email check ajax process 
-//		@RequestMapping(value = "/emailCheck")
-//		@ResponseBody()
-//		public Map<String,Object> emailCheck(@RequestBody String email, MemberDTO mdto) throws UnsupportedEncodingException {
-//			int cnt = 0;
-//			email = URLDecoder.decode(email);
-//			email = email.substring(6);
-//			System.out.println(email);
-//			if(email != null)
-//			{
-//				cnt = memberService.emailCheck(email, mdto.getNo());
-//			}
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			map.put("cnt", cnt);
-//			return map;
-//		}
-		
 		
 		// mypage
 		@RequestMapping(value="/myPage")
@@ -139,16 +92,19 @@ public class myPageController {
 		
 		//	update 후 값을 가져오기
 		@RequestMapping("/updateInfoPro")
-		public String updateInfoPro(HttpServletRequest request, HttpServletResponse response, Model model) {
+		public String updateInfoPro(MemberDTO mdto, HttpServletRequest request, HttpServletResponse response, Model model) {
 			String nick_name = request.getParameter("nick_name");
 			String phone = request.getParameter("phone");	
-			String passwd = request.getParameter("wUserPW");
-			
+			String passwd = request.getParameter("passwd");
 			String email = request.getParameter("email");
-			HttpSession session = request.getSession();
-			String id = (String) session.getAttribute("idKey");
-			int r = mypageService.updateMember(nick_name, phone, passwd, id, email);
 			
+			HttpSession session = request.getSession();
+			
+			Integer no = (Integer) session.getAttribute("idKey");
+			
+			int r = mypageService.updateMember(nick_name, phone, passwd, no, email);
+			MemberDTO mdto2 = memberService.getMemberInfo(no);
+			session.setAttribute("mdto", mdto2);
 			String msg=null;
 			if(r!=0) {
 				msg = "수정 완료";
@@ -214,8 +170,6 @@ public class myPageController {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
 			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no);
-			MemberDTO mdto3 = memberService.getMemberInfo(no);
-			model.addAttribute("mdto", mdto3);
 			mypageService.getMyAct(no, model);
 			model.addAttribute("bdto", bdto2);
 			return "/custom/myPageBooking";
@@ -241,6 +195,7 @@ public class myPageController {
 		@PostMapping("nick_nameCheck")
 		public @ResponseBody int nick_nameCheck(@RequestParam("nick_name") String nick_name, @RequestParam("no") int no) {
 			// 받아온 파라메터 email의 값으로 DB에서 검색해서 같은 값을 가진 친구들을 count 해주는 메소드
+			System.out.println("nick:"+nick_name+"    no:"+no);
 			int r = mypageService.nick_nameCheck(nick_name, no);
 			// r == 0 이면 중복되는 email이 없다
 			// r > 0 이면 중복되는 email이 있다.

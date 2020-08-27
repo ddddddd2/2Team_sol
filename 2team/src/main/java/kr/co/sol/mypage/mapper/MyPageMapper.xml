@@ -77,14 +77,16 @@
 		 where
 		 	m.id = #{id}
 	</select>
-  	<select id="nickCheck" parameterType="String" resultType="Integer">
-  		select count(nick_name) from member where nick_name = #{nick_name}
-  	</select>
+  	<select id="nick_nameCheck" resultType="Integer">
+        select count(nick_name) from member where nick_name = #{nick_name} and no != #{no}
+     </select>
   	
-  	<select id="emailCheck" parameterType="String" resultType="Integer">
-  		select count(email) from member where email = #{email}
-  	</select>
-  	
+  	 <select id="emailCheck" resultType="int">
+        select count(email) from member where email = #{email} and no != #{no}
+     </select>
+  	 <select id="phoneCheck" resultType="int">
+        select count(phone) from member where phone = #{phone} and no != #{no}
+     </select>
   	<update id="updateMember">
 	update member set
 			nick_name = #{nick_name},
@@ -95,9 +97,9 @@
 		(select nick_name, phone, passwd, email
 		from
 			(select nick_name, phone, email
-			from member where id != #{id})
+			from member where no != #{no})
 			where nick_name = #{nick_name} or phone = #{phone} or email =#{email})
-	and id = #{id}
+	and no = #{no}
   	</update>
   	<!-- Booking -->
 	<select id="getMyBookingList" parameterType="Integer" resultType="bdto">
