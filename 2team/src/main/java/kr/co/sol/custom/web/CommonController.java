@@ -45,19 +45,20 @@ public class CommonController {
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
 		SecurityUtil securityUtil = new SecurityUtil();
+		System.out.println("로그인시비밀번호:"+mdto.getPasswd());
 		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
 		mdto.setPasswd(passwd);
-
+		System.out.println(passwd);
+		System.out.println("로그인시비밀번호2차암호화:"+mdto.getPasswd());
 		mdto = memberService.loginPro(mdto);
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
 		}
+		session.setAttribute("mdto", mdto);
+		session.setAttribute("idKey", mdto.getNo());
 		if("admin".equals(mdto.getRole())) {
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
-		request.getSession();
-		session.setAttribute("mdto", mdto);
-		session.setAttribute("idKey", mdto.getNo());
 		return 2;
 	}
 

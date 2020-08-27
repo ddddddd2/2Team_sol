@@ -11,7 +11,7 @@
 <script type="text/javascript">
 $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
 	// 문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-	
+	$('#id').focus();
 	$('#btn').click(function(e){
 	var shaPw = hex_sha512($('#passwd').val()).toString();
 		e.preventDefault(); // submit 실행 막음(action 안ㅇ넘어가게)
@@ -26,7 +26,10 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 					case 0 : alert("아이디, 비밀번호가 일치하지 않습니다."); break;
 					case 1 : alert("어드민 페이지로 이동합니다"); document.location.href="/admin/index"; break // 어드민 계정으로 로그인함.
 					case 2 : alert("로그인이 성공했습니다"); document.location.href="/"; break;
-				};
+				}
+			},
+			error : function(){
+				alert("로그인 실패")
 			}
 		});
 	})

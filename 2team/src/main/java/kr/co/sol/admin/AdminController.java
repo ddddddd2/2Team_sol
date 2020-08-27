@@ -2,6 +2,7 @@ package kr.co.sol.admin;
 
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.sol.custom.common.service.MemberService;
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 
@@ -28,6 +30,9 @@ import kr.co.sol.custom.dto.RestaurantDTO;
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
 	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
@@ -87,11 +92,7 @@ public class AdminController {
 	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
-		HttpSession session = request.getSession();
-		if(session.getAttribute("mdto")==null) {
 			
-			return "redirect:/";
-		}
 		List<HashMap<String, Object>> map= new ArrayList<HashMap<String, Object>>();
 		
 		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
@@ -102,7 +103,7 @@ public class AdminController {
 			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
 			map = adminService.getMemberList(searchOption,keyword);
 		}
-		model.addAttribute("mdto",map);
+		model.addAttribute("mList",map);
 		System.out.println();
 		// 검색 후 옵션 유지하기 위해서.
 		Map<String, Object> map2 = new HashMap<String, Object>();
@@ -180,9 +181,4 @@ public class AdminController {
 		return "redirect:admin/store_manage";
 	}
 	
-	@RequestMapping(value="/juso", method = {RequestMethod.GET,RequestMethod.POST})
-	
-	public String map() {
-		return "admin/juso";
-	}
 }

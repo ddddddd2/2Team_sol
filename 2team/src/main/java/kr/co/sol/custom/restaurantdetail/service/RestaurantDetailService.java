@@ -19,8 +19,6 @@ public interface RestaurantDetailService {
 	int signUpProc(MemberDTO mdto);
 	
 	//리뷰에서 id로 mem_no 알아내기 위해 
-	int getMemberNo(String idKey);
-
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 	List<MenuDTO> getMenus(RestaurantDTO resdto);
 	int likeRestaurant(HashMap<String,Integer> hmap);

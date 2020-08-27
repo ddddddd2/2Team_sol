@@ -66,12 +66,12 @@
 					<td>작성일</td>
 					<td>별점</td>
 				</tr>
+				<tr>
+					<td colspan="2">총 예약 수</td>
+					<td>${revdto.size()}</td>
+				</tr>
 				<c:choose>
 					<c:when test="${revdto.size()==0}">
-						<tr>
-							<td colspan="2">사이즈가 0일 때</td>
-							<td>${revdto.size()}</td>
-						</tr>
 					</c:when>
 					<c:when test="${revdto.size()!=0}">
 							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>

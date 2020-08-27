@@ -45,11 +45,6 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 		return restaurantDetailDao.signUpProc(mdto);
 	}
 
-	@Override
-	public int getMemberNo(String idKey) {
-		// TODO Auto-generated method stub
-		return restaurantDetailDao.getMemberNo(idKey);
-	}
 	
 	@Override
 	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.sol.custom.common.service.MemberService;
+import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.dto.MenuDTO;
 import kr.co.sol.custom.dto.PageDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
@@ -28,6 +30,8 @@ public class RestaurantDetailController {
 	@Autowired
 	RestaurantDetailService restaurantDetailService;
 
+	@Autowired
+	MemberService memberService;
 	
     @Value("${resources.location}")
     String resourcesLocation;
@@ -52,7 +56,7 @@ public class RestaurantDetailController {
 		
 		// favorite check
 		char favoriteCheck = 'f';
-		String idKey = (String)session.getAttribute("idKey");
+		Integer idKey = (Integer)session.getAttribute("idKey");
 		restaurantDetailService.addClick(res_no, request);
 		
 		if(idKey == null || idKey.equals(""))
@@ -61,7 +65,7 @@ public class RestaurantDetailController {
 			
 		}else {
 			
-			int mem_no = restaurantDetailService.getMemberNo(idKey);
+			int mem_no = idKey;
 			HashMap<String,Integer> hmap = new HashMap<String,Integer>();
 			hmap.put("res_no",res_no);
 			hmap.put("mem_no",mem_no);
@@ -139,7 +143,7 @@ public class RestaurantDetailController {
     	hmap2.put("res_no", res_no);
     	if(idKey != null )
     	{
-    		int mem_no = restaurantDetailService.getMemberNo(idKey);
+    		int mem_no = idKey;
     		hmap2.put("mem_no2",mem_no);
     	}
     	
@@ -160,7 +164,8 @@ public class RestaurantDetailController {
 		int res_no = 1; // 임시 음식점 번호
 		
 		HttpSession session = request.getSession();
-		String idKey = (String)session.getAttribute("idKey");
+		
+		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg = "";
 		String url = "/custom/sub2";
@@ -175,7 +180,7 @@ public class RestaurantDetailController {
 			
 			
 			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
-			int mem_no = restaurantDetailService.getMemberNo(idKey);
+			int mem_no = idKey;
 			
 			HashMap<String,Integer> hmap = new HashMap<String,Integer>();
 			hmap.put("res_no",res_no);
@@ -219,13 +224,13 @@ public class RestaurantDetailController {
 			 ReviewDTO revdto,Model model ,RestaurantDTO resdto ) {
 		
 		HttpSession session = request.getSession();
-		String idKey = (String)session.getAttribute("idKey");
+		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg =""; ;
 		String url="/custom/sub2";
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
-		if(idKey == null || idKey.equals(""))
+		if(idKey == null)
 		{
 			msg="로그인 부터 해주시길 바랍니다. ";
 			url="/custom/login";
@@ -233,11 +238,11 @@ public class RestaurantDetailController {
 		}else {
 			
 			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
-			int mem_no = restaurantDetailService.getMemberNo(idKey);
+			int mem_no = idKey;
 			
 			revdto.setMem_no(mem_no);
-			revdto.setMem_id(idKey);
-			
+			MemberDTO mdto2 = (MemberDTO) session.getAttribute("mdto");
+			revdto.setMem_id(mdto2.getId());
 			revdto.setRes_no(resdto.getNo());
 			
 			int r = 0;
@@ -266,13 +271,13 @@ public class RestaurantDetailController {
 			ReviewDTO revdto,Model model ) {
 		
 		HttpSession session = request.getSession();
-		String idKey = (String)session.getAttribute("idKey");
+		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg =""; ;
 		String url="/custom/sub2";
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
-		if(idKey == null || idKey.equals(""))
+		if(idKey == null)
 		{
 			msg="로그인 부터 해주시길 바랍니다. ";
 			url="/custom/login";
@@ -280,7 +285,7 @@ public class RestaurantDetailController {
 		}else {
 			
 			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
-			int mem_no = restaurantDetailService.getMemberNo(idKey);		
+			int mem_no = idKey;		
 			
 			if(request.getParameter("rev_no") != null)
 			{

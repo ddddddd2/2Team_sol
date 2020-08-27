@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div style="height:30px"><a href="/">관리자 페이지</a>
 <c:choose>
-	<c:when test="${mdto.getRole()==null}">
-	<input type="button" value="로그인" onclick="document.location.href='/'" />
+	<c:when test="${mdto.role==null || str.trim().equals('')}">
+	<input type="button" value="로그인" onclick="document.location.href='/login'" />
 	
 	</c:when>
-	<c:when test="${mdto.getRole()=='admin'}">
+	<c:when test="${mdto.role=='admin'}">
 	<input type="button" value="로그아웃" onclick="document.location.href='/logout'" />
 	</c:when>
 </c:choose>

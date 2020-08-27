@@ -28,10 +28,6 @@
   				#{gender})
   	</insert>
 
-  	<select id="getMemberNo" parameterType="string" resultType="int">
-  		select no from member where id = #{idKey}
-  	</select>
-  	
   	    <select id="getRestaurants" parameterType="resdto" resultType="resdto">
     	select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour 
     	from restaurant t join category c 

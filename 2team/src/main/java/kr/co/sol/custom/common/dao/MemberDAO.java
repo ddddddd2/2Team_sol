@@ -1,4 +1,4 @@
-package kr.co.sol.custom.dao;
+package kr.co.sol.custom.common.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,34 +12,26 @@ import kr.co.sol.custom.dto.ReviewDTO;
 
 @Mapper
 public interface MemberDAO {
-//	MemberDAO
+
+	// 가입
 	int idCheck(String id);
-	MemberDTO loginProc(MemberDTO mdto);
-	int signUpProc(MemberDTO mdto);
-	int getMemberNo(String idKey);
-	MemberDTO loginPro(MemberDTO mdto);
-	List<MemberDTO> getMember();
-	//	Update
-	// 회원 번호로 조회한 회원 정보 가져오기.
-	MemberDTO getMemberInfo(int no); 
-	// 회원 번호로 해당 회원 정보 수정
-	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("id") String id, @Param("email") String email);
 	int nickCheck(String nick_name);
 	int emailCheck(String email);
-////	FavoriteDAO
-	List<RestaurantDTO> getFavoriteList(Integer id);
-//  BookingDAO
-	List<BookingDTO> getBookingList(Integer id);
-//	QnaDAO
-	List<QnaDTO> getQnaList(Integer id);
-//  ReviewDAO
-	List<ReviewDTO> getReviewList(Integer id);
-	//Restaurant
-	List<RestaurantDTO> getRestaurantList(Integer id);
-	//Restaurant
-	MemberDTO getMemberList(Integer id);
-	MyAct getMyAct(Integer no);
-	
-	
+	int signUpProc(MemberDTO mdto);
 
+	// 로그인
+	MemberDTO loginPro(MemberDTO mdto);
+	
+	// 멤버 관련
+	List<MemberDTO> getMemberList();
+	MemberDTO getMemberInfo(Integer no);
+	int updateMember(@Param("nick_name") String nick_name, @Param("phone") String phone, @Param("passwd") String passwd, @Param("id") String id, @Param("email") String email);
+	
+	
+	List<RestaurantDTO> getFavoriteList(Integer id);
+	List<BookingDTO> getBookingList(Integer id);
+	List<QnaDTO> getQnaList(Integer id);
+	List<ReviewDTO> getReviewList(Integer id);
+	List<RestaurantDTO> getRestaurantList(Integer id);
+	MyAct getMyAct(Integer no);
 }

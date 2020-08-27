@@ -1,6 +1,7 @@
 package kr.co.sol.custom.web;
 
 import java.io.UnsupportedEncodingException;
+
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
@@ -14,23 +15,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.sol.custom.common.service.MemberService;
 import kr.co.sol.custom.dto.BookingDTO;
 import kr.co.sol.custom.dto.MemberDTO;
 import kr.co.sol.custom.dto.QnaDTO;
 import kr.co.sol.custom.dto.RestaurantDTO;
 import kr.co.sol.custom.dto.ReviewDTO;
-import kr.co.sol.custom.service.MemberService;
+import kr.co.sol.custom.mypage.service.MyPageService;
 
 @Controller 
 public class MyPageController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MyPageService mypageService;
 		
 		// idcheck ajax process 
 		@RequestMapping(value = "/idCheck")
@@ -92,22 +96,22 @@ public class MyPageController {
 				return "/custom/login";
 			} else {
 			mdto.setEmail("rlejrrlejr@gmail.com");
-			memberService.getMyAct(no, model);
+			mypageService.getMyAct(no, model);
 			// 예약 내역 조회하는 메소드
-			List<BookingDTO> bdto2 = memberService.getBookingList(no); 
+			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
 			model.addAttribute("bdto", bdto2);
 			// 리뷰 조회하는 메소드
-			List<ReviewDTO> revdto2 = memberService.getReviewList(no);
+			List<ReviewDTO> revdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto", revdto2);
 //			// 즐겨찾기 조회하는 메소드 실은  
-			List<RestaurantDTO> fdto2 = memberService.getFavoriteList(no);
+			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("fdto", fdto2); 
 			System.out.println(fdto2);
-			MemberDTO mdto2 = memberService.getMemberList(no); 
+			MemberDTO mdto2 = memberService.getMemberInfo(no); 
 			model.addAttribute("mdto", mdto2);
 			//session.setAttribute("mdto", mdto2);
 			// 문의 조회하는 메소드
-			List<QnaDTO> qdto2 = memberService.getQnaList(no);  
+			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
 			return "/custom/myPage";
 			}
@@ -118,14 +122,12 @@ public class MyPageController {
 //		수정 전 정보 가져오기
 		@RequestMapping("/updateInfo")
 		public String updateInfo(HttpServletRequest request, HttpServletResponse response, Model model, MemberDTO mdto) {
-			
 			HttpSession session = request.getSession();
 			int no = (int) session.getAttribute("idKey");
 			System.out.println("세션 아이디"+no);
 			model.addAttribute("id", no);
 			MemberDTO mdto2 = memberService.getMemberInfo(no);
 			session.setAttribute("mdto", mdto2);
-//			System.out.println(mdto2.getNick_name());
 			return "/custom/updateInfo";
 		}
 		
@@ -161,26 +163,20 @@ public class MyPageController {
 		@GetMapping("/myPageReview")
 		public String myPageReview(HttpServletRequest request, MemberDTO mdto, HttpServletResponse response, Model model, ReviewDTO revdto) {
 			HttpSession session = request.getSession();
-			System.out.println(session.getAttribute("idKey"));
 			Integer no = (Integer)session.getAttribute("idKey");
-//			System.out.println("id="+no);
-//			System.out.println("revdto="+rdto);
-			List<ReviewDTO> revdto2 = memberService.getReviewList(no);
+			List<ReviewDTO> revdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto", revdto2);
-			memberService.getMyAct(no, model);
+			mypageService.getMyAct(no, model);
 			System.out.println(revdto2);
 			return "/custom/myPageReview";
 		}
-		/* ReviewController 끝 */
-		/* QnaController 시작 */
 
 		@GetMapping("/myPageQna")
 		public String getQnaList(HttpServletRequest request, HttpServletResponse response, Model model, QnaDTO qdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<QnaDTO> qdto2 = memberService.getQnaList(no);  
+			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
-			System.out.println(qdto2);
 			return "/custom/myPageQna";
 		}
 		/* QnaController 끝 */
@@ -190,31 +186,18 @@ public class MyPageController {
 		public String myPageFavorite(HttpServletRequest request, HttpServletResponse response, Model model) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<RestaurantDTO> resdto2 = memberService.getFavoriteList(no);
+			List<RestaurantDTO> resdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("resdto", resdto2); 
 			return "/custom/myPageFavorite";
 		}
 		/* FavoriteController 끝 */
-//		/* FavoriteController, restaurant 시작 */
-	//	
-//		@GetMapping("/myPageFavorite")
-//		public String myPageFavorite(HttpServletRequest request, HttpServletResponse response, Model model) {
-//			HttpSession session = request.getSession();
-//			String id = (String)session.getAttribute("idKey");
-//			List<FavoriteDTO> fdto2 = memberService.getFavoriteList(id);
-//			System.out.println(id);
-//			model.addAttribute("fdto", fdto2); 
-//			return "/custom/myPageFavorite";
-//		}
-//		/* FavoriteController 끝 */
 		
 		@GetMapping("/myPageBooking")
 		public String myPageBooking(HttpServletRequest request, HttpServletResponse response, Model model, BookingDTO bdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<BookingDTO> bdto2 = memberService.getBookingList(no); 
+			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
 			model.addAttribute("bdto", bdto2);
 			return "/custom/myPageBooking";
 		}
-
 }

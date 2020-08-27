@@ -13,75 +13,37 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#btn').click(function(e){
+		
 		e.preventDefault();
+		alert("testsetst")
 		loginCk();
 	})
 });
-function loginCk(){
+function loginCk(e){
 		var id = $('#id').val();
-		var passwd = $('#passwd').val();
+		var pw = $('#passwd').val();
+		alert("test")
 		// 입력 값 체크
-		if($.trim($('#id').val()) == ''){
-			alert("아이디를 입력해 주세요.");
-			$('#id').focus();
-			return;
-		}else if($.trim($('#passwd').val()) == ''){
-			alert("패스워드를 입력해 주세요.");
-			$('#passwd').focus();
-			return;
-		}
 		$.ajax({
-			url : "/loginPro",
-			type : "POST",
-			data : {
-				id : id,
-				passwd : passwd
+			url:"/loginPro",
+			data:{
+				"id":id,
+				"passwd":pw
+				},
+			type:"POST",
+			dataType:"JSON",
+			success : function(data){
+				switch(data){
+					case 0 : alert("로그인 실패. 아이디 비밀번호가 맞지 않습니다.");
+					case 1 : alert("어드민 계정 맞음ㅇㅇ"); document.getElementById("form").innerHTML("${mdto.name}님의 월급일은 4일 남았습니다.")
+					case 2 : alert("유저 아이딘데? 너 누구야");
+				}		
 			},
-			success : function(response){
-				if(response==0){ // 로그인 성공
-					alert("아이디와 패스워드가 일치하지 않습니다.")
-				} else if(response==1){
-					alert("로그인 실패 - 유저 아이디")
-				} else {
-					document.location.href="/";
-					alert("로그인 성공")
-				};
+			error : function(){
+				alert("에러 발생.")
 			}
-			
-		});
+		})
 }
-	
-	
-
-// 	$('#btn').click(function(){
-// 		var id = document.getElementById("id").value;
-// 		var passwd = document.getElementById("passwd").value;
-// 		console.log(id);
-// 		console.log(passwd);
-		
-// 		$.ajax({
-// 		url:"/admin/login",
-// 		data:{
-// 			"id":id,
-// 			"passwd":passwd
-// 			},
-// 		type:"POST",
-// 		dataType:"JSON"
-// 		success:function(data){
-// 			alert(data.id);
-// 			console.log(JSON.parse(data));
-	// 		$.each(data(function(){
-	// 			console.log(data.id);	
-	// 			console.log(data.passwd);	
-	// 		})
-	// 		if(data.role == "admin"){
-	// 			alert("어드민이다!");
-	// 		} else {
-	// 			alert("어드민이 아니다!");
-	// 		}
-// 		}})
-	
-// 	})
 </script>
 </head> 
 <body>
@@ -90,6 +52,7 @@ function loginCk(){
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
+		${mdto.role}
 <c:choose>
 	<c:when test="${mdto.role==null}">
 		<form id="loginForm" name="loginForm" method="post" action="/loginPro">
@@ -110,7 +73,13 @@ function loginCk(){
 	</c:when>
 	<c:when test="${mdto.role=='admin'}">
 	<div id="loginOk">
-		${mdto.name}님, 로그인 환영!
+		${mdto.name} 관리자님, 로그인 환영!
+		<input type="button" value="로그아웃" onclick="document.location.href='/logout'" />
+	</div>
+	</c:when>
+	<c:when test="${mdto.role!='admin'}">
+	<div id="loginOk">
+		${mdto.name} 유저님, 로그인 환영!.. 이라고 할줄 알았냐 ㅎㅎ
 		<input type="button" value="로그아웃" onclick="document.location.href='/logout'" />
 	</div>
 	</c:when>
