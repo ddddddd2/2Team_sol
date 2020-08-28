@@ -146,7 +146,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
 	<input type="text" id="category1" name="category" value="${category}"/>
 	
-	<div id="content-wrapper" style="position:absolute; width: 100%; height:auto;">
+	<div id="content-wrapper">
 		<div id="content" >
 		
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
@@ -305,13 +305,12 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 				<ul class="slide_pagination"></ul>
 				</div>
 				<!-- 	content 끝 -->
-				<c:import url="bottom.jsp"/>
 			</div>
 			<!-- // .slide_list -->
 	
 	<!-- container 끝 -->
-
-</div>
+	</div>
+		<c:import url="bottom.jsp"/>
 <script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>
