@@ -43,7 +43,9 @@ public class myPageController {
 				return "/custom/login";
 			} else {
 			mypageService.getMyAct(no, model);
-			
+			response.setHeader("Pragma","no-cache"); 
+			response.setHeader("Cache-Control", "no-cache"); 
+			response.setDateHeader("Expires",0);
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
 			model.addAttribute("bdto", bdto2);

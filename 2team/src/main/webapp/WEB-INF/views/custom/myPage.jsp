@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">
+	window.history.forward();
+	
+			function noBack(){
+				window.history.forward();
+			}
+			
+	</script>
+	
+
+	
 <title>마이 페이지</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +30,7 @@
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	
 </head>
-<body>
+<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
 <div>
 	<jsp:include page="top.jsp" />
@@ -31,7 +44,6 @@
 </div>
 			<!-- content 영역 시작 -->
 			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			
 			
 			<table>
 			<tr><th>예약</th></tr>
