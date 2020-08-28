@@ -195,8 +195,8 @@ window.onload = function(){
 				<p id="res_name"></p>
 				<p id="address"></p> 
 				<p id="tel"></p>
-				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${tdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
 				<p id="hour"></p>
+				<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'> "http://duckbap.com/detail?res_no=${resdto.get(0).no}" </a> <!-- ? 파라미터값 --> 
 				</div> 		<!-- list2-3 끝 -->			
 
 		
@@ -209,21 +209,26 @@ window.onload = function(){
 						<div class="slide_wrap">
 							<div class="slide_box">
 								<div class="slide_list clearfix" style="text-align: center;">
+									
+									
 									<div class="slide_content slide01">
 										<div style="float: left; width: 100%; height: 80%">
+										
 											<img src="../resources/image/custom/sub1/han300.jpg">
 										</div>
 									<div style="float: left; width: 100%; height: 20%"> 
-										<p>${cdto.get(0).name}</p>
+										${resdto.get(0).name}
 									</div>
 									</div>
 					<!-- 한식 글귀(제목)-->
+					
+					
 					<div class="slide_content slide02" >
 						<div style="float: left; width: 100%; height: 80%">
 							<img src="../resources/image/custom/sub1/han300.jpg">
 						</div>
 							<div style="float: left; width: 100%; height: 20%">
-								<p>${cdto.get(1).name}</p>
+								${resdto.get(1).name}
 							
 							</div>
 						</div>
@@ -231,7 +236,9 @@ window.onload = function(){
 							<div style="float: left; width: 100%; height: 80%">
 								<img src="../resources/image/custom/sub1/han300.jpg">
 							</div>
-							<div style="float: left; width: 100%; height: 20%">분식</div>
+							<div style="float: left; width: 100%; height: 20%">
+							${resdto.get(2).name}
+							</div>
 
 						</div>
 
@@ -239,7 +246,9 @@ window.onload = function(){
 						<div style="float: left; width: 100%; height: 80%">
 							<img src="../resources/image/custom/sub1/han300.jpg">
 						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
+						<div style="float: left; width: 100%; height: 20%">
+						${resdto.get(3).name}
+						</div>
 
 						</div>
 					
@@ -248,7 +257,9 @@ window.onload = function(){
 						<div style="float: left; width: 100%; height: 80%">
 							<img src="../resources/image/custom/sub1/han300.jpg">
 						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
+						<div style="float: left; width: 100%; height: 20%">
+						${resdto.get(4).name}
+						</div>
 						</div>
 
 					</div>

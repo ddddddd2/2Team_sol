@@ -151,7 +151,7 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 	@SuppressWarnings("unchecked")
 	public void addClick(int res_no, HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); // 세션을 가져온다 , 가져올세션이없으면 생성한다
 		List<Integer> addClick = (List<Integer>)session.getAttribute("addClick");
 		if(addClick==null) {
 			addClick = new ArrayList<Integer>();

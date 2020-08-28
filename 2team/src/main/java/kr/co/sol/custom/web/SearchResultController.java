@@ -34,5 +34,4 @@ public class SearchResultController {
 		RestaurantDTO resInfo = restaurantService.getResInfo(no);
 		return resInfo;		
 	}
-	
 }

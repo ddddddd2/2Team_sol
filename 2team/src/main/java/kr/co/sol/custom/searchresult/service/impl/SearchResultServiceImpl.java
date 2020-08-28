@@ -26,5 +26,4 @@ public class SearchResultServiceImpl implements SearchResultService {
 		
 		return searchResultDao.getResInfo(no);
 	}	
-	
 }

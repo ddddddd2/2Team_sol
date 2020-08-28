@@ -8,5 +8,6 @@ public interface SearchResultService {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 
 	RestaurantDTO getResInfo(int no);
+	
 
 }
