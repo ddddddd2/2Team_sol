@@ -33,7 +33,7 @@
 			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
 			<table>
 			
-			<img src="../resources/image/custom/fish.PNG">
+			<img src="../resources/image/custom/myPage/${mdto.image}">
 			<tr>
 				<td>레스토랑 번호</td>
 				<td>회원 번호</td>
@@ -53,7 +53,7 @@
 			</table>
 			</div>
 			<!-- content 영역 끝 -->
-	</div><!-- 첫 번째 큰 단락 끝 -->	<!--두 번째 큰 단락 끝 -->
+	</div>
 	</div><!-- 전체 div 끝 -->
 
 </body>

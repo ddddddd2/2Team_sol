@@ -7,7 +7,9 @@
 		<div id="mymy" style="width: 50%; height: 200px;"><!-- 첫 번째 큰 단락 div 시작 -->
 			<div id="my1" style="float: left; width: 32%; height: 200px;">
 				
-				<img src="../resources/image/custom/businessman.png" width="100%" height="80%">
+				<td><img src="../resources/image/custom/myPage/businessman.png" width="100%" height="80%">
+				</td>
+				
 			</div>
 			<div id="my2" style="float: left; width: 32%; height: 200px;">
 			

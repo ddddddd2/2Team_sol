@@ -133,7 +133,7 @@
 			no, grade_name, id, passwd, name, email, phone, gender, role, info_offering, nick_name, createdate, image 
 		from
 			member
-		where
+		where 
 			no = #{no}
 	</select>
 	<select id="getMyAct" parameterType="Integer" resultType="kr.co.sol.custom.dto.MyActDTO">

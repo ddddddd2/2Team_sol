@@ -175,7 +175,7 @@ public class myPageController {
 			map.put("cnt", cnt);
 			return map;
 		}
-//		
+		
 //		// email check ajax process 
 //		@RequestMapping(value = "/emailCheck")
 //		@ResponseBody()
@@ -217,7 +217,7 @@ public class myPageController {
 			model.addAttribute("rdto",rdto2);
 //			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = memberService.getFavoriteList(no);
-			model.addAttribute("fdto", fdto2); 
+			model.addAttribute("fdto", fdto2);
 			System.out.println(fdto2);
 			MemberDTO mdto2 = memberService.getMemberList(no); 
 			model.addAttribute("mdto", mdto2);
@@ -316,8 +316,8 @@ public class myPageController {
 		public String myPageFavorite(HttpServletRequest request, HttpServletResponse response, Model model) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			MemberDTO mdto3 = memberService.getMemberList(no); /* member_bar 이름 가입일 회원가입 부분 */ 
-			model.addAttribute("mdto", mdto3);
+			MemberDTO mdto2 = memberService.getMemberList(no); /* member_bar 이름 가입일 회원가입 부분 */ 
+			model.addAttribute("mdto", mdto2);
 			memberService.getMyAct(no, model); /* member_bar 리뷰 즐겨찾기 예약 부분 */
 			List<RestaurantDTO> resdto2 = memberService.getFavoriteList(no);
 			model.addAttribute("resdto", resdto2); 

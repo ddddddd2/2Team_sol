@@ -136,7 +136,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int phoneCheck(String phone, int no) {
-		// TODO Auto-generated method stub
 		return memberDao.phoneCheck(phone, no);
 	}
 }

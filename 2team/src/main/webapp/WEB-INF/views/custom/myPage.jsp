@@ -90,7 +90,9 @@
 			</table>
 			<table>
 			<tr><th>즐겨찾기</th></tr>
-			<img src="../resources/image/custom/fish.PNG">
+			<!-- <img src="../resources/image/custom/fish.PNG"> -->
+			<img src="../resources/image/custom/myPage/${mdto.image}">
+			
 			<tr>
 				<td>식당이름</td>
 			</tr>
