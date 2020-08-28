@@ -1,5 +1,8 @@
 package kr.co.sol.custom.web;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -71,6 +74,7 @@ public class CommonController {
 	public String logout(HttpServletRequest request) {
 				
 		HttpSession session = request.getSession();
+		session.removeAttribute("idKey");
 		session.invalidate();//세션 취소, 또는 초기화
 		return "redirect:/"; 
 	}
@@ -101,6 +105,14 @@ public class CommonController {
 		model.addAttribute("url", url);
 				
 		return "/custom/msgPage";
+	}
+	
+	@WebServlet("/upload")
+	@MultipartConfig(maxFileSize = 1024*1024*10, location = "c:\\project_workspace\\2team_sol\\2team\\src\\main\\resources\\adminUpload")
+	public class AdminUpload extends HttpServlet {
+
+		private static final long serialVersionUID = 1L;
+
 	}
 				
 }

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+response.setHeader("Pragma","no-cache"); 
+response.setDateHeader("Expires",0); 
+response.setHeader("Cache-Control", "no-cache"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +19,14 @@
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
 	<script src="../resources/js/common.js"></script>
-</head>  
+<script type="text/javascript">
+window.history.forward();
 
-<body id="main">
+function noBack(){window.history.forward();}
+
+</script>
+</head>  
+<body id="main" onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div id="skipNavi">
 		<ul>
 			<li>

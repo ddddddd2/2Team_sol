@@ -37,6 +37,10 @@ public class myPageController {
 		@RequestMapping(value="/myPage")
 		public String myPage(Model model, HttpServletRequest request, HttpServletResponse response,
 				MemberDTO mdto) {
+			response.setHeader("Pragma","no-cache"); 
+			response.setHeader("Cache-Control", "no-cache"); 
+			response.setDateHeader("Expires",0); 
+			
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
 			if(no == null) {

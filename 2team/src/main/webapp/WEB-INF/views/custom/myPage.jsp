@@ -6,17 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript">
-	window.history.forward();
-	
-			function noBack(){
-				window.history.forward();
-			}
-			
-	</script>
-	
-
-	
 <title>마이 페이지</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,6 +18,14 @@
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/common.js"></script>
+<script type="text/javascript">
+window.history.forward();
+
+		function noBack(){
+			window.history.forward();
+		}
+		
+</script>
 </head>
 <body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
@@ -101,8 +98,10 @@
  				</c:choose>
 			</table>
 			<table>
-			<tr><th>즐겨찾기</th></tr>
-			<img src="../resources/image/custom/fish.PNG">
+			<tr>
+				<th>즐겨찾기</th>
+			</tr>
+<!-- 				<img src="../resources/image/custom/fish.PNG"> -->
 			<tr>
 				<td>식당이름</td>
 			</tr>
