@@ -20,11 +20,11 @@ public interface MemberService {
 	int signUpProc(MemberDTO mdto);
 
   // 로그인 처리
-	MemberDTO loginPro(MemberDTO mdto);
+	MemberDTO loginPro(MemberDTO mdto); // 로그인 처리
 	
   // member 관련 
-	List<MemberDTO> getMemberList();
-	MemberDTO getMemberInfo(Integer no);
+	List<MemberDTO> getMemberList(); // 회원 전체 가져오기
+	MemberDTO getMemberInfo(Integer no); // 회원 정보 가져오기
 	
 
 	

@@ -148,26 +148,39 @@ verifyPhone = function() {
          }
        };
 
-isSame = function() {   
-   // document.폼네임.해당요소네임
-    var pw = document.updateForm.passwd.value;
-    var confirmPW = document.updateForm.passwdConfirm.value;
-    if (pw.length < 6 || pw.length > 16) {
-        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-        document.getElementById('pw').value=document.getElementById('pwCheck').value='';
-        document.getElementById('pwsame').innerHTML='';
-    }
-    if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
-        if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
-            document.getElementById('pwsame').innerHTML='비밀번호가 일치합니다.';
-            document.getElementById('pwsame').style.color='blue';
-        }
-        else {
-            document.getElementById('pwsame').innerHTML='비밀번호가 일치하지 않습니다.';
-            document.getElementById('pwsame').style.color='red';
-        }
-    }
-}
+	isSame = function() {   
+	   // document.폼네임.해당요소네임
+	    var pw = document.updateForm.passwd.value;
+	    var confirmPW = document.updateForm.passwdConfirm.value;
+	    if (pw.length < 3 || pw.length > 16) {
+	        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+	        document.getElementById('pw').value=document.getElementById('pwCheck').value='';
+	        document.getElementById('pwsame').innerHTML='';
+	    }
+	    if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
+	        if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
+	            document.getElementById('pwsame').innerHTML='비밀번호가 일치합니다.';
+	            document.getElementById('pwsame').style.color='blue';
+	        }
+	        else {
+	            document.getElementById('pwsame').innerHTML='비밀번호가 일치하지 않습니다.';
+	            document.getElementById('pwsame').style.color='red';
+	        }
+	    }
+	}
+	
+	// 값이 들어가있는지 체크하는 함수
+	$('#submitBtn').click(function(){
+     	var regForm = $("form[name='updateForm'] .chk").length;
+     	for(var i = 0; i<regForm; i++){
+			if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+				alert($(".chk").eq(i).attr("name")+"은/는 필수입력입니다.");
+				$(".chk").eq(i).focus();
+				return false;
+			}
+		}
+	})
+
 })
 </script>
 </head>
@@ -196,7 +209,7 @@ isSame = function() {
          </div>   
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-                  <input id="nick_name" type="text" name="nick_name" size="10" value="${mdto.nick_name}">
+                  <input id="nick_name" class="chk" type="text" name="nick_name" size="10" value="${mdto.nick_name}">
                   <button type="button" onClick="verifyName()">닉네임 중복 확인</button>
                </p>
                
@@ -212,7 +225,7 @@ isSame = function() {
          </div>
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-                  <input id = "email" type="text" name="email" size="10" value="${mdto.email}">
+                  <input id = "email" class="chk" type="text" name="email" size="10" value="${mdto.email}">
                   <button type="button" onclick="verifyEmail()" >중복 확인</button>
                   <span id="emailsame"></span>
                </p>
@@ -222,7 +235,7 @@ isSame = function() {
          </div>   
          <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
                <p id="owenoback">
-               <input id = "phone" type="text" name="phone" size="20" value="${mdto.phone}">
+               <input id = "phone" class="chk" type="text" name="phone" size="20" value="${mdto.phone}">
 <!--                <label id="phone_check"></label> -->
                <button type="button" onClick="verifyPhone()">중복 체크</button>
                <span id="phonesame"></span>
@@ -239,7 +252,7 @@ isSame = function() {
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
                    <td width="15%">비밀번호</td>
-                   <td><input type="password" name="passwd" id="pw" onchange="isSame()" /></td>
+                   <td><input class="chk" type="password" name="passwd" id="pw" onchange="isSame()" /></td>
                </tr>
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
@@ -272,9 +285,8 @@ isSame = function() {
          </div>   
       <div id="ok" style="width: 20%">
          <br>
-         <input type="submit" value="수정">
+         <input type="submit" id="submitBtn" value="수정">
          <input type="reset" value="취소">
-         ${mdto.info_offering}
       </div>
       </form>
       </div>
