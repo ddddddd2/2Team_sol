@@ -17,7 +17,7 @@
 							</select>
 						</div>
 						<div>
-							<select class="select" id="category">
+							<select class="select" id="header_category">
 								<option value="0" selected>카테고리</option>
 								<option value="0" >전체</option>
 								<option value="2">한식</option>

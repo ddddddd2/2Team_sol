@@ -13,14 +13,18 @@
 <!-- Add fancyBox main CSS files -->
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub2/jquery.fancybox.css" />
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub2/sub2.css" />
+<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../resources/js/common.js"></script>
  
 </head>
 
 <body>
-	<div class="sub2_top">
-		임시 탑영역 입니다. 
-	</div>
+	<div id="wrap">
+		<c:import url="top.jsp"/>
 
    <!-- 본문 -->
    <div class="sub2_wrap">
@@ -198,6 +202,7 @@
          <!-- 기사 리뷰 -->
          <div class="article_review">
          	<h3 class="review_title">리뷰작성</h3>
+
          	
          	<!-- 리뷰작성  -->
          	<div class="review_wrap">
@@ -407,16 +412,12 @@
       </div><!-- article end -->
    </div><!-- sub2_wrap end -->
    
-   <div class="sub2_footer">
-   		<div class="sub2_footer2">
-   			임시 푸터 영역 입니다.
-   		</div>
-   </div>
+		<c:import url="bottom.jsp"/>
+</div>
 
    <script src="../resources/js/jquery-1.10.2.min.js"></script>
    <script src="../resources/js/custom/sub2/star.js"></script>
    <script src="../resources/js/custom/sub2/jquery.fancybox.js"></script>
    <script src="../resources/js/custom/sub2/sub2.js"></script>
-  
 </body>
 </html>

@@ -13,19 +13,7 @@
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript">
-	$('document').ready(function(){
-		$('#searchAction').click(function(e){
-			e.preventDefault();
-			var keyword = $('#keyword').val();
-			var category = $('#category').val();
-			var url = "/custom/sub1?keyword="+keyword+"&category="+category;
-			
-			document.location.href=url;
-		})
-		
-	})
-	</script>
+	<script src="../resources/js/common.js"></script>
 </head>  
 
 <body id="main">

@@ -11,8 +11,7 @@
 
 
 #content {
-	
-	
+	margin:0 auto;
 	width: 80%; 
 }
 
@@ -73,13 +72,6 @@
 #list2-3 {
 	
 	}
-
-#header {
-	position: relative;
-	width: 100%;
-	margin: auto;
-	padding-bottom: 30px;
-}
 
 #content-wrap {
 	display: table;
