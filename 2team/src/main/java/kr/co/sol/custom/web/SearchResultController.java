@@ -25,8 +25,8 @@ public class SearchResultController {
 	
 	// sub1 page 
 	@RequestMapping("/custom/sub1")
-	public String searchResult(Model model , @RequestParam("keyword") String keyword
-			,@RequestParam("category") String category) {
+	public String searchResult(Model model , @RequestParam(value="keyword", required=false) String keyword
+			,@RequestParam(value="category", required=false) String category) {
 
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		hmap.put("keyword",keyword);

@@ -136,9 +136,9 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 </script>
 
 </head>
-<body>
+<body id="main">
 
-
+<div id="wrap">
 
 	<!-- top 영역 시작-->
 	<c:import url="top.jsp"/>
@@ -311,7 +311,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	
 	<!-- container 끝 -->
 
-
+</div>
 <script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>
