@@ -13,10 +13,12 @@
 <!-- Add fancyBox main CSS files -->
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub2/jquery.fancybox.css" />
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub2/sub2.css" />
-	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
-	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
-	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../resources/js/common.js"></script>
  
 </head>
 

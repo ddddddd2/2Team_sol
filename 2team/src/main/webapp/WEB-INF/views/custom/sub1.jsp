@@ -12,7 +12,7 @@
 <link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 <link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
-
+<script src="../resources/js/common.js"></script>
 <style type="text/css">
 
  .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 

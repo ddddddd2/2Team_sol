@@ -82,9 +82,9 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 		String sourceFileName = file.getOriginalFilename();
 		File destinationFile; 
 		if (sourceFileName == null || sourceFileName.length()==0) { 
-//		    revdto.setFile1("");
+		    revdto.setFile1("");
 		}else {
-//			revdto.setFile1(sourceFileName);
+			revdto.setFile1(sourceFileName);
 			destinationFile = new File(revdto.getPath()+ sourceFileName); 
 	        destinationFile.getParentFile().mkdirs(); 
 		    try {
