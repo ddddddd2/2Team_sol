@@ -48,6 +48,12 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 	}
 	
 	@Override
+	public String getMemberId(int idKey) {
+		// TODO Auto-generated method stub
+		return restaurantDetailDao.getMemberId(idKey);
+	}
+	
+	@Override
 	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
 		return restaurantDetailDao.getRestaurants(resdto);

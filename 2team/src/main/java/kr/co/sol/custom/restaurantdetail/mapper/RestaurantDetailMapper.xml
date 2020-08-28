@@ -32,7 +32,11 @@
   		select no from member where id = #{idKey}
   	</select>
   	
-  	    <select id="getRestaurants" parameterType="resdto" resultType="resdto">
+  	<select id="getMemberId" parameterType="int" resultType="string">
+  		select id from member where no = #{no}
+  	</select>
+  	
+  	<select id="getRestaurants" parameterType="resdto" resultType="resdto">
     	select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour 
     	from restaurant t join category c 
     	on t.c_no = c.no 

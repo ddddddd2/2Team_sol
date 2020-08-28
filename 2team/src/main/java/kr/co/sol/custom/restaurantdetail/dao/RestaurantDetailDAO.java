@@ -17,6 +17,7 @@ public interface RestaurantDetailDAO {
 	MemberDTO loginProc(MemberDTO mdto);
 	int signUpProc(MemberDTO mdto);
 	int getMemberNo(String idKey);
+	String getMemberId(int idKey);
 	
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 	List<MenuDTO> getMenus(RestaurantDTO resdto);

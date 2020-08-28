@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
-
+<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	
 <style type="text/css">
 
  .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 
@@ -18,7 +20,8 @@
 </style>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=62d3ab0d1faddf540c257e322ccce48e&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript"  >
+
+<script type="text/javascript" >
 window.onload = function(){
 	const slideList = document.querySelector('.slide_list'); // Slide parent dom
 	const slideContents = document.querySelectorAll('.slide_content'); // each slide dom
@@ -89,7 +92,8 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
         $('#list2-1 div').css("background","white");
 		
         $(this).closest("div").css("background","yellow");
-    
+    	
+        
         
 		$.ajax({
 			type:"post",
@@ -134,7 +138,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 </head>
 <body>
 
-
+<%-- 	<c:import url="top.jsp" /> --%>
 
 	<!-- top 영역 시작-->
 	<!-- top 영역 끝 -->
@@ -203,7 +207,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 			</div>
 
 
-				<!--  2번째 줄 새로시작 -->
+			<!--  2번째 줄 새로시작 -->
 				
 			<div id ="restart"style="width: auto; height: 350px; " >
 				<div id="recom">
@@ -306,7 +310,8 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	
 	<!-- container 끝 -->
 
-
+<%-- 	<c:import url="bottom.jsp" />
+ --%>
 <script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>
