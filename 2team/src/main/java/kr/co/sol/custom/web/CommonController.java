@@ -1,6 +1,10 @@
 package kr.co.sol.custom.web;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.sol.custom.common.service.MemberService;
-import kr.co.sol.custom.dto.MemberDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.service.MemberService;
 //import kr.co.sol.etc.SecurityUtil;
 import kr.co.sol.etc.SecurityUtil;
 
@@ -44,62 +48,25 @@ public class CommonController {
 	
 	@PostMapping(value="/loginPro")
 	public @ResponseBody int loginPro(HttpServletRequest request, MemberDTO mdto, HttpSession session) {
+		System.out.println("1차 암호화 : "+mdto.getPasswd());
 		SecurityUtil securityUtil = new SecurityUtil();
 		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
 		mdto.setPasswd(passwd);
-
+		System.out.println("2차 암호화 : "+passwd);
 		mdto = memberService.loginPro(mdto);
+		
 		if(mdto==null) {
 			return 0; // 아이디 비밀번호 조회가 실패
 		}
+		session.setAttribute("mdto", mdto);
+		session.setAttribute("idKey", mdto.getNo());
 		if("admin".equals(mdto.getRole())) {
+			System.out.println("어드민입니다");
 			return 1; // 로그인한 아이디가 어드민 계정일 경우
 		}
-		request.getSession();
-		session.setAttribute("idKey", mdto.getNo());
-		return 2;
-	}
-	
-//	// login process
-//	@RequestMapping(value="/custom/loginProc")
-//	public String loginProc(HttpServletRequest request, Model model, HttpServletResponse response,
-//			MemberDTO mdto) {
-//		
-//		mdto = memberService.loginProc(mdto); 
-//	    HttpSession session = request.getSession();
-//		String mem_id= null;
-//		String url="/";
-//		
-//		// 일치하는 아이디와 비밀번호가 있는경우 
-//		if(mdto != null)
-//		{
-//			mem_id = mdto.getId(); // member의 id가져오고 
-//			if(mdto.getRole().equals("admin")) // 역활이 admin 이라면 
-//			{
-//				session.setAttribute("adminDTO", mdto); // admin 세션을 추가
-//			}else {
-//				session.setAttribute("userDTO", mdto); // user 세션을 추가 
-//			}
-//		}
-//		
-//		// 로그인에 처리하지 못하였을 때 
-//		if(mem_id == null) {
-//			model.addAttribute("msg","id 또는 passwd 가 일치하지 않습니다. ");
-//			url = "/custom/login";
-//		}
-//		else {
-//			model.addAttribute("msg","로그인에 성공하였습니다. ");
-//			session.setAttribute("idKey", mem_id);
-//		}
-//		
-//		model.addAttribute("url",url);
-//			
-//		return "/custom/msgPage";
-//	}
-	
-	private void EncryptSHA256(String passwd) {
-		// TODO Auto-generated method stub
 		
+		System.out.println("유저입니다");
+		return 2;
 	}
 
 	// logout process
@@ -107,9 +74,8 @@ public class CommonController {
 	public String logout(HttpServletRequest request) {
 				
 		HttpSession session = request.getSession();
-//		session.removeAttribute("idKey");
+		session.removeAttribute("idKey");
 		session.invalidate();//세션 취소, 또는 초기화
-		System.out.println("세션 idKey 확인 : "+session.getAttribute("idKey"));
 		return "redirect:/"; 
 	}
 			
@@ -124,7 +90,9 @@ public class CommonController {
 	@RequestMapping(value="/custom/signUpProc")
 	public String memSignUpProc(HttpServletRequest request, Model model, HttpServletResponse response,
 			MemberDTO mdto) {
-				
+		SecurityUtil securityUtil = new SecurityUtil();
+		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
+		mdto.setPasswd(passwd);		
 		int r = memberService.signUpProc(mdto);
 		String url = "/";
 		if(r > 0 )
@@ -137,6 +105,14 @@ public class CommonController {
 		model.addAttribute("url", url);
 				
 		return "/custom/msgPage";
+	}
+	
+	@WebServlet("/upload")
+	@MultipartConfig(maxFileSize = 1024*1024*10, location = "c:\\project_workspace\\2team_sol\\2team\\src\\main\\resources\\adminUpload")
+	public class AdminUpload extends HttpServlet {
+
+		private static final long serialVersionUID = 1L;
+
 	}
 				
 }

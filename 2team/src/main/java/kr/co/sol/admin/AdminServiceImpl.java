@@ -7,14 +7,15 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDao;
+	
 	@Override
 	public List<HashMap<String, Object>> getMember() {
 		return adminDao.getMember();
@@ -48,5 +49,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<RestaurantDTO> getStoreList() {
 		// TODO Auto-generated method stub
 		return adminDao.getStoreList();
+	}
+	@Override
+	public int nameChk(String name) {
+		// TODO Auto-generated method stub
+		return adminDao.nameChk(name);
 	}
 }

@@ -41,23 +41,23 @@
 				<td>공개동의여부</td>
 			</tr>
 			<c:choose>
-				<c:when test="${mdto.size()==0}">
+				<c:when test="${mList.size()==0}">
 				<tr>
 					<td colspan="8">어라 아무리 찾아도 없는뎁쇼?</td>
 				</tr>
 				</c:when>
-				<c:when test="${mdto.size()!=0}">
-					<c:forEach var="mdto" items="${mdto}">
+				<c:when test="${mList.size()!=0}">
+					<c:forEach var="mList" items="${mList}">
 						<tr>
-						<td>${mdto.no}</td>
-						<td>${mdto.grade_name}</td>
+						<td>${mList.no}</td>
+						<td>${mList.grade_name}</td>
 						
 						
-						<td>${mdto.id}</td>
-						<td>${mdto.name}</td>
-						<td>${mdto.email}</td>
-						<td>${mdto.phone}</td>
-						<td>${mdto.gender}</td>
+						<td>${mList.id}</td>
+						<td>${mList.name}</td>
+						<td>${mList.email}</td>
+						<td>${mList.phone}</td>
+						<td>${mList.gender}</td>
 						<td></td>
 					</tr>
 					</c:forEach>

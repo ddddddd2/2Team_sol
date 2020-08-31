@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%
+response.setHeader("Pragma","no-cache"); 
+response.setDateHeader("Expires",0); 
+response.setHeader("Cache-Control", "no-cache"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +14,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="format-detection" content="telephone=no"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
-	
 	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
+
 	<script type="text/javascript">
 	$('document').ready(function(){
 		$('#searchAction').click(function(e){
@@ -30,7 +34,16 @@
 	</script>
 </head>  
 
-<body id="main">
+	<script src="../resources/js/common.js"></script>
+<script type="text/javascript">
+window.history.forward();
+
+
+function noBack(){window.history.forward();}
+
+</script>
+</head>  
+<body id="main" onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div id="skipNavi">
 		<ul>
 			<li>
@@ -38,7 +51,6 @@
 			</li>
 		</ul>
 	</div>  
-	
 	
 	<div id="wrap">
 		

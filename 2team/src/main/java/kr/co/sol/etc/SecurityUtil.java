@@ -6,8 +6,6 @@ import java.security.NoSuchAlgorithmException;
 public class SecurityUtil {
 	public String encryptSHA256(String str) {	
 	String newPass = "";
-	String oldPass = str;
-	System.out.println(oldPass);
 	try {
 		MessageDigest sh = MessageDigest.getInstance("SHA-256");
 		sh.update(str.getBytes());

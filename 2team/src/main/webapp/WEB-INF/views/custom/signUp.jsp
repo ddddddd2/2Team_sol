@@ -5,15 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title> 회원가입 </title>
-<!-- <link href="./resources/css/main.css" rel="stylesheet" type="text/css"> -->
-
-<link href="./resources/css/custom/signUp/signUp.css" rel="stylesheet" type="text/css">
-
+<link href="../resources/css/custom/index/main.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/custom/signUp/signUp.css" rel="stylesheet" type="text/css">
 <script src="../resources/js/jquery.js"></script>
 <script src="../resources/js/jquery-1.10.2.min.js"></script>
+<script src="../resources/js/custom/login.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="../resources/js/custom/signUp/signUp.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
+	// 문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
+	$('#id').focus();
+	$('#sign_btn').click(function(e){
+	var shaPw = hex_sha512($('#passwd').val()).toString();
+		$('#passwd').val(shaPw);
+	})
+})
+</script>
 </head>
 <body>
 	<form class="container" name="signUpForm" title="회원가입" method="post" action="/custom/signUpProc">
@@ -85,7 +93,7 @@
 		</div>
 		<div class="container-button">
 			<div class="box-button">			
-				<button class="btn-submit"> 가입하기  </button>
+				<button class="btn-submit" id="sign_btn"> 가입하기  </button>
 			</div>
 		</div>		
 	</form>		

@@ -7,10 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
+<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 <link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 <link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
-	
+<link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
+
+<script src="../resources/js/common.js"></script>
+
 <style type="text/css">
 
  .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 
@@ -136,16 +140,17 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 </script>
 
 </head>
-<body>
+<body id="main">
 
-<%-- 	<c:import url="top.jsp" /> --%>
+<div id="wrap">
 
 	<!-- top 영역 시작-->
+	<c:import url="top.jsp"/>
 	<!-- top 영역 끝 -->
 	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
 	<input type="text" id="category1" name="category" value="${category}"/>
 	
-	<div id="content-wrapper" style="position:absolute; width: 100%; height:auto;">
+	<div id="content-wrapper">
 		<div id="content" >
 		
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
@@ -304,14 +309,13 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 				<ul class="slide_pagination"></ul>
 				</div>
 				<!-- 	content 끝 -->
-
 			</div>
 			<!-- // .slide_list -->
 	
 	<!-- container 끝 -->
 
-<%-- 	<c:import url="bottom.jsp" />
- --%>
+	</div>
+		<c:import url="bottom.jsp"/>
 <script src="../resources/js/custom/sub1/sub1.js"></script>
 
 <script>

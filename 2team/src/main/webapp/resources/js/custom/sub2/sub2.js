@@ -1,4 +1,4 @@
-		// 첫번째 , 마지막 메뉴에 class 속성 추가 
+// 첫번째 , 마지막 메뉴에 class 속성 추가 
    		$(function(){
    			$(".menu_list li:first").addClass("menu_fst");
    			$(".menu_list li:last").addClass("menu_last");

@@ -1,6 +1,7 @@
 package kr.co.sol.custom.web;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.sol.custom.dto.RestaurantDTO;
-import kr.co.sol.custom.searchresult.service.SearchResultService;
+import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.searchresult.service.SearchResultService;
+
 
 @Controller 
 public class SearchResultController {

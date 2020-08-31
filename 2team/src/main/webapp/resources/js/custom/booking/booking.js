@@ -1,4 +1,3 @@
-
 function f_ChangeMonth( pYyyyMmDd ) {
 	var frm = document.frm;
 	var gv_save_yyyymmdd = "";

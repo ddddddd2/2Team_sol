@@ -1,4 +1,4 @@
-   var starRating = function(){
+var starRating = function(){
 	   var $star = $(".star-input"),
 	       $result = $star.find("output>b");
 	   	
@@ -35,5 +35,4 @@
 	       		}
 	     	});
 	   };
-
 	   starRating();

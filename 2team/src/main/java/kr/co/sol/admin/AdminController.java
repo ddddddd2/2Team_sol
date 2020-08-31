@@ -1,13 +1,20 @@
 package kr.co.sol.admin;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,38 +31,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.sol.custom.dto.MemberDTO;
-import kr.co.sol.custom.dto.RestaurantDTO;
+import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.service.MemberService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@RequestMapping(value="/admin/login",method= {RequestMethod.POST})
+	@Autowired
+	MemberService memberService;
+	
+	@RequestMapping(value="/admin/login",method= {RequestMethod.POST,RequestMethod.GET})
 	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
 		HttpSession session = request.getSession();
-		System.out.println("id, pw :: "+id+" "+passwd);
 		if(id!=null && passwd !=null) {
 			MemberDTO mdto2 = adminService.login(id, passwd);
 			session.setAttribute("mdto", mdto2);
-			System.out.println(mdto2);
 		} else {
-			System.out.println("널이다 ");
 			session.setAttribute("mdto",null);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id", "test_id");
 			map.put("passwd", "1234");
-			System.out.println(map);
 			session.setAttribute("data", map);
 		}
-		System.out.println("login:id="+id);
-		System.out.println("login:pw="+passwd);
-//		if(role)
 		return "/admin/login";
 	}
 	// 로그인 처리는 common에서 공통으로 처리.
-	
 	
 	@GetMapping(value="/logout")
 	public String logout(HttpSession session) {
@@ -64,7 +68,6 @@ public class AdminController {
 //	@RequestMapping(value="/loginPro", method ={RequestMethod.GET,RequestMethod.POST})
 //	public String loginPro(MemberDTO mdto, Model model, HttpServletRequest request) {
 //		String role = adminService.login2(mdto);
-//		System.out.println("loginPro::role="+role);
 //		if("admin".equals(role)) {
 //			HttpSession session = request.getSession();
 //			Integer no = mdto.getNo();
@@ -78,7 +81,7 @@ public class AdminController {
 //		return "/admin/index";
 //	}
 	
-	@RequestMapping(value="/admin", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin/index", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";
@@ -89,11 +92,7 @@ public class AdminController {
 	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
-		HttpSession session = request.getSession();
-		if(session.getAttribute("mdto")==null) {
 			
-			return "redirect:/";
-		}
 		List<HashMap<String, Object>> map= new ArrayList<HashMap<String, Object>>();
 		
 		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
@@ -104,8 +103,7 @@ public class AdminController {
 			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
 			map = adminService.getMemberList(searchOption,keyword);
 		}
-		model.addAttribute("mdto",map);
-		System.out.println();
+		model.addAttribute("mList",map);
 		// 검색 후 옵션 유지하기 위해서.
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("searchOption", searchOption);
@@ -171,20 +169,66 @@ public class AdminController {
 		return "admin/reg_store";
 	}
 	
-	@RequestMapping("admin/reg_storePro")
-	public String reg_storePro(@RequestParam("fileName") MultipartFile fileName, Model model) {
-			try {
-				fileName.transferTo(new File("${path}/"+fileName.getOriginalFilename()));
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
+	@RequestMapping(value="/admin/reg_storePro", method ={RequestMethod.GET,RequestMethod.POST})
+	public String reg_storePro(RestaurantDTO rdto, @RequestParam(value="fileName", required=false) MultipartFile file, Model model) {
+		String sourceFileName = file.getOriginalFilename();
+		File destinationFile; 
+		if (sourceFileName == null || sourceFileName.length()==0) { 
+			return "admin/reg_store";
+		}else {
+			destinationFile = new File("res_no_"+rdto.getNo()+"jpg"); 
+	        
+			destinationFile.getParentFile().mkdirs(); 
+		    try {
+				file.transferTo(destinationFile);
+			} catch (IllegalStateException e) {
 				e.printStackTrace();
-			} 
+			} catch (IOException e) {
+				 e.printStackTrace();
+			}
+		}
 		return "redirect:admin/store_manage";
 	}
 	
-	@RequestMapping(value="/juso", method = {RequestMethod.GET,RequestMethod.POST})
-	
-	public String map() {
-		return "admin/juso";
+	@PostMapping("/admin/reg_storePro/nameChk")
+	public @ResponseBody int nameChk(@RequestParam("nameChk") String name) {
+			int ckResult = adminService.nameChk(name);
+			if (ckResult==0) {
+				return 0;
+			}
+		return 1;
 	}
+	
+	@RequestMapping(value="/juso", method= {RequestMethod.GET, RequestMethod.POST})
+	public String juso(
+			) {
+		return "/admin/juso";
+	}
+	
+	@RequestMapping(value="/sample/getAddrApi.do")
+    public void getAddrApi(HttpServletRequest req, ModelMap model, HttpServletResponse response) throws Exception {
+		// 요청변수 설정
+    String currentPage = req.getParameter("currentPage");    //요청 변수 설정 (현재 페이지. currentPage : n > 0)
+		String countPerPage = req.getParameter("countPerPage");  //요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100)
+		String resultType = req.getParameter("resultType");      //요청 변수 설정 (검색결과형식 설정, json)
+		String confmKey = req.getParameter("confmKey");          //요청 변수 설정 (승인키)
+		String keyword = req.getParameter("keyword");            //요청 변수 설정 (키워드)
+		// OPEN API 호출 URL 정보 설정
+		String apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage="+currentPage+"&countPerPage="+countPerPage+"&keyword="+URLEncoder.encode(keyword,"UTF-8")+"&confmKey="+confmKey+"&resultType="+resultType;
+		URL url = new URL(apiUrl);
+    	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
+    	StringBuffer sb = new StringBuffer();
+    	String tempStr = null;
+
+    	while(true){
+    		tempStr = br.readLine();
+    		if(tempStr == null) break;
+    		sb.append(tempStr);								// 응답결과 JSON 저장
+    	}
+    	br.close();
+    	response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/xml");
+		response.getWriter().write(sb.toString());			// 응답결과 반환
+    }
+	
 }
