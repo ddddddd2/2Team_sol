@@ -7,7 +7,7 @@
 			</div>
 			<div id="space">
 				<div id="search">
-					<form method="post" action="">
+					<form method="post" id="search_form" action="#">
 						<div>
 							<select class="select" id="gu">
 								<option value="구선택">구선택</option>
@@ -28,7 +28,7 @@
 							</select>
 						</div>
 						<div class="search">
-							<input type="text" id="keyword">
+							<input type="text" id="header_keyword">
 							<input type="submit" id="searchAction" value="검색">
 						</div>
 					</form>

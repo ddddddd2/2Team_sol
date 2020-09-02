@@ -8,6 +8,6 @@ import kr.co.sol.common.dto.RestaurantDTO;
 public interface SearchResultService {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 	List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap);
-	
+	int getCnt(HashMap<String,Object> hmap);
 }
 

@@ -377,10 +377,10 @@
          			
          		</ul>
 
-					<div class="review_paging">
+				<div class="review_paging">
          		
          		<c:if test="${pdto.startPage > pdto.pageBlock}">
-         			<a href="/custom/sub2?currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
          				이전
          				<span class="ico_comm ico_prev"></span>
          			</a>
@@ -388,7 +388,7 @@
          			
          		<c:forEach var = "i" begin="${pdto.startPage}" end="${pdto.endPage}">
          			
-         			<a href="/custom/sub2?currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
          				<c:if test="${pdto.currentPage == i}"> 
          					<em><c:out value="${i}"/></em>
          				</c:if>
@@ -399,7 +399,7 @@
          		</c:forEach>
          			
          		<c:if test="${pdto.endPage < pdto.allPage}">	
-         			<a href="/custom/sub2?currentPage=${pdto.endPage+1}&currPageBlock=${pdto.currPageBlock+1}" class="btn_next">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${pdto.endPage+1}&currPageBlock=${pdto.currPageBlock+1}" class="btn_next">
          				다음
          				<span class="ico_comm ico_next"></span>
          			</a>

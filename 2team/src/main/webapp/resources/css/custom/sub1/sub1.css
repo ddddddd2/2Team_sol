@@ -42,36 +42,34 @@
 	border-right: 1px solid;
 }
 
-#list2-1 div{
+#list2-1 ul li{
 	width:100%;
 	height:40px;
 	box-sizing:border-box;
 	border:solid black 1px;
 	border-collapse:collapse;
-	
 }
 
+#list2-1 ul li div{
+	display:inline-block;
+	line-height: 30px;
+}
+
+#list2-1 span.alphabet{
+	font-weight: bold;
+	color:#1f8cff;
+	font-size:17px;
+}
 
 #list2-1 #res_name{
 	text-decoration: none;
 	color:black;
-}
-
-#map{
-	
+	font-size:16px;
 }
 
 #restart{
 	margin:10px;
 }
-
-
-#list2-2 {
-	
-}
-#list2-3 {
-	
-	}
 
 #content-wrap {
 	display: table;
@@ -121,6 +119,115 @@ a:-webkit-any-link {
 	text-decoration: underline;
 }
 
+.ico_comm{
+   display:block;
+   overflow: hidden;
+   font-size:1px;
+   line-height:0;
+   background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_detail_200518.png) no-repeat;
+   background-repeat: no-repeat;
+   text-indent: -9999px;
+}
+
+/* 由щ럭 �럹�씠吏� */
+ #list2-1 div.res_paging{
+ 	margin:15px auto;
+	overflow: hidden;
+    font-family: Arial,sans-serif;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    border:none;
+}
+
+/* �럹�씠吏� 踰덊샇 */
+.res_paging .link_page{
+	display: inline-block;
+    width: 28px;
+    height: 31px;
+    line-height: 35px;
+    text-decoration: none;
+    vertical-align: top;
+    letter-spacing: 0;
+    color:#000;
+    cursor: pointer;
+}
+
+.res_paging .link_page em{
+	width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #3396ff;
+    color: #3396ff;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-block;
+}
+
+.res_paging .link_page:hover{
+	text-decoration:none;
+	color:#00aef6;
+}
+
+
+/* �꽑�깮�맂 �럹�씠吏� 踰덊샇 */
+.res_paging em.link_page{
+	width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #3396ff;
+    color: #3396ff;
+    font-weight: 700;
+}
+
+/* �떎�쓬 �럹�씠吏�  */
+.res_paging .btn_next{
+	display: inline-block;
+    height: 31px;
+    margin-left: 5px;
+    font-size: 13px;
+    line-height: 35px;
+    color: #666;
+    background-position: 100% -10px;
+    vertical-align: middle;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.res_paging .ico_next{
+	display: inline-block;
+    width: 7px;
+    height: 11px;
+    margin: 8px 0 0 4px;
+	background-position: -190px -50px;
+}
+
+/* �씠�쟾 �럹�씠吏� */
+
+.res_paging .btn_prev {
+    display: inline-block;
+    height: 31px;
+    margin-right: 5px;
+    font-size: 13px;
+    line-height: 35px;
+    color: #666;
+    background-position: 0 10px;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.res_paging .ico_prev {
+    display: inline-block;
+    width: 7px;
+    height: 11px;
+    margin: 8px 4px 0 0;
+    background-position: -180px -50px;
+}
+
+
+
 /* -------------------------------------------------------------- */
 .multi-item-carousel { .carousel-inner { > .item{ transition:500msease-in-outleft;
 	
@@ -159,7 +266,7 @@ a:-webkit-any-link {
 
 }
 }
-//
+
 non-related styling:
 body {
 	background: #333;

@@ -26,6 +26,12 @@ public class SearchResultServiceImpl implements SearchResultService {
 	public List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap) {
 		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants2(hmap);
+	}
+
+	@Override
+	public int getCnt(HashMap<String, Object> hmap) {
+		// TODO Auto-generated method stub
+		return searchResultDao.getCnt(hmap);
 	}	
 	
 	

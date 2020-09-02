@@ -15,7 +15,34 @@
     </select>
   	
   	<select id="getRestaurants2" parameterType="hashMap" resultType="resdto">
-  		select * 
+  		select a.*
+  		from (select rownum rr , b.*
+  			from (select * from restaurant 
+  			
+  			
+  			<choose>
+  				<when test="keyword != null">
+  					where address1 like '%'||#{keyword}||'%'
+  				</when>
+  			</choose>
+  		
+  			<choose>
+  				<when test="category != null and category != 0">
+  					and c_no = #{category}
+  				</when>
+  			</choose>
+  			
+  			) b ) a
+  			
+  			<choose>
+  				<when test="start != null">
+  				where a.rr between #{start} and #{end}
+  				</when>
+  			</choose>
+  	</select>
+  	
+  	<select id ="getCnt" parameterType="hashMap" resultType="int" >
+  		select count(*) 
   		from restaurant 
   		<choose>
   			<when test="keyword != null">
@@ -24,7 +51,7 @@
   		</choose>
   		
   		<choose>
-  			<when test="category != 0">
+  			<when test="category != null and category != 0">
   				and c_no = #{category}
   			</when>
   		</choose>

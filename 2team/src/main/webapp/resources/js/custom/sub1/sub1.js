@@ -14,44 +14,62 @@ var addressList = []; // 전체주소 담을 배열
 var marker;
 var markers = [];
 
-var bounds = new kakao.maps.LatLngBounds(); // 재설정할 범위 정보 객체 
+var bounds ; // 재설정할 범위 정보 객체 
 
 var currCategory = '';
 
-// 주소들을 addressList 배열 에 담아줌 
-$.each( $("#list2-1 input.res_address") , function(k,v){
-	addressList.push($(v).val()); 
-});
+function drawMarker(){
+		
+			removeMarker();
+			
+			bounds = new kakao.maps.LatLngBounds();
+			
+			// 주소들을 addressList 배열 에 담아줌 
+			$.each( $("#list2-1 input.res_address") , function(k,v){
+				addressList.push($(v).val());
+			});
+			
+			//addressList에 들어간 주소들을 차례대로 마커 표시 해줌 
+			addressList.forEach(function(address,index){
+			   geocoder.addressSearch(address, function(result, status){
+				  
+			      // 정상적으로 검색이 완료됐으면 
+			      if (status === kakao.maps.services.Status.OK) {
 
-//addressList에 들어간 주소들을 차례대로 마커 표시 해줌 
-addressList.forEach(function(address){
-   
-   geocoder.addressSearch(address, function(result, status){
-   
-      // 정상적으로 검색이 완료됐으면 
-      if (status === kakao.maps.services.Status.OK) {
+			         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			         var markerImageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_normal.png';
+			         var imageSize = new kakao.maps.Size(29,40),
+			         	 imageOptions = {
+			        	 	spriteOrigin:new kakao.maps.Point(30,index*50),
+			        	 	spriteSize:new kakao.maps.Size(276,891) // 원본과의 비율?
+			         	};
+			         
+			         var markerImage = new kakao.maps.MarkerImage(markerImageSrc,imageSize,imageOptions);
+			         
+			         // 결과값으로 받은 위치를 마커로 표시합니다
+			         marker = new kakao.maps.Marker({
+			              position: coords,
+			              image:markerImage // 마커 이미지 설정 
+			         });
+			         
+			         marker.setMap(map);
+			         markers.push(marker);
+			         bounds.extend(coords);
+			         map.setBounds(bounds); 
+			
+			         //points.push(coords);
 
-         // 결과값으로 받은 위치를 마커로 표시합니다
-         marker = new kakao.maps.Marker({
-                 map: map,
-              position: coords
-         });
-         
-         marker.setMap(map);
-         markers.push(marker);
-         bounds.extend(coords);
+			          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			          //map.setCenter(coords);
+			      }
+			         
+			      }); // geocoder end
 
-         //points.push(coords);
-
-          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-          //map.setCenter(coords);
-          
-         }
-      }); // geocoder end
-
-}); // addressList foreach end
+			}); // addressList foreach end
+			
+			console.log(map.getLevel());
+}// drawMaker end
 
 
 // 지도위에 표시되고 있는  마커 삭제 
@@ -59,7 +77,9 @@ function removeMarker(){
 	for(var i = 0; i<markers.length; i++){
 		markers[i].setMap(null);
 	}
+	addressList= [];
 	markers = [];
+	bounds = null;
 }
 
 // 받아온 category 에 따른 초기  스타일을 적용(category bar 처음에 선택된거 불들어 오게 )
@@ -109,7 +129,7 @@ function onClickCategory() {
         currCategory = id;
         changeCategoryClass(this);
         
-		var keyword = $('#keyword').val();
+		var keyword = $('#keyword1').val();
 		var url = "/custom/sub1?keyword="+keyword+"&category="+nextCategory;
 		
 		document.location.href=url;
@@ -130,17 +150,97 @@ function changeCategoryClass(el) {
     if (el) {
         el.className = 'on';
     } 
-} 
+}
+
+$('#list2-1 #res_name').click(function(e){ // event 
+	e.preventDefault();
+	
+    // 출력된 음식점 리스트 css 변경
+    $('#list2-1 li').css("background","white");
+	
+    $(this).closest("li").css("background","#eff7ff");
+	$.ajax({
+		type:"post",
+		url:"/custom/getResInfo",
+		data:{ no : this.dataset.no }, // a링크의 -> data-no = ${resdto.no} 값을 넘겨줌 
+		contentType : "application/x-www-form-urlencoded; charset=utf-8",
+		dataType : "json",
+		success : function(resdto){
+	        //Ajax 성공
+
+			// 지도에서 클릭 된 음식점 마커 이미지 변경 ...
+			var index = addressList.indexOf(resdto.address1); // 내가 클릭한 음식점의 index 위치 
+			
+	        var markerImageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_normal.png';
+	        var imageSize = new kakao.maps.Size(36,55),
+	         	imageOptions = {
+	        	 	spriteOrigin:new kakao.maps.Point(160,index*60),
+	        	 	spriteSize:new kakao.maps.Size(276,891) // 원본과의 비율?
+	         	};
+	         
+	        var markerImage = new kakao.maps.MarkerImage(markerImageSrc,imageSize,imageOptions);
+			
+	        
+			geocoder.addressSearch(resdto.address1, function(result, status){
+				if (status === kakao.maps.services.Status.OK) {
+				
+					drawMarker();
+					
+					var res_position = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+					
+					// 코드의 구조상 동기식으로 ...
+					setTimeout(function(){
+						
+						for(var i = 0; i<markers.length; i++){
+							if(markers[i].getPosition().Ga.toFixed(11) == res_position.Ga.toFixed(11)
+									&& markers[i].getPosition().Ha.toFixed(11) == res_position.Ha.toFixed(11)){
+								
+								markers[i].setImage(markerImage);
+
+								map.setCenter(markers[i].getPosition());
+								map.setLevel(3);
+								
+							}else{
+							}
+						}
+						
+					} , 800);
+
+				}
+			});
+			
+			
+	        // sub1 의 음식점 상세정보 
+	        $('#list2-3 p#selected_name span').html(resdto.name);
+	        $('#list2-3 p#selected_address span').html(resdto.address1);
+	        $('#list2-3 p#selected_tel span').html(resdto.tel);
+	        $('#list2-3 p#selected_hour span').html(resdto.hour);
+	        
+	        var url = '/custom/sub2?no='+ resdto.no;
+	        $('#list2-3 button').on("click",function(){
+	        	document.location.href=url;
+	        });     
+	    
+	    },error : function(){
+	        //Ajax 실패시
+	        
+	    }
+	});
+	
+});// $('#list2-1 #res_name').click
+
+
+$('#list2-1 ul li span.alphabet').each(function(index,item){
+	$(item).text(String.fromCharCode(index+65)); // 숫자를 문자로(아스키 코드)  (index 0)+65 -> 'A'
+});
 
    // 실행 순서 문제 때문에 맵의 위치 이동은 window.load 가 완료되면 setBounds 시켜줘야함 
 $(window).load(function() {
-    
-	if(markers.length > 0){
-		map.setBounds(bounds); // 맵이동
-	}
-    addCategoryClickEvent(); // 카테고리 클릭 이벤트
-    
-    categoryInit();
+	
+	drawMarker();
+    addCategoryClickEvent(); // 카테고리 클릭 이벤트 등록 
+    categoryInit(); // 처음 카테고리 색 변경 
       
 });
 

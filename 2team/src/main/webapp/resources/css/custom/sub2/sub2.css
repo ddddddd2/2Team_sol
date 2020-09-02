@@ -850,7 +850,7 @@ float: right;
 }
 
 .review_paging .link_page:hover{
-	text_decoration:none;
+	text-decoration:none;
 	color:#00aef6;
 }
 

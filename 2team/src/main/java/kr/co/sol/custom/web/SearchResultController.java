@@ -1,8 +1,9 @@
 package kr.co.sol.custom.web;
 
 import java.util.HashMap;
-
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.searchresult.service.SearchResultService;
 
@@ -25,18 +27,71 @@ public class SearchResultController {
 	
 	// sub1 page 
 	@RequestMapping("/custom/sub1")
-	public String searchResult(Model model , @RequestParam("keyword") String keyword
-			,@RequestParam("category") String category) {
-
+	public String searchResult(HttpServletRequest request,Model model 
+			,@RequestParam("keyword") String keyword
+			,@RequestParam("category") Integer category
+			, PageDTO pdto) {
+		
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
 		
-		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);		
+		// paging info
+		// 전체 레코드수
+		int cnt = searchResultService.getCnt(hmap);
+		pdto.setLinePerPage(10);
+		pdto.setAllCount(cnt);
+		// 전체 페이지 수 계산
+		int pageCnt = cnt % pdto.getLinePerPage();
+		pdto.setAllPage(pageCnt);
+		if (pageCnt == 0) {
+			pdto.setAllPage(cnt / pdto.getLinePerPage());
+		} else {
+			pdto.setAllPage(cnt / pdto.getLinePerPage() + 1);
+		}
+
+		// 현재 페이지
+		int currentPage = 0;
+
+		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").equals("0")) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		// 현재 블럭
+		int currPageBlock = 0;
+
+		if (request.getParameter("currPageBlock") == null || request.getParameter("currPageBlock").equals(0)) {
+			currPageBlock = 1;
+		} else {
+			currPageBlock = Integer.parseInt(request.getParameter("currPageBlock"));
+		}
+		pdto.setCurrentPage(currentPage);
+		pdto.setCurrPageBlock(currPageBlock);
+
+		int startPage = 1;
+		int endPage = 1;
+
+		startPage = (currPageBlock - 1) * pdto.getPageBlock() + 1;
+		endPage = currPageBlock * pdto.getPageBlock() > pdto.getAllPage() ? pdto.getAllPage()
+				: currPageBlock * pdto.getPageBlock();
+
+		pdto.setStartPage(startPage);
+		pdto.setEndPage(endPage);
+
+		int sRow = (currentPage - 1) * pdto.getLinePerPage() + 1;
+
+		hmap.put("start", sRow);
+		hmap.put("end", currentPage * pdto.getLinePerPage());
+
+		// reviews info
+		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);
 		
 		model.addAttribute("reslist",reslist); // 레스토랑 리스트 
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("category",category);
+		model.addAttribute("pdto", pdto);
 		
 		return "/custom/sub1";
 	}
@@ -54,15 +109,6 @@ public class SearchResultController {
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
 		resdto = reslist.get(0);
 		
-		/* 
-		  	List<RestaurantDTO> reslist = searchResultService.getRestaurants();
-		  	reslist -> RestaurantDTO 431 개가 들어감  
-		  	reslist.get(10) -> 11번째 
-		  	
-		    List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
-		  	-> 음식점 하나만 뽑아오겟다  
-		  	
-		*/
 		
 		return resdto;
 	}
