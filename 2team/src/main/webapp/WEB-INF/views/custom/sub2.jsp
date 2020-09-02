@@ -22,7 +22,16 @@
  
 </head>
 
-<body>
+<script type="text/javascript">
+window.history.forward();
+
+        function noBack(){
+            window.history.forward();
+        }
+
+</script>
+
+<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div id="wrap">
 		<c:import url="top.jsp"/>
 

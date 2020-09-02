@@ -42,6 +42,11 @@ public class RestaurantDetailController {
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
 			RestaurantDTO resdto, Model model , PageDTO pdto,
 			@RequestParam("no") int res_no) {
+		
+		response.setHeader("Pragma","no-cache"); 
+		response.setHeader("Cache-Control", "no-cache"); 
+		response.setDateHeader("Expires",0);
+		
 		HttpSession session = request.getSession();
 		resdto.setNo(res_no);
 		// restaurant info
