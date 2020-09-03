@@ -54,6 +54,74 @@ $('document').ready(function(){
 		//si 잘라내기
 	});
 	
+	// 이미지 미리보기 시작
+	// 이미지 미리보기 끝
+	
+//	$('#file').change(function(){
+	var reader = new FileReader();
+		reader.onload = function(e){
+			var img = new Image;
+			const preFile = document.getElementById("file").files;
+			const file = preFile[0]
+//			var fileName = document.getElementById("file").value;
+//		    var idxDot = fileName.lastIndexOf(".") + 1;
+//		    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+//			    if(extFile == "jpg" || extFile == "jpeg" || extFile == "png"){
+//			    	console.log("정상 파일")
+//			    	
+//			    }else{
+//			    	alert("Only jpg/jpeg and png files are allowed!");
+//			 		$("#file").val("");
+//			 		e.preventDefault();
+//			    }
+			// 파일 검증 끝
+			// 리사이즈 시작
+			console.log("img.src1::"+img.src)
+			img.src = e.target.result;
+			console.log("img.src2::"+img.src)
+			
+			console.log(e.target)
+			console.log(img.width)
+			var canvas = document.createElement('canvas');
+			
+			var ctx = canvas.getContext("2d");
+			console.log("CTX--"+ctx)
+			
+			ctx.drawImage(img,0,0);
+			var Max_Width = 300;
+			var Max_Height = 300;
+			var width = img.width;
+			var height = img.height;
+			console.log("width::"+width)
+			console.log("height::"+height)
+			if(width > height){
+				console.log("width > height")
+				if(width > Max_Width){
+					console.log("width > Max_Width")
+					height *= Max_Width / width;
+					width = Max_Width;
+				}
+			} else {
+				console.log("width <= height")
+				if(height > Max_Height){
+					console.log("height > Max_height")
+					width *= Max_Height / height;
+					height = Max_Height;
+				}
+			}
+			
+			canvas.width = width;
+			canvas.height = height;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img,0,0,width,height);
+			var dataurl = canvas.toDataURL();
+			document.getElementById("foo").src=dataurl;
+			console.log(dataurl)
+			
+		}
+		reader.readAsDataURL(file);
+//	})
+	
 	// submit 시작
 	$('#submitBtn').click(function(e){
 		e.preventDefault();
@@ -64,29 +132,11 @@ $('document').ready(function(){
 		var addrDetail = $('#addrDetail').val();
 		var tel = $('#tel').val();
 		var hour = $('#hour1').val()+" ~ "+$('#hour2').val();
-		var file = $('#file').val();
-		
+//		var file = $('#file').file;
+		var file = fileUpload();
 		console.log(file)
 	})
 	
-	$('#file').change(function(e){
-			e.preventDefault();
-		    var fileName = $("#flie").val();
-		    console.log(fileName)
-		    var idxDot = fileName.lastIndexOf(".") + 1;
-		    
-		    console.log(idxDot);
-		    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-			    if(extFile == "jpg" || extFile == "jpeg" || extFile == "png"){
-			    	console.log("정상 파일")
-			    	console.log(extFile)
-			    	
-			    }else{
-			    	alert("Only jpg/jpeg and png files are allowed!");
-			 		$("#file").val("");
-			    }
- 		    } 
-	})
 // 	$('#btn').click(function(e){
 // 		e.preventDefault();
 // 		var name = $('#name').val();

@@ -12,9 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -159,7 +156,7 @@ public class AdminController {
 		return "admin/report";
 	}
 	
-	@GetMapping("admin/reg_store")
+	@RequestMapping(value="admin/reg_store", method= {RequestMethod.GET,RequestMethod.POST})
 	public String reg_store(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
@@ -190,7 +187,7 @@ public class AdminController {
 		return "redirect:admin/store_manage";
 	}
 	
-	@PostMapping("/admin/reg_storePro/nameChk")
+	@RequestMapping(value="/admin/reg_storePro/nameChk", method={RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody int nameChk(@RequestParam("nameChk") String name) {
 			int ckResult = adminService.nameChk(name);
 			if (ckResult==0) {

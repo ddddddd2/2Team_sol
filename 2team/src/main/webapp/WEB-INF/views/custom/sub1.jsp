@@ -147,13 +147,13 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	<input type="text" id="category1" name="category" value="${category}"/>
 	
 	<div id="content-wrapper">
-		<div id="content" >
+	<div id="content">
 		
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
 			
 				<div id="list2(0)" style="width:100%; height:100%;">
 			
-					<div id="list" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					<div id="list" style="float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
 					
 					<!-- 지도 wrap-->
 					<div class="map_wrap">
@@ -232,6 +232,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 		
 		<!--  2번째 줄 끝 -->		
 		</div>	
+		<hr>
 		
 		<!-- 3번째 줄 시작  -->				
 					<div id="content-wrap">
@@ -293,17 +294,13 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 					<!-- // .container -->
 					
 				<!-- // .slide_btn_box -->
-				<ul class="slide_pagination"></ul>
-				
-				</div>
+					</div>
 				
 				<!-- 3번째줄 끝 -->
 				</div>
 				
 				
 				<!-- // .slide_pagination -->
-				<ul class="slide_pagination"></ul>
-				</div>
 				<!-- 	content 끝 -->
 			</div>
 			<!-- // .slide_list -->
