@@ -1,18 +1,22 @@
 @charset "UTF-8";
 
-#content-wrapper{
-		
+#wrap{
+	height:100%;
+}
+
+
+#sub1-body{
+	
 	padding-left: 10%;	
 	padding-right: 10%;
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
 
-
-
 #content {
 	margin:0 auto;
 	width: 80%; 
+	text-align: center;
 }
 
 #content #map img {
@@ -25,24 +29,22 @@
 	list-style-type: none;
 }
 
-#list {
+#intro {
 	display: block;
 	height: 33px; weight: 300px;
-	/* 	border: 1px solid; */
 }
 
-
-#list2 {
+#body1 {
 	margin:10px;
 	border: 1px solid;
 }
 
-#list2-1 {
+#list {
 	overflow:auto;
 	border-right: 1px solid;
 }
 
-#list2-1 div{
+#list div{
 	width:100%;
 	height:40px;
 	box-sizing:border-box;
@@ -51,48 +53,70 @@
 	
 }
 
-
-#list2-1 #res_name{
+#list #res_name{
 	text-decoration: none;
 	color:black;
 }
 
-#map{
-	
-}
-
-#restart{
+#body2{
 	margin:10px;
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
-
-#list2-2 {
-	
+#recom{
+	text-align:center;
+	height: 10%;
 }
-#list2-3 {
-	
-	}
 
-#content-wrap {
-	display: table;
+.review_rate{
+	overflow: hidden;
+    padding: 6px 0 0;
+}
+
+.review_rate .num_rate{
 	float: left;
-	width: 100%;
-	height: 200px;
-	margin: 10px;
+    height: 40px;
+    font-family: Arial,sans-serif;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 0;
 }
 
-.slide_wrap {
-	position: relative;
-	width: 900px;
-	margin: auto;
-	padding-bottom: 30px;
+/* 留ㅼ옣 由щ럭 �젏�닔�뿉�꽌 湲��옄 -> �젏 �씠�씪�뒗 �뀓�뒪�듃 �몴�떆 */
+.review_rate .txt_score{
+	display: inline-block;
+    margin-left: 4px;
+    font-family: "\B9D1\C740 \ACE0\B515",Malgun Gothic,sans-serif;
+    font-size: 25px;
+    line-height: 33px;
+    vertical-align: top;
+}
+
+/* 留ㅼ옣 由щ럭 蹂꾩젏 �몴�떆  */
+.review_rate .star_rate{
+    width: 151px;
+    height: 27px;
+    background-position: 0 0;
+	float: left;
+    margin: 5px 0 0 10px;
+}
+
+
+
+/* 3번째줄 시작  */
+
+
+#body3{
+	margin:10px;
+	width: 820px;
+	display: inline-block;
 }
 
 .slide_box {
-	width: 100%;
 	margin: auto;
 	overflow-x: hidden;
-	position:center;
+	
 }
 
 .slide_content {
@@ -100,7 +124,29 @@
 	float: left;
 	width: 200px;
 	height: 200px;
+	margin-right:5px;
 }
+
+ .slide_wrap { 
+ position: relative; 
+ width: 100%; 
+ margin: auto; } 
+ 
+ .slide_box { 
+ width: 100%; 
+ margin: auto; 
+ overflow-x: hidden; } 
+ 
+ .slide_content { 
+ display: table; 
+ float: left; 
+ width: 200px; 
+ height: 200px;
+ }
+ 
+ .slide_list div p {
+ background-color: red;} 
+
 
 .slide_list div p {
 	background-color: red;
@@ -115,51 +161,36 @@ element.style {
 	left: 0px;
 }
 
-a:-webkit-any-link {
-	color: -webkit-link;
-	cursor: pointer;
-	text-decoration: underline;
+
+#footer {
+	
 }
 
 /* -------------------------------------------------------------- */
 .multi-item-carousel { .carousel-inner { > .item{ transition:500msease-in-outleft;
 	
 }
-
-/* .active { &.left { left:-33%; */
 	
-/* } */
 
-&
 .right {
 	left: 33%;
 }
 
 }
-/* .next { */
-/* 	left: 33%; */
-/* } */
-
-/* .prev { */
-/* 	left: -33%; */
-/* } */
 
 @media all and (transform-3d) , ( -webkit-transform-3d ) { >
 	.item { // use your favourite prefixer here transition:500msease-in-outleft;
 		transition: 500ms ease-in-out all;
 		backface-visibility: visible;
 		transform: none !important;
+		}
 	}
-}
-
 }
 .carouse-control { &.left , &.right{ background-image:none;
 	
 }
-
 }
 }
-//
 non-related styling:
 body {
 	background: #333;

@@ -13,14 +13,6 @@
 <link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../resources/css/custom/sub1/sub1.css">
 <script src="../resources/js/common.js"></script>
-<style type="text/css">
-
- .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 
- .slide_box { width: 100%; margin: auto; overflow-x: hidden; } 
- .slide_content { display: table; float: left; width: 300px; height: 400px; }
- .slide_list div p {background-color: red;} 
-</style>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=62d3ab0d1faddf540c257e322ccce48e&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript"  >
 window.onload = function(){
@@ -29,8 +21,8 @@ window.onload = function(){
 	const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
 	const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
 	const slideLen = slideContents.length; // slide length
-	const slideWidth = 300; // slide width
-	const slideSpeed = 300; // slide speed
+	const slideWidth = 205; // slide width
+	const slideSpeed = 200; // slide speed
 	const startNum = 0; // initial slide index (0 ~ 4)
 	slideList.style.width = slideWidth * (slideLen + 2) + "px";
 	// Copy first and last slide
@@ -86,11 +78,11 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 //문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
 
 
-	$('#list2-1 #res_name').click(function(e){ // event 
+	$('#list #res_name').click(function(e){ // event 
 		e.preventDefault();
 		
         // 출력된 음식점 리스트 css 변경
-        $('#list2-1 div').css("background","white");
+        $('#list div').css("background","white");
 		
         $(this).closest("div").css("background","yellow");
     
@@ -101,24 +93,26 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 			data:{ no : this.dataset.no }, // a링크의 -> data-no = ${resdto.no} 값을 넘겨줌 
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			dataType : "json",
-			success : function(resdto){
+			success : function(map){
 		        //Ajax 성공
-		      
-		        
+		      	alert("test")
+		        console.log(map.avg)
+		        console.log(map.resdto)
 		        // sub1 의 음식점 상세정보 
-		        $('#list2-3 p#selected_name span').html(resdto.name);
-		        $('#list2-3 p#selected_address span').html(resdto.address1);
-		        $('#list2-3 p#selected_tel span').html(resdto.tel);
-		        $('#list2-3 p#selected_hour span').html(resdto.hour);
+		        $('#detail_info p#selected_name span').html(resdto.name);
+		        $('#detail_info p#selected_address span').html(resdto.address1);
+		        $('#detail_info p#selected_tel span').html(resdto.tel);
+		        $('#detail_info p#selected_hour span').html(resdto.hour);
 		        
 		        var url = '/custom/sub2?no='+ resdto.no;
-		        $('#list2-3 button').on("click",function(){
+		        $('#detail_info button').on("click",function(){
 		        	document.location.href=url;
 		        });
 		        	
 		    
 		    },error : function(){
 		        //Ajax 실패시
+		        alert("error")
 		        
 		    }
 		});
@@ -126,14 +120,17 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	});
 	
 	// 문서가 처음 로딩될 때 음식점 리스트 의 첫 번째 요소가 선택됫다고 ... 
-	$('#list2-1 #res_name').first().trigger("click");
+	$('#list #res_name').first().trigger("click");
 });
 
 
-
-
-
 </script>
+  <script src="../resources/js/jquery-1.10.2.min.js"></script>
+   <script src="../resources/js/custom/sub2/star.js"></script>
+   <script src="../resources/js/custom/sub2/jquery.fancybox.js"></script>
+   <script src="../resources/js/custom/sub2/sub2.js"></script>
+
+
 
 </head>
 <body id="main">
@@ -143,17 +140,14 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 	<!-- top 영역 시작-->
 	<c:import url="top.jsp"/>
 	<!-- top 영역 끝 -->
-	<input type="text" id="keyword" name="keyword" value="${keyword}"/>
-	<input type="text" id="category1" name="category" value="${category}"/>
 	
-	<div id="content-wrapper">
-	<div id="content">
-		
-			<div id="list2" style="width: auto; height: 350px; text-align: center;">
+	<div id="sub1-body">
+		<div id="content" >
+			<div id="body1" style="width: auto; height: 350px; text-align: center;">
 			
-				<div id="list2(0)" style="width:100%; height:100%;">
+				<div id="maplist" style="width:100%; height:100%;">
 			
-					<div id="list" style="float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
+					<div id="intro" style=" float:left; height :10%; width:25%;">지도 Api 음식점 리스트</div>
 					
 					<!-- 지도 wrap-->
 					<div class="map_wrap">
@@ -188,7 +182,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 						</div>
 						
 						<!-- 지도 음식점 리스트 영역 -->
-						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
+						<div id="list" style="float: left; display: inline; height: 89.7%; width: 25%;">
 							
 							<c:forEach var="resdto" items="${reslist}">
 							
@@ -210,98 +204,100 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 
 				<!--  2번째 줄 새로시작 -->
 				
-			<div id ="restart"style="width: auto; height: 350px; " >
-				<div id="recom">
-					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
-				</div>
+			<div id ="body2"style="width: auto; height: 350px; " >
+				<div id="recom"> 선택된 음식점 </div>
 				
-				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; "> 					
+				<div id="detail_image" style="float: left; display: inline; height: 90%; width: 40%; "> 					
 					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'>
 						<img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
-				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
+				<div id="detail_info" 	style="float: left; display: inline; height: 90%; width: 30%; text-align:left;">
 					<p id="selected_name">음식점 : <span>  </span></p>
 					<p id="selected_address">주소 : <span>  </span></p>
 					<p id="selected_tel">연락처 : <span> </span></p>
 					<p id="selected_hour">운영시간 : <span> </span></p> 
 					<button>상세보기</button>
-				</div> 		<!-- list2-3 끝 -->			
-
+					<div id="smollreview" style=" float:right;"></div>
+				</div> 		<!-- detail_info3 끝 -->		
+				<div id="review" style="float:right; float:right; width: 29.8%;height: 90%">
+					
+					
+					<div class="review_rate">
+         				<span class="num_rate"> ${avg}
+         					<span class="txt_score">점</span>
+         				</span>
+         		
+         				<span class="ico_star star_rate">
+         					<span class="ico_star inner_star" style="width:${avg * 20}%"></span>	
+         				</span>
+         			</div>
+				
+				
+				</div>	<!-- 59.8% -->
+</div>	
 		
 		<!--  2번째 줄 끝 -->		
-		</div>	
-		<hr>
-		
 		<!-- 3번째 줄 시작  -->				
-					<div id="content-wrap">
+					<div id="body3">
 						<div class="slide_wrap">
 							<div class="slide_box">
 								<div class="slide_list clearfix" style="text-align: center;">
 									<div class="slide_content slide01">
 										<div style="float: left; width: 100%; height: 80%">
-											<img src="../resources/image/custom/sub1/han300.jpg">
+											<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 										</div>
 									<div style="float: left; width: 100%; height: 20%"> 
 										<%-- <p>${cdto.get(0).name}</p> --%>
 									</div>
 									</div>
 					<!-- 한식 글귀(제목)-->
-					<div class="slide_content slide02" >
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
+						<div class="slide_content slide02" >
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
+								</div>
+							<div style="float: left; width: 100%; height: 20%"></div>
 						</div>
-							<div style="float: left; width: 100%; height: 20%">
-								<%-- <p>${cdto.get(1).name}</p> --%>
-							
-							</div>
-						</div>
+						
 						<div class="slide_content slide03">
-							<div style="float: left; width: 100%; height: 80%">
-								<img src="../resources/image/custom/sub1/han300.jpg">
-							</div>
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
+								</div>
 							<div style="float: left; width: 100%; height: 20%">분식</div>
-
 						</div>
 
 						<div class="slide_content slide04">
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
-						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
+								<div style="float: left; width: 100%; height: 80%" >
+									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
+								</div>
+							<div style="float: left; width: 100%; height: 20%">좝</div>
 
 						</div>
 					
 					
 						<div class="slide_content slide05">
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
-						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
+							<div style="float: left; width: 100%; height: 80%" >
+								<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
+							</div>
+								<div style="float: left; width: 100%; height: 20%">좝</div>
 						</div>
 
-					</div>
 					<!-- // .slide_list -->
 					</div>
 					<!-- // .slide_box -->
-				<div class="slide_btn_box" style="text-align: center;">
-				<button type="button" class="slide_btn_prev">이전</button>
-				<button type="button" class="slide_btn_next">다음</button>
 				</div>
-					
-				<!-- // .slide_wrap -->
-					<!-- // .container -->
-					
-				<!-- // .slide_btn_box -->
+					<div class="slide_btn_box" style="text-align: center;">
+						<button type="button" class="slide_btn_prev">이전</button>
+						<button type="button" class="slide_btn_next">다음</button>
 					</div>
-				
-				<!-- 3번째줄 끝 -->
+					<ul class="slide_pagination"></ul>
 				</div>
+				<!-- 3번째줄 끝 -->
+			</div>
 				
-				
-				<!-- // .slide_pagination -->
-				<!-- 	content 끝 -->
+				</div>
+				<!-- 	sub1-body 끝 -->
 			</div>
 			<!-- // .slide_list -->
 	
