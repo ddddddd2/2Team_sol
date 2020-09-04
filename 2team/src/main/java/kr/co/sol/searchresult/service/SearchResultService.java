@@ -9,5 +9,7 @@ public interface SearchResultService {
 	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
 	List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap);
 	int getCnt(HashMap<String,Object> hmap);
+	int visitorsCnt(RestaurantDTO resdto);
+	String reviewAvg(RestaurantDTO resdto);
 }
 

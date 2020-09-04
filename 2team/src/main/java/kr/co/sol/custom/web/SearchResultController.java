@@ -37,8 +37,7 @@ public class SearchResultController {
 		hmap.put("category", category);
 		
 		// paging info
-		// 전체 레코드수
-		int cnt = searchResultService.getCnt(hmap);
+		int cnt = searchResultService.getCnt(hmap); //페이징 처리를 위한 전체 레코드수
 		pdto.setLinePerPage(10);
 		pdto.setAllCount(cnt);
 		// 전체 페이지 수 계산
@@ -100,17 +99,25 @@ public class SearchResultController {
 	// searchResult page 에서 음식점 리스트 중  음심점을 클릭시 그 음식점 정보를 리턴 하는 메소드 
 	@ResponseBody
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
-	public RestaurantDTO getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
+	public HashMap<String,Object> getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
 	    
+		HashMap<String,Object> hmap = new HashMap<String,Object>();
+		
 		// 1. sub1.jsp 에서 ajax -> no 파라미터 를 받아오고
 		// 2. 이 함수의 매개변수(resdto) 가 resdto.setNo(no);
 		
-		// resdto 로 음식점
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
 		resdto = reslist.get(0);
 		
+		int visitorsCnt = searchResultService.visitorsCnt(resdto); // 조회수 
 		
-		return resdto;
+		String reviewAvg = searchResultService.reviewAvg(resdto); // 리뷰 평점
+		
+		hmap.put("resdto", resdto);
+		hmap.put("visitorsCnt", visitorsCnt);
+		hmap.put("reviewAvg", reviewAvg);
+		
+		return hmap;
 	}
 
 

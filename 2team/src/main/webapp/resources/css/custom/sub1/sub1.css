@@ -227,6 +227,27 @@ a:-webkit-any-link {
 }
 
 
+#restart #list2-2{
+	float: left; 
+	display: inline; 
+	height: 90%; 
+	width: 40%;
+}
+
+#restart #list2-3{
+	float: left; 
+	display: inline; 
+	height: 90%; 
+	width: 40%; 
+	text-align:left;
+	padding-left:30px;
+	line-height:30px;
+	font-weight: bold;
+}
+
+#restart #list2-3 #selected_avg span{
+	color:#ff792a;
+}
 
 /* -------------------------------------------------------------- */
 .multi-item-carousel { .carousel-inner { > .item{ transition:500msease-in-outleft;

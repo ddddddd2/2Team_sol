@@ -32,6 +32,18 @@ public class SearchResultServiceImpl implements SearchResultService {
 	public int getCnt(HashMap<String, Object> hmap) {
 		// TODO Auto-generated method stub
 		return searchResultDao.getCnt(hmap);
+	}
+
+	@Override
+	public int visitorsCnt(RestaurantDTO resdto) {
+		// TODO Auto-generated method stub
+		return searchResultDao.visitorsCnt(resdto);
+	}
+
+	@Override
+	public String reviewAvg(RestaurantDTO resdto) {
+		// TODO Auto-generated method stub
+		return searchResultDao.reviewAvg(resdto);
 	}	
 	
 	

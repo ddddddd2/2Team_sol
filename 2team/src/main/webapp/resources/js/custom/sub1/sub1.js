@@ -67,8 +67,6 @@ function drawMarker(){
 			      }); // geocoder end
 
 			}); // addressList foreach end
-			
-			console.log(map.getLevel());
 }// drawMaker end
 
 
@@ -165,11 +163,11 @@ $('#list2-1 #res_name').click(function(e){ // event
 		data:{ no : this.dataset.no }, // a링크의 -> data-no = ${resdto.no} 값을 넘겨줌 
 		contentType : "application/x-www-form-urlencoded; charset=utf-8",
 		dataType : "json",
-		success : function(resdto){
+		success : function(hmap){
 	        //Ajax 성공
 
 			// 지도에서 클릭 된 음식점 마커 이미지 변경 ...
-			var index = addressList.indexOf(resdto.address1); // 내가 클릭한 음식점의 index 위치 
+			var index = addressList.indexOf(hmap.resdto.address1); // 내가 클릭한 음식점의 index 위치 
 			
 	        var markerImageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_normal.png';
 	        var imageSize = new kakao.maps.Size(36,55),
@@ -181,7 +179,7 @@ $('#list2-1 #res_name').click(function(e){ // event
 	        var markerImage = new kakao.maps.MarkerImage(markerImageSrc,imageSize,imageOptions);
 			
 	        
-			geocoder.addressSearch(resdto.address1, function(result, status){
+			geocoder.addressSearch(hmap.resdto.address1, function(result, status){
 				if (status === kakao.maps.services.Status.OK) {
 				
 					drawMarker();
@@ -210,18 +208,23 @@ $('#list2-1 #res_name').click(function(e){ // event
 				}
 			});
 			
-			
 	        // sub1 의 음식점 상세정보 
-	        $('#list2-3 p#selected_name span').html(resdto.name);
-	        $('#list2-3 p#selected_address span').html(resdto.address1);
-	        $('#list2-3 p#selected_tel span').html(resdto.tel);
-	        $('#list2-3 p#selected_hour span').html(resdto.hour);
+	        $('#list2-3 p#selected_name span').html(hmap.resdto.name);
+	        $('#list2-3 p#selected_address span').html(hmap.resdto.address1);
+	        $('#list2-3 p#selected_tel span').html(hmap.resdto.tel);
+	        $('#list2-3 p#selected_hour span').html(hmap.resdto.hour);
+	        $('#list2-3 p#selected_cnt span').html(hmap.visitorsCnt);
+	        $('#list2-3 p#selected_avg span').html(hmap.reviewAvg);
 	        
-	        var url = '/custom/sub2?no='+ resdto.no;
-	        $('#list2-3 button').on("click",function(){
+	        // 상세정보 보기 버튼 클릭 
+	        var url = '/custom/sub2?no='+ hmap.resdto.no;
+	        $('#list2-3 button').on("click",function(e){
+	        	e.preventDefault();
 	        	document.location.href=url;
-	        });     
-	    
+	        });  
+	        // 왼쪽 음식점 이미지 클릭시 target=_blank속성으로 나오기 위해 
+	        $('#list2-2 a').attr("href",url);
+	        
 	    },error : function(){
 	        //Ajax 실패시
 	        

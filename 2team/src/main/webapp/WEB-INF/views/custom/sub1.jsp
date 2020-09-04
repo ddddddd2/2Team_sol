@@ -230,17 +230,20 @@ function paging_form(currentPage,currPageBlock){
 					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
 				</div>
 				
-				<div id="list2-2" style="float: left; display: inline; height: 90%; width: 40%; "> 					
-					<a href="http://duckbap.com/detail?res_no=${resdto.get(0).no}" target='_blank'>
+				<div id="list2-2" > 					
+					<a href="" target='_blank'>
 						<img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
-				<div id="list2-3" 	style="float: right; display: inline; height: 90%; width: 59.8%; text-align:left;">
-					<p id="selected_name">음식점 : <span>  </span></p>
-					<p id="selected_address">주소 : <span>  </span></p>
-					<p id="selected_tel">연락처 : <span> </span></p>
-					<p id="selected_hour">운영시간 : <span> </span></p> 
+				<div id="list2-3">
+					<p id="selected_name">음식점 : 	<span>  </span></p>
+					<p id="selected_address">주소 : 	<span>  </span></p>
+					<p id="selected_tel">연락처 : 	<span> </span></p>
+					<p id="selected_hour">운영시간 : 	<span> </span></p>
+					<p id="selected_cnt">조회수 : 	<span> </span></p>
+					<p id="selected_avg">평점 : 		<span> </span></p>
+					
 					<button>상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
 
@@ -250,58 +253,62 @@ function paging_form(currentPage,currPageBlock){
 		
 		<!-- 3번째 줄 시작  -->				
 			<div id="content-wrap">
-						<div class="slide_wrap">
-							<div class="slide_box">
-								<div class="slide_list clearfix" style="text-align: center;">
-									<div class="slide_content slide01">
-										<div style="float: left; width: 100%; height: 80%">
-											<img src="../resources/image/custom/sub1/han300.jpg">
-										</div>
-									<div style="float: left; width: 100%; height: 20%"> 
-										<%-- <p>${cdto.get(0).name}</p> --%>
-									</div>
-									</div>
-					<!-- 한식 글귀(제목)-->
-					<div class="slide_content slide02" >
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
-						</div>
-							<div style="float: left; width: 100%; height: 20%">
-								<%-- <p>${cdto.get(1).name}</p> --%>
+				<div class="slide_wrap">
+				
+					<div class="slide_box">
+						
+						<div class="slide_list clearfix" style="text-align: center;">
+							<div class="slide_content slide01">
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg">
+								</div>
+								<div style="float: left; width: 100%; height: 20%"> 
+									<%-- <p>${cdto.get(0).name}</p> --%>
+								</div>
+							</div>
 							
+							<!-- 한식 글귀(제목)-->
+							<div class="slide_content slide02" >
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg">
+								</div>
+								<div style="float: left; width: 100%; height: 20%">
+									<%-- <p>${cdto.get(1).name}</p> --%>
+								</div>
 							</div>
-						</div>
-						<div class="slide_content slide03">
-							<div style="float: left; width: 100%; height: 80%">
-								<img src="../resources/image/custom/sub1/han300.jpg">
-							</div>
+						
+							<div class="slide_content slide03">
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg">
+								</div>
 							<div style="float: left; width: 100%; height: 20%">분식</div>
 
-						</div>
+							</div>
 
-						<div class="slide_content slide04">
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
-						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
+							<div class="slide_content slide04">
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg">
+								</div>
+								<div style="float: left; width: 100%; height: 20%">좝</div>
 
-						</div>
+							</div>
 					
 					
-						<div class="slide_content slide05">
-						<div style="float: left; width: 100%; height: 80%">
-							<img src="../resources/image/custom/sub1/han300.jpg">
-						</div>
-						<div style="float: left; width: 100%; height: 20%">좝</div>
-						</div>
+							<div class="slide_content slide05">
+								<div style="float: left; width: 100%; height: 80%">
+									<img src="../resources/image/custom/sub1/han300.jpg">
+								</div>
+								<div style="float: left; width: 100%; height: 20%">좝</div>
+							</div>
 
+						</div>
+							<!-- // .slide_list -->
 					</div>
-					<!-- // .slide_list -->
-					</div>
-					<!-- // .slide_box -->
+							<!-- // .slide_box -->
+				
 				<div class="slide_btn_box" style="text-align: center;">
-				<button type="button" class="slide_btn_prev">이전</button>
-				<button type="button" class="slide_btn_next">다음</button>
+					<button type="button" class="slide_btn_prev">이전</button>
+					<button type="button" class="slide_btn_next">다음</button>
 				</div>
 					
 				<!-- // .slide_wrap -->
@@ -313,19 +320,16 @@ function paging_form(currentPage,currPageBlock){
 				</div>
 				
 				<!-- 3번째줄 끝 -->
-				</div>
+			</div>
 				
 				
 				<!-- // .slide_pagination -->
 				<ul class="slide_pagination"></ul>
-				</div>
-				<!-- 	content 끝 -->
-			</div>
-			<!-- // .slide_list -->
-	
-	<!-- container 끝 -->
+			</div><!-- 	content 끝 -->
+				
+	</div><!-- content-wrapper 끝-->
 
-	</div>
+</div><!-- wrap 끝 -->
 		<c:import url="bottom.jsp"/>
 <script src="../resources/js/custom/sub1/sub1.js"></script>
 

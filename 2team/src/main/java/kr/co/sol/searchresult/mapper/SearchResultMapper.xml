@@ -56,4 +56,16 @@
   			</when>
   		</choose>
   	</select>
+  	
+  	<select id="visitorsCnt" parameterType="resdto" resultType="int">
+  		select count 
+  		from count
+  		where res_no = #{no} 
+  	</select>
+  	
+  	<select id="reviewAvg" parameterType="resdto" resultType="string">
+  		select nvl(trunc(avg(rating),1),0.0) avg
+  		from review
+  		where res_no = #{no}
+  	</select>
 </mapper>
