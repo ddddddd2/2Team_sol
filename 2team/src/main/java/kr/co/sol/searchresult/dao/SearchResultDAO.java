@@ -9,6 +9,6 @@ import kr.co.sol.common.dto.RestaurantDTO;
 
 @Mapper
 public interface SearchResultDAO {
-	List<RestaurantDTO> getRestaurants(RestaurantDTO resdto);
+	RestaurantDTO getRestaurants(RestaurantDTO resdto);
 	List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap);
 }

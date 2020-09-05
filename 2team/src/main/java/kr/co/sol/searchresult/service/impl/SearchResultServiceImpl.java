@@ -3,6 +3,7 @@ package kr.co.sol.searchresult.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	SearchResultDAO searchResultDao;
 	
 	@Override
-	public List<RestaurantDTO> getRestaurants(RestaurantDTO resdto) {
+	public RestaurantDTO getRestaurants(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants(resdto);
 	} 

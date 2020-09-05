@@ -37,8 +37,6 @@ System.out.println("Keyword::"+keyword);
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);		
-		List<RestaurantDTO> tlist = restaurantDetailService.getRestaurants(resdto);
-		System.out.println("tlist=="+tlist);
 		System.out.println("reslist=="+reslist);
 		model.addAttribute("reslist",reslist); // 레스토랑 리스트 
 		model.addAttribute("keyword",keyword);
@@ -53,15 +51,13 @@ System.out.println("Keyword::"+keyword);
 	// searchResult page 에서 음식점 리스트 중  음심점을 클릭시 그 음식점 정보를 리턴 하는 메소드 
 	@ResponseBody
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
-	public List getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
-	    
+	public Map<String,Object> getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
 		// 1. sub1.jsp 에서 ajax -> no 파라미터 를 받아오고
 		// 2. 이 함수의 매개변수(resdto) 가 resdto.setNo(no);
 		
 		// resdto 로 음식점
-		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
-		resdto = reslist.get(0);
-		List<String> map = new ArrayList<String>();
+		RestaurantDTO resdto2 = searchResultService.getRestaurants(resdto);
+		System.out.println("resdto::"+resdto);
 		/* 
 		  	List<RestaurantDTO> reslist = searchResultService.getRestaurants();
 		  	reslist -> RestaurantDTO 431 개가 들어감  
@@ -71,10 +67,9 @@ System.out.println("Keyword::"+keyword);
 		  	-> 음식점 하나만 뽑아오겟다  
 		  	
 		*/
-		Map<String,Object> rmap = restaurantDetailService.reviewCountAndAvg(resdto);
-		map.add(rmap.get("avg"))
-		map.addAll("avg",rmap.get("avg"));
-		map.put("restdto",resdto);
+		Map<String,Object> map = restaurantDetailService.reviewCountAndAvg(resdto);
+		map.put("resdto",resdto2);
+		System.out.println("map:::"+map);
 		return map;
 	}
 
