@@ -195,7 +195,7 @@ $('#list2-1 #res_name').click(function(e){ // event
 									&& markers[i].getPosition().Ha.toFixed(11) == res_position.Ha.toFixed(11)){
 								
 								markers[i].setImage(markerImage);
-
+								markers[i].setZIndex(10);
 								map.setCenter(markers[i].getPosition());
 								map.setLevel(3);
 								
@@ -214,7 +214,8 @@ $('#list2-1 #res_name').click(function(e){ // event
 	        $('#list2-3 p#selected_tel span').html(hmap.resdto.tel);
 	        $('#list2-3 p#selected_hour span').html(hmap.resdto.hour);
 	        $('#list2-3 p#selected_cnt span').html(hmap.visitorsCnt);
-	        $('#list2-3 p#selected_avg span').html(hmap.reviewAvg);
+	        $('#list2-3 p#selected_avg span#avg').html(hmap.reviewAvg);
+	        $('#list2-3 p#selected_avg span#count').html("("+hmap.reviewCount+")");
 	        
 	        // 상세정보 보기 버튼 클릭 
 	        var url = '/custom/sub2?no='+ hmap.resdto.no;

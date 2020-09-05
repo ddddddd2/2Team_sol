@@ -71,11 +71,10 @@
 	margin:10px;
 }
 
-#content-wrap {
+.content-wrap {
 	display: table;
 	float: left;
 	width: 100%;
-	height: 200px;
 	margin: 10px;
 }
 
@@ -100,8 +99,16 @@
 	height: 200px;
 }
 
-.slide_list div p {
-	background-color: red;
+.slide_content .slide_img{
+	float: left; 
+	width: 300px; 
+	height:300px;
+	margin-bottom:5px;
+}
+
+.slide_content div img{
+	width: 100%; 
+	height: 100%;
 }
 
 ul > li {
@@ -245,7 +252,7 @@ a:-webkit-any-link {
 	font-weight: bold;
 }
 
-#restart #list2-3 #selected_avg span{
+#restart #list2-3 #selected_avg span#avg{
 	color:#ff792a;
 }
 

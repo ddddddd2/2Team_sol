@@ -2,6 +2,7 @@ package kr.co.sol.custom.web;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,14 +85,23 @@ public class SearchResultController {
 		hmap.put("start", sRow);
 		hmap.put("end", currentPage * pdto.getLinePerPage());
 
-		// reviews info
+		// keyword , category 에 맞는 음식점  구하기 
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);
 		
-		model.addAttribute("reslist",reslist); // 레스토랑 리스트 
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("category",category);
-		model.addAttribute("pdto", pdto);
+		//==============================================================================
+		//keyword(지역) 에서의  조회수 와 리뷰 평점순 음식점 top5 
 		
+		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
+		
+		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
+		
+		
+		
+		model.addAttribute("reslist",reslist); // 음식점 리스트 
+		model.addAttribute("keyword",keyword); // 키워드
+		model.addAttribute("category",category); // 카테고리
+		model.addAttribute("pdto", pdto); // 페이지 
+		model.addAttribute("vReslist",vReslist); // 저회수 별 음식점 리스트 
 		return "/custom/sub1";
 	}
 	
@@ -106,16 +116,18 @@ public class SearchResultController {
 		// 1. sub1.jsp 에서 ajax -> no 파라미터 를 받아오고
 		// 2. 이 함수의 매개변수(resdto) 가 resdto.setNo(no);
 		
+		// 레스토랑 번호로 해당 레스토랑 정보 구하기 
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
 		resdto = reslist.get(0);
 		
 		int visitorsCnt = searchResultService.visitorsCnt(resdto); // 조회수 
 		
-		String reviewAvg = searchResultService.reviewAvg(resdto); // 리뷰 평점
+		Map<String,Object> rmap = searchResultService.reviewCountAndAvg(resdto); // 리뷰 평점
 		
 		hmap.put("resdto", resdto);
 		hmap.put("visitorsCnt", visitorsCnt);
-		hmap.put("reviewAvg", reviewAvg);
+		hmap.put("reviewCount", rmap.get("count"));
+		hmap.put("reviewAvg", rmap.get("avg"));
 		
 		return hmap;
 	}

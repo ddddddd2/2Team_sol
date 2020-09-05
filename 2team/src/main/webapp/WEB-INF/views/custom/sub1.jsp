@@ -20,13 +20,13 @@
  .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 
  .slide_box { width: 100%; margin: auto; overflow-x: hidden; } 
  .slide_content { display: table; float: left; width: 300px; height: 400px; }
- .slide_list div p {background-color: red;} 
 </style>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=62d3ab0d1faddf540c257e322ccce48e&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript" >
 window.onload = function(){
+	
 	const slideList = document.querySelector('.slide_list'); // Slide parent dom
 	const slideContents = document.querySelectorAll('.slide_content'); // each slide dom
 	const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
@@ -84,12 +84,6 @@ window.onload = function(){
 	});
 	
 }
-
-$(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 문서에 있는 요소들을 지정해서 가져올 수 있음.
-//문서가 로딩 되지 않은 상태에서 #id 를 하면 아직 해당 id가 생성되지 않아 읽어올 수가 없다.
-	
-	
-});
 
 
 // 음식점 리스트 밑 페이징 눌렀을 때 form 전송 
@@ -242,7 +236,7 @@ function paging_form(currentPage,currPageBlock){
 					<p id="selected_tel">연락처 : 	<span> </span></p>
 					<p id="selected_hour">운영시간 : 	<span> </span></p>
 					<p id="selected_cnt">조회수 : 	<span> </span></p>
-					<p id="selected_avg">평점 : 		<span> </span></p>
+					<p id="selected_avg">평점 : 		<span id="avg"> </span> <span id="count"></span></p>
 					
 					<button>상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
@@ -251,84 +245,50 @@ function paging_form(currentPage,currPageBlock){
 			<!--  2번째 줄 끝 -->		
 			</div>	
 		
-		<!-- 3번째 줄 시작  -->				
-			<div id="content-wrap">
+			<!-- 3번째 줄 시작  -->				
+			<div class="content-wrap">
+				
+				<div class="recom">
+					<div style="height: 10%; text-align: center;">조회수 별 음식점 top5 </div>
+				</div>
 				<div class="slide_wrap">
 				
 					<div class="slide_box">
 						
 						<div class="slide_list clearfix" style="text-align: center;">
-							<div class="slide_content slide01">
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg">
-								</div>
-								<div style="float: left; width: 100%; height: 20%"> 
-									<%-- <p>${cdto.get(0).name}</p> --%>
-								</div>
-							</div>
 							
-							<!-- 한식 글귀(제목)-->
-							<div class="slide_content slide02" >
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg">
+							<c:forEach var="vReslist" items="${vReslist}">
+								<div class="slide_content ">
+									<div class="slide_img">
+										<img src="../resources/image/custom/sub1/han300.jpg">
+										
+									</div>
+									<div style="float: left; width: 100%; height: 20%"> 
+										<p>음식점 : <span>${vReslist.name}</span></p>
+										<p>종류 : <span>${vReslist.c_name}</span></p>
+										<p>평점 : <span>${vReslist.avg}</span></p>
+										<p>조회수 : <span>${vReslist.count}</span></p>
+									</div>
 								</div>
-								<div style="float: left; width: 100%; height: 20%">
-									<%-- <p>${cdto.get(1).name}</p> --%>
-								</div>
-							</div>
-						
-							<div class="slide_content slide03">
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg">
-								</div>
-							<div style="float: left; width: 100%; height: 20%">분식</div>
+							</c:forEach>
 
-							</div>
-
-							<div class="slide_content slide04">
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg">
-								</div>
-								<div style="float: left; width: 100%; height: 20%">좝</div>
-
-							</div>
-					
-					
-							<div class="slide_content slide05">
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg">
-								</div>
-								<div style="float: left; width: 100%; height: 20%">좝</div>
-							</div>
-
-						</div>
-							<!-- // .slide_list -->
+						</div><!-- // .slide_list -->
+							
+					</div><!-- // .slide_box -->
+							
+				
+					<div class="slide_btn_box" style="text-align: center;">
+						<button type="button" class="slide_btn_prev">이전</button>
+						<button type="button" class="slide_btn_next">다음</button>
 					</div>
-							<!-- // .slide_box -->
-				
-				<div class="slide_btn_box" style="text-align: center;">
-					<button type="button" class="slide_btn_prev">이전</button>
-					<button type="button" class="slide_btn_next">다음</button>
-				</div>
-					
-				<!-- // .slide_wrap -->
-					<!-- // .container -->
-					
-				<!-- // .slide_btn_box -->
-				<ul class="slide_pagination"></ul>
-				
-				</div>
-				
-				<!-- 3번째줄 끝 -->
-			</div>
-				
-				
-				<!-- // .slide_pagination -->
-				<ul class="slide_pagination"></ul>
-			</div><!-- 	content 끝 -->
-				
-	</div><!-- content-wrapper 끝-->
 
+				</div><!-- slide_wrap -->
+
+			</div><!-- 	content-wrap 끝 -->
+			
+		</div><!-- content 끝-->
+
+	</div><!-- content-wrapper -->
 </div><!-- wrap 끝 -->
 		<c:import url="bottom.jsp"/>
 <script src="../resources/js/custom/sub1/sub1.js"></script>

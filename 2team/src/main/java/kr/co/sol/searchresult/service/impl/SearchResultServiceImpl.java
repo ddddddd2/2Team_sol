@@ -2,9 +2,11 @@ package kr.co.sol.searchresult.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.searchresult.dao.SearchResultDAO;
@@ -28,6 +30,13 @@ public class SearchResultServiceImpl implements SearchResultService {
 		return searchResultDao.getRestaurants2(hmap);
 	}
 
+	
+	 @Override public List<Map<String,Object>> getvRestaurants(HashMap<String,Object> hmap) { 
+		// TODO Auto-generated method stub 
+		 return searchResultDao.getvRestaurants(hmap);
+	}
+	 
+
 	@Override
 	public int getCnt(HashMap<String, Object> hmap) {
 		// TODO Auto-generated method stub
@@ -41,9 +50,9 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	@Override
-	public String reviewAvg(RestaurantDTO resdto) {
+	public Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto) {
 		// TODO Auto-generated method stub
-		return searchResultDao.reviewAvg(resdto);
+		return searchResultDao.reviewCountAndAvg(resdto);
 	}	
 	
 	
