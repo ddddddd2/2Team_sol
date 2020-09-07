@@ -22,7 +22,7 @@
  
 </head>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.history.forward();
 
         function noBack(){
@@ -31,7 +31,8 @@ window.history.forward();
 
 </script>
 
-<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
+<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload=""> -->
+<body>
 	<div id="wrap">
 		<c:import url="top.jsp"/>
 
@@ -94,7 +95,7 @@ window.history.forward();
                   </div>
                   
                   <div class="inner_booking">
-                  	 <button class="booking_btn" onclick="location.href='#'">예약하기</button>	  
+                  	 <button class="booking_btn" onclick="javascript:booking_page(${resdto.no})">예약하기</button>	  
                   </div>
                   
                   <c:choose>

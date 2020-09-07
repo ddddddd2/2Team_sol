@@ -44,6 +44,11 @@
    	    		alert("over 200 !!");
    	    	}
    	    });
+   	    
+   	    function booking_page(no){
+   	    	var url = "/custom/booking?no="+no;
+   	    	document.location.href = url;
+   	    }
    	 	
    	    // fancy box modal 창 
    	 	$('.fancybox').fancybox();
