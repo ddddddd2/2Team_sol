@@ -10,15 +10,12 @@ import org.springframework.stereotype.Service;
 import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
-import kr.co.sol.etc.Pagination;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDao;
-//	@Autowired
-//	Pagination paging;
 	@Override
 	public List<HashMap<String, Object>> getMember() {
 		return adminDao.getMember();

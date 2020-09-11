@@ -109,7 +109,7 @@ function paging_form(currentPage,currPageBlock){
 			success : function(map){
 		        //Ajax 성공
 		        
-		      	alert("test")
+// 		      	alert("test")
 		        console.log(map.avg)
 		        console.log(map.resdto.name)
 		        // sub1 의 음식점 상세정보 
@@ -127,7 +127,7 @@ function paging_form(currentPage,currPageBlock){
 		    
 		    },error : function(){
 		        //Ajax 실패시
-		        alert("error")
+// 		        alert("error")
 		        
 		    }
 		});
