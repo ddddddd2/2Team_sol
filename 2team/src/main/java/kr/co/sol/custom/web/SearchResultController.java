@@ -117,7 +117,7 @@ public class SearchResultController {
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
 
 	public HashMap<String,Object> getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
-	    
+	    System.out.println(resdto);
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		
 
@@ -136,7 +136,7 @@ public class SearchResultController {
 		hmap.put("visitorsCnt", visitorsCnt);
 		hmap.put("reviewCount", rmap.get("count"));
 		hmap.put("reviewAvg", rmap.get("avg"));
-		System.out.println(resdto2);
+		System.out.println("resdto2:::"+resdto2);
 		return hmap;
 
 	}

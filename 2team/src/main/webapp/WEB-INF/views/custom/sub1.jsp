@@ -91,48 +91,6 @@ function paging_form(currentPage,currPageBlock){
 
 	$('#paging_form [name = "currentPage"]').val(currentPage);
 	$('#paging_form [name = "currPageBlock"]').val(currPageBlock);
-	$('#list #res_name').click(function(e){ // event 
-		e.preventDefault();
-		
-        // 출력된 음식점 리스트 css 변경
-        $('#list div').css("background","white");
-		
-        $(this).closest("div").css("background","yellow");
-    
-        
-		$.ajax({
-			type:"post",
-			url:"/custom/getResInfo",
-			data:{ no : this.dataset.no }, // a링크의 -> data-no = ${resdto.no} 값을 넘겨줌 
-			contentType : "application/x-www-form-urlencoded; charset=utf-8",
-			dataType : "json",
-			success : function(map){
-		        //Ajax 성공
-		        
-// 		      	alert("test")
-		        console.log(map.avg)
-		        console.log(map.resdto.name)
-		        // sub1 의 음식점 상세정보 
-		        $('#detail_info p#selected_name span').html(map.resdto.name);
-		        $('#detail_info p#selected_address span').html(map.resdto.address1);
-		        $('#detail_info p#selected_tel span').html(map.resdto.tel);
-		        $('#detail_info p#selected_hour span').html(map.resdto.hour);
-		        $('.txt_score').text(map.avg+"점 ("+map.count+")")
-		        
-		        var url = '/custom/sub2?no='+ map.resdto.no;
-		        $('#detail_info button').on("click",function(){
-		        	document.location.href=url;
-		        });
-		        	
-		    
-		    },error : function(){
-		        //Ajax 실패시
-// 		        alert("error")
-		        
-		    }
-		});
-		
-	});
 	
 	var keyword = $('#keyword1').val();
 	var category = $('#category1').val();
@@ -282,24 +240,8 @@ function paging_form(currentPage,currPageBlock){
 					
 					<button>상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
-					<div id="smollreview" style=" float:right;"></div>
-				</div> 		<!-- detail_info3 끝 -->		
-				<div id="review" style="float:right; float:right; width: 29.8%;height: 90%">
-					
-					
-					<div class="review_rate">
-         				<span class="num_rate"> 
-         					<span class="txt_score">점</span>
-         				</span>
-         		
-         				<span class="ico_star star_rate">
-         					<span class="ico_star inner_star" style="width:${avg * 20}%"></span>	
-         				</span>
-         			</div>
-				
-				
-				</div>	<!-- 59.8% -->
-</div>	
+
+		
 			<!--  2번째 줄 끝 -->		
 			</div>	
 		
@@ -308,53 +250,6 @@ function paging_form(currentPage,currPageBlock){
 				
 				<div class="recom">
 					<div style="height: 10%; text-align: center;">조회수 별 음식점 top5 </div>
-		<!--  2번째 줄 끝 -->		
-		<!-- 3번째 줄 시작  -->				
-					<div id="body3">
-						<div class="slide_wrap">
-							<div class="slide_box">
-								<div class="slide_list clearfix" style="text-align: center;">
-									<div class="slide_content slide01">
-										<div style="float: left; width: 100%; height: 80%">
-											<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
-										</div>
-									<div style="float: left; width: 100%; height: 20%"> 
-									${resname[1].name}</div>
-									</div>
-					<!-- 한식 글귀(제목)-->
-						<div class="slide_content slide02" >
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
-								</div>
-							<div style="float: left; width: 100%; height: 20% ">${resname[2].name}</div>
-						</div>
-						
-						<div class="slide_content slide03">
-								<div style="float: left; width: 100%; height: 80%">
-									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
-								</div>
-							<div style="float: left; width: 100%; height: 20%">${resname[3].name}</div>
-						</div>
-
-						<div class="slide_content slide04">
-								<div style="float: left; width: 100%; height: 80%" >
-									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
-								</div>
-							<div style="float: left; width: 100%; height: 20%">${resname[4].name}</div>
-
-						</div>
-					
-					
-						<div class="slide_content slide05">
-							<div style="float: left; width: 100%; height: 80%" >
-								<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
-							</div>
-								<div style="float: left; width: 100%; height: 20%">${resname[5].name}</div>
-						</div>
-
-					<!-- // .slide_list -->
-					</div>
-					<!-- // .slide_box -->
 				</div>
 				<div class="slide_wrap">
 				
