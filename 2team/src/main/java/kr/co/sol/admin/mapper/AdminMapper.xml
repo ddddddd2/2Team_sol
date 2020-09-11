@@ -25,24 +25,35 @@
 	<select id="loginPro" parameterType="mdto" resultType="mdto">
 		select id, name, role from member where id = #{id} and passwd = #{passwd}
 	</select>
-	<select id="getMemberList" resultMap="getMember">
+	<select id="getMemberList" parameterType="map" resultMap="getMember">
 		select no, grade_name, id, passwd, name, email, phone, gender, role from
 		member
 		where ${searchOption} like '%'||#{keyword}||'%'
 	</select>
-	<select id="getStoreList" resultType="resdto">
-		select
-		no, c_no, name, address1, tel, hour
+	<select id="getStoreList" parameterType="pdto" resultType="resdto">
+		<![CDATA[
+		select * 
 		from
-		restaurant
+			(select rownum as rn, no, c_no, name, address1, tel, hour
+			 from restaurant order by no asc)
+		where rn >=#{startPage} and rn <=#{endPage}
+		]]>
 	</select>
-	<select id="getStore" parameterType="String" resultType="resdto">
-		select
-		no, c_no, name, address1, tel, hour
-		from
-		restaurant
+	<select id="getStore" parameterType="map" resultType="resdto">
+		<![CDATA[
+		select r.*
+			(select
+			no, c_no, name, address1, tel, hour
+			from
+			restaurant
+			where ${searchOption} like '%'||#{keyword}||'%' order by no asc) r
+		where r.rownum <= 10;
+		]]>
 	</select>
 	<select id="nameChk" parameterType="String" resultType="int">
 	select count(name) from restaurant where name = #{name}
+	</select>
+	<select id="getStoreListCnt" resultType="int">
+	select count(no) from restaurant
 	</select>
 </mapper>

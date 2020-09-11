@@ -95,9 +95,6 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 			dataType : "json",
 			success : function(map){
 		        //Ajax 성공
-		      	alert("test")
-		        console.log(map.avg)
-		        console.log(map.resdto.name)
 		        // sub1 의 음식점 상세정보 
 		        $('#detail_info p#selected_name span').html(map.resdto.name);
 		        $('#detail_info p#selected_address span').html(map.resdto.address1);
@@ -226,7 +223,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 					
 					
 					<div class="review_rate">
-         				<span class="num_rate"> ${avg}
+         				<span class="num_rate"> 
          					<span class="txt_score">점</span>
          				</span>
          		

@@ -16,7 +16,7 @@
 	<div id="main-wrapper">
 		<div id="content-wrap">
 		<div id="search"> 
-			<form name="form1" method="get" action="${path}/admin/store_manage">
+			<form name="form1" method="get" action="/admin/store_manage">
 				<select id="searchSelectBox" name="searchOption">
 					<option value="">검색 옵션</option>
 					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
@@ -24,12 +24,13 @@
 					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
 				</select>
 				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
-			<input type="button" id="searchBtn" onClick="search()" value="검색">
+			<input type="submit" id="searchBtn" onClick="search()" value="검색">
 			</form>
 			<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
 		</div>
 		<table border="1">
 			<tr>
+				<td>index</td>
 				<td>매장번호</td>
 				<td>매장명</td>
 				<td>카테고리</td>
@@ -40,26 +41,39 @@
 				<td>연락처</td>
 			</tr>
 			<c:choose>
-				<c:when test="${sdto.size()==0}">
+				<c:when test="${resdto.size()==0}">
 				<tr>
 					<td colspan="9">아무것도 없는뎁쇼?</td>
 				</tr>
 				</c:when>
-				<c:when test="${sdto.size()!=0}">
-					<c:forEach var="sdto" items="${sdto}">
-						<tr>
-						<td>${sdto.no}</td>
-						<td>${sdto.name}</td>
+				<c:when test="${resdto.size()!=0}">
+					<c:forEach var="resdto" items="${resdto}" varStatus="vs">
+					<tr>
+						<td>${vs.index+1}</td>
+						<td>${resdto.no}</td>
+						<td>${resdto.name}</td>
 						<td>한식</td>
 						<td>3</td>
 						<td>4</td>
-						<td>${sdto.address1}</td>
-						<td>${sdto.hour}</td>
-						<td>${sdto.tel}</td>
+						<td>${resdto.address1}</td>
+						<td>${resdto.hour}</td>
+						<td>${resdto.tel}</td>
 					</tr>
 					</c:forEach>
 				</c:when>
 			</c:choose>
+					<tr>
+						<td colspan="9">
+						<c:if test="${curPage>5}">
+						<a href="${path}?curPage=${curPage-1}">이전</a>
+						</c:if>
+						<c:forEach var="i" begin="1" end="5">
+						<a href="${path}?curPage=${Math.floor(curPage/5*5)+i}">${((curPage/5*5)+i)}</a>
+						</c:forEach>
+						<a href="${path}?curPage=${curPage+1}">${curPage+1}</a>
+					<c:out value="${(curPage/5)}" />
+					1,2,3,4,5</td>
+					</tr>
 		</table>
 		</div>
 	</div>
