@@ -42,6 +42,11 @@ public class RestaurantDetailController {
 	public String sub2(HttpServletRequest request, HttpServletResponse response,
 			RestaurantDTO resdto, Model model , PageDTO pdto,
 			@RequestParam("no") int res_no) {
+		
+		response.setHeader("Pragma","no-cache"); 
+		response.setHeader("Cache-Control", "no-cache"); 
+		response.setDateHeader("Expires",0);
+		
 		HttpSession session = request.getSession();
 		resdto.setNo(res_no);
 		// restaurant info
@@ -50,19 +55,19 @@ public class RestaurantDetailController {
 		
 		// favorite check
 		char favoriteCheck = 'f';
+
 		Integer idKey = (Integer)session.getAttribute("idKey");
 		restaurantDetailService.addClick(res_no, request);
 		
-		if(idKey == null || idKey.equals(""))
+		if(idKey == null) 
 		{
 			favoriteCheck = 'f';
 			
 		}else {
 			
-			int mem_no = idKey;
 			HashMap<String,Integer> hmap = new HashMap<String,Integer>();
 			hmap.put("res_no",res_no);
-			hmap.put("mem_no",mem_no);
+			hmap.put("mem_no",idKey);
 			
 			int r = restaurantDetailService.favoriteCheck(hmap);
 			
@@ -137,10 +142,10 @@ public class RestaurantDetailController {
     	hmap2.put("res_no", res_no);
     	if(idKey != null )
     	{
+
     		int mem_no = idKey;
     		hmap2.put("mem_no2",mem_no);
     	}
-    	
     	
 		// reviews info
 		List<ReviewDTO> rlist = restaurantDetailService.getReviews(hmap2);
@@ -151,34 +156,29 @@ public class RestaurantDetailController {
 	
 	
 	
-	// favorites process
+	// favorites process 북마크 처리 
 	@RequestMapping(value="/custom/favorites")
-	public String favorites(HttpServletRequest request , Model model) {
-		
-		int res_no = 1; // 임시 음식점 번호
+	public String favorites(HttpServletRequest request , 
+			Model model, @RequestParam("no") int res_no) {
 		
 		HttpSession session = request.getSession();
 		
 		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg = "";
-		String url = "/custom/sub2";
+		String url = "/custom/sub2?no="+res_no;
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
-		if(idKey == null || idKey.equals(""))
+		if(idKey == null )
 		{
 			msg="로그인 부터 해주시길 바랍니다. ";
 			url="/custom/login";
 			
 		}else {
 			
-			
-			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
-			int mem_no = idKey;
-			
 			HashMap<String,Integer> hmap = new HashMap<String,Integer>();
 			hmap.put("res_no",res_no);
-			hmap.put("mem_no",mem_no);
+			hmap.put("mem_no",idKey);
 			
 			
 			int r = restaurantDetailService.favoriteCheck(hmap);
@@ -210,7 +210,7 @@ public class RestaurantDetailController {
 	}
 	
 	
-	// review insert
+	// review insert 리뷰작성 
 	@RequestMapping(value="/custom/reviewInsert")
 	public String reviewInsert(HttpServletRequest request,
 			 @RequestParam("file2") MultipartFile file,
@@ -221,9 +221,10 @@ public class RestaurantDetailController {
 		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg =""; ;
-		String url="/custom/sub2";
+		String url="/custom/sub2?no="+resdto.getNo();
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
+
 		if(idKey == null)
 		{
 			msg="로그인 부터 해주시길 바랍니다. ";
@@ -231,9 +232,11 @@ public class RestaurantDetailController {
 			
 		}else {
 			
+
 			// 세션에 저장된 idKey(mem_id) 값으로 mem_no 구해오기 
 			int mem_no = idKey;
 			
+
 			revdto.setMem_no(mem_no);
 			MemberDTO mdto2 = (MemberDTO) session.getAttribute("mdto");
 			revdto.setMem_id(mdto2.getId());
@@ -259,7 +262,7 @@ public class RestaurantDetailController {
 		return "/custom/msgPage";
 	}
 	
-	// like(좋아요) process
+	// 리뷰 like(좋아요) process 
 	@RequestMapping(value="/custom/like")
 	public String reviewLike(HttpServletRequest request, HttpServletResponse response,
 			ReviewDTO revdto,Model model ) {
@@ -267,7 +270,7 @@ public class RestaurantDetailController {
 		HttpSession session = request.getSession();
 		Integer idKey = (Integer)session.getAttribute("idKey");
 		
-		String msg =""; ;
+		String msg ="";
 		String url="/custom/sub2";
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 

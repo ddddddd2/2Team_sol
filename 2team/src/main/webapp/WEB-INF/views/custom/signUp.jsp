@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title> 회원가입 </title>
-<link href="./resources/css/main.css" rel="stylesheet" type="text/css">
-<link href="./resources/css/custom/signUp/signUp.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/custom/index/main.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/custom/signUp/signUp.css" rel="stylesheet" type="text/css">
 <script src="../resources/js/jquery.js"></script>
 <script src="../resources/js/jquery-1.10.2.min.js"></script>
 <script src="../resources/js/custom/login.js"></script>

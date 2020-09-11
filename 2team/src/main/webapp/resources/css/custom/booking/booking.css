@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* 전체 사이즈 및 공통 포지션 위치 */
-.container {background-color: rgb(245,246,247); margin: auto;}	
+.container {background-color: rgb(245,246,247);}	
 .wrapper {position:relative; width:100%;}
-.wrapper .inner {position:relative; margin: 0 340px;}
+.wrapper .inner {position:relative; margin:auto;}
 .wrapper .box {position:relative;margin-bottom:10px;border:1px solid #e3e3e3;background:#fff;}		
 	
 /* header 상단바 */		
@@ -10,7 +10,7 @@
 	
 .wrapper .section h3 {padding-left:19px;border-bottom:1px solid #e3e3e3;font-size:16px;font-weight:bold;line-height:56px;}
 .wrapper .section .left {float:left;width:445px;margin-right:10px;}		
-.wrapper .section .left h3.icon1 {padding-left:52px;background:url('../images/icon/calendar.gif') 19px 17px no-repeat;}
+.wrapper .section .left h3.icon1 {padding-left:52px;background:url('/resources/image/custom/booking/icon/calendar.gif') 19px 17px no-repeat;}
 .wrapper .section .left input[type="text"] {width:100%;height:100px;padding:0 10px;font-size:14px;line-height:36px; }		
 
 .wrapper .section .left .select-ui h3 a {z-index: 10; position: relative; display: block; width: 370px; margin: 10px 10px 10px 8px; padding: 5px 0 5px 10px; font-size: 14px; font-weight: bold; line-height: 36px; color: #686c73; text-decoration: none; background: #fff url('http://cfile7.uf.tistory.com/image/2225203756944C371A093B') no-repeat 95% 50%; border: 1px solid #c8c8c8;}
@@ -23,10 +23,10 @@
 	
 /* float right 영역 */
 .wrapper .section .right {float:left;width:445px;}
-.wrapper .section .right h3.icon2 {padding-left:52px;background:url('../images/icon/person.gif') 19px 17px no-repeat;}
+.wrapper .section .right h3.icon2 {padding-left:52px;background:url('/resources/image/custom/booking/icon/person.gif') 19px 17px no-repeat;}
 .wrapper .section .right h3 input[type='checkbox'] {display:none;}
-.wrapper .section .right h3 input[type='checkbox'] + label {display:inline-block;padding-left:34px;background:url('../images/icon/checkbox_off.png') left 17px no-repeat;cursor:pointer;}
-.wrapper .section .right h3 input[type='checkbox']:checked + label {background:url('../images/icon/checkbox_on.png') left 17px no-repeat;}
+.wrapper .section .right h3 input[type='checkbox'] + label {display:inline-block;padding-left:34px;background:url('/resources/image/custom/booking/icon/checkbox_off.png') left 17px no-repeat;cursor:pointer;}
+.wrapper .section .right h3 input[type='checkbox']:checked + label {background:url('/resources/image/custom/booking/icon/checkbox_on.png') left 17px no-repeat;}
 .wrapper .section .right .person {margin:10px 20px;}
 .wrapper .section .right .person li {padding:5px 0;line-height:40px;}
 .wrapper .section .right .person li h4 {display:inline-block;width:80px;padding-left:8px;font-size:12px;line-height:38px;}

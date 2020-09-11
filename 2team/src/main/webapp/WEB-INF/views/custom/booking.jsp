@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title> 예약 페이지 </title>
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> <!-- font-family:'NanumSquare', sans-serif; -->
 <link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 <link href="../resources/css/custom/booking/booking.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
+<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 
 <!-- 예약날짜(Calendar) datepicker 관련 Start -->
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -14,29 +17,62 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
+<script type="text/javascript" src="../resources/js/custom/booking/booking.js"></script>
+<script src="../resources/js/common.js"></script>
 <!-- End -->
 
 </head>
-<body>	 
+<body>
+
+	<c:if test="${idKey == null}">
+		<script type="text/javascript">
+			alert("로그인 부터 해주세요 ");
+			history.go(-1);
+		</script>
+	</c:if>
+	
+	<c:import url="top.jsp"/>
+
 	<form class="container" name="frm" title="예약정보입력" method="post" action="">	
 		<div class="wrapper"> <!-- wrapper start -->
 			<div class="h2-title">
 				<h2> 예약정보 입력 </h2>
 			</div>	
 						
-			<div class="section"> <!-- section start -->
+			<div class="section" style="width:50%;margin:auto;"> <!-- section start -->
 				<div class="inner clear">
 					<div class="left">
 						<div class="box">	
 						    <h3 class="icon1">예약날짜 선택</h3><!-- 예약날짜 선택 -->						    
 						    <div id="calendar">						    	
-									<div id="datepicker"></div>							
+								<div id="datepicker"></div>							
 							</div>
 						</div>
 											
 						<div class="box">
 							<h3 class="menu"> 메뉴 </h3>
-							<input type="text" title="요청사항" name="request" id="request" placeholder="요청사항을 적어주세요">
+						
+							<c:choose>
+								<c:when test="${mlist.size() == 0}">
+									등록된 메뉴가 없습니다...
+								</c:when>
+								<c:when test="${mlist.size() != 0}">
+									<c:forEach var="menudto" items="${mlist}">
+										<div>
+											<span style="float:left;">${menudto.name} : </span> 
+											
+											<button type="button" style="float:right;" onclick="javascript:minus(this,${menudto.price});">-</button>
+											<button type="button" style="float:right;" onclick="javascript:add(this,${menudto.price});">+</button>
+											<span style="float:right; margin-right:6px;">
+												<span id="menu_num" style="font-weight: bold;">0</span>인분
+											</span>
+											<span style="float:left;">${menudto.price}원 </span> 
+											<br>
+										</div>
+									</c:forEach>
+								</c:when>
+								
+							</c:choose>
 						</div>
 						
 						<div class="box">
@@ -54,11 +90,11 @@
 							<ul class="person">
 								<li>
 									<h4>예약자 이름</h4>
-									<input type="text" title="예약자 이름" name="name" id="name" placeholder="예약자명">
+									<input type="text" title="예약자 이름" name="name" id="name" value="${mdto.name}">
 								</li>
 								<li>
 									<h4>휴대폰 번호</h4>								
-									<input type="text" title="휴대폰번호" name="phone" id="phone" placeholder="010-1234-1234">
+									<input type="text" title="휴대폰번호" name="phone" id="phone" value="${mdto.phone}">
 								</li>
 							</ul>
 						</div>
@@ -92,11 +128,13 @@
 						<div class="box">
 							<h3 class="bs">
 								<span>결제 예정금액</span><!-- 결제 예정금액 --> 
-								<strong class="price total" id="">0원</strong><!-- 0원 -->
+								<strong class="price total" >원</strong><
+								<strong class="price total" id="price_total">0</strong><!-- 0원 -->
+								<input type="hidden" name="price" value="" />
 							</h3>
 							<div class="summary" title="전체요약">
-								<strong id="date"></strong>
-								<input type="hidden" id="date2" value=""/>
+								<strong id="selected_date"></strong>
+								<input type="hidden" name="date1" id="date1" value=""/>
 								<br>
 								<span class="sumText"></span>
 							</div>
@@ -106,8 +144,6 @@
 						    <div class="select-ui li-slt">
 								<h3><a href="#select-list">결제 수단을 선택하세요.</a></h3>
 						        <ul id="select-list">
-						            <li><a href="#none" id="">무통장입금</a></li>
-						            <li><a href="#none" id="">신용카드</a></li>
 						            <li><a href="#none" id="">카카오페이</a></li>
 						        </ul>
 						    </div>					    
@@ -227,5 +263,7 @@
 			</div> <!-- section end -->
 		</div> <!-- wrapper end -->		
 	</form>
+	
+	<c:import url="bottom.jsp"/>
 </body>
 </html>

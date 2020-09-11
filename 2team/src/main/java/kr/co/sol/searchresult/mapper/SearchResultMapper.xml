@@ -15,7 +15,34 @@
     </select>
   	
   	<select id="getRestaurants2" parameterType="hashMap" resultType="resdto">
-  		select * 
+  		select a.*
+  		from (select rownum rr , b.*
+  			from (select * from restaurant 
+  			
+  			
+  			<choose>
+  				<when test="keyword != null">
+  					where address1 like '%'||#{keyword}||'%'
+  				</when>
+  			</choose>
+  		
+  			<choose>
+  				<when test="category != null and category != 0">
+  					and c_no = #{category}
+  				</when>
+  			</choose>
+  			
+  			) b ) a
+  			
+  			<choose>
+  				<when test="start != null">
+  				where a.rr between #{start} and #{end}
+  				</when>
+  			</choose>
+  	</select>
+  	
+  	<select id ="getCnt" parameterType="hashMap" resultType="int" >
+  		select count(*) 
   		from restaurant 
   		<choose>
   			<when test="keyword != null">
@@ -24,9 +51,62 @@
   		</choose>
   		
   		<choose>
-  			<when test="category != 0">
+  			<when test="category != null and category != 0">
   				and c_no = #{category}
   			</when>
   		</choose>
   	</select>
+  	
+  	<select id="visitorsCnt" parameterType="resdto" resultType="int">
+  		select count 
+  		from count
+  		where res_no = #{no} 
+  	</select>
+  	
+  	<select id="reviewAvg" parameterType="resdto" resultType="string">
+  		select nvl(trunc(avg(rating),1),0.0) avg
+  		from review
+  		where res_no = #{no}
+  	</select>
+  	
+  	<resultMap type="map" id="resultMap">
+		<id column="count" property="count"/>
+		<id column="avg"   property="avg"/>
+	</resultMap>
+	<select id="reviewCountAndAvg" parameterType="resdto" resultMap="resultMap">
+		select count(*) count, nvl(trunc(avg(rating),1) , 0.0) avg 
+		from review
+		where res_no = #{no}
+	</select>
+	
+	<resultMap type="map" id="resultMap2">
+		<id column="name" property="name"/>
+		<id column="c_name" property="c_name"/>
+		<id column="count" property="count"/>
+		<id column="avg"   property="avg"/>
+	</resultMap>
+	<select id="getvRestaurants" parameterType="hashMap" resultMap="resultMap2">
+			select z.name , z.c_name , z.count ,nvl(trunc(avg(w.rating),1),0.0) avg
+			from (select y.*
+      			  from (select rownum rr , x.*
+            		    from (select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour , n.count
+                 			  from restaurant t join category c
+                  			  on t.c_no = c.no 
+                 			  join count n
+                  			  on t.no = n.res_no
+                  			  
+                  			   		<choose>
+  										<when test="keyword != null">
+  											where address1 like '%'||#{keyword}||'%'
+  										</when>
+  									</choose>
+                  			  
+                  			  order by n.count desc ) x ) y
+      			  where y.rr between 1 and 5 ) z left outer join review w
+     			  on z.no = w.res_no 
+      			  group by  z.name , z.c_name , z.count
+      			  order by z.count desc 
+    		
+	 </select>
+	
 </mapper>

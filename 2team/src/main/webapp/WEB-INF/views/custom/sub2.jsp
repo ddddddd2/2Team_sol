@@ -22,6 +22,16 @@
  
 </head>
 
+<!-- <script type="text/javascript">
+window.history.forward();
+
+        function noBack(){
+            window.history.forward();
+        }
+
+</script>
+
+<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload=""> -->
 <body>
 	<div id="wrap">
 		<c:import url="top.jsp"/>
@@ -85,19 +95,19 @@
                   </div>
                   
                   <div class="inner_booking">
-                  	 <button class="booking_btn" onclick="location.href='#'">예약하기</button>	  
+                  	 <button class="booking_btn" onclick="javascript:booking_page(${resdto.no})">예약하기</button>	  
                   </div>
                   
                   <c:choose>
                   	<c:when test="${favoriteCheck != null }">
                   		<c:if test="${fn:contains(favoriteCheck,'t')}">
-                  			<a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none;">
+                  			<a class="inner_bookmark" href="/custom/favorites?no=${resdto.no}" style="color:#000; text-decoration:none;">
                      			<span class="ico_comm ico_bookmark" style="background-position: -120px -480px;">즐겨찾기 해제</span>
                   			</a>
                   		</c:if>
                   		
                   		<c:if test="${fn:contains(favoriteCheck,'f')}">
-                  			<a class="inner_bookmark" href="/custom/favorites" style="color:#000; text-decoration:none;">
+                  			<a class="inner_bookmark" href="/custom/favorites?no=${resdto.no}" style="color:#000; text-decoration:none;">
                      			<span class="ico_comm ico_bookmark" style="background-position: -100px -480px;">즐겨찾기 추가</span>
                   			</a>
                   		</c:if>
@@ -377,10 +387,10 @@
          			
          		</ul>
 
-					<div class="review_paging">
+				<div class="review_paging">
          		
          		<c:if test="${pdto.startPage > pdto.pageBlock}">
-         			<a href="/custom/sub2?currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${pdto.startPage - pdto.pageBlock}&currPageBlock=${pdto.currPageBlock-1}" class="btn_prev">
          				이전
          				<span class="ico_comm ico_prev"></span>
          			</a>
@@ -388,7 +398,7 @@
          			
          		<c:forEach var = "i" begin="${pdto.startPage}" end="${pdto.endPage}">
          			
-         			<a href="/custom/sub2?currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${i}&currPageBlock=${pdto.currPageBlock}" class="link_page">
          				<c:if test="${pdto.currentPage == i}"> 
          					<em><c:out value="${i}"/></em>
          				</c:if>
@@ -399,7 +409,7 @@
          		</c:forEach>
          			
          		<c:if test="${pdto.endPage < pdto.allPage}">	
-         			<a href="/custom/sub2?currentPage=${pdto.endPage+1}&currPageBlock=${pdto.currPageBlock+1}" class="btn_next">
+         			<a href="/custom/sub2?no=${resdto.no}&currentPage=${pdto.endPage+1}&currPageBlock=${pdto.currPageBlock+1}" class="btn_next">
          				다음
          				<span class="ico_comm ico_next"></span>
          			</a>
