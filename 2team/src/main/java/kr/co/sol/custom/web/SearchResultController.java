@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.restaurantdetail.service.RestaurantDetailService;
 import kr.co.sol.searchresult.service.SearchResultService;
 
 
@@ -26,6 +27,9 @@ public class SearchResultController {
 	@Autowired
 	SearchResultService searchResultService;
 	
+	@Autowired
+	RestaurantDetailService restaurantDetailService;
+	
 	// sub1 page 
 	@RequestMapping("/custom/sub1")
 	public String searchResult(HttpServletRequest request,Model model 
@@ -33,6 +37,7 @@ public class SearchResultController {
 			,@RequestParam("category") Integer category
 			, PageDTO pdto) {
 		
+
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
@@ -90,7 +95,7 @@ public class SearchResultController {
 		
 		//==============================================================================
 		//keyword(지역) 에서의  조회수 와 리뷰 평점순 음식점 top5 
-		
+
 		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
 		
 		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
@@ -102,6 +107,7 @@ public class SearchResultController {
 		model.addAttribute("category",category); // 카테고리
 		model.addAttribute("pdto", pdto); // 페이지 
 		model.addAttribute("vReslist",vReslist); // 저회수 별 음식점 리스트 
+
 		return "/custom/sub1";
 	}
 	
@@ -109,13 +115,16 @@ public class SearchResultController {
 	// searchResult page 에서 음식점 리스트 중  음심점을 클릭시 그 음식점 정보를 리턴 하는 메소드 
 	@ResponseBody
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
+
 	public HashMap<String,Object> getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
 	    
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		
+
 		// 1. sub1.jsp 에서 ajax -> no 파라미터 를 받아오고
 		// 2. 이 함수의 매개변수(resdto) 가 resdto.setNo(no);
 		
+
 		// 레스토랑 번호로 해당 레스토랑 정보 구하기 
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants(resdto);
 		resdto = reslist.get(0);
@@ -130,6 +139,7 @@ public class SearchResultController {
 		hmap.put("reviewAvg", rmap.get("avg"));
 		
 		return hmap;
+
 	}
 
 
