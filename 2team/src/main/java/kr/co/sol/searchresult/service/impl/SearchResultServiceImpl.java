@@ -19,15 +19,14 @@ public class SearchResultServiceImpl implements SearchResultService {
 	@Autowired
 	SearchResultDAO searchResultDao;
 	
+	
 	@Override
 	public RestaurantDTO getRestaurants(RestaurantDTO resdto) {
-		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants(resdto);
 	} 
 
 	@Override
 	public List<RestaurantDTO> getRestaurants2(HashMap<String,Object> hmap) {
-		// TODO Auto-generated method stub
 		return searchResultDao.getRestaurants2(hmap);
 	}
 
@@ -56,5 +55,9 @@ public class SearchResultServiceImpl implements SearchResultService {
 		return searchResultDao.reviewCountAndAvg(resdto);
 	}	
 	
-	
+	@Override
+	public List<RestaurantDTO> getResname(int category){
+		return searchResultDao.getResname(category);
+	}
+
 }

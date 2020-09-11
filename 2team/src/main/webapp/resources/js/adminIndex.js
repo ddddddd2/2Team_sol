@@ -1,11 +1,13 @@
 //검색창에 글자 쓰면 DB에서 매칭되는 항목 보여주기
 $(document).ready(function() {
-	search = function(){
+	
+	$('#searchBtn').click(function(e){
+		e.preventDefault();
 		var sv = document.getElementById("searchBar").value; // 검색어 가져오기
 		var op = document.getElementById("searchSelectBox");
 		var opop = op.options[op.selectedIndex].value; // 검색 옵션 가져오기
 			if(sv==""){
-				alert("입력값을 확인해주세요");
+				alert("검색어를 입력해주세요");
 			} else{
 				if(opop==""){
 						alert("옵션을 선택해주세요");
@@ -13,7 +15,7 @@ $(document).ready(function() {
 						document.form1.submit();
 				}
 			}
-	};
+	})
 	
 	
 	

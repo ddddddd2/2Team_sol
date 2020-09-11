@@ -28,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.sol.common.dao.PageDAO;
 import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.common.service.MemberService;
 
@@ -111,18 +113,27 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(HttpServletRequest request, String searchOption, String keyword, Model model, RestaurantDTO resdto) {
+	public String sm(HttpServletRequest request, String searchOption, String keyword,
+			@RequestParam(value="curPage", defaultValue="1") int curPage, Model model, RestaurantDTO resdto, PageDTO pdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
 			return "redirect:/";
 		} // 세션에 담긴게 없으면 로그인 화면으로
 		List<RestaurantDTO> resdto2;
+		
+		// paging 처리
+					
+		// 검색어가 있는지 확인
+		
 		if(searchOption==null && keyword==null) {
-			resdto2 = adminService.getStoreList();
-		} else {
-			resdto2 = adminService.getStore(searchOption, keyword);
+			// 없을 경우, 전체List에서 paging처리 
+			resdto2 = adminService.getStoreList(pdto,curPage);
+		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
+			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
+			resdto2 = adminService.getStore(searchOption, keyword, curPage);
 		}
-		model.addAttribute("sdto",resdto2);
+		model.addAttribute("resdto",resdto2);
+		model.addAttribute("curPage", curPage);
 		return "/admin/store_manage";
 	}
 	
