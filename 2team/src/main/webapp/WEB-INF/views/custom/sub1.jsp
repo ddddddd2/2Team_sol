@@ -89,10 +89,8 @@ window.onload = function(){
 // 음식점 리스트 밑 페이징 눌렀을 때 form 전송 
 function paging_form(currentPage,currPageBlock){
 
-<<<<<<< HEAD
 	$('#paging_form [name = "currentPage"]').val(currentPage);
 	$('#paging_form [name = "currPageBlock"]').val(currPageBlock);
-=======
 	$('#list #res_name').click(function(e){ // event 
 		e.preventDefault();
 		
@@ -110,13 +108,10 @@ function paging_form(currentPage,currPageBlock){
 			dataType : "json",
 			success : function(map){
 		        //Ajax 성공
-<<<<<<< HEAD
 		        
 		      	alert("test")
 		        console.log(map.avg)
 		        console.log(map.resdto.name)
-=======
->>>>>>> 6d76f08ce3c6ffc4c3ab4cecdb94fabc5cd12e03
 		        // sub1 의 음식점 상세정보 
 		        $('#detail_info p#selected_name span').html(map.resdto.name);
 		        $('#detail_info p#selected_address span').html(map.resdto.address1);
@@ -138,7 +133,6 @@ function paging_form(currentPage,currPageBlock){
 		});
 		
 	});
->>>>>>> branch 'newMaster' of https://github.com/ddddddd2/2Team_sol.git
 	
 	var keyword = $('#keyword1').val();
 	var category = $('#category1').val();
@@ -287,10 +281,7 @@ function paging_form(currentPage,currPageBlock){
 					<p id="selected_avg">평점 : 		<span id="avg"> </span> <span id="count"></span></p>
 					
 					<button>상세보기</button>
-<<<<<<< HEAD
 				</div> 		<!-- list2-3 끝 -->			
-
-=======
 					<div id="smollreview" style=" float:right;"></div>
 				</div> 		<!-- detail_info3 끝 -->		
 				<div id="review" style="float:right; float:right; width: 29.8%;height: 90%">
@@ -309,9 +300,6 @@ function paging_form(currentPage,currPageBlock){
 				
 				</div>	<!-- 59.8% -->
 </div>	
->>>>>>> branch 'newMaster' of https://github.com/ddddddd2/2Team_sol.git
-		
-<<<<<<< HEAD
 			<!--  2번째 줄 끝 -->		
 			</div>	
 		
@@ -320,7 +308,6 @@ function paging_form(currentPage,currPageBlock){
 				
 				<div class="recom">
 					<div style="height: 10%; text-align: center;">조회수 별 음식점 top5 </div>
-=======
 		<!--  2번째 줄 끝 -->		
 		<!-- 3번째 줄 시작  -->				
 					<div id="body3">
@@ -368,7 +355,6 @@ function paging_form(currentPage,currPageBlock){
 					<!-- // .slide_list -->
 					</div>
 					<!-- // .slide_box -->
->>>>>>> branch 'newMaster' of https://github.com/ddddddd2/2Team_sol.git
 				</div>
 				<div class="slide_wrap">
 				

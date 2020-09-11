@@ -17,8 +17,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDao;
-	@Autowired
-	Pagination paging;
+//	@Autowired
+//	Pagination paging;
 	@Override
 	public List<HashMap<String, Object>> getMember() {
 		return adminDao.getMember();

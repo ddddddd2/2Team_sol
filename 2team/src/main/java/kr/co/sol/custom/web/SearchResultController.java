@@ -132,11 +132,11 @@ public class SearchResultController {
 		
 		Map<String,Object> rmap = searchResultService.reviewCountAndAvg(resdto2); // 리뷰 평점
 		
-		hmap.put("resdto", resdto);
+		hmap.put("resdto", resdto2);
 		hmap.put("visitorsCnt", visitorsCnt);
 		hmap.put("reviewCount", rmap.get("count"));
 		hmap.put("reviewAvg", rmap.get("avg"));
-		
+		System.out.println(resdto2);
 		return hmap;
 
 	}
