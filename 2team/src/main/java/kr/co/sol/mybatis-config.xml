@@ -22,6 +22,7 @@
          <typeAlias alias="bdto"    type="kr.co.sol.common.dto.BookingDTO" />
          <typeAlias alias="qdto"    type="kr.co.sol.common.dto.QnaDTO" />
          <typeAlias alias="fdto"    type="kr.co.sol.common.dto.FavoritesDTO" />
-         <typeAlias alias="madto"    type="kr.co.sol.common.dto.MyActDTO" />
+         <typeAlias alias="madto"   type="kr.co.sol.common.dto.MyActDTO" />
+         <typeAlias alias="pdto" 	type="kr.co.sol.common.dto.PageDTO" />
     </typeAliases>	
 </configuration>

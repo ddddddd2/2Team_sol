@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.sol.common.dto.MemberDTO;
+import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
 
 public interface AdminService {
@@ -19,9 +20,10 @@ public interface AdminService {
 
 	MemberDTO loginPro(MemberDTO mdto);
 
-	List<RestaurantDTO> getStore(String searchOption, String keyword);
+	List<RestaurantDTO> getStore(String searchOption, String keyword, int curPage);
 
-	List<RestaurantDTO> getStoreList();
+	List<RestaurantDTO> getStoreList(PageDTO pdto, int curPage);
 
 	int nameChk(String name);
+
 }
