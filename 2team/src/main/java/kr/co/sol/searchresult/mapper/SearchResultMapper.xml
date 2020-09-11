@@ -86,7 +86,7 @@
 		<id column="avg"   property="avg"/>
 	</resultMap>
 	<select id="getvRestaurants" parameterType="hashMap" resultMap="resultMap2">
-			select z.name , z.c_name , z.count ,nvl(trunc(avg(w.rating),1),0.0) avg
+			select z.name , z.c_name , z.count ,nvl(trunc(avg(w.rating),1),0.0) avg, z.no
 			from (select y.*
       			  from (select rownum rr , x.*
             		    from (select t.no, t.c_no , c.name c_name, t.name , address1 , address2 , tel , hour , n.count
@@ -104,7 +104,7 @@
                   			  order by n.count desc ) x ) y
       			  where y.rr between 1 and 5 ) z left outer join review w
      			  on z.no = w.res_no 
-      			  group by  z.name , z.c_name , z.count
+      			  group by  z.name , z.c_name , z.count, z.no
       			  order by z.count desc 
     		
 	 </select>

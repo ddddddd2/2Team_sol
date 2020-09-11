@@ -97,7 +97,7 @@ public class SearchResultController {
 		//keyword(지역) 에서의  조회수 와 리뷰 평점순 음식점 top5 
 
 		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
-
+		System.out.println(vReslist);
 		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
 		
 		

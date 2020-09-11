@@ -258,12 +258,11 @@ function paging_form(currentPage,currPageBlock){
 						<div class="slide_list clearfix" style="text-align: center;">
 							
 							<c:forEach var="vReslist" items="${vReslist}">
-								<div class="slide_content ">
+								<div class="slide_content">
 									<div class="slide_img">
-										<img src="../resources/image/custom/sub1/han300.jpg">
-										
+										<img src="../resources/adminUpload/${vReslist.NO}.jpg">
 									</div>
-									<div style="float: left; width: 100%; height: 20%"> 
+									<div style="float: left; width: 100%; height: 20%">
 										<p>음식점 : <span>${vReslist.name}</span></p>
 										<p>종류 : <span>${vReslist.c_name}</span></p>
 										<p>평점 : <span>${vReslist.avg}</span></p>
