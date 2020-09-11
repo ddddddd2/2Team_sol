@@ -36,7 +36,7 @@ public class SearchResultController {
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);		
-//		System.out.println("reslist=="+reslist);
+		System.out.println("reslist=="+reslist);
 		model.addAttribute("reslist",reslist); // 레스토랑 리스트 
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("category",category);
@@ -61,6 +61,7 @@ public class SearchResultController {
 		
 		// resdto 로 음식점
 		RestaurantDTO resdto2 = searchResultService.getRestaurants(resdto);
+		System.out.println("resdto::"+resdto);
 		/* 
 		  	List<RestaurantDTO> reslist = searchResultService.getRestaurants();
 		  	reslist -> RestaurantDTO 431 개가 들어감  
@@ -74,6 +75,10 @@ public class SearchResultController {
 		rmap.put("resdto",resdto2);
 		// count,avg , resdto2정보가 다들어감 
 		return rmap;
+//		Map<String,Object> map = restaurantDetailService.reviewCountAndAvg(resdto);
+//		map.put("resdto",resdto2);
+//		System.out.println("map:::"+map);
+//		return map;
 	}
 
 
