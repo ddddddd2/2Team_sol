@@ -29,4 +29,21 @@
   			</when>
   		</choose>
   	</select>
+  	
+  	<select id="getResname" parameterType="int" resultType="resdto">
+  		select no, name 
+  		from (select r.no, r.name 
+  		from restaurant r JOIN count c ON r.no = c.res_no 
+  		<choose>
+  			<when test="category!=0">
+	  		and r.c_no = #{category}
+  			</when>
+  		</choose>
+  		 order by c.count desc)	
+	  		<![CDATA[
+	  		where rownum <=10
+	  		]]>		
+  		
+  	</select>
+  	
 </mapper>

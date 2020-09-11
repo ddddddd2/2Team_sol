@@ -95,16 +95,16 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 			dataType : "json",
 			success : function(map){
 		        //Ajax 성공
-		      	alert("test")
-		        console.log(map.avg)
-		        console.log(map.resdto)
-		        // sub1 의 음식점 상세정보 
-		        $('#detail_info p#selected_name span').html(resdto.name);
-		        $('#detail_info p#selected_address span').html(resdto.address1);
-		        $('#detail_info p#selected_tel span').html(resdto.tel);
-		        $('#detail_info p#selected_hour span').html(resdto.hour);
 		        
-		        var url = '/custom/sub2?no='+ resdto.no;
+		        
+		        // sub1 의 음식점 상세정보 
+		        $('#detail_info p#selected_name span').html(map.resdto.name);
+		        $('#detail_info p#selected_address span').html(map.resdto.address1);
+		        $('#detail_info p#selected_tel span').html(map.resdto.tel);
+		        $('#detail_info p#selected_hour span').html(map.resdto.hour);
+		        $('.txt_score').html(map.avg+"점"+"("+map.count+")");
+		        
+		        var url = '/custom/sub2?no='+ map.resdto.no;
 		        $('#detail_info button').on("click",function(){
 		        	document.location.href=url;
 		        });
@@ -225,8 +225,8 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 					
 					
 					<div class="review_rate">
-         				<span class="num_rate"> ${avg}
-         					<span class="txt_score">점</span>
+         				<span class="num_rate"> 
+         					<span class="txt_score"></span>
          				</span>
          		
          				<span class="ico_star star_rate">
@@ -249,29 +249,28 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 											<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 										</div>
 									<div style="float: left; width: 100%; height: 20%"> 
-										<%-- <p>${cdto.get(0).name}</p> --%>
-									</div>
+									${resname[1].name}</div>
 									</div>
 					<!-- 한식 글귀(제목)-->
 						<div class="slide_content slide02" >
 								<div style="float: left; width: 100%; height: 80%">
 									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 								</div>
-							<div style="float: left; width: 100%; height: 20%"></div>
+							<div style="float: left; width: 100%; height: 20% ">${resname[2].name}</div>
 						</div>
 						
 						<div class="slide_content slide03">
 								<div style="float: left; width: 100%; height: 80%">
 									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 								</div>
-							<div style="float: left; width: 100%; height: 20%">분식</div>
+							<div style="float: left; width: 100%; height: 20%">${resname[3].name}</div>
 						</div>
 
 						<div class="slide_content slide04">
 								<div style="float: left; width: 100%; height: 80%" >
 									<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 								</div>
-							<div style="float: left; width: 100%; height: 20%">좝</div>
+							<div style="float: left; width: 100%; height: 20%">${resname[4].name}</div>
 
 						</div>
 					
@@ -280,7 +279,7 @@ $(document).ready(function(){// 문서전체가 로딩되면 실행. 그래야 �
 							<div style="float: left; width: 100%; height: 80%" >
 								<img src="../resources/image/custom/sub1/han300.jpg" width="200" height="160">
 							</div>
-								<div style="float: left; width: 100%; height: 20%">좝</div>
+								<div style="float: left; width: 100%; height: 20%">${resname[5].name}</div>
 						</div>
 
 					<!-- // .slide_list -->
