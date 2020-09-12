@@ -15,6 +15,7 @@
 	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>
@@ -30,9 +31,9 @@
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			<table>
-			<tr><th>예약</th></tr>
+			<div id="main-content">
+			<div id="content-title">예약</div>
+			<table id="content-content">
 				<tr>
 					<td>예약 번호</td>
 					<td>업체명</td>

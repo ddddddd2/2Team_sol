@@ -15,6 +15,7 @@
 	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>
@@ -30,10 +31,10 @@
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			<table border="1">
-				<tr><th>리뷰</th></tr>
-				<tr>
+			<div id="main-content">
+				<div id="content-title">리뷰</div>
+			<table id="content-content">				
+				<tr style="border:3px solid pink;">
 					<td>리뷰 번호 </td>
 					<td>식당 이름 </td>
 					<td>회원번호 </td>
@@ -49,7 +50,6 @@
 						</tr>
 					</c:when>
 					<c:when test="${revdto.size()!=0}">
-							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>
  						<c:forEach var="revdto" items="${revdto}">
  							<tr> 
  								<td>${revdto.no}</td>

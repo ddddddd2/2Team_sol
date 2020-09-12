@@ -17,6 +17,7 @@
 	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/common.js"></script>
 <script type="text/javascript">
 window.history.forward();
@@ -40,13 +41,11 @@ window.history.forward();
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			
-			<table>
-			<tr><th>예약</th></tr>
+			<div id="main-content">
+			<div id="content-title">예약</div>
+			<table id="content-content">
 <%-- 			<tr><td>${myAct.getFcnt()}</td></tr> --%>
 				<tr>
-			
 					<td>예약 번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>
@@ -65,8 +64,8 @@ window.history.forward();
 					</tr>
  				</c:forEach>
 			</table>
-			<table border="1">
-				<tr><th>리뷰</th></tr>
+				<div id="content-title">리뷰</div>
+			<table id="content-content">
 				<tr>
 					<td>리뷰 번호</td>
 					<td>식당 이름</td>
@@ -75,15 +74,11 @@ window.history.forward();
 					<td>작성일</td>
 					<td>별점</td>
 				</tr>
-				<tr>
-					<td colspan="2">총 예약 수</td>
-					<td>${revdto.size()}</td>
-				</tr>
+				
 				<c:choose>
 					<c:when test="${revdto.size()==0}">
 					</c:when>
 					<c:when test="${revdto.size()!=0}">
-							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>
  						<c:forEach var="revdto" items="${revdto}">
  							<tr> 
  								<td>${revdto.no}</td>
@@ -97,29 +92,26 @@ window.history.forward();
  					</c:when>
  				</c:choose>
 			</table>
-			<table>
-			<tr>
-				<th>즐겨찾기</th>
-			</tr>
-<!-- 				<img src="../resources/image/custom/fish.PNG"> -->
-			<tr>
-				<td>식당이름</td>
-			</tr>
-			<c:choose>
-				<c:when test="${fdto.size()==0}">
-					없음
-				</c:when>
-				<c:when test="${fdto.size()!=0}">
-					<c:forEach var="fdto" items="${fdto}">
-						<tr>
-							<td>${fdto.name}</td>
-						</tr>
+			<div id="content-title">즐겨찾기</div>
+		<div style="text-align:center;">
+			<div id="favoriteList">
+				<c:choose>
+					<c:when test="${resdto.size()==0}">
+						<div>없음</div>
+					</c:when>
+				<c:when test="${resdto.size()!=0}">
+					<c:forEach var="i" begin="0" end="3">
+						<div>
+							<div><img src="../upload/${resdto[i].no}.jpg"></div>
+							<div>${resdto[i].name}</div>
+						</div>
+						
 					</c:forEach>
 				</c:when>
-			</c:choose>
-			</table>
-			<table>
-			<tr><th>1대1 문의</th></tr>
+				</c:choose>
+			</div>
+			<div id="content-title">1대1 문의</div>
+			<table id="content-content">
 				<tr>
 					<td>문의 번호</td>
 					<td>문의 유형</td>

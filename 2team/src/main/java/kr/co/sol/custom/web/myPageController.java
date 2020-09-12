@@ -58,7 +58,7 @@ public class myPageController {
 			model.addAttribute("rdto",rdto2);
 //			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
-			model.addAttribute("fdto", fdto2); 
+			model.addAttribute("resdto", fdto2); 
 			//session.setAttribute("mdto", mdto2);
 			// 문의 조회하는 메소드
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
@@ -147,6 +147,7 @@ public class myPageController {
 			mypageService.getMyAct(no, model); /* member_bar 리뷰 즐겨찾기 예약 부분 */
 			List<RestaurantDTO> resdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("resdto", resdto2); 
+			System.out.println(resdto2);
 			return "/custom/myPageFavorite";
 		}
 		/* FavoriteController 끝 */
