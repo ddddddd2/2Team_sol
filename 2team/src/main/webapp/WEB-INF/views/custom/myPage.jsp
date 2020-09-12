@@ -17,6 +17,7 @@
 	<link href="../resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/common.js"></script>
 <script type="text/javascript">
 window.history.forward();
@@ -27,7 +28,7 @@ window.history.forward();
 		
 </script>
 </head>
-<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
 <div>
 	<jsp:include page="top.jsp" />
@@ -40,13 +41,11 @@ window.history.forward();
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			
-			<table>
-			<tr><th>예약</th></tr>
+			<div id="main-content">
+			<div class="content-title">예약</div>
+			<table id="content-content">
 <%-- 			<tr><td>${myAct.getFcnt()}</td></tr> --%>
 				<tr>
-			
 					<td>예약 번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>
@@ -54,19 +53,26 @@ window.history.forward();
 					<td>기타</td>
 					<td>결제 일자</td>
 					<td>1대1 문의</td>
-					<td>취소</td>
+					<td>상태</td>
 				</tr>
-				<c:forEach var="bdto" items="${bdto}">
+				<c:forEach var="bdto" items="${bdto}"  begin="0" end="2">
 					<tr> 
 						<td>${bdto.no}</td>
 						<td>${bdto.res_no}</td>
-				  		<td>${bdto.mem_no}</td>
 				  		<td>${bdto.date1}</td>
+				  		<td>${bdto.price}</td>
+				  		<td>${bdto.mem_no}</td>
+				  		<td>${bdto.date2}</td>
+				  		<td>${bdto.content}</td>
+				  		<td>${bdto.status}</td>
 					</tr>
  				</c:forEach>
+ 				<tr>
+ 					<td colspan="8" style="text-align:right;"><button class="plus"><a href="../myPageBooking">더 보기</a></button></td>
+ 				</tr>
 			</table>
-			<table border="1">
-				<tr><th>리뷰</th></tr>
+				<div class="content-title">리뷰</div>
+			<table id="content-content">
 				<tr>
 					<td>리뷰 번호</td>
 					<td>식당 이름</td>
@@ -75,16 +81,12 @@ window.history.forward();
 					<td>작성일</td>
 					<td>별점</td>
 				</tr>
-				<tr>
-					<td colspan="2">총 예약 수</td>
-					<td>${revdto.size()}</td>
-				</tr>
+				
 				<c:choose>
 					<c:when test="${revdto.size()==0}">
 					</c:when>
 					<c:when test="${revdto.size()!=0}">
-							<td colspan="6" style="text-align:right">총 리뷰 수${revdto.size()}</td>
- 						<c:forEach var="revdto" items="${revdto}">
+ 						<c:forEach var="revdto" items="${revdto}" begin="0" end="2">
  							<tr> 
  								<td>${revdto.no}</td>
  								<td>${revdto.res_no}</td>
@@ -94,32 +96,33 @@ window.history.forward();
   								<td>${revdto.rating}</td>
  							</tr>
  						</c:forEach>
+ 						<tr>
+ 							<td colspan="6" style="text-align:right;"><button class="plus"><a href="../myPageReview">더 보기</a></button></td>
+ 						</tr>
  					</c:when>
  				</c:choose>
 			</table>
-			<table>
-			<tr>
-				<th>즐겨찾기</th>
-			</tr>
-<!-- 				<img src="../resources/image/custom/fish.PNG"> -->
-			<tr>
-				<td>식당이름</td>
-			</tr>
-			<c:choose>
-				<c:when test="${fdto.size()==0}">
-					없음
-				</c:when>
-				<c:when test="${fdto.size()!=0}">
-					<c:forEach var="fdto" items="${fdto}">
-						<tr>
-							<td>${fdto.name}</td>
-						</tr>
+			<div class="content-title">즐겨찾기</div>
+		<div style="text-align:center; width:80%; margin: 0 auto;">
+			<div id="favoriteList">
+				<c:choose>
+					<c:when test="${resdto.size()==0}">
+						<div>없음</div>
+					</c:when>
+				<c:when test="${resdto.size()!=0}">
+					<c:forEach var="i" begin="0" end="3">
+						<div>
+							<div><img src="../upload/${resdto[i].no}.jpg"></div>
+							<div>${resdto[i].name}</div>
+						</div>
 					</c:forEach>
+ 					<div style="float: right; width: initial; margin-right: 23px;"><button class="plus"><a href="../myPageFavorite">더 보기</a></button></div>
 				</c:when>
-			</c:choose>
-			</table>
-			<table>
-			<tr><th>1대1 문의</th></tr>
+				</c:choose>
+			</div>
+			</div>
+			<div class="content-title">1대1 문의</div>
+			<table id="content-content">
 				<tr>
 					<td>문의 번호</td>
 					<td>문의 유형</td>
@@ -127,24 +130,27 @@ window.history.forward();
 					<td>작성일</td>
 					<td>처리상태</td>
 				</tr>
-				<tr>
 					<c:choose>
 						<c:when test="${qdto.size()==0}">
+				<tr>
 							<td>내용없음</td>
+				</tr>
 						</c:when>			
 						<c:when test="${qdto.size()!=0}">
-							<c:forEach var="qdto" items="${qdto}">
-						<tr>
+							<c:forEach var="qdto" items="${qdto}" begin="0" end="2">
+						<tr>	
 							<td>${qdto.no}</td>
 							<td>${qdto.subject}</td>
 							<td>${qdto.contents}</td>
 							<td>${qdto.createdate}</td>							
 							<td>${qdto.qnatype}</td>							
-						<tr>	
+						</tr>	
 							</c:forEach>
+						<tr>
+		 					<td colspan="5" style="text-align:right;"><button class="plus"><a href="../myPageQna">더 보기</a></button></td>
+		 				</tr>
 						</c:when>			
 					</c:choose>
-				</tr>	
 			</table>
 			</div>
 			<!-- content 영역 끝 -->

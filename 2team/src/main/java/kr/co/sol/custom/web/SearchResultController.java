@@ -97,17 +97,16 @@ public class SearchResultController {
 		//keyword(지역) 에서의  조회수 와 리뷰 평점순 음식점 top5 
 
 		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
-		System.out.println(vReslist);
 		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
-		
-		
 		
 		model.addAttribute("reslist",reslist); // 음식점 리스트 
 		model.addAttribute("keyword",keyword); // 키워드
 		model.addAttribute("category",category); // 카테고리
 		model.addAttribute("pdto", pdto); // 페이지 
 		model.addAttribute("vReslist",vReslist); // 저회수 별 음식점 리스트 
-
+		
+		System.out.println(reslist);
+		
 		return "/custom/sub1";
 	}
 	

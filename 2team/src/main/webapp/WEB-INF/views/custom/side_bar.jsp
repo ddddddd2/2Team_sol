@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!-- 왼쪽 메뉴바 시작-->
 			<div id="myEat" style="float: left; width: 16%; height: 1200px; margin-left:2%">
 				<div id="left" style=" height: 200px; background-color:white;">
@@ -13,4 +14,5 @@
 						<p id="leftContent"><a href="/updateInfo">개인 정보 수정</a></p>
 				</div>		
 			</div>
+			<div id=side-bar-friend>&nbsp;</div>
 			<!-- 왼쪽 메뉴바 끝 -->

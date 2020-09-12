@@ -37,9 +37,6 @@ public class myPageController {
 		@RequestMapping(value="/myPage")
 		public String myPage(Model model, HttpServletRequest request, HttpServletResponse response,
 				MemberDTO mdto) {
-			response.setHeader("Pragma","no-cache"); 
-			response.setHeader("Cache-Control", "no-cache"); 
-			response.setDateHeader("Expires",0); 
 			
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
@@ -47,22 +44,21 @@ public class myPageController {
 				return "/custom/login";
 			} else {
 			mypageService.getMyAct(no, model);
-			response.setHeader("Pragma","no-cache"); 
-			response.setHeader("Cache-Control", "no-cache"); 
-			response.setDateHeader("Expires",0);
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
 			model.addAttribute("bdto", bdto2);
 			// 리뷰 조회하는 메소드
 			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
-			model.addAttribute("rdto",rdto2);
+			model.addAttribute("revdto",rdto2);
 //			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
-			model.addAttribute("fdto", fdto2); 
+			model.addAttribute("resdto", fdto2); 
 			//session.setAttribute("mdto", mdto2);
 			// 문의 조회하는 메소드
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
+			
+			System.out.println(session.getAttribute("idKey"));
 			return "/custom/myPage";
 			}
 		}
@@ -121,7 +117,7 @@ public class myPageController {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
 			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
-			model.addAttribute("rdto",rdto2);
+			model.addAttribute("revdto",rdto2);
 			mypageService.getMyAct(no, model);
 			return "/custom/myPageReview";
 		}
@@ -135,6 +131,7 @@ public class myPageController {
 			mypageService.getMyAct(no, model);
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
+			System.out.println(session.getAttribute("idKey"));
 			return "/custom/myPageQna";
 		}
 		/* QnaController 끝 */
@@ -147,6 +144,7 @@ public class myPageController {
 			mypageService.getMyAct(no, model); /* member_bar 리뷰 즐겨찾기 예약 부분 */
 			List<RestaurantDTO> resdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("resdto", resdto2); 
+			System.out.println(resdto2);
 			return "/custom/myPageFavorite";
 		}
 		/* FavoriteController 끝 */

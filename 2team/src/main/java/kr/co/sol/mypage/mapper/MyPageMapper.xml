@@ -124,13 +124,14 @@
 
   	<select id="getMyFavoriteList" parameterType="Integer" resultType="resdto">
 	  	select 
-	  		r.name 
+	  		r.name,r.no 
 	  	from 
 	  		restaurant r where no IN
 				(select 
 					res_no 
 				from 
 					favorites where mem_no = #{mem_no})
+		 order by no asc
 	</select>
 	<!-- Qna -->
 	<select id="getMyQnaList" parameterType="Integer" resultType="qdto">

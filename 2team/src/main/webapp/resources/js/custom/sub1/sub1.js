@@ -209,6 +209,7 @@ $('#list2-1 #res_name').click(function(e){ // event
 			});
 			
 	        // sub1 의 음식점 상세정보 
+			$('#list2-2 a img').attr("src","../upload/"+hmap.resdto.no+".jpg");
 	        $('#list2-3 p#selected_name span').html(hmap.resdto.name);
 	        $('#list2-3 p#selected_address span').html(hmap.resdto.address1);
 	        $('#list2-3 p#selected_tel span').html(hmap.resdto.tel);
@@ -245,9 +246,18 @@ $(window).load(function() {
 	drawMarker();
     addCategoryClickEvent(); // 카테고리 클릭 이벤트 등록 
     categoryInit(); // 처음 카테고리 색 변경 
-      
 });
 
+//$(document).ready(function(){
+//	var t = $('#list2-1>ul>li>div:first-child').attr('id');
+//	var no = t.substr(5, t.length);
+//	var name = $('#list2-1>ul>li>div:first a:first').text();
+//	var addr = $('#list2-1>ul>li>div:first .res_address:first').val();
+//	console.log(addr)
+//	$('#list2-2 a img').attr("src","../upload/"+no+".jpg");
+//	$('#selected_name span').text(name)
+//	$('#selected_address span').text(addr)
+//});
 /*
 $(function(){
 	function ajaxProcess(){

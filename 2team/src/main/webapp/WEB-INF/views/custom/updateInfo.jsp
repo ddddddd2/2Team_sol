@@ -14,6 +14,7 @@
 	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 <head>
 <script>
 $('document').ready(function(){
@@ -198,9 +199,7 @@ verifyPhone = function() {
 </div><!-- 왼쪽 메뉴바 끝 -->
    <!-- 예약 내역 시작 -->
    <div id="profile" style="float: left; width: 80%; height: 300px;">
-         <div id="profileTitle" style="background-color: pink; width: 15%; height: 40px;">
-            <p id="commomBar">프로필 설정</p>
-         </div>
+         <div id="content-title" >프로필 설정</div>
          <!-- 내용 시작 -->
       <div id="content" style=" width: 75%; height:40px; ">
       <form name="updateForm" method="POST" action="updateInfoPro">

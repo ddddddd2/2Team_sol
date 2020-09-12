@@ -15,6 +15,7 @@
 	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>
@@ -25,14 +26,12 @@
 <div>
 	<jsp:include page="menu_bar.jsp" />
 </div>
-			<div id="myPro" style="width: 100%; height:1200px; clear:both;">	
-<div>
-	<jsp:include page="side_bar.jsp" />
-</div>
+		<div id="myPro" style="width: 100%; height:1200px; clear:both;">	
+			<jsp:include page="side_bar.jsp" />
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			<table>
-			<tr><th>1대1 문의</th></tr>
+			<div id="main-content">
+			<div id="content-title">1대1 문의</div>
+			<table id="content-content">
 				<tr>
 					<td>문의 번호</td>
 					<td>문의 유형</td>
@@ -40,24 +39,24 @@
 					<td>작성일</td>
 					<td>처리상태</td>
 				</tr>
-				<tr>
 					<c:choose>
 						<c:when test="${qdto.size()==0}">
+						<tr>	
 							<td>내용없음</td>
+						</tr>	
 						</c:when>			
 						<c:when test="${qdto.size()!=0}">
 							<c:forEach var="qdto" items="${qdto}">
-						<tr>
+						<tr>	
 							<td>${qdto.no}</td>
 							<td>${qdto.subject}</td>
 							<td>${qdto.contents}</td>
 							<td>${qdto.createdate}</td>							
 							<td>${qdto.qnatype}</td>							
-						<tr>	
+						</tr>	
 							</c:forEach>
 						</c:when>			
 					</c:choose>
-				</tr>	
 			</table>
 			</div>
 			<!-- content 영역 끝 -->

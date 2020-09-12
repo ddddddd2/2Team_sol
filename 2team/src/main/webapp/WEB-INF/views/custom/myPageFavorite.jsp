@@ -15,6 +15,7 @@
 	<link href="./resources/css/custom/index/base.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
+	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 	
 </head>
 <body>
@@ -30,31 +31,49 @@
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-			<div style="float:left; width:80%; height:1200px; background-color:yellow;">
-			<table>
-			
-			<img src="../resources/image/custom/fish.PNG">
-			<tr>
-				<td>레스토랑 번호</td>
-				<td>회원 번호</td>
-			</tr>
-			<c:choose>
-				<c:when test="${resdto.size()==0}">
-					없음
-				</c:when>
+		<div id="main-content">
+		<div id="content-title">즐겨찾기</div>
+		<div style="text-align:center;">
+			<div id="favoriteList">
+				<c:choose>
+					<c:when test="${resdto.size()==0}">
+						<div>없음</div>
+					</c:when>
 				<c:when test="${resdto.size()!=0}">
 					<c:forEach var="resdto" items="${resdto}">
-						<tr>
-							<td>${resdto.name}</td>
-						</tr>
+						<div>
+							<div><img src="../upload/${resdto.no}.jpg"></div>
+							<div>${resdto.name}</div>
+						</div>
+						
 					</c:forEach>
 				</c:when>
-			</c:choose>
-			</table>
+				</c:choose>
 			</div>
-			<!-- content 영역 끝 -->
+		</div><!-- content 영역 끝 -->
+<!-- 			<table> -->
+			
+<!-- 			<tr> -->
+<!-- 				<th>즐겨찾기</th> -->
+<!-- 			</tr> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${resdto.size()==0}"> --%>
+<!-- 					없음 -->
+<%-- 				</c:when> --%>
+<%-- 				<c:when test="${resdto.size()!=0}"> --%>
+<%-- 					<c:forEach var="resdto" items="${resdto}"> --%>
+<!-- 						<tr> -->
+<%-- 							<td><img src="../upload/${resdto.no}.jpg"></td> --%>
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<%-- 							<td>${resdto.name}</td> --%>
+<!-- 						</tr> -->
+<%-- 					</c:forEach> --%>
+<%-- 				</c:when> --%>
+<%-- 			</c:choose> --%>
+<!-- 			</table> -->
 	</div><!-- 첫 번째 큰 단락 끝 -->	<!--두 번째 큰 단락 끝 -->
 	</div><!-- 전체 div 끝 -->
-
+</div>
 </body>
 </html>

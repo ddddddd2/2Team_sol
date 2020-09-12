@@ -41,8 +41,10 @@ public class CommonController {
 	
 	// login page
 	@RequestMapping(value="/custom/login")
-	public String login(HttpServletRequest res) {
-		
+	public String login(HttpServletRequest res, HttpServletResponse response) {
+		response.setHeader("Pragma","no-cache"); 
+		response.setHeader("Cache-Control", "no-cache"); 
+		response.setDateHeader("Expires",0); 
 		return "/custom/login";
 	}
 	
