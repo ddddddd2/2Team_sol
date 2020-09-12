@@ -37,9 +37,6 @@ public class myPageController {
 		@RequestMapping(value="/myPage")
 		public String myPage(Model model, HttpServletRequest request, HttpServletResponse response,
 				MemberDTO mdto) {
-//			response.setHeader("Pragma","no-cache"); 
-//			response.setHeader("Cache-Control", "no-cache"); 
-//			response.setDateHeader("Expires",0); 
 			
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
@@ -47,9 +44,6 @@ public class myPageController {
 				return "/custom/login";
 			} else {
 			mypageService.getMyAct(no, model);
-			response.setHeader("Pragma","no-cache"); 
-			response.setHeader("Cache-Control", "no-cache"); 
-			response.setDateHeader("Expires",0);
 			// 예약 내역 조회하는 메소드
 			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
 			model.addAttribute("bdto", bdto2);
@@ -63,6 +57,8 @@ public class myPageController {
 			// 문의 조회하는 메소드
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
+			
+			System.out.println(session.getAttribute("idKey"));
 			return "/custom/myPage";
 			}
 		}
@@ -135,6 +131,7 @@ public class myPageController {
 			mypageService.getMyAct(no, model);
 			List<QnaDTO> qdto2 = mypageService.getMyQnaList(no);  
 			model.addAttribute("qdto", qdto2);
+			System.out.println(session.getAttribute("idKey"));
 			return "/custom/myPageQna";
 		}
 		/* QnaController 끝 */

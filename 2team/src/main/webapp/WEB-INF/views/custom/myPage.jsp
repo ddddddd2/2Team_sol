@@ -28,7 +28,7 @@ window.history.forward();
 		
 </script>
 </head>
-<body onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
 <div>
 	<jsp:include page="top.jsp" />
