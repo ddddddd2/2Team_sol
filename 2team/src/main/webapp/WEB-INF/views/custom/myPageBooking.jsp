@@ -42,14 +42,18 @@
 					<td>기타</td>
 					<td>결제 일자</td>
 					<td>1대1 문의</td>
-					<td>취소</td>
+					<td>상태</td>
 				</tr>
 				<c:forEach var="bdto" items="${bdto}">
 					<tr> 
 						<td>${bdto.no}</td>
 						<td>${bdto.res_no}</td>
-				  		<td>${bdto.mem_no}</td>
 				  		<td>${bdto.date1}</td>
+				  		<td>${bdto.price}</td>
+				  		<td>${bdto.mem_no}</td>
+				  		<td>${bdto.date2}</td>
+				  		<td>${bdto.content}</td>
+				  		<td>${bdto.status}</td>
 					</tr>
  				</c:forEach>
 			</table>

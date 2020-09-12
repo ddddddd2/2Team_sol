@@ -39,24 +39,24 @@
 					<td>작성일</td>
 					<td>처리상태</td>
 				</tr>
-				<tr>
 					<c:choose>
 						<c:when test="${qdto.size()==0}">
+						<tr>	
 							<td>내용없음</td>
+						</tr>	
 						</c:when>			
 						<c:when test="${qdto.size()!=0}">
 							<c:forEach var="qdto" items="${qdto}">
-						<tr>
+						<tr>	
 							<td>${qdto.no}</td>
 							<td>${qdto.subject}</td>
 							<td>${qdto.contents}</td>
 							<td>${qdto.createdate}</td>							
 							<td>${qdto.qnatype}</td>							
-						<tr>	
+						</tr>	
 							</c:forEach>
 						</c:when>			
 					</c:choose>
-				</tr>	
 			</table>
 			</div>
 			<!-- content 영역 끝 -->

@@ -29,6 +29,14 @@ height:auto;
 	font-size: 1.5em;
 	margin-top: 10px;
 	margin-bottom: 25px;
+	
+}
+.content-title{
+	text-align: center;
+	font-size: 1.5em;
+	margin-top: 50px;
+	margin-bottom: 25px;
+	clear: both;
 }
 
 td {
@@ -42,15 +50,26 @@ td {
 #main-content{
 	float:left; 
 	width:70%; 
-	height:1200px; 
-	background-color:yellow;
+}
+#content-content tr:first-child {
+	font-weight: bold;
+	line-height: 50px;
+	background-color: #8d9cb5;
+	color: white;
 }
 
-table tr td{
+#content-content tr{
+	line-height: 30px;
+}
+
+
+#content-content tr td {
 	text-align: center;
 }
 
 #content-content{
+	width: 80%;
 	margin-left: auto; 
 	margin-right: auto;
+	border:3px solid #f2f2f2;
 }

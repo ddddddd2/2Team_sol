@@ -37,9 +37,9 @@ public class myPageController {
 		@RequestMapping(value="/myPage")
 		public String myPage(Model model, HttpServletRequest request, HttpServletResponse response,
 				MemberDTO mdto) {
-			response.setHeader("Pragma","no-cache"); 
-			response.setHeader("Cache-Control", "no-cache"); 
-			response.setDateHeader("Expires",0); 
+//			response.setHeader("Pragma","no-cache"); 
+//			response.setHeader("Cache-Control", "no-cache"); 
+//			response.setDateHeader("Expires",0); 
 			
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
@@ -55,7 +55,7 @@ public class myPageController {
 			model.addAttribute("bdto", bdto2);
 			// 리뷰 조회하는 메소드
 			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
-			model.addAttribute("rdto",rdto2);
+			model.addAttribute("revdto",rdto2);
 //			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("resdto", fdto2); 
@@ -121,7 +121,7 @@ public class myPageController {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
 			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
-			model.addAttribute("rdto",rdto2);
+			model.addAttribute("revdto",rdto2);
 			mypageService.getMyAct(no, model);
 			return "/custom/myPageReview";
 		}

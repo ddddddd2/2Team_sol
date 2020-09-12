@@ -33,8 +33,8 @@
 			<!-- content 영역 시작 -->
 			<div id="main-content">
 				<div id="content-title">리뷰</div>
-			<table id="content-content">				
-				<tr style="border:3px solid pink;">
+			<table id="content-content" >				
+				<tr>
 					<td>리뷰 번호 </td>
 					<td>식당 이름 </td>
 					<td>회원번호 </td>
