@@ -17,7 +17,6 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
-<script type="text/javascript" src="../resources/js/custom/booking/booking.js"></script>
 <script src="../resources/js/common.js"></script>
 <!-- End -->
 
@@ -27,7 +26,7 @@
 	<c:if test="${idKey == null}">
 		<script type="text/javascript">
 			alert("로그인 부터 해주세요 ");
-			history.go(-1);
+			//location.href = document.referrer; //뒤로가기후 새로고침 
 		</script>
 	</c:if>
 	
@@ -38,7 +37,14 @@
 			<div class="h2-title">
 				<h2> 예약정보 입력 </h2>
 			</div>	
-						
+			
+			
+			<input type="text" name="res_name" id="res_name" value="${resdto.name}"/>
+			<input type="text" name="res_no" id="res_no" value="${resdto.no}"/>
+			<input type="text" name="mem_no" id="mem_no" value="${mdto.no}"/>
+			<input type="text" name="mem_email" id="mem_email" value="${mdto.email}"/>
+			
+			
 			<div class="section" style="width:50%;margin:auto;"> <!-- section start -->
 				<div class="inner clear">
 					<div class="left">
@@ -77,7 +83,7 @@
 						
 						<div class="box">
 							<h3 class="request"> 요청사항 </h3>
-							<input type="text" title="요청사항" name="request" id="request" placeholder="요청사항을 적어주세요">
+							<input type="text" title="요청사항" name="comment" id="comment" placeholder="요청사항을 적어주세요">
 						</div>
 					</div>
 				</div>						
@@ -90,11 +96,11 @@
 							<ul class="person">
 								<li>
 									<h4>예약자 이름</h4>
-									<input type="text" title="예약자 이름" name="name" id="name" value="${mdto.name}">
+									<input type="text" title="예약자 이름" name="name" id="name" value="${mdto.name}" readonly>
 								</li>
 								<li>
 									<h4>휴대폰 번호</h4>								
-									<input type="text" title="휴대폰번호" name="phone" id="phone" value="${mdto.phone}">
+									<input type="text" title="휴대폰번호" name="phone" id="phone" value="${mdto.phone}" readonly>
 								</li>
 							</ul>
 						</div>
@@ -130,7 +136,7 @@
 								<span>결제 예정금액</span><!-- 결제 예정금액 --> 
 								<strong class="price total" >원</strong><
 								<strong class="price total" id="price_total">0</strong><!-- 0원 -->
-								<input type="hidden" name="price" value="" />
+								<input type="hidden" name="price" id="price" value="" />
 							</h3>
 							<div class="summary" title="전체요약">
 								<strong id="selected_date"></strong>
@@ -144,7 +150,7 @@
 						    <div class="select-ui li-slt">
 								<h3><a href="#select-list">결제 수단을 선택하세요.</a></h3>
 						        <ul id="select-list">
-						            <li><a href="#none" id="">카카오페이</a></li>
+						            <li><a href="javascript:void(0);" id="kakaopay">카카오페이</a></li>
 						        </ul>
 						    </div>					    
 						</div>					
@@ -229,35 +235,7 @@
 						<div class="payment"> 
 							<a href="#" id="send_money"> 결제하기 </a>
 						</div>										
-						<script> /*  pay 결제 스크립트 영역 Start  */
-						$('#send_money').click(function(){
-							var IMP = window.IMP;
-							IMP.init('imp33520161');
-							IMP.request_pay({
-							    pg : 'html5_inicis',
-							    pay_method : 'vbank',
-							    merchant_uid : 'merchant_' + new Date().getTime(),
-							    name : '주문명:결제테스트',
-							    amount : 1,
-							    buyer_email : 'iamport@siot.do',
-							    buyer_name : '구매자이름',
-							    buyer_tel : '010-1234-5678',
-							    buyer_addr : '서울특별시 강남구 삼성동',
-							    buyer_postcode : '123-456'
-							}, function(rsp) {
-						    	if ( rsp.success ) {
-						        var msg = '결제가 완료되었습니다.';
-						        msg += '고유ID : ' + rsp.imp_uid;
-						        msg += '상점 거래ID : ' + rsp.merchant_uid;
-						        msg += '결제 금액 : ' + rsp.paid_amount;
-						        msg += '카드 승인번호 : ' + rsp.apply_num;
-						    } else {
-						        var msg = '결제에 실패하였습니다.';
-						        msg += '에러내용 : ' + rsp.error_msg;
-							    };
-							});
-						});
-					</script> <!-- pay 결제 스크립트 영역 End -->
+						
 					</div> <!-- float right 영역 End  -->
 				</div>
 			</div> <!-- section end -->
@@ -265,5 +243,7 @@
 	</form>
 	
 	<c:import url="bottom.jsp"/>
+	
+	<script type="text/javascript" src="../resources/js/custom/booking/booking.js"></script>
 </body>
 </html>

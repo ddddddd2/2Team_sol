@@ -39,35 +39,88 @@ $(function() {
            $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
 });
 
-function f_ChangeMonth( pYyyyMmDd ) {
-	var frm = document.frm;
-	var gv_save_yyyymmdd = "";
+// 결제하기 버튼 클릭시 
+$('#send_money').click(function(e){
+	e.preventDefault();
 	
-	$.ajaxSetup({ async:false }); 
+	var IMP = window.IMP;
+	IMP.init('imp89291970');
+	var msg;
+	var mem_name   	 = $('#name').val(), 	 	// 멤버 이름
+		total_price  = $('#price').val(), 		// 총 금액
+		mem_no 		 = $('#mem_no').val(), 		// 멤버 넘버
+		mem_email    = $('#mem_email').val(), 	// 멤버 이메일
+		mem_tel 	 = $('#phone').val(), 		// 멤버 전화번호
+		res_no		 = $('#res_no').val(), 		// 레스토랑 번호
+		b_date  	 = $('#date1').val(), 		// 방문할 날짜
+		comment		 = $('#comment').val(); 	// 요청사항
 	
-	gv_save_yyyymmdd = pYyyyMmDd;
-
-	$.ajaxSetup({ async:true }); 
-}			
-
-//--일자 선택에 대한 처리 (pYyyyMmDd - 상품일자, pSdSeq - 일정SEQ, pSdTimeuseYn - 일정의 시간 사용여부, pSdEndHhmi - 일정의 종료시간)
-function f_SelectDate( pYyyyMmDd, pSdSeq, pSdTimeuseYn, pSdEndHhmi , weekName, id) {
-	valueReset(); //날짜&시간 선택시 전에 선택했던 항목 초기화
 	
-	var frm = document.frm;
-	$(".calendar-data a").removeClass("on");
-	$("#"+id).addClass("on");
-	
-	var selectDay = pYyyyMmDd.substr(0,4)+ '년 ' + pYyyyMmDd.substr(4,2) + '월 ' + pYyyyMmDd.substr(6) + "일(" + weekName + ")";
-	$("#selectDay").text(selectDay);
-}
+	IMP.request_pay({
+		// 이 변수들을 활용하는 정해진 방법이 있는듯... 아직 모르겠음 
+        pg : 'kakaopay',
+        pay_method : 'card',
+        merchant_uid : 'merchant_' + new Date().getTime(),
+        name : '음식점 : 결제테스트',
+        amount : total_price,
+        buyer_email : mem_email,
+        buyer_name : mem_name,
+        buyer_tel : mem_tel,
+	    
+	    //모바일의 redirect_url , callback처리 하지 않음
+	    //m_redirect_url : 'http://www.naver.com'
+	}, function(rsp) {
+        if ( rsp.success ) {
+            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "/custom/bookingProc", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                dataType: 'json',
+                contentType : "application/x-www-form-urlencoded; charset=utf-8",
+                data: {
+                    res_no : res_no,
+                    mem_no : mem_no,
+                    date1 : b_date,
+                    price : total_price,
+                    content : comment
+                    //기타 필요한 데이터가 있으면 추가 전달
+                }
+            }).done(function(data) {
+                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+            	alert('done !');
+            	
+                if ( everythings_fine ) {
+                    msg = '결제가 완료되었습니다.';
+                    msg += '\n고유ID : ' + rsp.imp_uid;
+                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '\결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                    
+                    //msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                    alert(msg);
+                } else {
+                    //[3] 아직 제대로 결제가 되지 않았습니다.
+                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                	alert("오류 !!!");
+                }
+            }).fail(function(data){
+            	alert("fail !")
+            });
+            //성공시 이동할 페이지
+            //location.href='/';
+        } else {
+            msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+            //실패시 이동할 페이지
+            //location.href="<%=request.getContextPath()%>/order/payFail";
+            alert(msg);
+        }
+	    
+	    
+	});
+});
 
-function valueReset(){
-	$(".price total").text("0");
-	$(".sumText").text("");
-
-}
-
+// 메뉴에서 +버튼 클릭시 가격이 오르는 함수
 function add(node,price){
 	
 	// 수량 증가
@@ -86,6 +139,7 @@ function add(node,price){
 	$('input[name=price]').val(total);
 }
 
+//메뉴에서 -버튼 클릭시 가격이 감소하는 함수
 function minus(node,price){
 	
 	// 수량 감소 
@@ -107,4 +161,38 @@ function minus(node,price){
 	$('#price_total').text(total);
 	$('input[name=price]').val(total);
 }
+
+/*
+function f_ChangeMonth( pYyyyMmDd ) {
+	var frm = document.frm;
+	var gv_save_yyyymmdd = "";
+	
+	$.ajaxSetup({ async:false }); 
+	
+	gv_save_yyyymmdd = pYyyyMmDd;
+
+	$.ajaxSetup({ async:true }); 
+}			
+*/
+
+//--일자 선택에 대한 처리 (pYyyyMmDd - 상품일자, pSdSeq - 일정SEQ, pSdTimeuseYn - 일정의 시간 사용여부, pSdEndHhmi - 일정의 종료시간)
+/*
+function f_SelectDate( pYyyyMmDd, pSdSeq, pSdTimeuseYn, pSdEndHhmi , weekName, id) {
+	valueReset(); //날짜&시간 선택시 전에 선택했던 항목 초기화
+	
+	var frm = document.frm;
+	$(".calendar-data a").removeClass("on");
+	$("#"+id).addClass("on");
+	
+	var selectDay = pYyyyMmDd.substr(0,4)+ '년 ' + pYyyyMmDd.substr(4,2) + '월 ' + pYyyyMmDd.substr(6) + "일(" + weekName + ")";
+	$("#selectDay").text(selectDay);
+}
+*/
+/*
+function valueReset(){
+	$(".price total").text("0");
+	$(".sumText").text("");
+
+}
+*/
 

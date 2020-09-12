@@ -37,6 +37,7 @@
   	</select>
   	<select id="getMemberInfo" parameterType="Integer" resultType="mdto">
   		select
+  			no,
 	  		grade_name,
 	  		id,
 	  		passwd,
