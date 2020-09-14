@@ -11,9 +11,7 @@
 						<div>
 							<select class="select" id="gu">
 								<option value="구선택">구선택</option>
-								<option value="중랑구">중랑구</option>
 								<option value="종로구">종로구</option>
-								<option value="방구">방구</option>
 							</select>
 						</div>
 						<div>
