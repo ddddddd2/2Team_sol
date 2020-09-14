@@ -82,10 +82,10 @@ window.onload = function(){
 	curSlide.classList.add('slide_active');
 	--curIndex;
 	});
+
 	
+
 }
-
-
 // 음식점 리스트 밑 페이징 눌렀을 때 form 전송 
 function paging_form(currentPage,currPageBlock){
 
@@ -226,15 +226,15 @@ function paging_form(currentPage,currPageBlock){
 				
 				<div id="list2-2" > 					
 					<a href="" target='_blank'>
-						<img src="../resources/image/custom/sub1/don200.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+						<img src="" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
 				<div id="list2-3">
-					<p id="selected_name">음식점 : 	<span>  </span></p>
-					<p id="selected_address">주소 : 	<span>  </span></p>
-					<p id="selected_tel">연락처 : 	<span> </span></p>
-					<p id="selected_hour">운영시간 : 	<span> </span></p>
+					<p id="selected_name">음식점 : 	<span>${reslist[0].name}  </span></p>
+					<p id="selected_address">주소 : 	<span>${reslist[0].address1}  </span></p>
+					<p id="selected_tel">연락처 : 	<span>${reslist[0].tel} </span></p>
+					<p id="selected_hour">운영시간 : 	<span>${reslist[0].hour}</span></p>
 					<p id="selected_cnt">조회수 : 	<span> </span></p>
 					<p id="selected_avg">평점 : 		<span id="avg"> </span> <span id="count"></span></p>
 					
@@ -260,7 +260,7 @@ function paging_form(currentPage,currPageBlock){
 							<c:forEach var="vReslist" items="${vReslist}">
 								<div class="slide_content">
 									<div class="slide_img">
-										<img src="../resources/adminUpload/${vReslist.NO}.jpg">
+										<img src="../upload/${vReslist.NO}.jpg">
 									</div>
 									<div style="float: left; width: 100%; height: 20%">
 										<p>음식점 : <span>${vReslist.name}</span></p>
