@@ -98,13 +98,17 @@ public class SearchResultController {
 
 		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
 		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
-		
+		RestaurantDTO resdto3 = reslist.get(0);
+		Map<String,Object> defaultResCna = searchResultService.reviewCountAndAvg(resdto3);
+		System.out.println(defaultResCna);
 		model.addAttribute("reslist",reslist); // 음식점 리스트 
 		model.addAttribute("keyword",keyword); // 키워드
 		model.addAttribute("category",category); // 카테고리
 		model.addAttribute("pdto", pdto); // 페이지 
 		model.addAttribute("vReslist",vReslist); // 저회수 별 음식점 리스트 
-		
+		model.addAttribute("CnA",defaultResCna); // 최초 페이지 접근 시,reslist에서 첫번째 녀석의 리뷰수와 평균을 가져옴.
+		int ClickCnt = searchResultService.visitorsCnt(resdto3);
+		model.addAttribute("ClickCnt",ClickCnt);
 		System.out.println(reslist);
 		
 		return "/custom/sub1";

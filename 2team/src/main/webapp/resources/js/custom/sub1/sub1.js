@@ -219,11 +219,13 @@ $('#list2-1 #res_name').click(function(e){ // event
 	        $('#list2-3 p#selected_avg span#count').html("("+hmap.reviewCount+")");
 	        
 	        // 상세정보 보기 버튼 클릭 
-	        var url = '/custom/sub2?no='+ hmap.resdto.no;
-	        $('#list2-3 button').on("click",function(e){
-	        	e.preventDefault();
-	        	document.location.href=url;
-	        });  
+	        var url = "javascript:document.location.href='/custom/sub2?no="+ hmap.resdto.no+"'";
+	 
+	        $('#list2-3 button').attr("onclick",url);
+//	        $('#list2-3 button').on("click",function(e){
+//	        	e.preventDefault();
+//	        	document.location.href=url;
+//	        });  
 	        // 왼쪽 음식점 이미지 클릭시 target=_blank속성으로 나오기 위해 
 	        $('#list2-2 a').attr("href",url);
 	        

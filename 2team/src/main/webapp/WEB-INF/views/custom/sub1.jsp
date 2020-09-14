@@ -235,10 +235,10 @@ function paging_form(currentPage,currPageBlock){
 					<p id="selected_address">주소 : 	<span>${reslist[0].address1}  </span></p>
 					<p id="selected_tel">연락처 : 	<span>${reslist[0].tel} </span></p>
 					<p id="selected_hour">운영시간 : 	<span>${reslist[0].hour}</span></p>
-					<p id="selected_cnt">조회수 : 	<span> </span></p>
-					<p id="selected_avg">평점 : 		<span id="avg"> </span> <span id="count"></span></p>
+					<p id="selected_cnt">조회수 : 	<span>${ClickCnt}</span></p>
+					<p id="selected_avg">평점 : 		<span id="avg">${CnA.avg}점</span> <span id="count">(${CnA.count})</span></p>
 					
-					<button>상세보기</button>
+					<button onclick="javascript:document.location.href='/custom/sub2?no=${reslist[0].no}'">상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
 
 		
