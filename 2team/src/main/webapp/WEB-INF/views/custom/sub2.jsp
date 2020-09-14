@@ -335,8 +335,8 @@ window.history.forward();
          					</div>
          				
          					<c:if test="${revdto.file1 != null}">
-         						<a href="../upload/${revdto.file1}"  class="link_photo fancybox" data-fancy-group="gallary">
-         							<img src="../upload/${revdto.file1}" class="photo_img" width="78" height="78">
+         						<a href="../upload/review_img/${revdto.file1}"  class="link_photo fancybox" data-fancy-group="gallary">
+         							<img src="../upload/review_img/${revdto.file1}" class="photo_img" width="78" height="78">
          						</a>         					
          					</c:if>			
 

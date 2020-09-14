@@ -245,7 +245,7 @@ public class RestaurantDetailController {
 			int r = 0;
 			
 			// 리뷰에서 파일업로드 경로 
-			revdto.setPath(resourcesLocation);
+			revdto.setPath(resourcesLocation+"review_img/");
 			
 			r = restaurantDetailService.reviewInsert(revdto,file);
 			if(r > 0) {
