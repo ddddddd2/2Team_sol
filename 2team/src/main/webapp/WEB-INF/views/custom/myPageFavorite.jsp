@@ -31,7 +31,7 @@
 	<jsp:include page="side_bar.jsp" />
 </div>
 			<!-- content 영역 시작 -->
-		<div id="main-content">
+		<div class="main-content">
 		<div id="content-title">즐겨찾기</div>
 		<div style="text-align:center;">
 			<div id="favoriteList">
