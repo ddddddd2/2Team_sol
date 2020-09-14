@@ -26,7 +26,7 @@ window.onload = function(){
 	const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
 	const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
 	const slideLen = slideContents.length; // slide length
-	const slideWidth = 240; // slide width
+	const slideWidth = 321; // slide width
 	const slideSpeed = 300; // slide speed
 	const startNum = 0; // initial slide index (0 ~ 4)
 	slideList.style.width = slideWidth * (slideLen+2) + "px";
@@ -254,7 +254,8 @@ function paging_form(currentPage,currPageBlock){
 							<c:forEach var="vReslist" items="${vReslist}">
 								<div class="slide_content">
 									<div class="slide_img">
-										<img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${vReslist.NO}.jpg">
+										<img src="../upload/${vReslist.NO}.jpg" onclick="javascript:document.location.href='/custom/sub2?no=${vReslist.NO}'">
+											
 									</div>
 									<div style="float: left; width: 100%; height: 35%">
 										<p><span>${vReslist.name}</span></p>
