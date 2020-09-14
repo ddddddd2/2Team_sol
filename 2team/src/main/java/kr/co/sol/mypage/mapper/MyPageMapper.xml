@@ -7,7 +7,7 @@
 
   	<select id="loginPro" parameterType="mdto" resultType="mdto">
   		select no, role from member where id = #{id} and passwd = #{passwd}
-  	</select>
+  	</select> 
 
   	<select id="getMember" resultType="mdto">
   		select
