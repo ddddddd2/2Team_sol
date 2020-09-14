@@ -15,12 +15,6 @@
 
 <script src="../resources/js/common.js"></script>
 
-<style type="text/css">
-
- .slide_wrap { position: relative; width: 900px; margin: auto; padding-bottom: 30px; } 
- .slide_box { width: 100%; margin: auto; overflow-x: hidden; } 
- .slide_content { display: table; float: left; width: 300px; height: 400px; }
-</style>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=62d3ab0d1faddf540c257e322ccce48e&libraries=services,clusterer,drawing"></script>
 
@@ -32,10 +26,10 @@ window.onload = function(){
 	const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
 	const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
 	const slideLen = slideContents.length; // slide length
-	const slideWidth = 300; // slide width
+	const slideWidth = 240; // slide width
 	const slideSpeed = 300; // slide speed
 	const startNum = 0; // initial slide index (0 ~ 4)
-	slideList.style.width = slideWidth * (slideLen + 2) + "px";
+	slideList.style.width = slideWidth * (slideLen+2) + "px";
 	// Copy first and last slide
 	let firstChild = slideList.firstElementChild;
 	let lastChild = slideList.lastElementChild;
@@ -262,7 +256,7 @@ function paging_form(currentPage,currPageBlock){
 									<div class="slide_img">
 										<img src="../upload/${vReslist.NO}.jpg">
 									</div>
-									<div style="float: left; width: 100%; height: 20%">
+									<div style="float: left; width: 100%; height: 35%">
 										<p>음식점 : <span>${vReslist.name}</span></p>
 										<p>종류 : <span>${vReslist.c_name}</span></p>
 										<p>평점 : <span>${vReslist.avg}</span></p>
