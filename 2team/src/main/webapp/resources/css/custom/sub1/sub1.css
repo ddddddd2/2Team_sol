@@ -73,7 +73,7 @@
 }
 
 .content-wrap {
-	display: table;
+	display: inline-block;
 	float: left;
 	width: 100%;
 	margin: 10px;
@@ -88,14 +88,6 @@
 	margin: auto;
 /* 	padding-bottom: 30px; */
 	
-}
-
-.slide_box {
-	width: 748px;
-	margin: auto;
-	overflow-x: hidden;
-	position:center;
-	height: 285px;
 }
 
 .slide_content {
@@ -123,13 +115,6 @@
 	overflow: hidden; 
 	}
 	 
-.slide_content { 
-	display: table; 
-	float: left; 
-	width: 200px; 
-	height: 300px; 
-	}
-
 
 .slide_content .slide_img{
 	float: left; 

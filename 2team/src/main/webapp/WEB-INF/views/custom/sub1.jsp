@@ -220,7 +220,7 @@ function paging_form(currentPage,currPageBlock){
 				
 				<div id="list2-2" > 					
 					<a href="" target='_blank'>
-						<img src="../upload/${reslist[0].no}.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+						<img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${reslist[0].no}.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
@@ -254,13 +254,13 @@ function paging_form(currentPage,currPageBlock){
 							<c:forEach var="vReslist" items="${vReslist}">
 								<div class="slide_content">
 									<div class="slide_img">
-										<img src="../upload/${vReslist.NO}.jpg">
+										<img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${vReslist.NO}.jpg">
 									</div>
 									<div style="float: left; width: 100%; height: 35%">
-										<p>음식점 : <span>${vReslist.name}</span></p>
-										<p>종류 : <span>${vReslist.c_name}</span></p>
-										<p>평점 : <span>${vReslist.avg}</span></p>
-										<p>조회수 : <span>${vReslist.count}</span></p>
+										<p><span>${vReslist.name}</span></p>
+										<p><span>${vReslist.c_name}</span></p>
+										<p><span>${vReslist.avg}점(${vReslist.count})</span></p>
+										<p><span></span></p>
 									</div>
 								</div>
 							</c:forEach>
