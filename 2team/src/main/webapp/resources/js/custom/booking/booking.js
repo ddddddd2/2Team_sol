@@ -46,30 +46,31 @@ $('#send_money').click(function(e){
 	var IMP = window.IMP;
 	IMP.init('imp89291970');
 	var msg;
-	var mem_name   	 = $('#name').val(), 	 	// 멤버 이름
-		total_price  = $('#price').val(), 		// 총 금액
-		mem_no 		 = $('#mem_no').val(), 		// 멤버 넘버
+	var mem_no 		 = $('#mem_no').val(), 		// 멤버 넘버
+		mem_name   	 = $('#name').val(), 	 	// 멤버 이름
 		mem_email    = $('#mem_email').val(), 	// 멤버 이메일
 		mem_tel 	 = $('#phone').val(), 		// 멤버 전화번호
-		res_no		 = $('#res_no').val(), 		// 레스토랑 번호
+		total_price  = $('#price').val(), 		// 총 금액
 		b_date  	 = $('#date1').val(), 		// 방문할 날짜
-		comment		 = $('#comment').val(); 	// 요청사항
-	
-	
+		comment		 = $('#comment').val(), 	// 요청사항
+		res_no		 = $('#res_no').val(), 		// 레스토랑 번호
+		res_name 	 = $('#res_name').val();
+		
 	IMP.request_pay({
 		// 이 변수들을 활용하는 정해진 방법이 있는듯... 아직 모르겠음 
         pg : 'kakaopay',
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
-        name : '음식점 : 결제테스트',
+        name : res_name + ' : 결제테스트',
         amount : total_price,
         buyer_email : mem_email,
         buyer_name : mem_name,
-        buyer_tel : mem_tel,
+        buyer_tel : mem_tel
 	    
 	    //모바일의 redirect_url , callback처리 하지 않음
 	    //m_redirect_url : 'http://www.naver.com'
 	}, function(rsp) {
+		console.log(rsp);
         if ( rsp.success ) {
             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
@@ -82,30 +83,43 @@ $('#send_money').click(function(e){
                     mem_no : mem_no,
                     date1 : b_date,
                     price : total_price,
-                    content : comment
+                    content : comment,
+                    status : rsp.status
                     //기타 필요한 데이터가 있으면 추가 전달
+                },
+                success:function(s){
+                	if(s > 0){
+                		alert("결제처리가 정상 처리되었습니다.");
+                	}else{
+                		alert("db오류 ");
+                	}
+                },
+                error:function(e){
+                	alert("결제처리가 실패하였습니다.")
                 }
-            }).done(function(data) {
-                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-            	alert('done !');
-            	
-                if ( everythings_fine ) {
-                    msg = '결제가 완료되었습니다.';
-                    msg += '\n고유ID : ' + rsp.imp_uid;
-                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '\결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
-                    
-                    //msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                    alert(msg);
-                } else {
-                    //[3] 아직 제대로 결제가 되지 않았습니다.
-                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                	alert("오류 !!!");
-                }
-            }).fail(function(data){
-            	alert("fail !")
             });
+            
+//            .done(function() {
+//                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+//            	alert('done !');
+//            	
+//                if ( everythings_fine ) {
+//                    msg = '결제가 완료되었습니다.';
+//                    msg += '\n고유ID : ' + rsp.imp_uid;
+//                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+//                    msg += '\결제 금액 : ' + rsp.paid_amount;
+//                    msg += '카드 승인번호 : ' + rsp.apply_num;
+//                    
+//                    //msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+//                    alert(msg);
+//                } else {
+//                    //[3] 아직 제대로 결제가 되지 않았습니다.
+//                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+//                	alert("오류 !!!");
+//                }
+//            }).fail(function(){
+//            	alert("fail !")
+//            });
             //성공시 이동할 페이지
             //location.href='/';
         } else {

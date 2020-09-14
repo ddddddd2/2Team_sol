@@ -65,15 +65,16 @@ public class BookingController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/custom/bookingProc", method = RequestMethod.POST)
-	public void bookingProc(@ModelAttribute BookingDTO bdto){
+	public int bookingProc(@ModelAttribute BookingDTO bdto){
 		
 		System.out.println(bdto);
 		
 		if(bdto != null)
 		{
 			int r = bookingService.bookingProc(bdto);
-			
+			return r;
 		}
 		
+		return 0;
 	}
 }

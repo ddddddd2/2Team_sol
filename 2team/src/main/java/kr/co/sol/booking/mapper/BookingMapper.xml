@@ -7,13 +7,14 @@
 	       SELECT NVL(MAX(no),0)+1 no FROM booking
       	</selectKey>
 		
-		insert into booking(no,res_no,mem_no,date1,date2,content,price) 
+		insert into booking(no,res_no,mem_no,date1,date2,content,price,status) 
 		values(#{no},
 			   #{res_no},
 			   #{mem_no},
 			   #{date1},
 			   sysdate,
 			   #{content},
-			   #{price})
+			   #{price},
+			   #{status})
 	</insert>
 </mapper>
