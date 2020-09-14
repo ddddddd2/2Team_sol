@@ -226,7 +226,7 @@ function paging_form(currentPage,currPageBlock){
 				
 				<div id="list2-2" > 					
 					<a href="" target='_blank'>
-						<img src="" style="width: 100%; height: 100%; vertical-align: middle;"  >
+						<img src="../upload/${reslist[0].no}.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
 					</a><!-- target='_blank' 새창띄우기 -->
 				</div>
 				
