@@ -29,7 +29,7 @@
 		<div id="myPro" style="width: 100%; height:1200px; clear:both;">	
 			<jsp:include page="side_bar.jsp" />
 			<!-- content 영역 시작 -->
-			<div id="main-content">
+			<div class="main-content">
 			<div id="content-title">1대1 문의</div>
 			<table id="content-content">
 				<tr>
