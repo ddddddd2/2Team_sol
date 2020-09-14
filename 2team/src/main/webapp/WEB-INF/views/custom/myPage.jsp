@@ -19,14 +19,6 @@
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/common.js"></script>
-<script type="text/javascript">
-window.history.forward();
-
-		function noBack(){
-			window.history.forward();
-		}
-		
-</script>
 </head>
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->

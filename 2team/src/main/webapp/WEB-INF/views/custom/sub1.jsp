@@ -116,12 +116,9 @@ function paging_form(currentPage,currPageBlock){
 	
 	<div id="content-wrapper">
 		<div id="content" >
-		
 			<!--  1번째 줄 새로시작 -->
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
-			
 				<div id="list2(0)" style="width:100%; height:100%;">
-			
 					<div id="list" style=" float:left; height :10%; width:25%;">카테고리별 음식점 리스트</div>
 					
 					<!-- 지도 wrap-->
@@ -158,7 +155,6 @@ function paging_form(currentPage,currPageBlock){
 						
 						<!-- 지도 음식점 리스트 영역 -->
 						<div id="list2-1" style="float: left; display: inline; height: 89.7%; width: 25%;">
-							
 							<ul>
 								<c:forEach var="resdto" items="${reslist}">
 									<li>
@@ -169,21 +165,16 @@ function paging_form(currentPage,currPageBlock){
 											<input type="hidden" class="res_address" value="${resdto.address1}" />
 											<input type="hidden" class="res_c_no" value="${resdto.c_no}" />
 										</div>
-									 
 									</li>
 								</c:forEach>
 							</ul>
-
 							
 							<div class="res_paging">
-
-								
 								<c:if test="${pdto.startPage > pdto.pageBlock}">
          							<a href="javascript:void(0);" onclick="javascript:paging_form(${pdto.startPage - pdto.pageBlock},${pdto.currPageBlock-1});" class="btn_prev">
          								<span class="ico_comm ico_prev"></span>
          							</a>
          						</c:if>
-         			
          						<c:forEach var = "i" begin="${pdto.startPage}" end="${pdto.endPage}">
          			
          							<a href="javascript:void(0);"  onclick="javascript:paging_form(${i},${pdto.currPageBlock});" class="link_page">
@@ -202,17 +193,13 @@ function paging_form(currentPage,currPageBlock){
          							</a>
          						</c:if>
          					</div> <!-- review-paging end -->
-					    
 					    </div>
-					
 					</div>
 				</div>
 			<!-- 카드 형태로 3개만 구현하고 나머지는 슬라이드 -->
 			</div>
 
-
 			<!--  2번째 줄 새로시작 -->
-				
 			<div id ="restart"style="width: auto; height: 350px; " >
 				<div id="recom">
 					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
@@ -231,14 +218,10 @@ function paging_form(currentPage,currPageBlock){
 					<p id="selected_hour">운영시간 : 	<span>${reslist[0].hour}</span></p>
 					<p id="selected_cnt">조회수 : 	<span>${ClickCnt}</span></p>
 					<p id="selected_avg">평점 : 		<span id="avg">${CnA.avg}점</span> <span id="count">(${CnA.count})</span></p>
-					
 					<button onclick="javascript:document.location.href='/custom/sub2?no=${reslist[0].no}'">상세보기</button>
 				</div> 		<!-- list2-3 끝 -->			
-
-		
 			<!--  2번째 줄 끝 -->		
 			</div>	
-		
 			<!-- 3번째 줄 시작  -->				
 			<div class="content-wrap">
 				
