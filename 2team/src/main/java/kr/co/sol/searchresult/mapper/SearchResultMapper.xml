@@ -96,8 +96,10 @@
                   			  on t.no = n.res_no
                   			  
                   			   		<choose>
-  										<when test="keyword != null">
-  											where address1 like '%'||#{keyword}||'%'
+  										<when test="category == 0">
+  										</when>
+  										<when test="category != 0">
+  											where c.no = #{category}
   										</when>
   									</choose>
                   			  

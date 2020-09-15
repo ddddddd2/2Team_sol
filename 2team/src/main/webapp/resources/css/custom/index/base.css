@@ -129,13 +129,26 @@ a:focus { text-decoration:none; color:#000;}
 .cf:after {content:" "; display:table; }
 .cf:after {clear:both; }
 .clearfix {*zoom:1; }
+/* 검색바 */
+#space #search #header_keyword{
+	display: inline-block;
+	border-radius: 30px;
+	height:53.6px;
+}
+
+/* 검색버튼 */
+#space #search #searchAction{
+	border-radius:10px;
+	height: 24px;
+} 
+
 
 /*! 怨듯넻 �겢�옒�뒪 �뒪���씪 */
 
 /*! �씠誘몄� ��泥� 湲곕쾿 */
 .ir {overflow:hidden; text-indent:-9999em; }
-
 /*! �뒪�겕由곕━�뜑/釉뚮씪�슦���뿉�꽌 紐⑤몢 媛먯텛湲� */
+
 .hidden {display:none !important; visibility:hidden; }
 
 /*! �뒪�겕由곕━�뜑�뿉�꽌�뒗 �씫湲� 媛��뒫 */
