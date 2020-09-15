@@ -20,7 +20,7 @@ response.setHeader("Cache-Control", "no-cache");
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
 	<script src="../resources/js/common.js"></script>
 </head>  
-<body id="main" onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
+<body id="main">
 	<div id="skipNavi">
 		<ul>
 			<li>
