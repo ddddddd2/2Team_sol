@@ -201,36 +201,36 @@ verifyPhone = function() {
          <!-- 내용 시작 -->
       <div id="content" style=" width: 75%; height:40px; ">
       <form name="updateForm" method="POST" action="updateInfoPro">
-         <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>닉네임</p>
          </div>   
-         <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 65%; height:130px;">
                <p id="owenoback">
                   <input id="nick_name" class="chk" type="text" name="nick_name" size="10" value="${mdto.nick_name}">
-                  <button type="button" onClick="verifyName()">닉네임 중복 확인</button>
+                  <button type="button" onClick="verifyName()">닉네임 중복 확인</button> <span id="nick_namesame"></span>
                </p>
                
                <p id="owenoback">
                   	한글 1~10자, 영문 대소문자 2~20자 
                   <br/>숫자를 사용할 수 있습니다.(혼용가능)
                   <br/>중복되지 않은 별명으로 변경해주세요.<br/>
-                  <span id="nick_namesame"></span>
+                  
                </p>
          </div>
-         <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>이메일</p>
          </div>
-         <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 65%; height:130px;">
                <p id="owenoback">
                   <input id = "email" class="chk" type="text" name="email" size="10" value="${mdto.email}">
                   <button type="button" onclick="verifyEmail()" >중복 확인</button>
                   <span id="emailsame"></span>
                </p>
          </div>
-         <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>휴대전화</p>
          </div>   
-         <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 65%; height:130px;">
                <p id="owenoback">
                <input id = "phone" class="chk" type="text" name="phone" size="20" value="${mdto.phone}">
 <!--                <label id="phone_check"></label> -->
@@ -239,23 +239,23 @@ verifyPhone = function() {
                </p>
          </div>
          
-         <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>비밀번호 변경</p>
          </div>
          
 		 <!--  <form name="form">  -->
-         <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 65%; height:130px;">
             <table>
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
-                   <td width="15%">비밀번호</td>
+                   <td width="30%">비밀번호</td>
                    <td><input class="chk" type="password" name="passwd" id="pw" onchange="isSame()" /></td>
                </tr>
                <tr class="register" height="30">
                    <td width="5%" align="center">*</td>
-                   <td width="15%">비밀번호 확인</td>
+                   <td width="30%">비밀번호 확인</td>
                    <td><input type="password" name="passwdConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;
-                   <span id="pwsame"></span></td>
+                   <br><span id="pwsame"></span></td>
                </tr>
             </table>
 <!--         <p>비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
@@ -268,10 +268,10 @@ verifyPhone = function() {
          </div>
 <!--          </form> -->
          
-         <div class="content" style="float: left; background-color: white; width: 35%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>나의 활동 공개</p>
          </div>   
-         <div class="content" style="float: left; background-color: white; width: 65%; height:200px;">
+         <div class="content" style="float: left; background-color: white; width: 65%; height:130px;">
                <p id="owenoback">
 			                  공개<input type="radio" id="infoT" name="info_offering" value="open" checked>
 			                  비공개<input type="radio" id="infoF" name="info_offering" value="private">
@@ -280,7 +280,7 @@ verifyPhone = function() {
                   <br>나의 예약 내역, 리뷰, 즐겨찾기를 상대방에게 공개 여부를 설정해 주세요.
                </p>
          </div>   
-      <div id="ok" style="width: 20%">
+      <div id="ok" style="width: 20%;">
          <br>
          <input type="submit" id="submitBtn" value="수정">
          <input type="reset" value="취소">

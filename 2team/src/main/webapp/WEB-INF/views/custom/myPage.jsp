@@ -20,12 +20,12 @@
 	<link href="../resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
 <script src="../resources/js/common.js"></script>
 <script type="text/javascript">
-window.history.forward();
+/* window.history.forward();
 
 		function noBack(){
 			window.history.forward();
 		}
-		
+		 */
 </script>
 </head>
 <body>
@@ -76,8 +76,8 @@ window.history.forward();
 				<tr>
 					<td>리뷰 번호</td>
 					<td>식당 이름</td>
-					<td>회원번호</td>
-					<td>회원아이디</td>
+					<td>내 용</td>
+					<td>좋아요</td>
 					<td>작성일</td>
 					<td>별점</td>
 				</tr>
@@ -90,8 +90,8 @@ window.history.forward();
  							<tr> 
  								<td>${revdto.no}</td>
  								<td>${revdto.res_no}</td>
-						  		<td>${revdto.mem_no}</td>
-						  		<td>${revdto.mem_id}</td>
+						  		<td>${revdto.content}</td>
+						  		<td>${revdto.like_cnt}</td>
 						  		<td>${revdto.date1}</td>
   								<td>${revdto.rating}</td>
  							</tr>
@@ -112,7 +112,11 @@ window.history.forward();
 				<c:when test="${resdto.size()!=0}">
 					<c:forEach var="i" begin="0" end="3">
 						<div>
-							<div><img src="../upload/${resdto[i].no}.jpg"></div>
+							<div>
+								<a href="/custom/sub2?no=${resdto[i].no}">
+									<img src="../upload/${resdto[i].no}.jpg">
+								</a>
+							</div>
 							<div>${resdto[i].name}</div>
 						</div>
 					</c:forEach>

@@ -37,8 +37,8 @@
 				<tr>
 					<td>리뷰 번호 </td>
 					<td>식당 이름 </td>
-					<td>회원번호 </td>
-					<td>회원아이디 </td>
+					<td>내 용 </td>
+					<td>좋아요 </td>
 					<td>작성일 </td>
 					<td>별점 </td>
 				</tr>
@@ -54,8 +54,8 @@
  							<tr> 
  								<td>${revdto.no}</td>
  								<td>${revdto.res_no}</td>
-						  		<td>${revdto.mem_no}</td>
-						  		<td>${revdto.mem_id}</td>
+						  		<td>${revdto.content}</td>
+						  		<td>${revdto.like_cnt}</td>
 						  		<td>${revdto.date1}</td>
   								<td>${revdto.rating}</td>
  							</tr>

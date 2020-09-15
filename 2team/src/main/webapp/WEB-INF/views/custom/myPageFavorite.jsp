@@ -42,7 +42,11 @@
 				<c:when test="${resdto.size()!=0}">
 					<c:forEach var="resdto" items="${resdto}">
 						<div>
-							<div><img src="../upload/${resdto.no}.jpg"></div>
+							<div>
+								<a href="/custom/sub2?no=${resdto.no}">
+									<img src="../upload/${resdto.no}.jpg">
+								</a>
+							</div>
 							<div>${resdto.name}</div>
 						</div>
 						
