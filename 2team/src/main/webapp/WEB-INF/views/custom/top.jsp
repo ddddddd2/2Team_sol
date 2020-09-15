@@ -11,15 +11,13 @@
 						<div>
 							<select class="select" id="gu">
 								<option value="구선택">구선택</option>
-								<option value="중랑구">중랑구</option>
 								<option value="종로구">종로구</option>
-								<option value="방구">방구</option>
 							</select>
 						</div>
 						<div>
 							<select class="select" id="header_category">
 								<option value="0" selected>카테고리</option>
-								<option value="0" >전체</option>
+								<option value="0">전체</option>
 								<option value="2">한식</option>
 								<option value="3">중식</option>
 								<option value="4">양식</option>

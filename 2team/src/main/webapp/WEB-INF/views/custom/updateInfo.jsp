@@ -181,7 +181,6 @@ verifyPhone = function() {
 			}
 		}
 	})
-
 })
 </script>
 </head>
@@ -194,10 +193,9 @@ verifyPhone = function() {
 	<jsp:include page="menu_bar.jsp" />
 </div>
 	<div id="myPro" style="width: 100%; height:1200px; clear:both;">	
-<div>
-	<jsp:include page="side_bar.jsp" />
-</div><!-- 왼쪽 메뉴바 끝 -->
+	<jsp:include page="side_bar.jsp" /><!-- 왼쪽 메뉴바 끝 -->
    <!-- 예약 내역 시작 -->
+   <div class="main-content">
    <div id="profile" style="float: left; width: 80%; height: 300px;">
          <div id="content-title" >프로필 설정</div>
          <!-- 내용 시작 -->
@@ -289,6 +287,7 @@ verifyPhone = function() {
       </div>
       </form>
       </div>
+   </div>
    </div>
    <!-- 1:1문의 끝    -->
    
