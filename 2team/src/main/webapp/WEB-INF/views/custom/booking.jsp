@@ -23,14 +23,6 @@
 </head>
 <body>
 
-	<c:if test="${idKey == null}">
-		<script type="text/javascript">
-			alert("로그인 부터 해주세요 ");
-			//location.href = document.referrer; //뒤로가기후 새로고침 
-			//history.go(-1);
-		</script>
-	</c:if>
-	
 	<c:import url="top.jsp"/>
 
 	<form class="container" name="frm" title="예약정보입력" method="post" action="">	

@@ -43,9 +43,15 @@ public class BookingController {
 		
 		MemberDTO mdto = null;
 		
-		if(no != null)
+		if(no != null) {
 			mdto =  memberService.getMemberInfo(no); // 로그인한 멤버 정보 
-		
+		}else {
+			String msg="로그인부터 해주시길 바랍니다.";
+			String url="/custom/login";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "/custom/msgPage";
+		}
 		if(res_no != null) {
 			resdto.setNo(res_no);
 			// 해당 레스토랑 정보 
