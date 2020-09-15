@@ -265,13 +265,13 @@ public class RestaurantDetailController {
 	// 리뷰 like(좋아요) process 
 	@RequestMapping(value="/custom/like")
 	public String reviewLike(HttpServletRequest request, HttpServletResponse response,
-			ReviewDTO revdto,Model model ) {
+			RestaurantDTO resdto,ReviewDTO revdto,Model model ) {
 		
 		HttpSession session = request.getSession();
 		Integer idKey = (Integer)session.getAttribute("idKey");
 		
 		String msg ="";
-		String url="/custom/sub2";
+		String url="/custom/sub2?no="+resdto.getNo();
 		
 		// 세션에 id값이 없을 때 로그인 페이지로 이동 
 		if(idKey == null)
