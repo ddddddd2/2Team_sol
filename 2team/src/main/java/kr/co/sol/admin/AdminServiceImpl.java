@@ -2,11 +2,13 @@ package kr.co.sol.admin;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.sol.common.dto.BookingDTO;
 import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
@@ -41,10 +43,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.loginPro(mdto);
 	}
 	@Override
-	public List<RestaurantDTO> getStore(String searchOption, String keyword, int curPage) {
+	public List<RestaurantDTO> getStore(String searchOption, String keyword) {
 		System.out.println("임플::"+searchOption+"=="+keyword);
 		
-		return adminDao.getStore(searchOption, keyword, curPage);
+		return adminDao.getStore(searchOption, keyword);
 	}
 	@Override
 	public List<RestaurantDTO> getStoreList(PageDTO pdto, int curPage) { // 현재 페이지 가져오기.
@@ -64,5 +66,20 @@ public class AdminServiceImpl implements AdminService {
 	public int nameChk(String name) {
 		// TODO Auto-generated method stub
 		return adminDao.nameChk(name);
+	}
+	@Override
+	public List<HashMap<String,Object>> getBookingList() {
+		// TODO Auto-generated method stub
+		return adminDao.getBookingList();
+	}
+	@Override
+	public List<HashMap<String,Object>> getBooking(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return adminDao.getBooking(searchOption, keyword);
+	}
+	@Override
+	public int bCancel(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.bCancel(no);
 	}
 }

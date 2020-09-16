@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.sol.common.dto.BookingDTO;
 import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
@@ -129,7 +130,7 @@ public class AdminController {
 			resdto2 = adminService.getStoreList(pdto,curPage);
 		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
-			resdto2 = adminService.getStore(searchOption, keyword, curPage);
+			resdto2 = adminService.getStore(searchOption, keyword);
 		}
 		model.addAttribute("resdto",resdto2);
 		model.addAttribute("curPage", curPage);
@@ -206,36 +207,42 @@ public class AdminController {
 		return 1;
 	}
 	
-	@RequestMapping(value="/juso", method= {RequestMethod.GET, RequestMethod.POST})
-	public String juso(
+	@RequestMapping(value="/admin/reserv_manage", method= {RequestMethod.GET, RequestMethod.POST})
+	public String reserv_manage(HttpServletRequest request, Model model,String searchOption, String keyword
 			) {
-		return "/admin/juso";
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			
+			return "redirect:/";
+		}
+		List<HashMap<String,Object>> bdto;
+		System.out.println("dfasldkjf"+searchOption+"      "+keyword);
+		if(searchOption==null && keyword==null) {
+			// 없을 경우, 전체List에서 paging처리
+			System.out.println("없습니다");
+			bdto = adminService.getBookingList();
+		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
+			System.out.println("있습니다");
+			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
+			bdto = adminService.getBooking(searchOption, keyword);
+		}
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("searchOption", searchOption);
+		map2.put("keyword",keyword);
+		model.addAttribute("map",map2);
+		model.addAttribute("bdto",bdto);
+		System.out.println(bdto);
+		return "/admin/reserv_manage";
 	}
 	
-	@RequestMapping(value="/sample/getAddrApi.do")
-    public void getAddrApi(HttpServletRequest req, ModelMap model, HttpServletResponse response) throws Exception {
-		// 요청변수 설정
-    String currentPage = req.getParameter("currentPage");    //요청 변수 설정 (현재 페이지. currentPage : n > 0)
-		String countPerPage = req.getParameter("countPerPage");  //요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100)
-		String resultType = req.getParameter("resultType");      //요청 변수 설정 (검색결과형식 설정, json)
-		String confmKey = req.getParameter("confmKey");          //요청 변수 설정 (승인키)
-		String keyword = req.getParameter("keyword");            //요청 변수 설정 (키워드)
-		// OPEN API 호출 URL 정보 설정
-		String apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage="+currentPage+"&countPerPage="+countPerPage+"&keyword="+URLEncoder.encode(keyword,"UTF-8")+"&confmKey="+confmKey+"&resultType="+resultType;
-		URL url = new URL(apiUrl);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-    	StringBuffer sb = new StringBuffer();
-    	String tempStr = null;
-
-    	while(true){
-    		tempStr = br.readLine();
-    		if(tempStr == null) break;
-    		sb.append(tempStr);								// 응답결과 JSON 저장
-    	}
-    	br.close();
-    	response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/xml");
-		response.getWriter().write(sb.toString());			// 응답결과 반환
-    }
+	
+	@PostMapping("/booking_cancel")
+	public @ResponseBody int bCancel(@RequestParam("no") int no) {
+		int r = adminService.bCancel(no);
+		if(r==0) {
+			return r;
+		}
+		return no;
+	}
 	
 }
