@@ -44,14 +44,25 @@ response.setHeader("Cache-Control", "no-cache");
 					<span>종로 최고의 맛집을 한번에</span>
 				</div>
 -->			
+		<div style="position:relative;height:300px;">
 			<div id="m_contents">
 				<ul>
-					<li><a href="#"><p>에디터의 추전<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>음식 종류별<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>테마별 추천<br>레스토랑</b></p></a></li>
-					<li><a href="#"><p>호텔<br>레스토랑</b></p></a></li>
+					<li><a href="#"><img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/img/main4.png"></a></li>
+					<li><a href="#"><img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/img/main2.png"></a></li>
+					<li><a href="#"><img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/img/main3.png"></a></li>
+					<li><a href="#"><img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/img/main1.png"></a></li>
 				</ul>
 			</div>
+			<div id="m_contents_"></div>
+			<div id="m_contents_dim">
+				<ul>
+					<li><span>한국이라면 역시 비빔밥!</span>
+					<li><span>Welldone Plz</span>
+					<li><span>짜장보다 맛있는 짬뽕</span>
+					<li><span>이 시국 음식</span>
+				</ul>
+			</div>
+		</div>
 		</div><!-- //container -->
 		
 		<c:import url="bottom.jsp"/>
