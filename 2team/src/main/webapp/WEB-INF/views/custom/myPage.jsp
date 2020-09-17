@@ -59,7 +59,7 @@
 					</tr>
  				</c:forEach>
  				<tr>
- 					<td colspan="8" style="text-align:right;"><button class="plus"><a href="../myPageBooking">더 보기</a></button></td>
+ 					<td colspan="8" style="text-align:right;"><a href="../myPageBooking"><button class="plus">더 보기</button></a></td>
  				</tr>
 			</table>
 				<div class="content-title">리뷰</div>
@@ -72,7 +72,6 @@
 					<td>작성일</td>
 					<td>별점</td>
 				</tr>
-				
 				<c:choose>
 					<c:when test="${revdto.size()==0}">
 					</c:when>
