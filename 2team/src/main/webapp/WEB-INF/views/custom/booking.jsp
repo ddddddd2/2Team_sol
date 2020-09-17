@@ -32,10 +32,10 @@
 			</div>	
 			
 			
-			<input type="text" name="res_name" id="res_name" value="${resdto.name}"/>
-			<input type="text" name="res_no" id="res_no" value="${resdto.no}"/>
-			<input type="text" name="mem_no" id="mem_no" value="${mdto.no}"/>
-			<input type="text" name="mem_email" id="mem_email" value="${mdto.email}"/>
+			<input type="hidden" name="res_name" id="res_name" value="${resdto.name}"/>
+			<input type="hidden" name="res_no" id="res_no" value="${resdto.no}"/>
+			<input type="hidden" name="mem_no" id="mem_no" value="${mdto.no}"/>
+			<input type="hidden" name="mem_email" id="mem_email" value="${mdto.email}"/>
 			
 			
 			<div class="section" style="width:50%;margin:auto;"> <!-- section start -->
