@@ -18,6 +18,10 @@
 <head>
 <script>
 $('document').ready(function(){
+	
+	// 수정 버튼 눌럿을 때 양식에 맞는지 체크  1: ok , 0: no
+	var emailChk,phoneChk,pwChk,nickChk;
+	
 	if(${mdto.info_offering=='t'}){
 		document.getElementById("infoT").checked=true;
 	} else {
@@ -45,24 +49,29 @@ verifyEmail = function() {
                 if (data > 0) {
                 	 $('#emailsame').text(''); /*초기화 시켜주고 다시 시켜준다는 의미 */
                      	$('#emailsame').css('color','red');
-                     	$('#emailsame').text('이미 존재하는 아이디 입니다.');
+                     	$('#emailsame').text('이미 존재하는 이메일 입니다.');
                      	$("#email").focus();
+                     	emailChk = 0;
+                     	
                    } else {
                 	 $('#emailsame').text(''); /*초기화 시켜주고 다시 시켜준다는 의미 */
                 	 	$('#emailsame').css('color','blue');
-                	 	$('#emailsame').text('사용가능한 아이디입니다.');
+                	 	$('#emailsame').text('사용가능한 이메일 입니다.');
                      	$("#email").focus();
+                     	emailChk = 1
                    }
              },
              error : function(data){
                 	   $('#emailsame').text('');
                 	   $('#emailsame').css('color','red');
                 	   $('#emailsame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+                	   emailChk = 0;
              }
     	 })
      } else { // 형식에 맞지 않는 경우
-       $('#emailsame').text("이메일 형식에 맞지 않습니다.")
-       $('#emailsame').css('color','red')
+       $('#emailsame').text("이메일 형식에 맞지 않습니다.");
+       $('#emailsame').css('color','red');
+       emailChk = 0;
      }
    };
    
@@ -89,22 +98,26 @@ verifyPhone = function() {
                            $('#phonesame').css('color','red');
                            $('#phonesame').text('이미 존재하는 휴대번호입니다.');
                            $("#phone").focus();
+                           phoneChk = 0;
                        } else {
                     	   $('#phonesame').text('');
                     	   $('#phonesame').css('color','blue');
                     	   $('#phonesame').text('사용가능한 휴대번호입니다.');
                            $("#phone").focus();
+                           phoneChk = 1;
                        }
                  },
                  error : function(data){
                     	   $('#phonesame').text('');
                     	   $('#phonesame').css('color','red');
                     	   $('#phonesame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+                    	   phoneChk = 0;
                  }
         	 })
          } else { // 형식에 맞지 않는 경우
-           $('#phonesame').text("휴대번호 형식에 맞지 않습니다.")
-           $('#phonesame').css('color','red')
+           $('#phonesame').text("휴대번호 형식에 맞지 않습니다.");
+           $('#phonesame').css('color','red');
+           phoneChk = 0;
          }
        };
 
@@ -130,22 +143,26 @@ verifyPhone = function() {
                            $('#nick_namesame').css('color','red');
                            $('#nick_namesame').text('이미 존재하는 닉네임입니다.');
                            $("#nick_name").focus();
+                           nickChk = 0;
                        } else {
                     	   $('#nick_namesame').text('');
                     	   $('#nick_namesame').css('color','blue');
                     	   $('#nick_namesame').text('사용가능한 닉네임입니다.');
                            $("#nick_name").focus();
+                           nickChk = 1;
                        }
                  },
                  error : function(data){
                     	   $('#nick_namesame').text('');
                     	   $('#nick_namesame').css('color','red');
                     	   $('#nick_namesame').text('장비가 고장났습니다. 관리자에게 문의하세요.');
+                    	   nickChk = 0;
                  }
         	 })
          } else { // 형식에 맞지 않는 경우
-           $('#nick_namesame').text("닉네임 형식에 맞지 않습니다.")
-           $('#nick_namesame').css('color','red')
+           $('#nick_namesame').text("닉네임 형식에 맞지 않습니다.");
+           $('#nick_namesame').css('color','red');
+           nickChk = 0;
          }
        };
 
@@ -157,15 +174,18 @@ verifyPhone = function() {
 	        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
 	        document.getElementById('pw').value=document.getElementById('pwCheck').value='';
 	        document.getElementById('pwsame').innerHTML='';
+	        pwChk = 0;
 	    }
 	    if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
 	        if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
 	            document.getElementById('pwsame').innerHTML='비밀번호가 일치합니다.';
 	            document.getElementById('pwsame').style.color='blue';
+	            pwChk = 1;
 	        }
 	        else {
 	            document.getElementById('pwsame').innerHTML='비밀번호가 일치하지 않습니다.';
 	            document.getElementById('pwsame').style.color='red';
+	            pwChk = 0;
 	        }
 	    }
 	}
@@ -180,6 +200,22 @@ verifyPhone = function() {
 				return false;
 			}
 		}
+     	
+     	if(emailChk == null || phoneChk == null || pwChk == null || nickChk == null){
+     		if(emailChk == null){alert("이메일 중복체크버튼을 눌러주세요  "); return false;}
+     		if(phoneChk == null){alert("핸드폰 중복체크버튼을 눌러주세요  "); return false;}
+     		if(nickChk == null){alert("닉네임 중복체크버튼을 눌러주세요  "); return false;}
+     		if(pwChk == null){alert("패스워드 양식을 잘 맞춰주세요 "); return false;}
+     	}else if(emailChk == 0 || phoneChk == 0 || pwChk == 0 || nickChk == 0)
+     	{
+     		if(emailChk == 0){alert("이메일 양식을 다시 맞춰주세요  "); return false;}
+     		if(phoneChk == 0){alert("핸드폰 양식을 다시 맞춰주세요 "); return false;}
+     		if(nickChk == 0){alert("닉네임 양식을 다시 맞춰주세요 "); return false;}
+     		if(pwChk == 0){alert("패스워드 양식을 잘 맞춰주세요 "); return false;}
+     	}
+     	
+    	var shaPw = hex_sha512($('#pw').val()).toString();
+		$('#pw').val(shaPw);
 	})
 })
 </script>
@@ -200,6 +236,8 @@ verifyPhone = function() {
          <div id="content-title" >프로필 설정</div>
          <!-- 내용 시작 -->
       <div id="content" style=" width: 75%; height:40px; ">
+      
+      
       <form name="updateForm" method="POST" action="updateInfoPro">
          <div class="content" style="float: left; background-color: white; width: 35%; height:130px;">
                <p>닉네임</p>
@@ -280,7 +318,10 @@ verifyPhone = function() {
                   <br>나의 예약 내역, 리뷰, 즐겨찾기를 상대방에게 공개 여부를 설정해 주세요.
                </p>
          </div>   
-      <div id="ok" style="width: 20%;">
+      <div id="ok" style="float: left; width: 40%; height:130px;">
+         
+      </div>
+      <div id="ok" style="float: left; width: 60%; height:130px;">
          <br>
          <input type="submit" id="submitBtn" value="수정">
          <input type="reset" value="취소">

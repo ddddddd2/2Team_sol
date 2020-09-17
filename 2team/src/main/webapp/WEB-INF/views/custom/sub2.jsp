@@ -41,34 +41,13 @@ window.history.forward();
       <div class="sub2_article">
          <!-- 기사 헤더 -->
          <div class="article_header">
-         
+          
             <!-- 헤더의 사진영역 -->
             <div class="header_picture" style="background: none">
                <a>
-               	  <c:choose>
-               	  	<c:when test="${resdto.c_no != null}">
-               	  		<c:if test="${resdto.c_no == 2}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=korean food')"></span>
-               	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 3}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=china food')"></span>
-               	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 4}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=western food')"></span>
-               	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 5}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=japan food')"></span>
-               	  		</c:if>
-               	  		<c:if test="${resdto.c_no == 6}">
-               	  			<span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=cafe food')"></span>
-               	  		</c:if>
-               	  	</c:when>
-               	  	
-               	  	<c:when test="${resdto.c_no == null}">
-               	  	    <span class="picture_present" style="background-image:url('http://placehold.it/800x270/444444&text=none')"></span>
-               	  	</c:when>
-
-               	  </c:choose>
+			   	  <span class="picture_present">
+					  <img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${resdto.no}.jpg"/>
+				  </span>
                   <span class="frame_g"></span>
                </a>
             </div>
@@ -348,7 +327,7 @@ window.history.forward();
          						<div class="item_content">
          							
          							<c:if test="${revdto.like_on == 0 }">
-         								<a href="/custom/like?rev_no=${revdto.no}" class="link_like">
+         								<a href="/custom/like?rev_no=${revdto.no}&no=${resdto.no}" class="link_like">
          									<span class="ico_comm ico_like"></span>
          									좋아요
          								
@@ -358,7 +337,7 @@ window.history.forward();
          								</a>
          							</c:if>
          							<c:if test="${revdto.like_on != 0}">
-         								<a href="/custom/like?rev_no=${revdto.no}" class="link_like like_on">
+         								<a href="/custom/like?rev_no=${revdto.no}&no=${resdto.no}" class="link_like like_on">
          									<span class="ico_comm ico_like"></span>
          									좋아요
          								

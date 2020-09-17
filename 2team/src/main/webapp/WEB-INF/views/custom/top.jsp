@@ -45,7 +45,7 @@
 					</c:when>
 					<c:when test="${idKey != null}">
 						<li class="select_list">
-							<a href="/logout" class="selected">로그아웃</a>
+							<a href="/custom/logout" class="selected">로그아웃</a>
 						</li>
 						<li><a href="/myPage">마이페이지</a></li>
 					</c:when>

@@ -1,12 +1,9 @@
 package kr.co.sol.admin;
 
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,53 +37,14 @@ public class AdminController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/admin/login",method= {RequestMethod.POST,RequestMethod.GET})
-	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
-		HttpSession session = request.getSession();
-		if(id!=null && passwd !=null) {
-			MemberDTO mdto2 = adminService.login(id, passwd);
-			session.setAttribute("mdto", mdto2);
-		} else {
-			session.setAttribute("mdto",null);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("id", "test_id");
-			map.put("passwd", "1234");
-			session.setAttribute("data", map);
-		}
-		return "/admin/login";
-	}
-	// 로그인 처리는 common에서 공통으로 처리.
-	
-	@GetMapping(value="/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-//	@RequestMapping(value="/loginPro", method ={RequestMethod.GET,RequestMethod.POST})
-//	public String loginPro(MemberDTO mdto, Model model, HttpServletRequest request) {
-//		String role = adminService.login2(mdto);
-//		if("admin".equals(role)) {
-//			HttpSession session = request.getSession();
-//			Integer no = mdto.getNo();
-//			session.setAttribute("idKey", no);
-//		} else if(role==null) { 
-//			String msg = "올바른 아이디와 비밀번호가 맞지 않습니다";
-//			model.addAttribute("msg",msg);
-//			return "/admin/index";
-//		}
-//		
-//		return "/admin/index";
-//	}
-	
 	@RequestMapping(value="/admin/index", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";
 	}
 	
-	
 	@RequestMapping(value="admin/mem_manage", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
+	public String mem_manage(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
 			
@@ -112,7 +69,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(HttpServletRequest request, String searchOption, String keyword,
+	public String res_manage(HttpServletRequest request, String searchOption, String keyword,
 			@RequestParam(value="curPage", defaultValue="1") int curPage, Model model, RestaurantDTO resdto, PageDTO pdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
@@ -129,7 +86,7 @@ public class AdminController {
 			resdto2 = adminService.getStoreList(pdto,curPage);
 		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
-			resdto2 = adminService.getStore(searchOption, keyword, curPage);
+			resdto2 = adminService.getStore(searchOption, keyword);
 		}
 		model.addAttribute("resdto",resdto2);
 		model.addAttribute("curPage", curPage);
@@ -191,7 +148,7 @@ public class AdminController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				 e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 		return "redirect:admin/store_manage";
@@ -206,36 +163,42 @@ public class AdminController {
 		return 1;
 	}
 	
-	@RequestMapping(value="/juso", method= {RequestMethod.GET, RequestMethod.POST})
-	public String juso(
+	@RequestMapping(value="/admin/reserv_manage", method= {RequestMethod.GET, RequestMethod.POST})
+	public String booking_manage(HttpServletRequest request, Model model,String searchOption, String keyword
 			) {
-		return "/admin/juso";
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mdto")==null) {
+			
+			return "redirect:/";
+		}
+		List<HashMap<String,Object>> bdto;
+		System.out.println("dfasldkjf"+searchOption+"      "+keyword);
+		if(searchOption==null && keyword==null) {
+			// 없을 경우, 전체List에서 paging처리
+			System.out.println("없습니다");
+			bdto = adminService.getBookingList();
+		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
+			System.out.println("있습니다");
+			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
+			bdto = adminService.getBooking(searchOption, keyword);
+		}
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("searchOption", searchOption);
+		map2.put("keyword",keyword);
+		model.addAttribute("map",map2);
+		model.addAttribute("bdto",bdto);
+		System.out.println(bdto);
+		return "/admin/reserv_manage";
 	}
 	
-	@RequestMapping(value="/sample/getAddrApi.do")
-    public void getAddrApi(HttpServletRequest req, ModelMap model, HttpServletResponse response) throws Exception {
-		// 요청변수 설정
-    String currentPage = req.getParameter("currentPage");    //요청 변수 설정 (현재 페이지. currentPage : n > 0)
-		String countPerPage = req.getParameter("countPerPage");  //요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100)
-		String resultType = req.getParameter("resultType");      //요청 변수 설정 (검색결과형식 설정, json)
-		String confmKey = req.getParameter("confmKey");          //요청 변수 설정 (승인키)
-		String keyword = req.getParameter("keyword");            //요청 변수 설정 (키워드)
-		// OPEN API 호출 URL 정보 설정
-		String apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage="+currentPage+"&countPerPage="+countPerPage+"&keyword="+URLEncoder.encode(keyword,"UTF-8")+"&confmKey="+confmKey+"&resultType="+resultType;
-		URL url = new URL(apiUrl);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-    	StringBuffer sb = new StringBuffer();
-    	String tempStr = null;
-
-    	while(true){
-    		tempStr = br.readLine();
-    		if(tempStr == null) break;
-    		sb.append(tempStr);								// 응답결과 JSON 저장
-    	}
-    	br.close();
-    	response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/xml");
-		response.getWriter().write(sb.toString());			// 응답결과 반환
-    }
+	
+	@PostMapping("/booking_cancel")
+	public @ResponseBody int booking_cancel(@RequestParam("no") int no) {
+		int r = adminService.bCancel(no);
+		if(r==0) {
+			return r;
+		}
+		return no;
+	}
 	
 }

@@ -12,18 +12,18 @@
 		<id column="gender" property="gender" />
 		<id column="role" property="role" />
 	</resultMap>
+	<resultMap type="map" id="getBookingList">
+		<id column="no" property="no" />
+		<id column="name" property="name" />
+		<id column="res_name" property="res_name" />
+		<id column="date1" property="date1" />
+		<id column="date2" property="date2" />
+		<id column="status" property="status" />
+		
+	</resultMap>
 	<select id="getMember" resultMap="getMember">
 		select no, grade_name, id, passwd, name, email, phone ,gender, role
 		from member
-	</select>
-	<select id="login" parameterType="String" resultType="mdto">
-		select id, name, role from member where id = #{id} and passwd = #{passwd}
-	</select>
-	<select id="login2" parameterType="mdto" resultType="String">
-		select role from member where id=#{id} and passwd=#{passwd}
-	</select>
-	<select id="loginPro" parameterType="mdto" resultType="mdto">
-		select id, name, role from member where id = #{id} and passwd = #{passwd}
 	</select>
 	<select id="getMemberList" parameterType="map" resultMap="getMember">
 		select no, grade_name, id, passwd, name, email, phone, gender, role from
@@ -41,19 +41,33 @@
 	</select>
 	<select id="getStore" parameterType="map" resultType="resdto">
 		<![CDATA[
-		select r.*
+		select rownum, no, c_no, name, address1, tel, hour
+		from
 			(select
-			no, c_no, name, address1, tel, hour
-			from
-			restaurant
+	        	*
+	         from
+	         	restaurant
 			where ${searchOption} like '%'||#{keyword}||'%' order by no asc) r
-		where r.rownum <= 10;
+		where rownum <= 10
 		]]>
 	</select>
+	<select id="getBooking" parameterType="map" resultType="map">
+	select * from booking where ${searchOption} like '%'||#{keyword}||'%' order by no asc
+	</select>
+	
+	<select id="getBookingList" resultType="map">
+	select b.no,m.name,r.name as res_name,b.date1,b.date2,b.status from booking b join restaurant r ON b.res_no = r.no JOIN member m ON b.mem_no = m.no order by no desc
+	</select>
+	
 	<select id="nameChk" parameterType="String" resultType="int">
 	select count(name) from restaurant where name = #{name}
 	</select>
 	<select id="getStoreListCnt" resultType="int">
 	select count(no) from restaurant
 	</select>
+	<update id="bCancel" parameterType="int">
+		update booking set
+		status = '취소'
+		where no = #{no}
+	</update>
 </mapper>

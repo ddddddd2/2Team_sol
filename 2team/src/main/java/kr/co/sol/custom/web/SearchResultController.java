@@ -41,9 +41,10 @@ public class SearchResultController {
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
 		hmap.put("keyword",keyword);
 		hmap.put("category", category);
-		
+		System.out.println("11");
 		// paging info
 		int cnt = searchResultService.getCnt(hmap); //페이징 처리를 위한 전체 레코드수
+		System.out.println("cnt::"+cnt);
 		pdto.setLinePerPage(10);
 		pdto.setAllCount(cnt);
 		// 전체 페이지 수 계산
@@ -89,15 +90,20 @@ public class SearchResultController {
 
 		hmap.put("start", sRow);
 		hmap.put("end", currentPage * pdto.getLinePerPage());
-
+		System.out.println("sRow"+sRow);
 		// keyword , category 에 맞는 음식점  구하기 
 		List<RestaurantDTO> reslist = searchResultService.getRestaurants2(hmap);
 		
 		//==============================================================================
 		//keyword(지역) 에서의  조회수 와 리뷰 평점순 음식점 top5 
-
-		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // 조회수 별 음식점
+		System.out.println("asdfs"+reslist);
+		System.out.println(hmap);
+		List<Map<String,Object>> vReslist =  searchResultService.getvRestaurants(hmap); // top5
 		//List<RestaurantDTO> rReslist =  searchResultService. ; // 리뷰 평점 별 음식점
+		
+		if(reslist.size()==0) {
+			return "/custom/empty";
+		} 
 		RestaurantDTO resdto3 = reslist.get(0);
 		Map<String,Object> defaultResCna = searchResultService.reviewCountAndAvg(resdto3);
 		System.out.println(defaultResCna);

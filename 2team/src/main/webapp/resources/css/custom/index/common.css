@@ -1,9 +1,9 @@
 @charset "utf-8";
 
 /* main css */
-label, input, select {
-	vertical-align: middle;
-}
+/* label, input, select { */
+/* 	vertical-align: middle; */
+/* } */
 
 /* ========== 01. layout ========== */
 #wrap {

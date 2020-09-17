@@ -87,6 +87,11 @@ body, button, input, select, td, textarea, th {
    background-position: 50% 50%;
 }
 
+.picture_present img{
+	width: 800px;
+	height:270px;
+}
+
 .header_picture .picture_present:after{
    position: absolute;
    bottom: 0;

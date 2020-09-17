@@ -18,19 +18,9 @@ response.setHeader("Cache-Control", "no-cache");
 	<link href="../resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<script src="../resources/js/jquery-1.10.2.min.js"></script>
-
-</head>  
-
 	<script src="../resources/js/common.js"></script>
-<script type="text/javascript">
-window.history.forward();
-
-
-function noBack(){window.history.forward();}
-
-</script>
 </head>  
-<body id="main" onload="noBack" onpageshow="if(event.persisted) noBack();" onunload="">
+<body id="main">
 	<div id="skipNavi">
 		<ul>
 			<li>

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
-<title>Insert title here</title>
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
 </head>
 <body>
@@ -50,7 +51,7 @@
 					<c:forEach var="resdto" items="${resdto}" varStatus="vs">
 					<tr>
 						<td>${vs.index+1}</td>
-						<td>${resdto.no}</td>
+						<td id="${resdto.no}">${resdto.no}</td>
 						<td>${resdto.name}</td>
 						<td>한식</td>
 						<td>3</td>

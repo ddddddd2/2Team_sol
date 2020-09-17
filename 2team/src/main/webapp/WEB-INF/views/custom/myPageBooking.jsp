@@ -41,7 +41,7 @@
 					<td>주문 금액</td>
 					<td>기타</td>
 					<td>결제 일자</td>
-					<td>1대1 문의</td>
+					<td>요청사항</td>
 					<td>상태</td>
 				</tr>
 				<c:forEach var="bdto" items="${bdto}">

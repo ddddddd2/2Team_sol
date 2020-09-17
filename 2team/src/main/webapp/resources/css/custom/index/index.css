@@ -17,6 +17,8 @@
 
 #search .select {
 	margin:30px 15px;
+	border-radius: 10px;
+	height:24px;
 }
 
 #space #search > form > div{
@@ -29,11 +31,11 @@
    position: relative;
    background: rgba(255, 255, 255, 0.2);
    border-radius: 30px;
-	display: inline-block;
-	position: relative;
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 30px;
-	width:50%;
+   display: inline-block;
+   position: relative;
+   background: rgba(255, 255, 255, 0.2);
+   border-radius: 30px;
+   width:50%;
 }
 
 #space #search div input[type=text] {

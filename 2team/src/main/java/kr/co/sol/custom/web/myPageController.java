@@ -21,6 +21,7 @@ import kr.co.sol.common.dto.QnaDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.common.dto.ReviewDTO;
 import kr.co.sol.common.service.MemberService;
+import kr.co.sol.etc.SecurityUtil;
 import kr.co.sol.mypage.service.MyPageService;
 
 @Controller
@@ -95,6 +96,10 @@ public class myPageController {
 			HttpSession session = request.getSession();
 			
 			Integer no = (Integer) session.getAttribute("idKey");
+			
+			SecurityUtil securityUtil = new SecurityUtil();
+			passwd = securityUtil.encryptSHA256(passwd);
+	
 			
 			int r = mypageService.updateMember(nick_name, phone, passwd, no, email);
 			MemberDTO mdto2 = memberService.getMemberInfo(no);

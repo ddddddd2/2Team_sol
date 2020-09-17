@@ -23,13 +23,6 @@
 </head>
 <body>
 
-	<c:if test="${idKey == null}">
-		<script type="text/javascript">
-			alert("로그인 부터 해주세요 ");
-			//location.href = document.referrer; //뒤로가기후 새로고침 
-		</script>
-	</c:if>
-	
 	<c:import url="top.jsp"/>
 
 	<form class="container" name="frm" title="예약정보입력" method="post" action="">	
@@ -134,7 +127,7 @@
 						<div class="box">
 							<h3 class="bs">
 								<span>결제 예정금액</span><!-- 결제 예정금액 --> 
-								<strong class="price total" >원</strong><
+								<strong class="price total" >원</strong>
 								<strong class="price total" id="price_total">0</strong><!-- 0원 -->
 								<input type="hidden" name="price" id="price" value="" />
 							</h3>
