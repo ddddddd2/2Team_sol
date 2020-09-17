@@ -89,22 +89,29 @@ $('#send_money').click(function(e){
                 },
                 success:function(s){
                 	if(s > 0){
-                		alert("결제처리가 정상 처리되었습니다.");
+                		alert("예약과 결제처리가 정상 처리되었습니다.");
                 	}else{
                 		alert("db오류 ");
+                		return false;
                 	}
                 },
                 error:function(e){
-                	alert("결제처리가 실패하였습니다.")
+                	alert("결제처리가 실패하였습니다.");
+                	return false;
                 }
             });
             
+            // 화면이 넘어가기 전에 결제 완료를 누르면 alert이 무시됨
+            
+            
+            window.open(rsp.receipt_url,"receipt","width=800, height=700, toolbar=no, menubar=no, scrollbars=yes, resizable=yes");
+            location.href='/custom/sub2?no='+res_no;
         } else {
-            msg = '결제에 실패하였습니다.';
+            msg = '결제에 실패하였습니다. 다시 시도해주세요 ';
             msg += '에러내용 : ' + rsp.error_msg;
             alert(msg);
             //실패시 이동할 페이지
-            //location.href="<%=request.getContextPath()%>/order/payFail";
+            location.href="";
         }
 	    
 	    
