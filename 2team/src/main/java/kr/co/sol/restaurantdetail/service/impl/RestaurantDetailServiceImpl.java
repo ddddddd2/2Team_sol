@@ -147,15 +147,16 @@ public class RestaurantDetailServiceImpl implements RestaurantDetailService{
 
 		HttpSession session = request.getSession();
 		List<Integer> addClick = (List<Integer>)session.getAttribute("addClick");
-		if(addClick==null) {
+		if(addClick==null) { // 기존 클릭 이력이 아예 없을 경우.
 			addClick = new ArrayList<Integer>();
 			addClick.add(res_no);
-		session.setAttribute("addClick", addClick);
+			restaurantDetailDao.updateClick(res_no);
+			session.setAttribute("addClick", addClick);
 		} else {
-			if(!addClick.contains(res_no)) {
+			if(!addClick.contains(res_no)) { // 클릭은 있으나, res_no인 음식점을 클릭한 적이 없으면.
 				addClick.add(res_no);
-				session.setAttribute("addClick", addClick);
 				restaurantDetailDao.updateClick(res_no);
+				session.setAttribute("addClick", addClick);
 			}
 		}
 
