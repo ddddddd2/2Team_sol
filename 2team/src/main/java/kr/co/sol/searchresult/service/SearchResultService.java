@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.dto.ReviewDTO;
 
 
 public interface SearchResultService {
@@ -15,5 +16,6 @@ public interface SearchResultService {
 	int visitorsCnt(RestaurantDTO resdto);
 	Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto);
 	List<RestaurantDTO> getResname(int category);
+	ReviewDTO getReview(RestaurantDTO resdto2);
 }
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.dto.ReviewDTO;
 
 @Mapper
 public interface SearchResultDAO {
@@ -18,4 +19,5 @@ public interface SearchResultDAO {
 	int visitorsCnt(RestaurantDTO resdto);
 	Map<String,Object> reviewCountAndAvg(RestaurantDTO resdto);
 	List<RestaurantDTO> getResname(@Param("category") int category);
+	ReviewDTO getReview(RestaurantDTO resdto2);
 }

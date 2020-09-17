@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.dto.ReviewDTO;
 import kr.co.sol.searchresult.dao.SearchResultDAO;
 import kr.co.sol.searchresult.service.SearchResultService;
 
@@ -58,6 +59,11 @@ public class SearchResultServiceImpl implements SearchResultService {
 	@Override
 	public List<RestaurantDTO> getResname(int category){
 		return searchResultDao.getResname(category);
+	}
+
+	@Override
+	public ReviewDTO getReview(RestaurantDTO resdto2) {
+		return searchResultDao.getReview(resdto2);
 	}
 
 }

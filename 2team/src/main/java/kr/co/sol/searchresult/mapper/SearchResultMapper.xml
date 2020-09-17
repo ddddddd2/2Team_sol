@@ -127,4 +127,18 @@
   		
   	</select>
   	
+  	<select id="getReview" parameterType="resdto" resultType="revdto">
+  		<![CDATA[
+        select
+           *
+        from
+         (select no, mem_id,content, date1, rating, like_cnt
+         from review where res_no=#{no} order by no desc)
+      	 where
+         rownum < 2 ;
+        ]]>
+  	
+  	</select>
+  	
+  	
 </mapper>

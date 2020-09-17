@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.common.dto.ReviewDTO;
 import kr.co.sol.restaurantdetail.service.RestaurantDetailService;
 import kr.co.sol.searchresult.service.SearchResultService;
 
@@ -124,7 +125,6 @@ public class SearchResultController {
 	// searchResult page 에서 음식점 리스트 중  음심점을 클릭시 그 음식점 정보를 리턴 하는 메소드 
 	@ResponseBody
 	@RequestMapping(value = "/custom/getResInfo", method = RequestMethod.POST)
-
 	public HashMap<String,Object> getResInfo(@ModelAttribute RestaurantDTO resdto) throws Exception{
 	    System.out.println(resdto);
 		HashMap<String,Object> hmap = new HashMap<String,Object>();
@@ -136,16 +136,20 @@ public class SearchResultController {
 
 		// 레스토랑 번호로 해당 레스토랑 정보 구하기 
 		RestaurantDTO resdto2 = searchResultService.getRestaurants(resdto);
-		
+		System.out.println(resdto2);
 		int visitorsCnt = searchResultService.visitorsCnt(resdto2); // 조회수 
-		
 		Map<String,Object> rmap = searchResultService.reviewCountAndAvg(resdto2); // 리뷰 평점
+		
+		ReviewDTO revdto=searchResultService.getReview(resdto2); // 
 		
 		hmap.put("resdto", resdto2);
 		hmap.put("visitorsCnt", visitorsCnt);
 		hmap.put("reviewCount", rmap.get("count"));
 		hmap.put("reviewAvg", rmap.get("avg"));
 		System.out.println("resdto2:::"+resdto2);
+		
+		hmap.put("revdto", revdto);
+		
 		return hmap;
 
 	}

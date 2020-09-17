@@ -29,7 +29,8 @@
 #list {
 	display: block;
 	height: 33px; weight: 300px;
-	/* 	border: 1px solid; */
+	line-height: 33px;
+	text-align: center;
 }
 
 
@@ -41,19 +42,30 @@
 #list2-1 {
 	overflow:auto;
 	border-right: 1px solid;
+	
 }
 
 #list2-1 ul li{
+	
 	width:100%;
 	height:40px;
 	box-sizing:border-box;
 	border:solid black 1px;
 	border-collapse:collapse;
+	
+	
+	
 }
 
 #list2-1 ul li div{
 	display:inline-block;
 	line-height: 30px;
+	
+	text-align: left;
+	display:block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap 
 }
 
 #list2-1 span.alphabet{
@@ -80,7 +92,14 @@
 	overflow:hidden;
 }
 
-
+.recom{
+	height: 10%; 
+	text-align: center; 
+	color:#c91b3c;
+	font-size:30px;
+	line-height:35px;
+	display:block;
+}
 
 .slide_wrap { 
 	position: relative; 
@@ -114,6 +133,8 @@
 .slide_content div img{
 	width: 100%; 
 	height: 100%;
+/* 	border: 3px solid gold;  */
+	border-radius: 7px;
 }
 
 ul > li {
@@ -250,7 +271,7 @@ a:-webkit-any-link {
 #restart #list2-3{
 	float: left; 
 	display: inline; 
-	height: 90%; 
+	height: 70%; 
 	width: 40%; 
 	text-align:left;
 	padding-left:30px;

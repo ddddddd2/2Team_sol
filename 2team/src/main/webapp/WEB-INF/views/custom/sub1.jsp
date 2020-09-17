@@ -108,13 +108,15 @@ function paging_form(currentPage,currPageBlock){
 		<input type="hidden" id="keyword1" value="${keyword}"/>
 		<input type="hidden" id="category1" value="${category}"/>
 	</form>
+
 	
 	<div id="content-wrapper">
 		<div id="content" >
 			<!--  1번째 줄 새로시작 -->
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
 				<div id="list2(0)" style="width:100%; height:100%;">
-					<div id="list" style=" float:left; height :10%; width:25%;">카테고리별 음식점 리스트</div>
+			
+					<div id="list" style=" float:left; height :10%; width:25%; font-size: 15px;"><div style="width:100%; height:100%;">카테고리별 음식점 리스트</div></div>
 					
 					<!-- 지도 wrap-->
 					<div class="map_wrap">
@@ -197,18 +199,17 @@ function paging_form(currentPage,currPageBlock){
 			<!--  2번째 줄 새로시작 -->
 			<div id ="restart"style="width: auto; height: 350px; " >
 				<div id="recom">
-					<div style="height: 10%; text-align: center;">선택된 음식점 </div>
+					<div style="height: 10%; text-align: center;"> </div>
 				</div>
 				
 				<c:choose>
 					<c:when test="${reslist.size()==0}">
-					기덕이 바보
 					
 					</c:when>
 					<c:when test="${reslist.size()!=0}">
 						<div id="list2-2" > 					
 							<a href="" target='_blank'>
-								<img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${reslist[0].no}.jpg" style="width: 100%; height: 100%; vertical-align: middle;"  >
+								<img src="https://raw.githubusercontent.com/ddddddd2/2Team_sol/master/upload/res_img/${reslist[0].no}.jpg" style="width: 75%; height: 75%; vertical-align: middle;  border-radius: 7px; "  >
 							</a><!-- target='_blank' 새창띄우기 -->
 						</div>
 						<div id="list2-3">
@@ -219,7 +220,18 @@ function paging_form(currentPage,currPageBlock){
 							<p id="selected_cnt">조회수 : 	<span>${ClickCnt}</span></p>
 							<p id="selected_avg">평점 : 		<span id="avg">${CnA.avg}점</span> <span id="count">(${CnA.count})</span></p>
 							<button onclick="javascript:document.location.href='/custom/sub2?no=${reslist[0].no}'">상세보기</button>
-						</div> 		<!-- list2-3 끝 -->			
+							<div id="oneReview">
+							</div>
+						
+						</div> 		<!-- list2-3 끝 -->	
+						
+						<div id="list2-4" style="height:25%;  width:60%; float:right;">
+<%-- 							<span>${}</span> --%>
+						
+						
+						</div>
+						
+								
 					</c:when>
 				</c:choose>
 			<!--  2번째 줄 끝 -->		
@@ -227,8 +239,8 @@ function paging_form(currentPage,currPageBlock){
 			<!-- 3번째 줄 시작  -->				
 			<div class="content-wrap">
 				
-				<div class="recom">
-					<div style="height: 10%; text-align: center;">조회수 별 음식점 top5 </div>
+				<div class="recom" >
+					<div >조회수 별 음식점 top5 </div>
 				</div>
 				<div class="slide_wrap">
 				
@@ -257,8 +269,8 @@ function paging_form(currentPage,currPageBlock){
 							
 				
 					<div class="slide_btn_box" style="text-align: center;">
-						<button type="button" class="slide_btn_prev">이전</button>
-						<button type="button" class="slide_btn_next">다음</button>
+						<button type="button" class="slide_btn_prev"><</button>
+						<button type="button" class="slide_btn_next">></button>
 					</div>
 
 				</div><!-- slide_wrap -->
