@@ -84,7 +84,8 @@ $('#send_money').click(function(e){
                     date1 : b_date,
                     price : total_price,
                     content : comment,
-                    status : rsp.status
+                    status : rsp.status,
+                    receipt_url : rsp.receipt_url
                     //기타 필요한 데이터가 있으면 추가 전달
                 },
                 success:function(s){
@@ -92,12 +93,12 @@ $('#send_money').click(function(e){
                 		alert("예약과 결제처리가 정상 처리되었습니다.");
                 	}else{
                 		alert("db오류 ");
-                		return false;
+                		location.href="";
                 	}
                 },
                 error:function(e){
                 	alert("결제처리가 실패하였습니다.");
-                	return false;
+                	location.href="";
                 }
             });
             

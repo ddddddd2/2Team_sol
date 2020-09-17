@@ -7,7 +7,7 @@
 	       SELECT NVL(MAX(no),0)+1 no FROM booking
       	</selectKey>
 		
-		insert into booking(no,res_no,mem_no,date1,date2,content,price,status) 
+		insert into booking(no,res_no,mem_no,date1,date2,content,price,status,receipt_url) 
 		values(#{no},
 			   #{res_no},
 			   #{mem_no},
@@ -15,6 +15,7 @@
 			   sysdate,
 			   #{content},
 			   #{price},
-			   #{status})
+			   #{status},
+			   #{receipt_url})
 	</insert>
 </mapper>
