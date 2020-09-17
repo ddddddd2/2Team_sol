@@ -1,12 +1,9 @@
 package kr.co.sol.admin;
 
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.sol.common.dto.BookingDTO;
 import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
@@ -42,53 +37,14 @@ public class AdminController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/admin/login",method= {RequestMethod.POST,RequestMethod.GET})
-	public String login(HttpServletRequest request , @RequestParam(required = false) String id, @RequestParam(required = false) String passwd, Model model, MemberDTO mdto) {
-		HttpSession session = request.getSession();
-		if(id!=null && passwd !=null) {
-			MemberDTO mdto2 = adminService.login(id, passwd);
-			session.setAttribute("mdto", mdto2);
-		} else {
-			session.setAttribute("mdto",null);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("id", "test_id");
-			map.put("passwd", "1234");
-			session.setAttribute("data", map);
-		}
-		return "/admin/login";
-	}
-	// 로그인 처리는 common에서 공통으로 처리.
-	
-	@GetMapping(value="/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-//	@RequestMapping(value="/loginPro", method ={RequestMethod.GET,RequestMethod.POST})
-//	public String loginPro(MemberDTO mdto, Model model, HttpServletRequest request) {
-//		String role = adminService.login2(mdto);
-//		if("admin".equals(role)) {
-//			HttpSession session = request.getSession();
-//			Integer no = mdto.getNo();
-//			session.setAttribute("idKey", no);
-//		} else if(role==null) { 
-//			String msg = "올바른 아이디와 비밀번호가 맞지 않습니다";
-//			model.addAttribute("msg",msg);
-//			return "/admin/index";
-//		}
-//		
-//		return "/admin/index";
-//	}
-	
 	@RequestMapping(value="/admin/index", method= {RequestMethod.GET, RequestMethod.POST})
 	public String adminIndex(Model model, HttpServletRequest request,
 			HttpServletResponse response){
 		return "admin/index";
 	}
 	
-	
 	@RequestMapping(value="admin/mem_manage", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mm(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
+	public String mem_manage(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
 			@RequestParam(required=false) String keyword) {
 			
@@ -113,7 +69,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/store_manage")
-	public String sm(HttpServletRequest request, String searchOption, String keyword,
+	public String res_manage(HttpServletRequest request, String searchOption, String keyword,
 			@RequestParam(value="curPage", defaultValue="1") int curPage, Model model, RestaurantDTO resdto, PageDTO pdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
@@ -192,7 +148,7 @@ public class AdminController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				 e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 		return "redirect:admin/store_manage";
@@ -208,7 +164,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/reserv_manage", method= {RequestMethod.GET, RequestMethod.POST})
-	public String reserv_manage(HttpServletRequest request, Model model,String searchOption, String keyword
+	public String booking_manage(HttpServletRequest request, Model model,String searchOption, String keyword
 			) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
@@ -237,7 +193,7 @@ public class AdminController {
 	
 	
 	@PostMapping("/booking_cancel")
-	public @ResponseBody int bCancel(@RequestParam("no") int no) {
+	public @ResponseBody int booking_cancel(@RequestParam("no") int no) {
 		int r = adminService.bCancel(no);
 		if(r==0) {
 			return r;

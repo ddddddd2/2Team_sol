@@ -25,15 +25,6 @@
 		select no, grade_name, id, passwd, name, email, phone ,gender, role
 		from member
 	</select>
-	<select id="login" parameterType="String" resultType="mdto">
-		select id, name, role from member where id = #{id} and passwd = #{passwd}
-	</select>
-	<select id="login2" parameterType="mdto" resultType="String">
-		select role from member where id=#{id} and passwd=#{passwd}
-	</select>
-	<select id="loginPro" parameterType="mdto" resultType="mdto">
-		select id, name, role from member where id = #{id} and passwd = #{passwd}
-	</select>
 	<select id="getMemberList" parameterType="map" resultMap="getMember">
 		select no, grade_name, id, passwd, name, email, phone, gender, role from
 		member
