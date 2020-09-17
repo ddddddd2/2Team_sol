@@ -20,8 +20,8 @@
 			<form name="form1" method="get" action="/admin/store_manage">
 				<select id="searchSelectBox" name="searchOption">
 					<option value="">검색 옵션</option>
-					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>이름</option>
-					<option value="email" <c:out value="${map.searchOption == 'email'?'selected':''}"/>>이메일</option>
+					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>매장명</option>
+					<option value="address1" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>주소</option>
 					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
 				</select>
 				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
@@ -40,6 +40,7 @@
 				<td>주소</td>
 				<td>운영시간</td>
 				<td>연락처</td>
+				<td>정보수정</td>
 			</tr>
 			<c:choose>
 				<c:when test="${resdto.size()==0}">
@@ -59,22 +60,11 @@
 						<td>${resdto.address1}</td>
 						<td>${resdto.hour}</td>
 						<td>${resdto.tel}</td>
+						<td><a href="/admin/update_res?no=${resdto.no}">수정</a></td>
 					</tr>
 					</c:forEach>
 				</c:when>
 			</c:choose>
-					<tr>
-						<td colspan="9">
-						<c:if test="${curPage>5}">
-						<a href="${path}?curPage=${curPage-1}">이전</a>
-						</c:if>
-						<c:forEach var="i" begin="1" end="5">
-						<a href="${path}?curPage=${Math.floor(curPage/5*5)+i}">${((curPage/5*5)+i)}</a>
-						</c:forEach>
-						<a href="${path}?curPage=${curPage+1}">${curPage+1}</a>
-					<c:out value="${(curPage/5)}" />
-					1,2,3,4,5</td>
-					</tr>
 		</table>
 		</div>
 	</div>

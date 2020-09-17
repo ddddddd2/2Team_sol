@@ -22,7 +22,7 @@ window.onload = function(){
 	const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
 	const slideLen = slideContents.length; // slide length
 	const slideWidth = 321; // slide width
-	const slideSpeed = 300; // slide speed
+	const slideSpeed = 321; // slide speed
 	const startNum = 0; // initial slide index (0 ~ 4)
 	slideList.style.width = slideWidth * (slideLen+2) + "px";
 	// Copy first and last slide
@@ -106,7 +106,7 @@ function paging_form(currentPage,currPageBlock){
 		<input type="hidden" name="currentPage" value="${pdto.currentPage}" />
 		<input type="hidden" name="currPageBlock" value="${pdto.currPageBlock}" />
 		<input type="hidden" id="keyword1" value="${keyword}"/>
-		<input type="text" id="category1" value="${category}"/>
+		<input type="hidden" id="category1" value="${category}"/>
 	</form>
 
 	
@@ -217,10 +217,6 @@ function paging_form(currentPage,currPageBlock){
 
 			<!--  2번째 줄 새로시작 -->
 			<div id ="restart"style="width: auto; height: 350px; " >
-				<div id="recom">
-					<div style="height: 10%; text-align: center;"> </div>
-				</div>
-				
 				<c:choose>
 					<c:when test="${reslist.size()==0}">
 					
@@ -258,7 +254,7 @@ function paging_form(currentPage,currPageBlock){
 			<div class="content-wrap">
 				
 				<div class="recom" >
-					<div >조회수 별 음식점 top5 </div>
+					조회수 별 음식점 top5
 				</div>
 				<div class="slide_wrap">
 				
@@ -270,9 +266,8 @@ function paging_form(currentPage,currPageBlock){
 								<div class="slide_content">
 									<div class="slide_img">
 										<img src="../upload/${vReslist.NO}.jpg" onclick="javascript:document.location.href='/custom/sub2?no=${vReslist.NO}'">
-											
 									</div>
-									<div style="float: left; width: 100%; height: 35%">
+									<div>
 										<p><span>${vReslist.name}</span></p>
 										<p><span>${vReslist.c_name}</span></p>
 										<p><span>평점${vReslist.avg}점(조회수:${vReslist.count})</span></p>

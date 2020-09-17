@@ -1,5 +1,6 @@
 package kr.co.sol.mypage.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,10 +25,10 @@ public interface MyPageDAO {
 	//Restaurant
 	List<RestaurantDTO> getRestaurantList(String id);
 	// 회원 번호로 해당 회원 정보 수정
-	List<ReviewDTO> getMyReviewList(Integer mem_no);
+	List<HashMap<String, Object>> getMyReviewList(Integer mem_no);
 	List<QnaDTO> getMyQnaList(Integer mem_no);
 	List<RestaurantDTO> getMyFavoriteList(Integer mem_no);
-	List<BookingDTO> getMyBookingList(Integer mem_no);
+	List<HashMap<String, Object>> getMyBookingList(Integer mem_no);
 	int emailCheck(@Param(value = "email") String email, @Param(value="no") int no);
 	int nick_nameCheck(@Param(value = "nick_name") String nick_name, @Param(value="no") int no);
 	int phoneCheck(@Param(value = "phone") String phone, @Param(value="no") int no);

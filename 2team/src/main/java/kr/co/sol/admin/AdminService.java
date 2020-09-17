@@ -24,5 +24,11 @@ public interface AdminService {
 
 	int bCancel(int no);
 
+	RestaurantDTO getStoreInfo(int no);
+
+	int addrChk(String addr);
+
+	int updateResInfo(RestaurantDTO resdto);
+
 
 }

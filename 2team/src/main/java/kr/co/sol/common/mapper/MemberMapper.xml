@@ -60,60 +60,6 @@
   		select count(email) from member where email = #{email}
   	</select>
   	
-  	<update id="updateMember">
-	update member set
-			nick_name = #{nick_name},
-  			phone = #{phone},
-  			passwd = #{passwd},
-  			email = #{email}
-	where not exists
-		(select nick_name, phone, passwd, email
-		from
-			(select nick_name, phone, email
-			from member where id != #{id})
-			where nick_name = #{nick_name} or phone = #{phone} or email =#{email})
-	and id = #{id}
-  	</update>
-  	<!-- Booking -->
-	<select id="getBookingList" parameterType="Integer" resultType="bdto">
-		select 	
-			no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
-		 from 
-		 	booking
-		 where
-		 	mem_no = #{no}
-	</select>
-
-	<!-- Review -->
-	<select id="getReviewList" parameterType="Integer" resultType="revdto">
-		select 
-			no, res_no, mem_no, mem_id, date1, rating, content 
-		from 
-			review 
-		where
-			mem_no = #{no}
-	</select>
-	<!-- Favorite -->
-
-  	<select id="getFavoriteList" parameterType="Integer" resultType="resdto">
-	  	select 
-	  		r.name, r.no
-	  	from 
-	  		restaurant r where no IN
-				(select 
-					res_no 
-				from 
-					favorites f join member m on f.mem_no = m.no and m.no = #{no})
-	</select>
-	<!-- Qna -->
-	<select id="getQnaList" parameterType="Integer" resultType="qdto">
-		select 	
-			no, mem_no, subject, contents, createdate, qnatype
-		 from 
-		 	qna
-		 where
-		 	mem_no = #{no}
-	</select>
 	<!-- Member(메뉴바 쪽에 있는 이름, 회원가입 날짜) -->
 	<select id="getMember" parameterType="Integer" resultType="mdto">
 		select 
@@ -122,10 +68,5 @@
 			member
 		where
 			no = #{no}
-	</select>
-	<select id="getMyAct" parameterType="Integer" resultType="kr.co.sol.common.dto.MyActDTO">
-		select count(distinct f.res_no) fcnt, count(distinct b.no) bcnt, count(distinct r.no)  rcnt
-		from member m join favorites f on m.no = f.mem_no and m.no = #{no}
-			join review r on f.mem_no = r.mem_no join booking b on r.mem_no = b.mem_no
 	</select>
 </mapper>

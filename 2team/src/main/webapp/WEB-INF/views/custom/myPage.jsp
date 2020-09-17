@@ -46,7 +46,8 @@
 				</tr>
 				<c:forEach var="bdto" items="${bdto}"  begin="0" end="2">
 					<tr> 
-						<td>${bdto.NAME}</td>
+						<td><a href="/custom/sub2?no=${bdto.RES_NO}">
+						${bdto.NAME}</a></td>
 				  		<td>${bdto.DATE1}</td>
 				  		<td>${bdto.PRICE}원</td>
 				  		<td>${bdto.DATE2}</td>

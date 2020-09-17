@@ -1,5 +1,6 @@
 package kr.co.sol.mypage.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class MyPageServiceImpl implements MyPageService {
 	MyPageDAO myPageDao;
 
 	@Override
-	public List<ReviewDTO> getMyReviewList(Integer mem_no) {
+	public List<HashMap<String, Object>> getMyReviewList(Integer mem_no) {
 		return myPageDao.getMyReviewList(mem_no);
 	}
 
@@ -36,7 +37,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<BookingDTO> getMyBookingList(Integer mem_no) {
+	public List<HashMap<String, Object>> getMyBookingList(Integer mem_no) {
 		return myPageDao.getMyBookingList(mem_no);
 	}
 

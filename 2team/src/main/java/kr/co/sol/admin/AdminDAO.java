@@ -21,4 +21,7 @@ public interface AdminDAO {
 	List<HashMap<String,Object>> getBookingList();
 	List<HashMap<String,Object>> getBooking(String searchOption, String keyword);
 	int bCancel(int no);
+	RestaurantDTO getStoreInfo(int no);
+	int addrChk(String addr);
+	int updateResInfo(RestaurantDTO resdto);
 }

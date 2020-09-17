@@ -88,7 +88,7 @@
 	float: left;
 	width: 100%;
 	margin: 10px;
-	height: 350px;
+	height: 380px;
 	overflow:hidden;
 }
 
@@ -97,7 +97,7 @@
 	text-align: center; 
 	color:#c91b3c;
 	font-size:30px;
-	line-height:35px;
+	line-height:40px;
 	display:block;
 }
 
@@ -109,7 +109,7 @@
 
 .slide_box { 
 	width: 100%; 
-	margin: auto; 
+	margin: 0 auto; 
 	overflow: hidden; 
 	position:center;
 	}

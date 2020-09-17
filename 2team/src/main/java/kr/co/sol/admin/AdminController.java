@@ -93,6 +93,12 @@ public class AdminController {
 		return "/admin/store_manage";
 	}
 	
+	@GetMapping("/admin/update_res")
+	public String update_res(Model model, HttpServletRequest request, @RequestParam("no") int no) {
+		RestaurantDTO resdto = adminService.getStoreInfo(no);
+		model.addAttribute("resdto",resdto);
+		return "/admin/update_res";
+	}
 	
 //	@GetMapping("admin/store_manage")
 //	public String sm(Model model, HttpServletRequest request, HttpServletResponse response, StoreDTO sdto,
@@ -160,6 +166,25 @@ public class AdminController {
 			if (ckResult==0) {
 				return 0;
 			}
+		return 1;
+	}
+	
+	@RequestMapping(value="/admin/reg_storePro/addrChk", method={RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody int addrChk(@RequestParam("addr") String addr) {
+		int ckResult = adminService.addrChk(addr);
+		if (ckResult==0) {
+			return 0;
+		}
+		return 1;
+	}
+	@GetMapping("/UpdateRes")
+	public @ResponseBody int UpdateRes(RestaurantDTO resdto) {
+		System.out.println("==아니 왜 안돼?");
+		int result = adminService.updateResInfo(resdto);
+		System.out.println("=="+result);
+		if(result==0) {
+			return 0;
+		}
 		return 1;
 	}
 	

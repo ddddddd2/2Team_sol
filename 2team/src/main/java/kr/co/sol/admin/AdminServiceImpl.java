@@ -68,4 +68,18 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDao.bCancel(no);
 	}
+	@Override
+	public RestaurantDTO getStoreInfo(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.getStoreInfo(no);
+	}
+	@Override
+	public int addrChk(String addr) {
+		// TODO Auto-generated method stub
+		return adminDao.addrChk(addr);
+	}
+	@Override
+	public int updateResInfo(RestaurantDTO resdto) {
+		return adminDao.updateResInfo(resdto);
+	}
 }

@@ -102,25 +102,25 @@
 	and no = #{no}
   	</update>
   	<!-- Booking -->
-	<select id="getMyBookingList" parameterType="Integer" resultType="bdto">
+	<select id="getMyBookingList" parameterType="Integer" resultType="map">
 		select 	
-			no ,res_no ,mem_no ,date1 ,date2 ,content ,price ,status ,menu
+			b.no ,b.res_no ,date1 ,date2 ,content ,price ,status ,menu, r.name
 		 from 
-		 	booking
+		 	booking b JOIN restaurant r ON b.res_no = r.no
 		 where
-		 	mem_no = #{mem_no}
-		 order by no desc
+		 	b.mem_no = #{mem_no}
+		 order by b.no desc
 	</select>
 
 	<!-- Review -->
-	<select id="getMyReviewList" parameterType="Integer" resultType="revdto">
+	<select id="getMyReviewList" parameterType="Integer" resultType="map">
 		select 
-			no, res_no, mem_no, mem_id, date1, rating, content 
+			r.no, res.name, r.mem_no, r.mem_id, r.date1, r.rating, r.content, r.res_no
 		from 
-			review 
+			review r JOIN restaurant res ON r.res_no = res.no
 		where
-			mem_no = #{mem_no}
-		order by no desc
+			r.mem_no = #{mem_no}
+		order by r.no desc
 	</select>
 	<!-- Favorite -->
 

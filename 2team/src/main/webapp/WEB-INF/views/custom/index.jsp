@@ -56,10 +56,10 @@ response.setHeader("Cache-Control", "no-cache");
 			<div id="m_contents_"></div>
 			<div id="m_contents_dim">
 				<ul>
-					<li><span>한국이라면 역시 비빔밥!</span>
-					<li><span>Welldone Plz</span>
-					<li><span>짜장보다 맛있는 짬뽕</span>
-					<li><span>이 시국 음식</span>
+					<a href="http://localhost:9999/custom/sub1?keyword=&category=2"><li><span>한국이라면 역시 비빔밥!</span></li></a>
+					<a href="http://localhost:9999/custom/sub1?keyword=&category=4"><li><span>Welldone Plz</span></li></a>
+					<a href="http://localhost:9999/custom/sub1?keyword=&category=3"><li><span>짜장보다 맛있는 짬뽕</span></li></a>
+					<a href="http://localhost:9999/custom/sub1?keyword=&category=5"><li><span>이 시국 음식</span></li></a>
 				</ul>
 			</div>
 		</div>

@@ -65,9 +65,24 @@
 	<select id="getStoreListCnt" resultType="int">
 	select count(no) from restaurant
 	</select>
+	<select id="getStoreInfo" parameterType="int" resultType="resdto">
+		select * from restaurant where no = #{no}
+	</select>
+	<select id="addrChk" parameterType="String" resultType="int">
+	select count(no) from restaurant where address1 = #{addr}
+	</select>
 	<update id="bCancel" parameterType="int">
 		update booking set
 		status = '취소'
 		where no = #{no}
+	</update>
+	<update id="updateResInfo">
+		update restaurant set
+		name = #{name},
+		address1 = #{address1},
+		hour = #{hour},
+		tel = #{tel}
+		where
+		no = #{no}
 	</update>
 </mapper>
