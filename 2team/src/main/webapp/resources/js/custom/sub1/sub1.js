@@ -283,8 +283,11 @@ $('#list2-1 #res_name')
 											+ hmap.resdto.no + "'";
 
 									$('#list2-3 button').attr("onclick", url);
-									$('#oneReview').text("<hr/>이름: "+hmap.revdto.mem_id+" 내용: "+hmap.revdto.content);
-									console.log(hmap.revdto.content)
+									if(hmap.revdto==null){
+										$('#oneReview').html("첫 리뷰를 남겨보세요!");
+									}else{
+										$('#oneReview').html(hmap.revdto.mem_id+" : "+hmap.revdto.content);
+									}
 									
 									// $('#list2-3
 									// button').on("click",function(e){

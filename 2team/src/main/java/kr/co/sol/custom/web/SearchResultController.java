@@ -115,9 +115,9 @@ public class SearchResultController {
 		model.addAttribute("vReslist",vReslist); // 저회수 별 음식점 리스트 
 		model.addAttribute("CnA",defaultResCna); // 최초 페이지 접근 시,reslist에서 첫번째 녀석의 리뷰수와 평균을 가져옴.
 		int ClickCnt = searchResultService.visitorsCnt(resdto3);
+		ReviewDTO revdto=searchResultService.getReview(resdto3);
 		model.addAttribute("ClickCnt",ClickCnt);
-		System.out.println(reslist);
-		
+		model.addAttribute("freview",revdto);
 		return "/custom/sub1";
 	}
 	
@@ -147,6 +147,7 @@ public class SearchResultController {
 		hmap.put("reviewCount", rmap.get("count"));
 		hmap.put("reviewAvg", rmap.get("avg"));
 		hmap.put("revdto", revdto);
+		System.out.println("revdto:::"+revdto);
 
 		return hmap;
 

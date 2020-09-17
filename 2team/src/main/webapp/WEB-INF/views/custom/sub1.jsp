@@ -240,17 +240,16 @@ function paging_form(currentPage,currPageBlock){
 							<p id="selected_avg">평점 : 		<span id="avg">${CnA.avg}점</span> <span id="count">(${CnA.count})</span></p>
 							<button onclick="javascript:document.location.href='/custom/sub2?no=${reslist[0].no}'">상세보기</button>
 							<div id="oneReview">
+								<c:choose>
+									<c:when test="${freview==null}">
+										첫 리뷰를 남겨보세요!
+									</c:when>
+									<c:when test="${freview!=null}">
+										${freview.mem_id} : ${freview.content}
+									</c:when>
+								</c:choose>
 							</div>
-						
 						</div> 		<!-- list2-3 끝 -->	
-						
-						<div id="list2-4" style="height:25%;  width:60%; float:right;">
-<%-- 							<span>${}</span> --%>
-						
-						
-						</div>
-						
-								
 					</c:when>
 				</c:choose>
 			<!--  2번째 줄 끝 -->		
