@@ -46,12 +46,12 @@
 				</tr>
 				<c:forEach var="bdto" items="${bdto}"  begin="0" end="2">
 					<tr> 
-						<td>${bdto.res_no}</td>
-				  		<td>${bdto.date1}</td>
-				  		<td>${bdto.price}</td>
-				  		<td>${bdto.date2}</td>
-				  		<td>${bdto.content}</td>
-				  		<td>${bdto.status}</td>
+						<td>${bdto.NAME}</td>
+				  		<td>${bdto.DATE1}</td>
+				  		<td>${bdto.PRICE}원</td>
+				  		<td>${bdto.DATE2}</td>
+				  		<td>${bdto.CONTENT}</td>
+				  		<td>${bdto.STATUS}</td>
 					</tr>
  				</c:forEach>
  				<tr>
@@ -73,11 +73,22 @@
 					<c:when test="${revdto.size()!=0}">
  						<c:forEach var="revdto" items="${revdto}" begin="0" end="2">
  							<tr> 
- 								<td>${revdto.res_no}</td>
-						  		<td>${revdto.content}</td>
-						  		<td>${revdto.like_cnt}</td>
-						  		<td>${revdto.date1}</td>
-  								<td>${revdto.rating}</td>
+ 								<td>
+ 								<a href="/custom/sub2?no=${revdto.RES_NO}">
+ 								${revdto.NAME}</a></td>
+						  		<td>${revdto.CONTENT}</td>
+						  		<td>
+						  		<c:choose>
+									<c:when test="${revdto.LIKE_CNT==null}">
+										0회
+									</c:when>
+						  			<c:otherwise>
+								  		${revdto.LIKE_CNT}회
+						  			</c:otherwise>
+						  		</c:choose>
+						  		</td>
+						  		<td>${revdto.DATE1}</td>
+  								<td>${revdto.RATING}</td>
  							</tr>
  						</c:forEach>
  						<tr>

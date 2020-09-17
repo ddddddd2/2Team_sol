@@ -1,5 +1,6 @@
 package kr.co.sol.custom.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,12 +47,16 @@ public class myPageController {
 			} else {
 			mypageService.getMyAct(no, model);
 			// 예약 내역 조회하는 메소드
-			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no); 
+			List<HashMap<String, Object>> bdto2 = mypageService.getMyBookingList(no);
+			System.out.println(bdto2);
 			model.addAttribute("bdto", bdto2);
+			
 			// 리뷰 조회하는 메소드
-			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
+			List<HashMap<String, Object>> rdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto",rdto2);
-//			// 즐겨찾기 조회하는 메소드 실은  
+			System.out.println("---"+rdto2);
+//			
+			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
 			model.addAttribute("resdto", fdto2); 
 			//session.setAttribute("mdto", mdto2);
@@ -75,11 +80,6 @@ public class myPageController {
 				return "/custom/index";
 			} else {
 			model.addAttribute("id", no);
-			// 어짜피 로그인하면 세션에 mdto 담김
-//			MemberDTO mdto2 = memberService.getMemberInfo(no);
-//			session.setAttribute("mdto", mdto2);
-//			MemberDTO mdto3 = memberService.getMemberList(no); 
-//			model.addAttribute("mdto", mdto3);
 			mypageService.getMyAct(no, model);
 			} 
 			return "/custom/updateInfo";
@@ -121,8 +121,9 @@ public class myPageController {
 		public String myPageReview(HttpServletRequest request, MemberDTO mdto, HttpServletResponse response, Model model, ReviewDTO rdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<ReviewDTO> rdto2 = mypageService.getMyReviewList(no);
+			List<HashMap<String, Object>> rdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto",rdto2);
+
 			mypageService.getMyAct(no, model);
 			return "/custom/myPageReview";
 		}
@@ -170,7 +171,7 @@ public class myPageController {
 		public String myPageBooking(HttpServletRequest request, HttpServletResponse response, Model model, BookingDTO bdto) {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
-			List<BookingDTO> bdto2 = mypageService.getMyBookingList(no);
+			List<HashMap<String, Object>> bdto2 = mypageService.getMyBookingList(no);
 			mypageService.getMyAct(no, model);
 			model.addAttribute("bdto", bdto2);
 			return "/custom/myPageBooking";
