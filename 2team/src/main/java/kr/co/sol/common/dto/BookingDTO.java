@@ -16,6 +16,6 @@ public class BookingDTO {
 	private String content;
 	private String price;
 	private String status;
-	private String menu;
+	private String receipt_url;
 	
 }
