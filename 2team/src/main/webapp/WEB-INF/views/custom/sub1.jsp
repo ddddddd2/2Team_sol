@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +106,7 @@ function paging_form(currentPage,currPageBlock){
 		<input type="hidden" name="currentPage" value="${pdto.currentPage}" />
 		<input type="hidden" name="currPageBlock" value="${pdto.currPageBlock}" />
 		<input type="hidden" id="keyword1" value="${keyword}"/>
-		<input type="hidden" id="category1" value="${category}"/>
+		<input type="text" id="category1" value="${category}"/>
 	</form>
 
 	
@@ -115,9 +115,28 @@ function paging_form(currentPage,currPageBlock){
 			<!--  1번째 줄 새로시작 -->
 			<div id="list2" style="width: auto; height: 350px; text-align: center;">
 				<div id="list2(0)" style="width:100%; height:100%;">
-			
-					<div id="list" style=" float:left; height :10%; width:25%; font-size: 15px;"><div style="width:100%; height:100%;">카테고리별 음식점 리스트</div></div>
-					
+					<div id="list" style=" float:left; height :10%; width:25%;">
+					<c:choose>
+						<c:when test="${category==0}">
+							전체
+						</c:when>
+						<c:when test="${category==2}">
+							한식
+						</c:when>
+						<c:when test="${category==3}">
+							중식
+						</c:when>
+						<c:when test="${category==4}">
+							일식
+						</c:when>
+						<c:when test="${category==5}">
+							양식
+						</c:when>
+						<c:when test="${category==6}">
+							카페
+						</c:when>
+					</c:choose>
+					 리스트</div>
 					<!-- 지도 wrap-->
 					<div class="map_wrap">
 						<!-- 지도 영역  --> 
@@ -257,7 +276,7 @@ function paging_form(currentPage,currPageBlock){
 									<div style="float: left; width: 100%; height: 35%">
 										<p><span>${vReslist.name}</span></p>
 										<p><span>${vReslist.c_name}</span></p>
-										<p><span>${vReslist.avg}점(${vReslist.count})</span></p>
+										<p><span>평점${vReslist.avg}점(조회수:${vReslist.count})</span></p>
 										<p><span></span></p>
 									</div>
 								</div>

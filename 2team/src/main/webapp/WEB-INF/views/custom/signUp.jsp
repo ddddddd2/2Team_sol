@@ -19,6 +19,8 @@ $(document).ready(function(){ // 문서전체가 로딩되면 실행. 그래야 
 	var shaPw = hex_sha512($('#passwd').val()).toString();
 		$('#passwd').val(shaPw);
 	})
+	
+	
 })
 </script>
 </head>

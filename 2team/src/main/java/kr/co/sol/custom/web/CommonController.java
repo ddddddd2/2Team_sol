@@ -94,7 +94,9 @@ public class CommonController {
 			MemberDTO mdto) {
 		SecurityUtil securityUtil = new SecurityUtil();
 		String passwd = securityUtil.encryptSHA256(mdto.getPasswd());
-		mdto.setPasswd(passwd);		
+		mdto.setPasswd(passwd);
+		
+		
 		int r = memberService.signUpProc(mdto);
 		String url = "/";
 		if(r > 0 )

@@ -146,10 +146,8 @@ public class SearchResultController {
 		hmap.put("visitorsCnt", visitorsCnt);
 		hmap.put("reviewCount", rmap.get("count"));
 		hmap.put("reviewAvg", rmap.get("avg"));
-		System.out.println("resdto2:::"+resdto2);
-		
 		hmap.put("revdto", revdto);
-		
+
 		return hmap;
 
 	}

@@ -1,12 +1,12 @@
 package kr.co.sol.searchresult.dao;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.common.dto.ReviewDTO;
 

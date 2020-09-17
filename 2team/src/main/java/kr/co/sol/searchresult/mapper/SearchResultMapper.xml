@@ -126,7 +126,6 @@
 	  		]]>		
   		
   	</select>
-  	
   	<select id="getReview" parameterType="resdto" resultType="revdto">
   		<![CDATA[
         select
@@ -139,6 +138,4 @@
         ]]>
   	
   	</select>
-  	
-  	
 </mapper>
