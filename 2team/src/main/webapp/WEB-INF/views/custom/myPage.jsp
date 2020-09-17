@@ -36,7 +36,6 @@
 			<div id="main-content">
 			<div class="content-title">예약</div>
 			<table id="content-content">
-<%-- 			<tr><td>${myAct.getFcnt()}</td></tr> --%>
 				<tr>
 					<td>예약 번호</td>
 					<td>업체명</td>
