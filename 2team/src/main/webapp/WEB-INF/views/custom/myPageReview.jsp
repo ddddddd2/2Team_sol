@@ -35,7 +35,6 @@
 				<div id="content-title">리뷰</div>
 			<table id="content-content" >				
 				<tr>
-					<td>리뷰 번호 </td>
 					<td>식당 이름 </td>
 					<td>내 용 </td>
 					<td>좋아요 </td>
@@ -52,12 +51,22 @@
 					<c:when test="${revdto.size()!=0}">
  						<c:forEach var="revdto" items="${revdto}">
  							<tr> 
- 								<td>${revdto.no}</td>
- 								<td>${revdto.res_no}</td>
-						  		<td>${revdto.content}</td>
-						  		<td>${revdto.like_cnt}</td>
-						  		<td>${revdto.date1}</td>
-  								<td>${revdto.rating}</td>
+ 								<td>
+ 								<a href="/custom/sub2?no=${revdto.RES_NO}">
+ 								${revdto.NAME}</a></td>
+						  		<td>${revdto.CONTENT}</td>
+						  		<td>
+						  		<c:choose>
+									<c:when test="${revdto.LIKE_CNT==null}">
+										0회
+									</c:when>
+						  			<c:otherwise>
+								  		${revdto.LIKE_CNT}회
+						  			</c:otherwise>
+						  		</c:choose>
+						  		</td>
+						  		<td>${revdto.DATE1}</td>
+  								<td>${revdto.RATING}</td>
  							</tr>
  						</c:forEach>
  					</c:when>

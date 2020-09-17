@@ -54,7 +54,6 @@ public class myPageController {
 			// 리뷰 조회하는 메소드
 			List<HashMap<String, Object>> rdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto",rdto2);
-			System.out.println("---"+rdto2);
 //			
 			// 즐겨찾기 조회하는 메소드 실은  
 			List<RestaurantDTO> fdto2 = mypageService.getMyFavoriteList(no);
@@ -123,7 +122,6 @@ public class myPageController {
 			Integer no = (Integer)session.getAttribute("idKey");
 			List<HashMap<String, Object>> rdto2 = mypageService.getMyReviewList(no);
 			model.addAttribute("revdto",rdto2);
-
 			mypageService.getMyAct(no, model);
 			return "/custom/myPageReview";
 		}
@@ -172,6 +170,8 @@ public class myPageController {
 			HttpSession session = request.getSession();
 			Integer no = (Integer)session.getAttribute("idKey");
 			List<HashMap<String, Object>> bdto2 = mypageService.getMyBookingList(no);
+			
+			System.out.println(bdto2);
 			mypageService.getMyAct(no, model);
 			model.addAttribute("bdto", bdto2);
 			return "/custom/myPageBooking";

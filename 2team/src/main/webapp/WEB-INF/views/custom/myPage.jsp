@@ -106,7 +106,7 @@
 						<div>없음</div>
 					</c:when>
 				<c:when test="${resdto.size()!=0}">
-					<c:forEach var="i" begin="0" end="3">
+					<c:forEach var="i" begin="0" end="${resdto.size()-1}">
 						<div>
 							<div>
 								<a href="/custom/sub2?no=${resdto[i].no}">

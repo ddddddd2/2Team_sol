@@ -35,7 +35,6 @@
 			<div id="content-title">예약</div>
 			<table id="content-content">
 				<tr>
-					<td>예약 번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>
 					<td>주문 금액</td>
@@ -46,14 +45,13 @@
 				</tr>
 				<c:forEach var="bdto" items="${bdto}">
 					<tr> 
-						<td>${bdto.no}</td>
-						<td>${bdto.res_no}</td>
-				  		<td>${bdto.date1}</td>
-				  		<td>${bdto.price}</td>
-				  		<td>${bdto.mem_no}</td>
-				  		<td>${bdto.date2}</td>
-				  		<td>${bdto.content}</td>
-				  		<td>${bdto.status}</td>
+						<td>${bdto.NAME}</td>
+				  		<td>${bdto.DATE1}</td>
+				  		<td>${bdto.PRICE}</td>
+				  		<td>${bdto.MEM_NO}</td>
+				  		<td>${bdto.DATE2}</td>
+				  		<td>${bdto.CONTENT}</td>
+				  		<td>${bdto.STATUS}</td>
 					</tr>
  				</c:forEach>
 			</table>
