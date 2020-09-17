@@ -109,6 +109,7 @@
 		 	booking
 		 where
 		 	mem_no = #{mem_no}
+		 order by no desc
 	</select>
 
 	<!-- Review -->
@@ -119,6 +120,7 @@
 			review 
 		where
 			mem_no = #{mem_no}
+		order by no desc
 	</select>
 	<!-- Favorite -->
 

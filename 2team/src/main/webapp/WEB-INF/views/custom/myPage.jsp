@@ -37,22 +37,18 @@
 			<div class="content-title">예약</div>
 			<table id="content-content">
 				<tr>
-					<td>예약 번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>
 					<td>주문 금액</td>
-					<td>기타</td>
 					<td>결제 일자</td>
-					<td>1대1 문의</td>
-					<td>상태</td>
+					<td>요청 사항</td>
+					<td>결제내역</td>
 				</tr>
 				<c:forEach var="bdto" items="${bdto}"  begin="0" end="2">
 					<tr> 
-						<td>${bdto.no}</td>
 						<td>${bdto.res_no}</td>
 				  		<td>${bdto.date1}</td>
 				  		<td>${bdto.price}</td>
-				  		<td>${bdto.mem_no}</td>
 				  		<td>${bdto.date2}</td>
 				  		<td>${bdto.content}</td>
 				  		<td>${bdto.status}</td>
@@ -65,7 +61,6 @@
 				<div class="content-title">리뷰</div>
 			<table id="content-content">
 				<tr>
-					<td>리뷰 번호</td>
 					<td>식당 이름</td>
 					<td>내 용</td>
 					<td>좋아요</td>
@@ -78,7 +73,6 @@
 					<c:when test="${revdto.size()!=0}">
  						<c:forEach var="revdto" items="${revdto}" begin="0" end="2">
  							<tr> 
- 								<td>${revdto.no}</td>
  								<td>${revdto.res_no}</td>
 						  		<td>${revdto.content}</td>
 						  		<td>${revdto.like_cnt}</td>
