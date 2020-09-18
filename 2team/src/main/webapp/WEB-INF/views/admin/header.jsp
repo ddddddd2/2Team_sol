@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div style="height:30px"><a href="/">관리자 페이지</a>
+<div style="height:50px"><a href="/">관리자 페이지</a>
+	<input type="button" value="메인" onclick="document.location.href='/admin/index'" />
 <c:choose>
 	<c:when test="${mdto.role==null || str.trim().equals('')}">
-	<input type="button" value="로그인" onclick="document.location.href='/admin/login'" />
+	<input type="button" value="로그인" onclick="document.location.href='/custom/login'" />
 	
 	</c:when>
 	<c:when test="${mdto.role=='admin'}">

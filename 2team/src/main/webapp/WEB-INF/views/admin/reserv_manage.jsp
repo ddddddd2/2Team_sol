@@ -28,12 +28,12 @@
 		</div>
 		<table border="1">
 			<tr>
-				<td>예약번호</td>
-				<td>예약자명</td>
-				<td>매장명</td>
-				<td>결제일</td>
-				<td>예약일</td>
-				<td>취소여부</td>
+				<th>예약번호</th>
+				<th>예약자명</th>
+				<th>매장명</th>
+				<th>결제일</th>
+				<th>예약일</th>
+				<th>취소여부</th>
 			</tr>
 			<c:forEach var="bdto" items="${bdto}" varStatus="i">
 			<tr>

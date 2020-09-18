@@ -17,30 +17,30 @@
 	<div id="main-wrapper">
 		<div id="content-wrap">
 		<div id="search"> 
-			<form name="form1" method="get" action="/admin/store_manage">
-				<select id="searchSelectBox" name="searchOption">
-					<option value="">검색 옵션</option>
-					<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>매장명</option>
-					<option value="address1" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>주소</option>
-					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
-				</select>
-				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
-			<input type="submit" id="searchBtn" onClick="search()" value="검색">
-			</form>
-			<div id="addStore"><a href="http://localhost:9999/admin/reg_store"><button>매장 추가</button></a></div>
+				<form name="form1" method="get" action="/admin/store_manage">
+					<select id="searchSelectBox" name="searchOption">
+						<option value="">검색 옵션</option>
+						<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>매장명</option>
+						<option value="address1" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>주소</option>
+						<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
+					</select>
+					<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
+					<input type="submit" id="searchBtn" onClick="search()" value="검색">
+				<a href="/admin/reg_store"><button>매장 추가</button></a>
+				</form>
 		</div>
 		<table border="1">
 			<tr>
-				<td>index</td>
-				<td>매장번호</td>
-				<td>매장명</td>
-				<td>카테고리</td>
-				<td>평점</td>
-				<td>리뷰수</td>
-				<td>주소</td>
-				<td>운영시간</td>
-				<td>연락처</td>
-				<td>정보수정</td>
+				<th>index</th>
+				<th>매장번호</th>
+				<th>매장명</th>
+				<th>카테고리</th>
+				<th>평점</th>
+				<th>리뷰수</th>
+				<th>주소</th>
+				<th>운영시간</th>
+				<th>연락처</th>
+				<th>정보수정</th>
 			</tr>
 			<c:choose>
 				<c:when test="${resdto.size()==0}">
@@ -66,6 +66,11 @@
 				</c:when>
 			</c:choose>
 		</table>
+		</div>
+		<div id="page">
+			<c:forEach var="pdto" items="${pdto}">
+			
+			</c:forEach>
 		</div>
 	</div>
 	

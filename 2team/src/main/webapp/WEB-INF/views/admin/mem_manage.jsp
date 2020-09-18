@@ -15,8 +15,6 @@
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
-		<div id="test" style="width:30px;height:30px;background-color:gold" onclick="getLocation()"></div>
-		<div id="test2"></div>
 		<div id="search">
 			<form name="form1" method="get" action="${path}/admin/mem_manage">
 				<select id="searchSelectBox" name="searchOption">
@@ -31,14 +29,14 @@
 		</div>
 		<table border="1">
 			<tr>
-				<td>회원번호</td>
-				<td>등급</td>
-				<td>아이디</td>
-				<td>이름</td>
-				<td>이메일</td>
-				<td>연락처</td>
-				<td>성별</td>
-				<td>공개동의여부</td>
+				<th>회원번호</th>
+				<th>등급</th>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>연락처</th>
+				<th>성별</th>
+				<th>공개동의여부</th>
 			</tr>
 			<c:choose>
 				<c:when test="${mList.size()==0}">
