@@ -54,8 +54,23 @@
 			</c:forEach>
 		</table>
 		</div>
+	<div id="paginationBox">
+		<ul class="pagination">
+			<c:if test="${pdto.prev}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pdto.page}', '${pdto.range}', '${pdto.rangeSize}')">Previous</a></li>
+			</c:if>
+			<c:forEach begin="${pdto.startPage}" end="${pdto.endPage}" var="idx">
+				<li class="page-item <c:out value="${pdto.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pdto.range}', '${pdto.rangeSize}')"> ${idx} </a></li>
+			</c:forEach>
+			<c:if test="${pdto.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pdto.range}','${pdto.range}', '${pdto.rangeSize}')" >Next</a></li>
+			</c:if>
+		</ul>
 	</div>
-	
+	</div>
+	<!-- pagination{s} -->
+
+	<!-- pagination{e} -->
 </body>
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
 </html>

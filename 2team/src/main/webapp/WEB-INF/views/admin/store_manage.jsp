@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <script type="text/javascript" src="../resources/js/adminIndex.js"></script>
+
 </head>
 <body>
 	<div id="header">
@@ -31,7 +32,6 @@
 		</div>
 		<table border="1">
 			<tr>
-				<th>index</th>
 				<th>매장번호</th>
 				<th>매장명</th>
 				<th>카테고리</th>
@@ -51,7 +51,6 @@
 				<c:when test="${resdto.size()!=0}">
 					<c:forEach var="resdto" items="${resdto}" varStatus="vs">
 					<tr>
-						<td>${vs.index+1}</td>
 						<td id="${resdto.no}">${resdto.no}</td>
 						<td>${resdto.name}</td>
 						<td>한식</td>
@@ -67,12 +66,30 @@
 			</c:choose>
 		</table>
 		</div>
-		<div id="page">
-			<c:forEach var="pdto" items="${pdto}">
-			
+<!-- 		<div id="page"> -->
+<!-- 				<div>이전</div> -->
+<%-- 			<c:forEach var="pdto" items="${pdto}"begin="${pdto.startList}" end="${pdto.startList+pdto.listSize}"> --%>
+<%-- 				<div>${pdto.getStart+i}</div> --%>
+<%-- 			</c:forEach> --%>
+<!-- 				<div>이후</div> -->
+<!-- 		</div> -->
+
+<!-- pagination{s} -->
+
+	<div id="paginationBox">
+		<ul class="pagination">
+			<c:if test="${pdto.prev}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pdto.page}', '${pdto.range}', '${pdto.rangeSize}')">Previous</a></li>
+			</c:if>
+			<c:forEach begin="${pdto.startPage}" end="${pdto.endPage}" var="idx">
+				<li class="page-item <c:out value="${pdto.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pdto.range}', '${pdto.rangeSize}')"> ${idx} </a></li>
 			</c:forEach>
-		</div>
+			<c:if test="${pdto.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pdto.range}','${pdto.range}', '${pdto.rangeSize}')" >Next</a></li>
+			</c:if>
+		</ul>
 	</div>
-	
+	<!-- pagination{e} -->
+	</div>
 </body>
 </html>

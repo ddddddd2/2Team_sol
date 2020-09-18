@@ -65,3 +65,41 @@
 			}
 		})
 	}
+
+	
+	
+	function fn_prev(page, curBlock, rangeSize) {
+
+		var page = ((curBlock - 2) * rangeSize) + 1;
+		var curBlock = curBlock - 1;
+
+		var url=window.location.pathname;
+		url = url + "?curPage=" + page;
+		url = url + "&curBlock=" + curBlock;
+
+		location.href = url;
+	}
+
+  //페이지 번호 클릭
+
+	function fn_pagination(page, curBlock, rangeSize, searchType, keyword) {
+		var url=window.location.pathname;
+		url = url + "?curPage=" + page;
+		url = url + "&curBlock=" + curBlock;
+
+		location.href = url;	
+	}
+
+	//다음 버튼 이벤트
+
+	function fn_next(curPage, curBlock, rangeSize) {
+		var curPage = parseInt((curBlock * rangeSize)) + 1;
+		var curBlock= parseInt(curBlock) + 1;
+		console.log(curPage+"=="+curBlock);
+		var url=window.location.pathname;
+
+		url = url + "?curPage=" + curPage;
+
+		url = url + "&curBlock=" + curBlock;
+		location.href = url;
+	}

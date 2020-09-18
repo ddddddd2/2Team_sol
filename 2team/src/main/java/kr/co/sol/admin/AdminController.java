@@ -28,6 +28,7 @@ import kr.co.sol.common.dto.MemberDTO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
 import kr.co.sol.common.service.MemberService;
+import kr.co.sol.etc.Pagination;
 
 @Controller
 public class AdminController {
@@ -46,17 +47,28 @@ public class AdminController {
 	@RequestMapping(value="admin/mem_manage", method = {RequestMethod.GET,RequestMethod.POST})
 	public String mem_manage(Model model, HttpServletRequest request, HttpServletResponse response,MemberDTO mdto,
 			@RequestParam(required=false) String searchOption,
-			@RequestParam(required=false) String keyword) {
+			@RequestParam(required=false) String keyword,
+			@RequestParam(value="curPage", defaultValue="1") int curPage,@RequestParam(value="curBlock", defaultValue="1") int curBlock) {
 			
 		List<HashMap<String, Object>> map= new ArrayList<HashMap<String, Object>>();
+		Pagination page = new Pagination();
+		Map<String, String> url = new HashMap<String, String>();
+		url.put("url", "member");
+		
+		int listCnt = adminService.allListCnt(url);
+		page.pageInfo(curPage, curBlock, listCnt);
+		int start = page.getStartList();
+		int end = start+page.getListSize();
+		model.addAttribute("pdto",page);
+		
 		
 		// 맨 처음 들어왔을 때 전체 리스트 불러오기 위해.
 		if(searchOption==null && keyword==null) {
 			// 전체 리스트 불러온다.
-			map = adminService.getMember();
+			map = adminService.getMember(start, end);
 		} else {
 			// 검색어와 옵션이 있을 경우 해당 내용으로 검색한 결과를 가져온다.
-			map = adminService.getMemberList(searchOption,keyword);
+			map = adminService.getMemberList(searchOption,keyword,start, end);
 		}
 		model.addAttribute("mList",map);
 		// 검색 후 옵션 유지하기 위해서.
@@ -70,26 +82,37 @@ public class AdminController {
 	
 	@GetMapping("/admin/store_manage")
 	public String res_manage(HttpServletRequest request, String searchOption, String keyword,
-			@RequestParam(value="curPage", defaultValue="1") int curPage, Model model, RestaurantDTO resdto, PageDTO pdto) {
+			@RequestParam(value="curPage", defaultValue="1") int curPage,@RequestParam(value="curBlock", defaultValue="1") int curBlock, Model model, RestaurantDTO resdto, PageDTO pdto) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
 			return "redirect:/";
 		} // 세션에 담긴게 없으면 로그인 화면으로
+		Pagination page = new Pagination();
+		Map<String, String> url = new HashMap<String, String>();
+		url.put("url", "restaurant");
+		
+		int listCnt = adminService.allListCnt(url);
+		page.pageInfo(curPage, curBlock, listCnt);
+		int start = page.getStartList();
+		int end = start+page.getListSize();
+		model.addAttribute("pdto",page);
+		
 		List<RestaurantDTO> resdto2;
 		
 		if(searchOption==null && keyword==null) {
 			// 없을 경우, 전체List에서 paging처리 
-			resdto2 = adminService.getStoreList(pdto,curPage);
+			resdto2 = adminService.getStoreList(start, end);
 		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
-			resdto2 = adminService.getStore(searchOption, keyword);
+			resdto2 = adminService.getStore(searchOption, keyword, start, end);
 		}
+
+		
 		model.addAttribute("resdto",resdto2);
 		model.addAttribute("curPage", curPage);
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("searchOption", searchOption);
 		map2.put("keyword",keyword);
-		
 		model.addAttribute("map",map2);
 		
 		return "/admin/store_manage";
@@ -174,21 +197,31 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/reserv_manage", method= {RequestMethod.GET, RequestMethod.POST})
-	public String booking_manage(HttpServletRequest request, Model model,String searchOption, String keyword
-			) {
+	public String booking_manage(HttpServletRequest request, Model model,String searchOption, String keyword,
+			@RequestParam(value="curPage", defaultValue="1") int curPage,@RequestParam(value="curBlock", defaultValue="1") int curBlock) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mdto")==null) {
 			
 			return "redirect:/";
 		}
+		Pagination page = new Pagination();
+		Map<String, String> url = new HashMap<String, String>();
+		url.put("url", "booking");
+		
+		int listCnt = adminService.allListCnt(url);
+		page.pageInfo(curPage, curBlock, listCnt);
+		int start = page.getStartList();
+		int end = start+page.getListSize();
+		model.addAttribute("pdto",page);
+		
 		List<HashMap<String,Object>> bdto;
 		
 		if(searchOption==null && keyword==null) {
 			// 없을 경우, 전체List에서 paging처리
-			bdto = adminService.getBookingList();
+			bdto = adminService.getBookingList(start, end);
 		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
-			bdto = adminService.getBooking(searchOption, keyword);
+			bdto = adminService.getBooking(searchOption, keyword,start, end);
 		}
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("searchOption", searchOption);

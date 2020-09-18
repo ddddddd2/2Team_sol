@@ -94,3 +94,14 @@ td{
 	text-align: center;
 	margin-top: 200px;
 }
+#paginationBox{
+	width:max-content;
+	margin:0 auto;
+}
+.pagination{
+	list-style: none;
+}
+.pagination li{
+	float:left;
+	margin:0 5px;
+}

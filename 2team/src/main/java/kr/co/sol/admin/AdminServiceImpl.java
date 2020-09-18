@@ -2,6 +2,7 @@ package kr.co.sol.admin;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.co.sol.common.dao.MemberDAO;
 import kr.co.sol.common.dto.PageDTO;
 import kr.co.sol.common.dto.RestaurantDTO;
+import kr.co.sol.etc.Pagination;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
@@ -20,33 +22,23 @@ public class AdminServiceImpl implements AdminService {
 	MemberDAO memberDao;
 	
 	@Override
-	public List<HashMap<String, Object>> getMember() {
-		return adminDao.getMember();
+	public List<HashMap<String, Object>> getMember(int start, int end) {
+		return adminDao.getMember(start, end);
 	}
 	@Override
-	public List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword) {
+	public List<HashMap<String, Object>> getMemberList(@Param("searchOption") String searchOption, @Param("keyword") String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		return adminDao.getMemberList(searchOption, keyword);
+		return adminDao.getMemberList(searchOption, keyword,start, end);
 	}
 	@Override
-	public List<RestaurantDTO> getStore(String searchOption, String keyword) {
-		System.out.println("임플::"+searchOption+"=="+keyword);
+	public List<RestaurantDTO> getStore(String searchOption, String keyword,int start, int end) {
 		
-		return adminDao.getStore(searchOption, keyword);
+		return adminDao.getStore(searchOption, keyword, start, end);
 	}
 	@Override
-	public List<RestaurantDTO> getStoreList(PageDTO pdto, int curPage) { // 현재 페이지 가져오기.
-		// paging 처리
-		// 전체 리스트 가져오기.;
+	public List<RestaurantDTO> getStoreList(@Param("start") int start, @Param("end") int end) { // 현재 페이지 가져오기.
 		
-		int total = adminDao.getStoreListCnt(); // 전체 게시물 수
-		int listSize = 10;
-		int startPage = (curPage-1)*10+1;
-		int endPage = (curPage)*10;
-//		int allList = adminDao.allList();
-		
-		System.out.println("startP = "+startPage+"endP = "+endPage);
-		return adminDao.getStoreList(startPage, endPage);
+		return adminDao.getStoreList(start, end);
 	}
 	@Override
 	public int nameChk(String name) {
@@ -54,14 +46,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.nameChk(name);
 	}
 	@Override
-	public List<HashMap<String,Object>> getBookingList() {
+	public List<HashMap<String,Object>> getBookingList(int start, int end) {
 		// TODO Auto-generated method stub
-		return adminDao.getBookingList();
+		return adminDao.getBookingList(start, end);
 	}
 	@Override
-	public List<HashMap<String,Object>> getBooking(@Param("searchOption") String searchOption, @Param("keyword") String keyword) {
+	public List<HashMap<String,Object>> getBooking(@Param("searchOption") String searchOption, @Param("keyword") String keyword,int start, int end) {
 		// TODO Auto-generated method stub
-		return adminDao.getBooking(searchOption, keyword);
+		return adminDao.getBooking(searchOption, keyword,start, end);
 	}
 	@Override
 	public int bCancel(int no) {
@@ -81,5 +73,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int updateResInfo(RestaurantDTO resdto) {
 		return adminDao.updateResInfo(resdto);
+	}
+	@Override
+	public int allListCnt(Map<String, String> url) {
+		// TODO Auto-generated method stub
+		return adminDao.allListCnt(url);
 	}
 }

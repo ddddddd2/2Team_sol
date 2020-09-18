@@ -22,13 +22,13 @@
 		
 	</resultMap>
 	<select id="getMember" resultMap="getMember">
-		select no, grade_name, id, passwd, name, email, phone ,gender, role
-		from member
+		select * from (select no, grade_name, id, passwd, name, email, phone ,gender, role
+		from member order by no desc) where rownum between #{start} and #{end}
 	</select>
 	<select id="getMemberList" parameterType="map" resultMap="getMember">
-		select no, grade_name, id, passwd, name, email, phone, gender, role from
+		select * from (select no, grade_name, id, passwd, name, email, phone, gender, role from
 		member
-		where ${searchOption} like '%'||#{keyword}||'%'
+		where ${searchOption} like '%'||#{keyword}||'%' order by no desc) where rownum between #{start} and #{end}
 	</select>
 	<select id="getStoreList" parameterType="pdto" resultType="resdto">
 		<![CDATA[
@@ -36,7 +36,7 @@
 		from
 			(select rownum as rn, no, c_no, name, address1, tel, hour
 			 from restaurant order by no asc)
-		where rn >=#{startPage} and rn <=#{endPage}
+		where rn between #{start} and #{end}
 		]]>
 	</select>
 	<select id="getStore" parameterType="map" resultType="resdto">
@@ -48,16 +48,17 @@
 	         from
 	         	restaurant
 			where ${searchOption} like '%'||#{keyword}||'%' order by no asc) r
-		where rownum <= 10
+		where rownum between #{start} and #{end}
 		]]>
 	</select>
 	<select id="getBooking" parameterType="map" resultType="map">
-	select * from booking b join restaurant r on b.res_no = r.no
-	where ${searchOption} like '%'||#{keyword}||'%' order by b.no asc
+	select * from (select * from booking b join restaurant r on b.res_no = r.no
+	where ${searchOption} like '%'||#{keyword}||'%' order by b.no asc) where rownum between #{start} and #{end}
 	</select>
 	
 	<select id="getBookingList" resultType="map">
-	select b.no,m.name,r.name as res_name,b.date1,b.date2,b.status from booking b join restaurant r ON b.res_no = r.no JOIN member m ON b.mem_no = m.no order by no desc
+	select * from (select b.no,m.name,r.name as res_name,b.date1,b.date2,b.status from booking b join restaurant r ON b.res_no = r.no JOIN member m ON b.mem_no = m.no order by no desc)
+	where rownum between #{start} and #{end}
 	</select>
 	
 	<select id="nameChk" parameterType="String" resultType="int">
@@ -71,6 +72,9 @@
 	</select>
 	<select id="addrChk" parameterType="String" resultType="int">
 	select count(no) from restaurant where address1 = #{addr}
+	</select>
+	<select id="allListCnt" parameterType="String" resultType="int">
+	select count(*) from ${url}
 	</select>
 	<update id="bCancel" parameterType="int">
 		update booking set
