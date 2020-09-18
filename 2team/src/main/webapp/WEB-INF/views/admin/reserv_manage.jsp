@@ -52,10 +52,10 @@
 				<td>${bdto.DATE1}</td>
 				<td>${bdto.DATE2}</td>
 				<c:choose>
-					<c:when test="${bdto.STATUS=='결제완료'}">
+					<c:when test="${bdto.STATUS=='paid'}">
 						<td id="status_${bdto.NO}" onclick="booking_cancel(${bdto.NO})"><span>취소 가능</span></td>
 					</c:when>
-					<c:when test="${bdto.STATUS!='결제완료'}">
+					<c:when test="${bdto.STATUS!='paid'}">
 						<td id="status_${bdto.NO}" onclick="booking_cancel(${bdto.NO})">${bdto.STATUS}</td>
 					</c:when>
 				</c:choose>

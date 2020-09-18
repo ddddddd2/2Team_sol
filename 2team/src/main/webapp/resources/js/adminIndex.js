@@ -45,9 +45,10 @@
 	})
 		
 	function booking_cancel(e){
-		var t = document.querySelector("#status_15").text;
-		var t2 = document.querySelector('#status_15').html;
-		
+		var s = "#status_"+e;
+		var t = document.querySelector(s).text;
+		var t2 = document.querySelector(s).html;
+		var url = window.location.href;
 		console.log("t="+t)
 		console.log("t2="+t2)
 		$.ajax({
@@ -55,10 +56,7 @@
 			url:"/booking_cancel",
 			data:{"no":e},
 			success : function(d){
-				var num = "'.status "+d+"'";
-				var num2 = Document.querySelector('#status 15').value;
-				console.log(num2)
-				
+				document.location.href=url
 			},
 			error : function(d){
 				alert(d)
