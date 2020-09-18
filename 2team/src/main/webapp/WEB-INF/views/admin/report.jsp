@@ -28,6 +28,7 @@ window.onload = function(){
 	</div>
 	<div id="main-wrapper">
 		<div id="content-wrap">
+			<h2 style="margin-top:300px;text-align:center;">올해 매출은 "0" 원 입니다.</h2>
 		</div>
 	</div>
 	
