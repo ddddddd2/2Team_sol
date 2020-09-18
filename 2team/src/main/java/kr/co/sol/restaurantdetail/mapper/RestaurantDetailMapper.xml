@@ -110,7 +110,7 @@
 				from ( select * 
 					from review
 						where res_no = #{res_no} 
-						order by date1 desc) b ) a 
+						order by no desc) b ) a 
 		</if>
 		<if test="mem_no2 != null">
 			select a.* 
@@ -119,7 +119,7 @@
 					from review c left outer join (select rev_no , mem_no from r_like where mem_no = #{mem_no2}) d
 					on c.no = d.rev_no	
 						where res_no = #{res_no} 
-						order by date1 desc) b ) a 
+						order by no desc) b ) a 
 		</if>
 
 		<if test="start != null">
