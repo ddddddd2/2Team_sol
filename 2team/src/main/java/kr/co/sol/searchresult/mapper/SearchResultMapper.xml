@@ -22,7 +22,8 @@
   			
   			<choose>
   				<when test="keyword != null">
-  					where address1 like '%'||#{keyword}||'%' or name like '%'||#{keyword}||'%' 
+  					where address1 like '%'||#{keyword}||'%'
+<!--   					 or name like '%'||#{keyword}||'%'  -->
   				</when>
   			</choose>
   		

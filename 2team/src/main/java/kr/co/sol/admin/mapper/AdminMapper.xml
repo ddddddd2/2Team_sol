@@ -44,7 +44,7 @@
 		select no, c_no, name, address1, tel, hour
 		from
 			(select
-	        	*, rownum, rn
+	        	rownum rn,no,c_no,name,address1,tel,hour
 	         from
 	         	restaurant
 			where ${searchOption} like '%'||#{keyword}||'%' order by no asc) r

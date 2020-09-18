@@ -22,13 +22,13 @@
 					<select id="searchSelectBox" name="searchOption">
 						<option value="">검색 옵션</option>
 						<option value="name" <c:out value="${map.searchOption == 'name'?'selected':''}"/>>매장명</option>
-						<option value="address1" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>주소</option>
+						<option value="address1" <c:out value="${map.searchOption == 'address1'?'selected':''}"/>>주소</option>
 						<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
 					</select>
 					<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
 					<input type="submit" id="searchBtn" onClick="search()" value="검색">
-				<a href="/admin/reg_store"><button>매장 추가</button></a>
 				</form>
+				<button style="margin-left:5px;"onClick="location.href='/admin/reg_store'">매장 추가  </button>
 		</div>
 		<table border="1">
 			<tr>

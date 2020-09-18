@@ -136,7 +136,10 @@
 /* 	border: 3px solid gold;  */
 	border-radius: 7px;
 }
-
+.slide_content div img:hover{
+	cursor:pointer;
+	opacity: 0.8;
+}
 ul > li {
 	text-decoration: none;
 }
