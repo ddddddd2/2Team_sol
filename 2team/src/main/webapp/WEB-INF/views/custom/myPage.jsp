@@ -52,7 +52,17 @@
 				  		<td>${bdto.PRICE}원</td>
 				  		<td>${bdto.DATE2}</td>
 				  		<td>${bdto.CONTENT}</td>
-				  		<td>${bdto.STATUS}</td>
+				  		<td>
+				  		<c:choose>
+							<c:when test="${bdto.RECEIPT_URL==null}">
+								관리자 문의					
+							</c:when>
+							<c:otherwise>
+						  		<a href="${bdto.RECEIPT_URL}" target="_black">결제영수증</a>
+							</c:otherwise>
+											  		
+				  		</c:choose>
+				  		</td>
 					</tr>
  				</c:forEach>
  				<tr>

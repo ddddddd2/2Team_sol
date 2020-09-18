@@ -16,7 +16,6 @@
 	<link href="./resources/css/custom/index/common.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/index/index.css" rel="stylesheet" type="text/css" />
 	<link href="./resources/css/custom/myPage.css" rel="stylesheet" type="text/css" />
-	
 </head>
 <body>
 <div id="wrapper" style="position: absolute; width: 100%; height: auto;"><!-- 전체 div 시작 -->
@@ -35,23 +34,36 @@
 			<div id="content-title">예약</div>
 			<table id="content-content">
 				<tr>
+					<td>예약번호</td>
 					<td>업체명</td>
 					<td>예약 일자</td>
 					<td>주문 금액</td>
 					<td>기타</td>
 					<td>결제 일자</td>
 					<td>요청사항</td>
-					<td>상태</td>
+					<td>결제영수증</td>
 				</tr>
 				<c:forEach var="bdto" items="${bdto}">
 					<tr> 
+						<td>${bdto.NO}</td>
 						<td>${bdto.NAME}</td>
 				  		<td>${bdto.DATE1}</td>
 				  		<td>${bdto.PRICE}</td>
 				  		<td>${bdto.MEM_NO}</td>
 				  		<td>${bdto.DATE2}</td>
 				  		<td>${bdto.CONTENT}</td>
-				  		<td>${bdto.STATUS}</td>
+				  		<td>
+				  		<c:choose>
+							<c:when test="${bdto.RECEIPT_URL==null}">
+								관리자 문의					
+							</c:when>
+							<c:otherwise>
+						  		<a href="${bdto.RECEIPT_URL}" target="_black"><font style="font-weight: bold;">확인</font></a>
+							</c:otherwise>
+											  		
+				  		</c:choose>
+				  		</td>
+<%-- 기존 취소처리에서 영수증 보여주는 것으로 대체되었음.		<td id="${bdto.NO}" onClick="cancel('${bdto.NO}')" style="cursor:pointer;">${bdto.STATUS}</td> --%>
 					</tr>
  				</c:forEach>
 			</table>
@@ -59,6 +71,25 @@
 			<!-- content 영역 끝 -->
 	</div><!-- 첫 번째 큰 단락 끝 -->	<!--두 번째 큰 단락 끝 -->
 	</div><!-- 전체 div 끝 -->
-
+<script type="text/javascript">
+window.onload  = function(){
+	function cancel(no){
+	
+		var sval = document.getElementById(no).text();
+		alert
+		if(sval=='paid'){
+			$.ajax({
+				type:"POST",
+				url:"/bookingCancel",
+				data:{}
+				
+				
+			})
+		} else {
+			alert("취소 가능한 상태가 아닙니다.")
+		}		
+	}
+}
+</script>
 </body>
 </html>
