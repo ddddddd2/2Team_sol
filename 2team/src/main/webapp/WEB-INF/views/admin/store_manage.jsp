@@ -52,11 +52,30 @@
 					<c:forEach var="resdto" items="${resdto}" varStatus="vs">
 					<tr>
 						<td id="${resdto.no}">${resdto.no}</td>
-						<td>${resdto.name}</td>
+						<td>
+						<c:choose>
+							<c:when test="${resdto.name.length() > 8}">
+							${resdto.name.substring(0,8)}..
+							</c:when>
+							<c:otherwise>
+							${resdto.name}
+							</c:otherwise>
+						</c:choose>
+						</td>
 						<td>한식</td>
 						<td>3</td>
 						<td>4</td>
-						<td>${resdto.address1}</td>
+						<td>
+						<c:choose>
+							<c:when test="${resdto.address1.length() > 20}">
+							${resdto.address1.substring(0,20)}..
+							</c:when>
+							<c:otherwise>
+							${resdto.address1}
+							</c:otherwise>
+						</c:choose>
+						
+						</td>
 						<td>${resdto.hour}</td>
 						<td>${resdto.tel}</td>
 						<td><a href="/admin/update_res?no=${resdto.no}">수정</a></td>

@@ -39,7 +39,16 @@
 			<tr>
 				<td>${bdto.NO}</td>
 				<td>${bdto.NAME}</td>
-				<td>${bdto.RES_NAME}</td>
+				<td>
+						<c:choose>
+							<c:when test="${bdto.RES_NAME.length() > 8}">
+							${bdto.RES_NAME.substring(0,8)}..
+							</c:when>
+							<c:otherwise>
+							${bdto.RES_NAME}
+							</c:otherwise>
+						</c:choose>
+				</td>
 				<td>${bdto.DATE1}</td>
 				<td>${bdto.DATE2}</td>
 				<c:choose>

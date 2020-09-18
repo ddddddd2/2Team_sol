@@ -22,17 +22,17 @@
 		
 	</resultMap>
 	<select id="getMember" resultMap="getMember">
-		select * from (select no, grade_name, id, passwd, name, email, phone ,gender, role
-		from member order by no desc) where rownum between #{start} and #{end}
+		select * from (select rownum rn,no, grade_name, id, passwd, name, email, phone ,gender, role
+		from member order by no desc) where rn between #{start} and #{end}
 	</select>
 	<select id="getMemberList" parameterType="map" resultMap="getMember">
-		select * from (select no, grade_name, id, passwd, name, email, phone, gender, role from
+		select * from (select rownum rn, no, grade_name, id, passwd, name, email, phone, gender, role from
 		member
-		where ${searchOption} like '%'||#{keyword}||'%' order by no desc) where rownum between #{start} and #{end}
+		where ${searchOption} like '%'||#{keyword}||'%' order by no desc) where rn between #{start} and #{end}
 	</select>
 	<select id="getStoreList" parameterType="pdto" resultType="resdto">
 		<![CDATA[
-		select * 
+		select *
 		from
 			(select rownum as rn, no, c_no, name, address1, tel, hour
 			 from restaurant order by no asc)
@@ -41,24 +41,24 @@
 	</select>
 	<select id="getStore" parameterType="map" resultType="resdto">
 		<![CDATA[
-		select rownum, no, c_no, name, address1, tel, hour
+		select no, c_no, name, address1, tel, hour
 		from
 			(select
-	        	*
+	        	*, rownum, rn
 	         from
 	         	restaurant
 			where ${searchOption} like '%'||#{keyword}||'%' order by no asc) r
-		where rownum between #{start} and #{end}
+		where rn between #{start} and #{end}
 		]]>
 	</select>
 	<select id="getBooking" parameterType="map" resultType="map">
-	select * from (select * from booking b join restaurant r on b.res_no = r.no
-	where ${searchOption} like '%'||#{keyword}||'%' order by b.no asc) where rownum between #{start} and #{end}
+	select * from (select *,rownum rn from booking b join restaurant r on b.res_no = r.no
+	where ${searchOption} like '%'||#{keyword}||'%' order by b.no asc) where rn between #{start} and #{end}
 	</select>
 	
 	<select id="getBookingList" resultType="map">
-	select * from (select b.no,m.name,r.name as res_name,b.date1,b.date2,b.status from booking b join restaurant r ON b.res_no = r.no JOIN member m ON b.mem_no = m.no order by no desc)
-	where rownum between #{start} and #{end}
+	select * from (select rownum rn, b.no,m.name,r.name as res_name,b.date1,b.date2,b.status from booking b join restaurant r ON b.res_no = r.no JOIN member m ON b.mem_no = m.no order by no desc)
+	where rn between #{start} and #{end}
 	</select>
 	
 	<select id="nameChk" parameterType="String" resultType="int">

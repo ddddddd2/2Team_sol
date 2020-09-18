@@ -223,12 +223,13 @@ public class AdminController {
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
 			bdto = adminService.getBooking(searchOption, keyword,start, end);
 		}
+		
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("searchOption", searchOption);
 		map2.put("keyword",keyword);
 		model.addAttribute("map",map2);
 		model.addAttribute("bdto",bdto);
-		System.out.println(bdto);
+		System.out.println("bdto의 size="+bdto.size());
 		return "/admin/reserv_manage";
 	}
 	
