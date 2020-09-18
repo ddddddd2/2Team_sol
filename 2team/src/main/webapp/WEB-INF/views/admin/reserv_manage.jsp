@@ -20,7 +20,7 @@
 				<select id="searchSelectBox" name="searchOption">
 					<option value="">검색 옵션</option>
 					<option value="name" <c:out value="${map.searchOption == 'res_name'?'selected':''}"/>>매장명</option>
-					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>연락처</option>
+					<option value="tel" <c:out value="${map.searchOption == 'tel'?'selected':''}"/>>매장연락처</option>
 				</select>
 				<input type="text" name="keyword" id="searchBar" placeholder="매장 검색" value="${map.keyword}">
 			<input type="submit" id="searchBtn" value="검색">

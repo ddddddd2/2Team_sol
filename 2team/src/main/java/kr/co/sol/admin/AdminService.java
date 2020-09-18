@@ -20,7 +20,7 @@ public interface AdminService {
 	List<HashMap<String,Object>> getBookingList();
 	int nameChk(String name);
 
-	List<HashMap<String,Object>> getBooking(String searchOption, String keyword);
+	List<HashMap<String,Object>> getBooking(@Param("searchOption") String searchOption, @Param("keyword") String keyword);
 
 	int bCancel(int no);
 

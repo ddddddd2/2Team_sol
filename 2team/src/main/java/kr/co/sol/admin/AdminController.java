@@ -77,10 +77,6 @@ public class AdminController {
 		} // 세션에 담긴게 없으면 로그인 화면으로
 		List<RestaurantDTO> resdto2;
 		
-		// paging 처리
-					
-		// 검색어가 있는지 확인
-		
 		if(searchOption==null && keyword==null) {
 			// 없을 경우, 전체List에서 paging처리 
 			resdto2 = adminService.getStoreList(pdto,curPage);
@@ -90,34 +86,23 @@ public class AdminController {
 		}
 		model.addAttribute("resdto",resdto2);
 		model.addAttribute("curPage", curPage);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("searchOption", searchOption);
+		map2.put("keyword",keyword);
+		
+		model.addAttribute("map",map2);
+		
 		return "/admin/store_manage";
 	}
 	
-	@GetMapping("/admin/update_res")
+	// 음식점 정보 업데이트
+	@GetMapping("/admin/update_res") 
 	public String update_res(Model model, HttpServletRequest request, @RequestParam("no") int no) {
 		RestaurantDTO resdto = adminService.getStoreInfo(no);
 		model.addAttribute("resdto",resdto);
 		return "/admin/update_res";
 	}
 	
-//	@GetMapping("admin/store_manage")
-//	public String sm(Model model, HttpServletRequest request, HttpServletResponse response, StoreDTO sdto,
-//			@RequestParam(required=false) String searchOption,
-//			@RequestParam(required=false) String keyword) {
-//		List<StoreDTO> sdto2;
-//		if(searchOption==null && keyword==null) {
-//			sdto2 = storeService.getStore();
-//		} else {
-////			sdto2 = storeService.getStoreList(searchOption, keyword);
-//		}
-//		model.addAttribute("sdto",sdto2);
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("searchOption", searchOption);
-//		map.put("keyword",keyword);
-//		model.addAttribute("map",map);
-//		
-//		return "admin/store_manage";
-//	}
 	
 	@GetMapping("admin/report")
 	public String report(Model model, HttpServletRequest request, HttpServletResponse response, RestaurantDTO resdto, MemberDTO mdto) {
@@ -197,13 +182,11 @@ public class AdminController {
 			return "redirect:/";
 		}
 		List<HashMap<String,Object>> bdto;
-		System.out.println("dfasldkjf"+searchOption+"      "+keyword);
+		
 		if(searchOption==null && keyword==null) {
 			// 없을 경우, 전체List에서 paging처리
-			System.out.println("없습니다");
 			bdto = adminService.getBookingList();
 		} else { // 있을 경우, 검색조건에 맞는 애들에서 가져오는 작업
-			System.out.println("있습니다");
 			// 현재 페이지를 넘겨서 출력할 list 가져와야함.
 			bdto = adminService.getBooking(searchOption, keyword);
 		}

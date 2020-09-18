@@ -7,7 +7,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/adminMain.css" />
 <title>Insert title here</title>
-<script type="text/javascript" src="../resources/js/adminIndex.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -24,7 +23,7 @@
 					<option value="phone" <c:out value="${map.searchOption == 'phone'?'selected':''}"/>>연락처</option>
 				</select>
 				<input type="text" name="keyword" id="searchBar" placeholder="회원 검색" value="${map.keyword}" >
-			<input type="button" id="searchBtn" onClick="search()" value="검색">
+				<input type="button" id="searchBtn" onClick="search()" value="검색">
 			</form>
 		</div>
 		<table border="1">
@@ -49,8 +48,6 @@
 						<tr>
 						<td>${mList.no}</td>
 						<td>${mList.grade_name}</td>
-						
-						
 						<td>${mList.id}</td>
 						<td>${mList.name}</td>
 						<td>${mList.email}</td>
@@ -64,6 +61,7 @@
 		</table>
 		</div>
 	</div>
+<script type="text/javascript" src="../resources/js/adminIndex.js"></script>
 <script type="text/javascript" src="../resources/js/map.js"></script>
 </body>
 </html>

@@ -59,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.getBookingList();
 	}
 	@Override
-	public List<HashMap<String,Object>> getBooking(String searchOption, String keyword) {
+	public List<HashMap<String,Object>> getBooking(@Param("searchOption") String searchOption, @Param("keyword") String keyword) {
 		// TODO Auto-generated method stub
 		return adminDao.getBooking(searchOption, keyword);
 	}

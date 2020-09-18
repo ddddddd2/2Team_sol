@@ -52,7 +52,8 @@
 		]]>
 	</select>
 	<select id="getBooking" parameterType="map" resultType="map">
-	select * from booking where ${searchOption} like '%'||#{keyword}||'%' order by no asc
+	select * from booking b join restaurant r on b.res_no = r.no
+	where ${searchOption} like '%'||#{keyword}||'%' order by b.no asc
 	</select>
 	
 	<select id="getBookingList" resultType="map">
