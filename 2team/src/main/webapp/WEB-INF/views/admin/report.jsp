@@ -16,11 +16,6 @@
 .slide_content { display: table; float: left; width: 300px; height: 400px; }
 .slide_list div p {background-color: red;}
 </style>
-<script type="text/javascript">
-window.onload = function(){
-});
-}
-</script>
 </head>
 <body>
 	<div id="header">
